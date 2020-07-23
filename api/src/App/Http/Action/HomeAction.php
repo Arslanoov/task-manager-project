@@ -24,12 +24,8 @@ final class HomeAction implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $name = $request->getQueryParams()['name'] ?? 'guest';
-
-        $message = 'Hello, ' . $name . '!';
-
         return $this->response->json([
-            'content' => $message
+            'version' => '1.0'
         ]);
     }
 }
