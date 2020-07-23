@@ -11,50 +11,78 @@ use Cycle\Annotated\Annotation as Cycle;
  *     table="user_users",
  *     role="user"
  * )
+ * @Cycle\Table(
+ *      indexes={
+ *          @Cycle\Table\Index(columns = {"login", "email"})
+ *      }
+ * )
  */
 final class User
 {
-    private const STATUS_DRAFT = 'Draft';
+    /**
+     * @Cycle\Column(type="primary", primary=true)
+     * @Cycle\Relation\Embedded(target="Id")
+     */
+    private Id $id;
+    /**
+     * @Cycle\Relation\Embedded(target="Login")
+     */
+    private Login $login;
+    /**
+     * @Cycle\Relation\Embedded(target="Email")
+     */
+    private Email $email;
+    /**
+     * @Cycle\Relation\Embedded(target="Status")
+     */
+    private Status $status;
 
-    /**
-     * @Cycle\Column(type="primary")
-     */
-    private ?int $id = null;
-    /**
-     * @Cycle\Column(type="string(32)")
-     */
-    private string $login;
-    /**
-     * @Cycle\Column(type="string(16)")
-     */
-    private string $status;
-
-    public function __construct(string $login)
+    private function __construct(Id $id, Login $login, Email $email, Status $status)
     {
+        $this->id = $id;
         $this->login = $login;
-        $this->status = self::STATUS_DRAFT;
+        $this->email = $email;
+        $this->status = $status;
+    }
+
+    public static function signUpByEmail(Login $login, Email $email): self
+    {
+        return new self(
+            Id::uuid4(),
+            $login,
+            $email,
+            Status::draft()
+        );
     }
 
     /**
-     * @return int
+     * @return Id
      */
-    public function getId(): ?int
+    public function getId(): Id
     {
         return $this->id;
     }
 
     /**
-     * @return string
+     * @return Login
      */
-    public function getLogin(): string
+    public function getLogin(): Login
     {
         return $this->login;
     }
 
     /**
-     * @return string
+     * @return Email
      */
-    public function getStatus(): string
+    public function getEmail(): Email
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return Status
+     */
+    public function getStatus(): Status
     {
         return $this->status;
     }

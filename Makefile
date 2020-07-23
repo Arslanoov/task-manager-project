@@ -7,6 +7,9 @@ docker-build:
 docker-up:
 	docker-compose up -d
 
+diff:
+	docker-compose run --rm api-php-cli php bin/console cycle:diff
+
 migrate:
 	docker-compose run --rm api-php-cli php bin/console cycle:run
 

@@ -14,10 +14,11 @@ return [
                 ORM\Schema::COLUMNS     => [
                     'id'   => 'id',
                     'login' => 'login',
+                    'email' => 'email',
                     'status' => 'status'
                 ],
                 ORM\Schema::TYPECAST    => [
-                    'id' => 'int'
+                    'id' => 'string'
                 ],
                 ORM\Schema::RELATIONS   => []
             ]
