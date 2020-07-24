@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\Entity\Schedule;
+namespace Domain\Todo\Entity\Schedule\Task;
 
 use Cycle\Annotated\Annotation as Cycle;
 use Webmozart\Assert\Assert;
