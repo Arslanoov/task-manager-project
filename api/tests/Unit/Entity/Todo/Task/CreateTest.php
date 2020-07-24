@@ -18,16 +18,15 @@ class CreateTest extends TestCase
     {
         $schedule = (new ScheduleBuilder())->main();
 
-        $task = new Task(
-            $id = TaskId::uuid4(),
+        $task = Task::new(
             $schedule,
             $name = new Name('Task Name'),
             $description = new Description('Description'),
             $level = ImportantLevel::veryImportant()
         );
 
-        $this->assertEquals($task->getId(), $id);
-        $this->assertTrue($task->getId()->isEqual($id));
+        $this->assertNotEmpty($task->getId());
+        $this->assertInstanceOf(TaskId::class, $task->getId());
 
         $this->assertEquals($task->getSchedule(), $schedule);
 
@@ -40,5 +39,9 @@ class CreateTest extends TestCase
         $this->assertFalse($task->isNotImportant());
         $this->assertFalse($task->isImportant());
         $this->assertTrue($task->isVeryImportant());
+
+        $this->assertTrue($task->isNotComplete());
+        $this->assertFalse($task->isInProgress());
+        $this->assertFalse($task->isComplete());
     }
 }

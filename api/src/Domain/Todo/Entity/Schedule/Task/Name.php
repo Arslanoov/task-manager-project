@@ -14,7 +14,7 @@ use Webmozart\Assert\Assert;
 final class Name
 {
     /** @Cycle\Column(type="string(32)", name="name") */
-    public string $value;
+    private string $value;
 
     /**
      * Name constructor.

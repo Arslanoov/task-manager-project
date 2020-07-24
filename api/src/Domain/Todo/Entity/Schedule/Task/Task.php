@@ -32,6 +32,8 @@ final class Task
     private Description $description;
     /** @Cycle\Relation\Embedded(target="ImportantLevel") */
     private ImportantLevel $level;
+    /** @Cycle\Relation\Embedded(target="Status") */
+    private Status $status;
 
     /**
      * Task constructor.
@@ -40,14 +42,34 @@ final class Task
      * @param Name $name
      * @param Description $description
      * @param ImportantLevel $level
+     * @param Status $status
      */
-    public function __construct(TaskId $id, Schedule $schedule, Name $name, Description $description, ImportantLevel $level)
+    private function __construct(
+        TaskId $id, Schedule $schedule, Name $name,
+        Description $description, ImportantLevel $level, Status $status
+    )
     {
         $this->id = $id;
         $this->schedule = $schedule;
         $this->name = $name;
         $this->description = $description;
         $this->level = $level;
+        $this->status = $status;
+    }
+
+    public static function new(
+        Schedule $schedule, Name $name,
+        Description $description, ImportantLevel $level
+    ): self
+    {
+        return new self(
+            TaskId::uuid4(),
+            $schedule,
+            $name,
+            $description,
+            $level,
+            Status::notComplete()
+        );
     }
 
     /**
@@ -90,6 +112,14 @@ final class Task
         return $this->level;
     }
 
+    /**
+     * @return Status
+     */
+    public function getStatus(): Status
+    {
+        return $this->status;
+    }
+
     public function isNotImportant(): bool
     {
         return $this->getLevel()->isNotImportant();
@@ -103,5 +133,20 @@ final class Task
     public function isVeryImportant(): bool
     {
         return $this->getLevel()->isVeryImportant();
+    }
+
+    public function isNotComplete(): bool
+    {
+        return $this->getStatus()->isNotComplete();
+    }
+
+    public function isInProgress(): bool
+    {
+        return $this->getStatus()->isInProgress();
+    }
+
+    public function isComplete(): bool
+    {
+        return $this->getStatus()->isComplete();
     }
 }
