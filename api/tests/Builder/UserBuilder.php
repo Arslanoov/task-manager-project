@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Builder;
 
-use Domain\User\Entity\Email;
-use Domain\User\Entity\UserId;
-use Domain\User\Entity\Login;
-use Domain\User\Entity\Status;
-use Domain\User\Entity\User;
+use Domain\User\Entity\User\Email;
+use Domain\User\Entity\User\UserId;
+use Domain\User\Entity\User\Login;
+use Domain\User\Entity\User\Status;
+use Domain\User\Entity\User\User;
 
 final class UserBuilder
 {

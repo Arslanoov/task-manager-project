@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Entity\Schedule;
+namespace Tests\Unit\Entity\Schedule\Schedule;
 
 use DateTimeImmutable;
 use Domain\Todo\Entity\Schedule\ImportantLevel;
 use Domain\Todo\Entity\Schedule\Schedule;
 use Domain\Todo\Entity\Schedule\ScheduleId;
-use Domain\User\Entity\User;
+use Domain\User\Entity\User\User;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Tests\Builder\UserBuilder;
