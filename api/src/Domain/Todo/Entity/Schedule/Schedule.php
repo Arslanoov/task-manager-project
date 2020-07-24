@@ -25,7 +25,7 @@ final class Schedule
     private ScheduleId $id;
     /**
      * @Cycle\Column(type="string(32)")
-     * @Cycle\Relation\HasOne(target="user")
+     * @Cycle\Relation\BelongsTo(target="user", innerKey="user", outerKey="id")
      */
     private User $user;
     /** @Cycle\Column(type="datetime") */

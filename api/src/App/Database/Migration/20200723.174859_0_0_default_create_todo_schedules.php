@@ -10,13 +10,6 @@ class OrmDefaultE6c6de23b6f4072e1e375fe883103bf9 extends Migration
 
     public function up()
     {
-        $this->table('user_users')
-            ->alterColumn('id', 'string', [
-                'nullable' => false,
-                'default'  => 0
-            ])
-        ;
-
         $this->table('todo_schedules')
             ->addColumn('id', 'string', [
                 'nullable' => false,
@@ -25,7 +18,7 @@ class OrmDefaultE6c6de23b6f4072e1e375fe883103bf9 extends Migration
             ->addColumn('user', 'string', [
                 'nullable' => false,
                 'default'  => null,
-                'size'     => 32
+                'size'     => 255
             ])
             ->addColumn('date', 'datetime', [
                 'nullable' => false,
@@ -35,25 +28,35 @@ class OrmDefaultE6c6de23b6f4072e1e375fe883103bf9 extends Migration
                 'nullable' => false,
                 'default'  => null
             ])
-            ->addColumn('value', 'string', [
+            ->addColumn('important_level', 'string', [
+                'nullable' => false,
+                'default'  => null,
+                'size'     => 16
+            ])
+            ->addColumn('type', 'string', [
                 'nullable' => false,
                 'default'  => null,
                 'size'     => 16
             ])
             ->setPrimaryKeys(["id"])
+            ->addIndex(["user"], [
+                'name'   => 'todo_schedules_index_user_5f1aab96d4c94',
+                'unique' => false
+            ])
+            ->addForeignKey(["user"], 'user_users', ["id"], [
+                'name'   => 'todo_schedules_foreign_user_5f1aab96d4ced',
+                'delete' => 'CASCADE',
+                'update' => 'CASCADE'
+            ])
             ->create();
     }
 
     public function down()
     {
-        $this->table('user_users')
-            ->alterColumn('id', 'string', [
-                'nullable' => false,
-                'default'  => 'nextval(\'user_users_id_seq',
-                'size'     => 255
-            ])
-            ->update();
-        
-        $this->table('todo_schedules')->drop();
+        $this
+            ->table('todo_schedules')
+            ->dropForeignKey(['user'])
+            ->dropIndex(['user'])
+            ->drop();
     }
 }
