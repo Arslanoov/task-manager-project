@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Entity;
+namespace Domain\User\Entity\User;
 
 use Cycle\Annotated\Annotation as Cycle;
 use Ramsey\Uuid\Uuid;

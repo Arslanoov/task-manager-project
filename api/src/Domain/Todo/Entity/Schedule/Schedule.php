@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Todo\Entity\Schedule;
 
 use DateTimeImmutable;
-use Domain\User\Entity\User;
+use Domain\User\Entity\User\User;
 use Cycle\Annotated\Annotation as Cycle;
 
 /**

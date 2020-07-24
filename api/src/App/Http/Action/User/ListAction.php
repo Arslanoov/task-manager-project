@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Action\User;
 
-use Domain\User\Entity\User;
-use Domain\User\Entity\UserRepository;
+use Domain\User\Entity\User\UserRepository;
 use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
