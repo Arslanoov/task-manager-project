@@ -21,9 +21,9 @@ final class User
 {
     /**
      * @Cycle\Column(type="primary", primary=true)
-     * @Cycle\Relation\Embedded(target="Id")
+     * @Cycle\Relation\Embedded(target="UserId")
      */
-    private Id $id;
+    private UserId $id;
     /**
      * @Cycle\Relation\Embedded(target="Login")
      */
@@ -37,7 +37,7 @@ final class User
      */
     private Status $status;
 
-    private function __construct(Id $id, Login $login, Email $email, Status $status)
+    public function __construct(UserId $id, Login $login, Email $email, Status $status)
     {
         $this->id = $id;
         $this->login = $login;
@@ -48,7 +48,7 @@ final class User
     public static function signUpByEmail(Login $login, Email $email): self
     {
         return new self(
-            Id::uuid4(),
+            UserId::uuid4(),
             $login,
             $email,
             Status::draft()
@@ -56,9 +56,9 @@ final class User
     }
 
     /**
-     * @return Id
+     * @return UserId
      */
-    public function getId(): Id
+    public function getId(): UserId
     {
         return $this->id;
     }

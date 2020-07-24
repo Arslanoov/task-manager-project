@@ -4,7 +4,7 @@ namespace Migration;
 
 use Spiral\Migrations\Migration;
 
-class OrmDefault94f12343306d549015155fb02ca323b8 extends Migration
+class xOrmDefault94f12343306d549015155fb02ca323b8 extends Migration
 {
     protected const DATABASE = 'default';
 

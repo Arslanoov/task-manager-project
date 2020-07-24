@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Entity;
+namespace Domain\Todo\Entity\Schedule;
 
 use Cycle\Annotated\Annotation as Cycle;
 use Ramsey\Uuid\Uuid;
@@ -10,10 +10,9 @@ use Webmozart\Assert\Assert;
 
 /**
  * Class Id
- * @package Domain\User\Entity
  * @Cycle\Embeddable()
  */
-final class Id
+final class ScheduleId
 {
     /** @Cycle\Column(type="string(32)", name="id") */
     private string $value;
@@ -42,7 +41,7 @@ final class Id
         return new self(Uuid::uuid4()->toString());
     }
 
-    public function isEqual(Id $id): bool
+    public function isEqual(ScheduleId $id): bool
     {
         return $this->value === $id->getValue();
     }
