@@ -15,10 +15,7 @@ return [
             ORM\Schema::TABLE       => 'user_users',
             ORM\Schema::PRIMARY_KEY => 'id',
             ORM\Schema::COLUMNS     => [
-                'id'   => 'id',
-                'login' => 'login',
-                'email' => 'email',
-                'status' => 'status'
+                'id', 'login', 'email', 'status'
             ],
             ORM\Schema::TYPECAST    => [
                 'id' => 'string'
@@ -31,12 +28,8 @@ return [
             ORM\Schema::TABLE       => 'todo_schedules',
             ORM\Schema::PRIMARY_KEY => 'id',
             ORM\Schema::COLUMNS     => [
-                ScheduleId::class   => 'id',
-                User::class => 'user',
-                DateTimeImmutable::class => 'date',
-                'tasksCount' => 'tasks_count',
-                ImportantLevel::class => 'important_level',
-                Type::class => 'type'
+                'id', 'user', 'date', 'tasks_count',
+                'important_level', 'type'
             ],
             ORM\Schema::TYPECAST    => [
                 'id' => 'string'
@@ -47,8 +40,8 @@ return [
                     ORM\Relation::TARGET => 'schedule',
                     ORM\Relation::SCHEMA => [
                         ORM\Relation::CASCADE   => true,
-                        ORM\Relation::INNER_KEY => 'id',
-                        ORM\Relation::OUTER_KEY => 'user',
+                        ORM\Relation::INNER_KEY => 'user',
+                        ORM\Relation::OUTER_KEY => 'id'
                     ]
                 ]
             ]
