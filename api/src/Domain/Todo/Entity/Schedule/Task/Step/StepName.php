@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\Entity\Schedule\Task;
+namespace Domain\Todo\Entity\Schedule\Task\Step;
 
 use Cycle\Annotated\Annotation as Cycle;
 use Webmozart\Assert\Assert;
@@ -11,7 +11,7 @@ use Webmozart\Assert\Assert;
  * Class Name
  * @Cycle\Embeddable()
  */
-final class Name
+final class StepName
 {
     /** @Cycle\Column(type="string(32)", name="name") */
     private string $value;
@@ -36,7 +36,7 @@ final class Name
         return $this->value;
     }
 
-    public function isEqual(Name $name): bool
+    public function isEqual(StepName $name): bool
     {
         return $this->value === $name->getValue();
     }

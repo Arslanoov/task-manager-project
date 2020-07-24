@@ -11,13 +11,13 @@ use Webmozart\Assert\Assert;
  * Class Status
  * @Cycle\Embeddable()
  */
-final class Status
+final class TaskStatus
 {
     private const STATUS_NOT_COMPLETE = 'Not Complete';
     private const STATUS_IN_PROGRESS= 'In Progress';
     private const STATUS_COMPLETE = 'Complete';
 
-    /** @Cycle\Column(type="string(15)", name="status") */
+    /** @Cycle\Column(type="string(16)", name="status") */
     private string $value;
 
     /**

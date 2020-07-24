@@ -1,6 +1,7 @@
 <?php
 
 use Domain\Todo\Entity\Schedule\Schedule;
+use Domain\Todo\Entity\Schedule\Task\Step\Step;
 use Domain\Todo\Entity\Schedule\Task\Task;
 use Domain\User\Entity\User\User;
 use Cycle\ORM;
@@ -63,6 +64,29 @@ return [
                     ORM\Relation::SCHEMA => [
                         ORM\Relation::CASCADE   => true,
                         ORM\Relation::INNER_KEY => 'schedule',
+                        ORM\Relation::OUTER_KEY => 'id'
+                    ]
+                ]
+            ]
+        ],
+        Step::class => [
+            ORM\Schema::ENTITY      => Step::class,
+            ORM\Schema::DATABASE    => 'default',
+            ORM\Schema::TABLE       => 'todo_schedule_task_steps',
+            ORM\Schema::PRIMARY_KEY => 'id',
+            ORM\Schema::COLUMNS     => [
+                'id', 'task', 'name', 'sort_order', 'status'
+            ],
+            ORM\Schema::TYPECAST    => [
+                'id' => 'integer'
+            ],
+            ORM\Schema::RELATIONS   => [
+                'step' => [
+                    ORM\Relation::TYPE   => ORM\Relation::HAS_ONE,
+                    ORM\Relation::TARGET => 'step',
+                    ORM\Relation::SCHEMA => [
+                        ORM\Relation::CASCADE   => true,
+                        ORM\Relation::INNER_KEY => 'task',
                         ORM\Relation::OUTER_KEY => 'id'
                     ]
                 ]

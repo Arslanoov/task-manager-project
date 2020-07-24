@@ -32,8 +32,8 @@ final class Task
     private Description $description;
     /** @Cycle\Relation\Embedded(target="ImportantLevel") */
     private ImportantLevel $level;
-    /** @Cycle\Relation\Embedded(target="Status") */
-    private Status $status;
+    /** @Cycle\Relation\Embedded(target="TaskStatus") */
+    private TaskStatus $status;
 
     /**
      * Task constructor.
@@ -42,11 +42,11 @@ final class Task
      * @param Name $name
      * @param Description $description
      * @param ImportantLevel $level
-     * @param Status $status
+     * @param TaskStatus $status
      */
     private function __construct(
         TaskId $id, Schedule $schedule, Name $name,
-        Description $description, ImportantLevel $level, Status $status
+        Description $description, ImportantLevel $level, TaskStatus $status
     )
     {
         $this->id = $id;
@@ -68,7 +68,7 @@ final class Task
             $name,
             $description,
             $level,
-            Status::notComplete()
+            TaskStatus::notComplete()
         );
     }
 
@@ -113,9 +113,9 @@ final class Task
     }
 
     /**
-     * @return Status
+     * @return TaskStatus
      */
-    public function getStatus(): Status
+    public function getStatus(): TaskStatus
     {
         return $this->status;
     }
