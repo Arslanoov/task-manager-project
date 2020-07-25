@@ -106,4 +106,9 @@ final class Step
     {
         $this->sortOrder = $order;
     }
+
+    public function changeName(StepName $name): void
+    {
+        $this->name = $name;
+    }
 }
