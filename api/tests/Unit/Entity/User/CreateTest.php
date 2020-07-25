@@ -6,6 +6,7 @@ namespace Tests\Unit\Entity\User;
 
 use Domain\User\Entity\User\Email;
 use Domain\User\Entity\User\Login;
+use Domain\User\Entity\User\Password;
 use Domain\User\Entity\User\Status;
 use Domain\User\Entity\User\User;
 use InvalidArgumentException;
@@ -17,7 +18,8 @@ class CreateTest extends TestCase
     {
         $user = User::signUpByEmail(
             $login = new Login('some login'),
-            $email = new Email('app@test.app')
+            $email = new Email('app@test.app'),
+            $password = new Password('Some password')
         );
 
         $this->assertEquals($user->getLogin(), $login);
@@ -25,6 +27,9 @@ class CreateTest extends TestCase
 
         $this->assertEquals($user->getEmail(), $email);
         $this->assertTrue($user->getEmail()->isEqual($email));
+
+        $this->assertEquals($password, $user->getPassword());
+        $this->assertTrue($user->getPassword()->isEqual($password));
 
         $this->assertEquals($user->getStatus(), Status::draft());
         $this->assertTrue($user->getStatus()->isEqual(Status::draft()));
@@ -37,7 +42,8 @@ class CreateTest extends TestCase
 
         User::signUpByEmail(
             $login = new Login(''),
-            $email = new Email('app@test.app')
+            $email = new Email('app@test.app'),
+            new Password('Some password')
         );
     }
 
@@ -48,7 +54,8 @@ class CreateTest extends TestCase
 
         User::signUpByEmail(
             $login = new Login('sssssssssssssssssssssssssssssssssssssssssssssssss'),
-            $email = new Email('app@test.app')
+            $email = new Email('app@test.app'),
+            new Password('Some password')
         );
     }
 
@@ -59,7 +66,8 @@ class CreateTest extends TestCase
 
         User::signUpByEmail(
             $login = new Login('s'),
-            $email = new Email('app@test.app')
+            $email = new Email('app@test.app'),
+            new Password('Some password')
         );
     }
 
@@ -70,7 +78,8 @@ class CreateTest extends TestCase
 
         User::signUpByEmail(
             $login = new Login('login'),
-            $email = new Email('')
+            $email = new Email(''),
+            new Password('Some password')
         );
     }
 
@@ -81,7 +90,8 @@ class CreateTest extends TestCase
 
         User::signUpByEmail(
             $login = new Login('login'),
-            $email = new Email('email')
+            $email = new Email('email'),
+            new Password('Some password')
         );
     }
 
@@ -92,7 +102,8 @@ class CreateTest extends TestCase
 
         User::signUpByEmail(
             $login = new Login('login'),
-            $email = new Email('sssssssssssssssssssssssssssssssssssssssssssssssss')
+            $email = new Email('sssssssssssssssssssssssssssssssssssssssssssssssss'),
+            new Password('Some password')
         );
     }
 
@@ -103,7 +114,8 @@ class CreateTest extends TestCase
 
         User::signUpByEmail(
             $login = new Login('login'),
-            $email = new Email('s')
+            $email = new Email('s'),
+            new Password('Some password')
         );
     }
 }

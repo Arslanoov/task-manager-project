@@ -33,24 +33,30 @@ final class User
      */
     private Email $email;
     /**
+     * @Cycle\Relation\Embedded(target="Password")
+     */
+    private Password $password;
+    /**
      * @Cycle\Relation\Embedded(target="Status")
      */
     private Status $status;
 
-    public function __construct(UserId $id, Login $login, Email $email, Status $status)
+    public function __construct(UserId $id, Login $login, Email $email, Password $password, Status $status)
     {
         $this->id = $id;
         $this->login = $login;
         $this->email = $email;
+        $this->password = $password;
         $this->status = $status;
     }
 
-    public static function signUpByEmail(Login $login, Email $email): self
+    public static function signUpByEmail(Login $login, Email $email, Password $password): self
     {
         return new self(
             UserId::uuid4(),
             $login,
             $email,
+            $password,
             Status::draft()
         );
     }
@@ -77,6 +83,14 @@ final class User
     public function getEmail(): Email
     {
         return $this->email;
+    }
+
+    /**
+     * @return Password
+     */
+    public function getPassword(): Password
+    {
+        return $this->password;
     }
 
     /**
