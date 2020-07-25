@@ -34,6 +34,36 @@ final class UserRepository
         return $user;
     }
 
+    public function findByLogin(Login $login): ?User
+    {
+        /** @var User $user */
+        $user = $this->users->findOne([
+            'login' => $login->getRaw()
+        ]);
+
+        return $user;
+    }
+
+    public function findByEmail(Email $email): ?User
+    {
+        /** @var User $user */
+        $user = $this->users->findOne([
+            'email' => $email->getValue()
+        ]);
+
+        return $user;
+    }
+
+    public function hasByLogin(Login $login): bool
+    {
+        return boolval($this->findByLogin($login));
+    }
+
+    public function hasByEmail(Email $email): bool
+    {
+        return boolval($this->findByEmail($email));
+    }
+
     public function getById(UserId $id): User
     {
         if (!$user = $this->findById($id)) {
