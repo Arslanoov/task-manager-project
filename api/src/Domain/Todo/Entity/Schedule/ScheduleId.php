@@ -21,7 +21,7 @@ final class ScheduleId
      * Id constructor.
      * @param string $value
      */
-    private function __construct(string $value)
+    public function __construct(string $value)
     {
         Assert::notEmpty($value);
         Assert::string($value);

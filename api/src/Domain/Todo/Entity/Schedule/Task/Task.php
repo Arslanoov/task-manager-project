@@ -149,4 +149,49 @@ final class Task
     {
         return $this->getStatus()->isComplete();
     }
+
+    public function changeName(Name $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function changeDescription(Description $description): void
+    {
+        $this->description = $description;
+    }
+
+    public function changeSchedule(Schedule $schedule): void
+    {
+        $this->schedule = $schedule;
+    }
+
+    public function stopExecution(): void
+    {
+        $this->status = TaskStatus::notComplete();
+    }
+
+    public function startExecution(): void
+    {
+        $this->status = TaskStatus::inProgress();
+    }
+
+    public function complete(): void
+    {
+        $this->status = TaskStatus::complete();
+    }
+
+    public function makeNotImportant(): void
+    {
+        $this->level = ImportantLevel::notImportant();
+    }
+
+    public function makeImportant(): void
+    {
+        $this->level = ImportantLevel::important();
+    }
+
+    public function makeVeryImportant(): void
+    {
+        $this->level = ImportantLevel::veryImportant();
+    }
 }

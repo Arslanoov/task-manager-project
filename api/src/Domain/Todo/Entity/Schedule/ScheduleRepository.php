@@ -8,6 +8,7 @@ use Cycle\ORM\ORMInterface;
 use Cycle\ORM\RepositoryInterface;
 use Cycle\ORM\Transaction;
 use DateTimeImmutable;
+use Domain\Exception\Schedule\ScheduleNotFoundException;
 
 final class ScheduleRepository
 {
@@ -33,6 +34,22 @@ final class ScheduleRepository
         $schedule = $this->schedules->findOne([
             'date' => $date
         ]);
+
+        return $schedule;
+    }
+
+    public function findById(ScheduleId $id): ?Schedule
+    {
+        /** @var Schedule $schedule */
+        $schedule = $this->schedules->findByPK($id->getValue());
+        return $schedule;
+    }
+
+    public function getById(ScheduleId $id): Schedule
+    {
+        if (!$schedule = $this->findById($id)) {
+            throw new ScheduleNotFoundException();
+        }
 
         return $schedule;
     }
