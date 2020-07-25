@@ -9,7 +9,8 @@ use Cycle\Annotated\Annotation as Cycle;
 /**
  * @Cycle\Entity(
  *     table="user_users",
- *     role="user"
+ *     role="user",
+ *     mapper="UserMapper"
  * )
  * @Cycle\Table(
  *      indexes={

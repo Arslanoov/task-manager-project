@@ -43,4 +43,9 @@ final class Email
     {
         return $this->value === $email->getValue();
     }
+
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

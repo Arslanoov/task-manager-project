@@ -5,6 +5,7 @@ use Domain\Todo\Entity\Schedule\Task\Step\Step;
 use Domain\Todo\Entity\Schedule\Task\Task;
 use Domain\User\Entity\User\User;
 use Cycle\ORM;
+use Domain\User\Entity\User\UserMapper;
 
 return [
     'schemas' => [
@@ -14,12 +15,11 @@ return [
             ORM\Schema::TABLE       => 'user_users',
             ORM\Schema::PRIMARY_KEY => 'id',
             ORM\Schema::COLUMNS     => [
-                'id', 'login', 'email', 'status'
+                'id', 'login', 'email', 'status', 'password'
             ],
-            ORM\Schema::TYPECAST    => [
-                'id' => 'string'
-            ],
-            ORM\Schema::RELATIONS   => []
+            ORM\Schema::TYPECAST    => [],
+            ORM\Schema::RELATIONS   => [],
+            ORM\Schema::MAPPER => UserMapper::class
         ],
         Schedule::class => [
             ORM\Schema::ENTITY      => Schedule::class,

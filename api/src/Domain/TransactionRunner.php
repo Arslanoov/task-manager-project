@@ -12,6 +12,15 @@ final class TransactionRunner implements TransactionRunnerInterface
     private Transaction $transaction;
 
     /**
+     * TransactionRunner constructor.
+     * @param Transaction $transaction
+     */
+    public function __construct(Transaction $transaction)
+    {
+        $this->transaction = $transaction;
+    }
+
+    /**
      * @throws Throwable
      */
     public function run(): void

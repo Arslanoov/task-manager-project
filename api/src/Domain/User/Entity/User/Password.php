@@ -40,4 +40,9 @@ final class Password
     {
         return $this->value === $password->getValue();
     }
+
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

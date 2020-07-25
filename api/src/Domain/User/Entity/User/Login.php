@@ -38,4 +38,9 @@ final class Login
     {
         return $this->value === $login->getRaw();
     }
+
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

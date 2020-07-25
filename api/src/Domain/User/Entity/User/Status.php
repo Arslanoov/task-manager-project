@@ -65,6 +65,11 @@ final class Status
         return $this->value === $status->getValue();
     }
 
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
+
     private static function list(): array
     {
         return [
