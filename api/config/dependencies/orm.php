@@ -1,5 +1,7 @@
 <?php
 
+use Domain\TransactionRunner;
+use Domain\TransactionRunnerInterface;
 use Furious\Container\Container;
 use Infrastructure\Framework\Cycle\DatabaseManagerFactory;
 use Infrastructure\Framework\Cycle\Migration\MigrationConfigFactory;
@@ -31,4 +33,8 @@ $container->set(Tokenizer\ClassesInterface::class, function () {
 
 $container->set(ORM\Transaction::class, function (Container $container) {
     return new Cycle\ORM\Transaction($container->get(ORM\ORM::class));
+});
+
+$container->set(TransactionRunnerInterface::class, function (Container $container) {
+    return $container->get(TransactionRunner::class);
 });
