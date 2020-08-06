@@ -1,19 +1,23 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <template v-if="$store.getters.isLoggedIn">
-        <li class="nav-item"><a class="nav-link" @click="logout" href="">Log Out</a></li>
-      </template>
-      <template v-else>
-        <li class="nav-item"><router-link class="nav-link" :to="{name: 'login'}">Log In</router-link></li>
-        <li class="nav-item"><router-link class="nav-link" :to="{name: 'signup'}">Sign Up</router-link></li>
-      </template>
-    </div>
-    <router-view/>
+    <header>
+      <Nav/>
+    </header>
+    <main>
+      <router-view/>
+    </main>
   </div>
 </template>
+
+<script>
+  import Nav from './components/Nav';
+
+  export default {
+    components: {
+      Nav
+    }
+  }
+</script>
 
 <style lang="scss">
 #app {

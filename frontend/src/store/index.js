@@ -3,13 +3,12 @@ import Vuex from 'vuex'
 import axios from "axios";
 import qs from "qs";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
         currentEmail: null,
-        user: JSON.parse(localStorage.getItem('user')),
-        notifications: []
+        user: JSON.parse(localStorage.getItem('user'))
     },
     getters: {
         isLoggedIn(state) {
@@ -17,20 +16,11 @@ export default new Vuex.Store({
         }
     },
     mutations: {
-        changeCurrentEmail(state, email) {
-            state.currentEmail = email;
-        },
         login(state, user) {
             state.user = user;
         },
         logout(state) {
             state.user = null;
-        },
-        addNotification(state, notification) {
-            state.notifications.push(notification);
-        },
-        removeNotification(state, index) {
-            delete state.notifications[index];
         }
     },
     actions: {
