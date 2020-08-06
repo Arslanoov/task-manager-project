@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\User\UseCase\User\SignUp;
 
 use Domain\Exception\User\UserAlreadyExistsException;
-use Domain\TransactionRunnerInterface;
+use Domain\FlusherInterface;
 use Domain\User\Entity\User\Email;
 use Domain\User\Entity\User\Login;
 use Domain\User\Entity\User\Password;
@@ -17,19 +17,19 @@ final class Handler
 {
     private UserRepository $users;
     private PasswordHasher $hasher;
-    private TransactionRunnerInterface $transaction;
+    private FlusherInterface $flusher;
 
     /**
      * Handler constructor.
      * @param UserRepository $users
      * @param PasswordHasher $hasher
-     * @param TransactionRunnerInterface $transaction
+     * @param FlusherInterface $flusher
      */
-    public function __construct(UserRepository $users, PasswordHasher $hasher, TransactionRunnerInterface $transaction)
+    public function __construct(UserRepository $users, PasswordHasher $hasher, FlusherInterface $flusher)
     {
         $this->users = $users;
         $this->hasher = $hasher;
-        $this->transaction = $transaction;
+        $this->flusher = $flusher;
     }
 
     public function handle(Command $command): void
@@ -49,6 +49,6 @@ final class Handler
 
         $this->users->add($user);
 
-        $this->transaction->run();
+        $this->flusher->flush();
     }
 }

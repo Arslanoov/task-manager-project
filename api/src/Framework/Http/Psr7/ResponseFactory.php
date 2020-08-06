@@ -14,6 +14,8 @@ interface ResponseFactory
 
     public function xml($data, int $code = 200): ResponseInterface;
 
+    public function simple($data = null, int $code = 200): ResponseInterface;
+
     public function empty(): ResponseInterface;
 
     public function text(string $text): ResponseInterface;

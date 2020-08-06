@@ -32,6 +32,7 @@ class ErrorHandler implements MiddlewareInterface
         try {
             return $handler->handle($request);
         } catch (Throwable $e) {
+            var_dump($e->getTrace());
             return $this->response->json([
                 'error' => $this->debug ? $e->getMessage() : '500'
             ], 500);

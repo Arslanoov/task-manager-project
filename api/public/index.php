@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 use Framework\Http\Application;
 use Furious\HttpRunner\Runner;
-use Furious\Psr7\Factory\ServerRequestFactory;
-
-use Spiral\Database;
+use Laminas\Diactoros\ServerRequestFactory;
 
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
@@ -20,7 +18,7 @@ require 'vendor/autoload.php';
     require 'config/pipeline.php';
     require 'config/routes.php';
 
-    $request = (new ServerRequestFactory)->fromGlobals();
+    $request = (new ServerRequestFactory())->fromGlobals();
     $response = $app->handle($request);
 
     $response =

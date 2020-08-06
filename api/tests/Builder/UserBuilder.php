@@ -6,14 +6,14 @@ namespace Tests\Builder;
 
 use Domain\User\Entity\User\Email;
 use Domain\User\Entity\User\Password;
-use Domain\User\Entity\User\UserId;
+use Domain\User\Entity\User\Id;
 use Domain\User\Entity\User\Login;
 use Domain\User\Entity\User\Status;
 use Domain\User\Entity\User\User;
 
 final class UserBuilder
 {
-    private UserId $id;
+    private Id $id;
     private Login $login;
     private Email $email;
     private Password $password;
@@ -21,14 +21,14 @@ final class UserBuilder
 
     public function __construct()
     {
-        $this->id = UserId::uuid4();
+        $this->id = Id::uuid4();
         $this->login = new Login('User login');
         $this->email = new Email('app@test.app');
         $this->password = new Password('Password');
         $this->status = Status::draft();
     }
 
-    public function withId(UserId $id): self
+    public function withId(Id $id): self
     {
         $builder = clone $this;
         $builder->id = $id;

@@ -1,40 +1,41 @@
 <?php
 
-use Domain\TransactionRunner;
-use Domain\TransactionRunnerInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Domain\Flusher;
+use Domain\FlusherInterface;
 use Furious\Container\Container;
-use Infrastructure\Framework\Cycle\DatabaseManagerFactory;
-use Infrastructure\Framework\Cycle\Migration\MigrationConfigFactory;
-use Infrastructure\Framework\Cycle\Migration\MigratorFactory;
-use Infrastructure\Framework\Cycle\ORMFactory;
-use Spiral\Database;
-use Cycle\ORM;
-use Spiral\Migrations\Migrator;
-use Spiral\Migrations;
-use Spiral\Tokenizer;
+use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\DBAL;
 
 /** @var Container $container */
 
-$container->set(Database\DatabaseManager::class, (new DatabaseManagerFactory())($container));
+$container->set(EntityManagerInterface::class, function (Container $container) {
+    $params = $container->get('config')['doctrine'];
 
-$container->set(ORM\ORMInterface::class, (new ORMFactory())($container));
+    $config = Setup::createAnnotationMetadataConfiguration(
+        $params['metadata_dirs'],
+        $params['dev_mode'],
+        $params['cache_dir'],
+        new FilesystemCache(
+            $params['cache_dir']
+        ),
+        false
+    );
 
-$container->set(ORM\ORM::class, (new ORMFactory())($container));
+    foreach ($params['types'] as $type => $class) {
+        if (!DBAL\Types\Type::hasType($type)) {
+            DBAL\Types\Type::addType($type, $class);
+        }
+    }
 
-$container->set(Migrations\Config\MigrationConfig::class, (new MigrationConfigFactory)($container));
-
-$container->set(Migrator::class, (new MigratorFactory())($container));
-
-$container->set(Tokenizer\ClassesInterface::class, function () {
-    return (new Tokenizer\Tokenizer(new Tokenizer\Config\TokenizerConfig([
-        'directories' => ['src/Domain/'],
-    ])))->classLocator();
+    return EntityManager::create(
+        $params['connection'],
+        $config
+    );
 });
 
-$container->set(ORM\Transaction::class, function (Container $container) {
-    return new Cycle\ORM\Transaction($container->get(ORM\ORM::class));
-});
-
-$container->set(TransactionRunnerInterface::class, function (Container $container) {
-    return $container->get(TransactionRunner::class);
+$container->set(FlusherInterface::class, function (Container $container) {
+    return $container->get(Flusher::class);
 });

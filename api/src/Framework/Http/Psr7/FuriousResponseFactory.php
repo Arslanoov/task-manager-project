@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Framework\Http\Psr7;
 
+use Furious\Psr7\Response;
 use Furious\Psr7\Response\EmptyResponse;
 use Furious\Psr7\Response\HtmlResponse;
 use Furious\Psr7\Response\JsonResponse;
@@ -21,6 +22,11 @@ final class FuriousResponseFactory implements ResponseFactory
     public function json(array $data, int $code = 200): ResponseInterface
     {
         return new JsonResponse($data, $code);
+    }
+
+    public function simple($data = null, int $code = 200): ResponseInterface
+    {
+        return new Response($code, [], $data, '1.1');
     }
 
     public function xml($data, int $code = 200): ResponseInterface

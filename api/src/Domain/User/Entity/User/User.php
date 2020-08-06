@@ -4,45 +4,41 @@ declare(strict_types=1);
 
 namespace Domain\User\Entity\User;
 
-use Cycle\Annotated\Annotation as Cycle;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Cycle\Entity(
- *     table="user_users",
- *     role="user",
- *     mapper="UserMapper"
- * )
- * @Cycle\Table(
- *      indexes={
- *          @Cycle\Table\Index(columns = {"login", "email"})
- *      }
- * )
+ * @ORM\Entity()
+ * @ORM\Table(name="user_users", uniqueConstraints={
+ *     @ORM\UniqueConstraint(columns={"login"}),
+ *     @ORM\UniqueConstraint(columns={"email"})
+ * })
  */
 final class User
 {
     /**
-     * @Cycle\Column(type="primary", primary=true)
-     * @Cycle\Relation\Embedded(target="UserId")
+     * @var Id
+     * @ORM\Id()
+     * @ORM\Column(type="user_user_id")
      */
-    private UserId $id;
+    private Id $id;
     /**
-     * @Cycle\Relation\Embedded(target="Login")
+     * @ORM\Column(type="user_user_login")
      */
     private Login $login;
     /**
-     * @Cycle\Relation\Embedded(target="Email")
+     * @ORM\Column(type="user_user_email")
      */
     private Email $email;
     /**
-     * @Cycle\Relation\Embedded(target="Password")
+     * @ORM\Column(type="user_user_password")
      */
     private Password $password;
     /**
-     * @Cycle\Relation\Embedded(target="Status")
+     * @ORM\Column(type="user_user_status")
      */
     private Status $status;
 
-    public function __construct(UserId $id, Login $login, Email $email, Password $password, Status $status)
+    public function __construct(Id $id, Login $login, Email $email, Password $password, Status $status)
     {
         $this->id = $id;
         $this->login = $login;
@@ -54,7 +50,7 @@ final class User
     public static function signUpByEmail(Login $login, Email $email, Password $password): self
     {
         return new self(
-            UserId::uuid4(),
+            Id::uuid4(),
             $login,
             $email,
             $password,
@@ -63,9 +59,9 @@ final class User
     }
 
     /**
-     * @return UserId
+     * @return Id
      */
-    public function getId(): UserId
+    public function getId(): Id
     {
         return $this->id;
     }

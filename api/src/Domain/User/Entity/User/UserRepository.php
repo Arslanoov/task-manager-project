@@ -4,41 +4,37 @@ declare(strict_types=1);
 
 namespace Domain\User\Entity\User;
 
-use Cycle\ORM\ORMInterface;
-use Cycle\ORM\RepositoryInterface;
-use Cycle\ORM\Transaction;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectRepository;
 use Domain\Exception\User\UserNotFoundException;
 
 final class UserRepository
 {
-    private ORMInterface $orm;
-    private RepositoryInterface $users;
-    private Transaction $transaction;
+    private EntityManagerInterface $em;
+    private ObjectRepository $users;
 
     /**
      * UserRepository constructor.
-     * @param ORMInterface $orm
-     * @param Transaction $transaction
+     * @param EntityManagerInterface $em
      */
-    public function __construct(ORMInterface $orm, Transaction $transaction)
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->orm = $orm;
-        $this->users = $orm->getRepository(User::class);
-        $this->transaction = $transaction;
+        $this->em = $em;
+        $this->users = $em->getRepository(User::class);
     }
 
-    public function findById(UserId $id): ?User
+    public function findById(Id $id): ?User
     {
         /** @var User $user */
-        $user = $this->users->findByPK($id->getValue());
+        $user = $this->users->find($id->getValue());
         return $user;
     }
 
     public function findByLogin(Login $login): ?User
     {
         /** @var User $user */
-        $user = $this->users->findOne([
-            'login' => $login->getRaw()
+        $user = $this->users->findOneBy([
+            'login' => $login
         ]);
 
         return $user;
@@ -47,8 +43,8 @@ final class UserRepository
     public function findByEmail(Email $email): ?User
     {
         /** @var User $user */
-        $user = $this->users->findOne([
-            'email' => $email->getValue()
+        $user = $this->users->findOneBy([
+            'email' => $email
         ]);
 
         return $user;
@@ -64,7 +60,7 @@ final class UserRepository
         return boolval($this->findByEmail($email));
     }
 
-    public function getById(UserId $id): User
+    public function getById(Id $id): User
     {
         if (!$user = $this->findById($id)) {
             throw new UserNotFoundException();
@@ -75,12 +71,12 @@ final class UserRepository
 
     public function add(User $user): void
     {
-        $this->transaction->persist($user);
+        $this->em->persist($user);
     }
 
     public function remove(User $user): void
     {
-        $this->transaction->delete($user);
+        $this->em->remove($user);
     }
 
     public function findAll(): array
