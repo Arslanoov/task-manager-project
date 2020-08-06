@@ -10,12 +10,14 @@
                     <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
 
                     <b-form @submit="login">
-                        <b-form-group label="Email address" label-for="loginEmail">
-                            <b-form-input id="loginEmail" type="email" v-model="form.email" required></b-form-input>
+                        <b-form-group label="Email" label-for="loginEmail">
+                            <b-form-input id="loginEmail" type="email" v-model="form.email" required> </b-form-input>
                         </b-form-group>
+
                         <b-form-group label="Password" label-for="loginPassword">
-                            <b-form-input id="loginPassword" type="password" v-model="form.password" required></b-form-input>
+                            <b-form-input id="loginPassword" type="password" v-model="form.password" required> </b-form-input>
                         </b-form-group>
+
                         <b-button type="submit" variant="primary">Login</b-button>
                     </b-form>
                 </div>
@@ -38,6 +40,7 @@
         methods: {
             login(event) {
                 event.preventDefault();
+
                 this.error = null;
                 this.$store.dispatch('login', {
                     username: this.form.email,
