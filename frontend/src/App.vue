@@ -1,11 +1,15 @@
 <template>
   <div id="app">
-    <header>
-      <Nav/>
-    </header>
-    <main>
-      <router-view/>
-    </main>
+    <div class="container">
+      <header id="header">
+        <div id="nav">
+          <Nav/>
+        </div>
+      </header>
+      <main id="main">
+        <router-view/>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -20,24 +24,26 @@
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  @import "~bootstrap/scss/bootstrap";
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
     color: #2c3e50;
+  }
 
-    &.router-link-exact-active {
-      color: #42b983;
+  #nav {
+    padding: 30px;
+
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+
+      &.router-link-exact-active {
+        color: #42b983;
+      }
     }
   }
-}
 </style>

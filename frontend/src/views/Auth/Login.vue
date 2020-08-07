@@ -1,7 +1,7 @@
 
 <template>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mx-auto">
             <div class="card">
                 <div class="card-header">
                     Login
@@ -11,11 +11,11 @@
 
                     <b-form @submit="login">
                         <b-form-group label="Email" label-for="loginEmail">
-                            <b-form-input id="loginEmail" type="email" v-model="form.email" required> </b-form-input>
+                            <b-form-input id="loginEmail" type="email" class="text-center" v-model="form.email" required> </b-form-input>
                         </b-form-group>
 
                         <b-form-group label="Password" label-for="loginPassword">
-                            <b-form-input id="loginPassword" type="password" v-model="form.password" required> </b-form-input>
+                            <b-form-input id="loginPassword" type="password" class="text-center" v-model="form.password" required> </b-form-input>
                         </b-form-group>
 
                         <b-button type="submit" variant="primary">Login</b-button>

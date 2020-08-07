@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mx-auto">
             <div class="card">
                 <div class="card-header">
                     Sign Up
@@ -10,15 +10,15 @@
 
                     <b-form @submit="signUp">
                         <b-form-group label="Login" label-for="signUpLogin">
-                            <b-form-input id="signUpLogin" type="text" v-model="form.login" required> </b-form-input>
+                            <b-form-input id="signUpLogin" class="text-center" type="text" v-model="form.login" required> </b-form-input>
                         </b-form-group>
 
                         <b-form-group label="Email" label-for="signUpEmail">
-                            <b-form-input id="signUpEmail" type="email" v-model="form.email" required> </b-form-input>
+                            <b-form-input id="signUpEmail" class="text-center" type="email" v-model="form.email" required> </b-form-input>
                         </b-form-group>
 
                         <b-form-group label="Password" label-for="signUpPassword">
-                            <b-form-input id="signUpPassword" type="password" v-model="form.password" required> </b-form-input>
+                            <b-form-input id="signUpPassword" class="text-center" type="password" v-model="form.password" required> </b-form-input>
                         </b-form-group>
 
                         <b-button type="submit" variant="primary">Join</b-button>

@@ -1,8 +1,5 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <ApiStatus />
-  </div>
+  <ApiStatus />
 </template>
 
 <script>

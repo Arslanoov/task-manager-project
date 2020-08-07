@@ -1,15 +1,30 @@
 <template>
-    <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> |
-        <template v-if="$store.getters.isLoggedIn">
-            <li class="nav-item"><a class="nav-link" @click="logout" href="">Log Out</a></li>
-        </template>
-        <template v-else>
-            <li class="nav-item"><router-link class="nav-link" :to="{name: 'auth.login'}">Log In</router-link></li>
-            <li class="nav-item"><router-link class="nav-link" :to="{name: 'auth.signup'}">Sign Up</router-link></li>
-        </template>
-    </div>
+    <nav class="navbar navbar-expand-sm navbar-dark top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Brand -->
+                <router-link class="navbar-brand" :to="{name: 'home'}">
+                    <img src="../assets/logo.png" alt="App" height="28" />
+                </router-link>
+            </div>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><router-link class="nav-link" :to="{name: 'home'}">Home</router-link></li>
+                    <template v-if="$store.getters.isLoggedIn">
+                        <li class="nav-item"><a class="nav-link" @click="logout" href="">Log Out</a></li>
+                    </template>
+                    <template v-else>
+                        <li class="nav-item"><router-link class="nav-link" :to="{name: 'auth.login'}">Log In</router-link></li>
+                        <li class="nav-item"><router-link class="nav-link" :to="{name: 'auth.signup'}">Sign Up</router-link></li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </template>
 
 <script>
@@ -31,5 +46,9 @@
 <style scoped lang="scss">
     .api-name {
         font-weight: 700;
+    }
+
+    #nav {
+        color: #0b2e13;
     }
 </style>
