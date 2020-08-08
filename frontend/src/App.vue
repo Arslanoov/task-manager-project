@@ -24,7 +24,8 @@
 </script>
 
 <style lang="scss">
-  @import "~bootstrap/scss/bootstrap";
+  @import "~bootstrap/dist/css/bootstrap.css";
+  @import "~bootstrap-vue/dist/bootstrap-vue.css";
 
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;

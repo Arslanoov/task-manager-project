@@ -1,36 +1,34 @@
 <template>
-    <nav class="navbar navbar-expand-sm navbar-dark top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <!-- Brand -->
-                <router-link class="navbar-brand" :to="{name: 'home'}">
-                    <img src="../assets/logo.png" alt="App" height="28" />
-                </router-link>
-            </div>
-            <!-- Links -->
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><router-link class="nav-link" :to="{name: 'home'}">Home</router-link></li>
+    <div>
+        <b-navbar toggleable="lg" type="light" variant="light">
+            <b-navbar-brand :to="{name: 'home'}">
+                <img src="../assets/logo.png" alt="App" width="30px" />
+            </b-navbar-brand>
+
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+            <b-collapse id="nav-collapse" is-nav>
+                <b-navbar-nav class="ml-auto na">
+                    <b-nav-item :to="{name: 'home'}">Home</b-nav-item>
+                    <b-nav-item :to="{name: 'about'}">About</b-nav-item>
+
                     <template v-if="$store.getters.isLoggedIn">
-                        <li class="nav-item"><a class="nav-link" @click="logout" href="">Log Out</a></li>
+                        <b-nav-item @click="logout" href="">Log Out</b-nav-item>
                     </template>
                     <template v-else>
-                        <li class="nav-item"><router-link class="nav-link" :to="{name: 'auth.login'}">Log In</router-link></li>
-                        <li class="nav-item"><router-link class="nav-link" :to="{name: 'auth.signup'}">Sign Up</router-link></li>
+                        <b-nav-item :to="{name: 'auth.login'}">Log in</b-nav-item>
+                        <b-nav-item :to="{name: 'auth.signup'}">Sign Up</b-nav-item>
                     </template>
-                </ul>
-            </div>
-        </div>
-    </nav>
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
+    </div>
+
 </template>
 
 <script>
     export default {
         name: 'Nav',
-
         methods: {
             logout(event) {
                 event.preventDefault();
