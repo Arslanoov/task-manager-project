@@ -89,7 +89,7 @@ final class Schedule
     /**
      * @return Person
      */
-    public function getUser(): Person
+    public function getPerson(): Person
     {
         return $this->person;
     }

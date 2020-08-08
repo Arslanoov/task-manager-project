@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Tests\Builder;
 
+use Domain\Todo\Entity\Person\Person;
 use Domain\Todo\Entity\Schedule\Schedule;
 use Domain\Todo\Entity\Schedule\Id;
-use Domain\User\Entity\User\User;
 
 final class ScheduleBuilder
 {
     private Id $id;
-    private User $user;
+    private Person $person;
 
     public function __construct()
     {
         $this->id = Id::uuid4();
-        $this->user = (new UserBuilder())->build();
+        $this->person = (new PersonBuilder())->build();
     }
 
     public function withId(Id $id): self
@@ -26,10 +26,10 @@ final class ScheduleBuilder
         return $builder;
     }
 
-    public function withUser(User $user): self
+    public function withPerson(Person $person): self
     {
         $builder = clone $this;
-        $builder->user = $user;
+        $builder->person = $person;
         return $builder;
     }
 
@@ -37,7 +37,7 @@ final class ScheduleBuilder
     {
         return Schedule::daily(
             $this->id,
-            $this->user
+            $this->person
         );
     }
 
@@ -45,7 +45,7 @@ final class ScheduleBuilder
     {
         return Schedule::main(
             $this->id,
-            $this->user
+            $this->person
         );
     }
 }

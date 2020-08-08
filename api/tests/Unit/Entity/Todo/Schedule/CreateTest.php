@@ -5,37 +5,36 @@ declare(strict_types=1);
 namespace Tests\Unit\Entity\Todo\Schedule;
 
 use DateTimeImmutable;
+use Domain\Todo\Entity\Person\Person;
 use Domain\Todo\Entity\Schedule\Schedule;
 use Domain\Todo\Entity\Schedule\Id;
-use Domain\User\Entity\User\User;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Tests\Builder\UserBuilder;
+use Tests\Builder\PersonBuilder;
 
 class CreateTest extends TestCase
 {
-    private User $user;
+    private Person $person;
 
     protected function setUp(): void
     {
-        $this->user = (new UserBuilder())->build();
+        $this->person = (new PersonBuilder())->build();
     }
 
     public function testSuccessDaily(): void
     {
-        $user = $this->user;
+        $person = $this->person;
 
         $date = new DateTimeImmutable('today');
 
         $schedule = Schedule::daily(
             $id = Id::uuid4(),
-            $user
+            $person
         );
 
         $this->assertEquals($schedule->getId(), $id);
         $this->assertTrue($schedule->getId()->isEqual($id));
 
-        $this->assertEquals($schedule->getUser(), $user);
+        $this->assertEquals($schedule->getPerson(), $person);
 
         $this->assertEquals($schedule->getDate(), $date);
 
@@ -47,18 +46,18 @@ class CreateTest extends TestCase
 
     public function testSuccessMain(): void
     {
-        $user = $this->user;
+        $person = $this->person;
         $date = new DateTimeImmutable('today');
 
         $schedule = Schedule::main(
             $id = Id::uuid4(),
-            $user
+            $person
         );
 
         $this->assertEquals($schedule->getId(), $id);
         $this->assertTrue($schedule->getId()->isEqual($id));
 
-        $this->assertEquals($schedule->getUser(), $user);
+        $this->assertEquals($schedule->getPerson(), $person);
 
         $this->assertEquals($schedule->getDate(), $date);
 
