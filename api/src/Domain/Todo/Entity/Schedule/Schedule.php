@@ -38,7 +38,7 @@ final class Schedule
     private Type $type;
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="tasks_count")
      */
     private int $tasksCount = 0;
 

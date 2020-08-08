@@ -26,6 +26,14 @@ final class Type
         $this->value = $value;
     }
 
+    /**
+     * @return string
+     */
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
     public static function main(): self
     {
         return new self(self::TYPE_MAIN);
