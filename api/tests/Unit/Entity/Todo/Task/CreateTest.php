@@ -8,7 +8,7 @@ use Domain\Todo\Entity\Schedule\Task\Description;
 use Domain\Todo\Entity\Schedule\Task\ImportantLevel;
 use Domain\Todo\Entity\Schedule\Task\Name;
 use Domain\Todo\Entity\Schedule\Task\Task;
-use Domain\Todo\Entity\Schedule\Task\TaskId;
+use Domain\Todo\Entity\Schedule\Task\Id;
 use PHPUnit\Framework\TestCase;
 use Tests\Builder\ScheduleBuilder;
 
@@ -26,7 +26,7 @@ class CreateTest extends TestCase
         );
 
         $this->assertNotEmpty($task->getId());
-        $this->assertInstanceOf(TaskId::class, $task->getId());
+        $this->assertInstanceOf(Id::class, $task->getId());
 
         $this->assertEquals($task->getSchedule(), $schedule);
 

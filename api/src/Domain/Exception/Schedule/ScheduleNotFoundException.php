@@ -9,7 +9,7 @@ use Throwable;
 
 final class ScheduleNotFoundException extends DomainException
 {
-    public function __construct($message = "Schedule not found.", $code = 0, Throwable $previous = null)
+    public function __construct($message = "Schedule not found.", $code = 404, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

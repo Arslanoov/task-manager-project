@@ -7,7 +7,7 @@ namespace Domain\User\Entity\User;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class EmailType extends StringType
+final class EmailType extends StringType
 {
     public const NAME = 'user_user_email';
 

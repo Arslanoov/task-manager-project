@@ -6,7 +6,7 @@ namespace Tests\Unit\Entity\Todo\Schedule;
 
 use DateTimeImmutable;
 use Domain\Todo\Entity\Schedule\Schedule;
-use Domain\Todo\Entity\Schedule\ScheduleId;
+use Domain\Todo\Entity\Schedule\Id;
 use Domain\User\Entity\User\User;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -28,7 +28,7 @@ class CreateTest extends TestCase
         $date = new DateTimeImmutable('today');
 
         $schedule = Schedule::daily(
-            $id = ScheduleId::uuid4(),
+            $id = Id::uuid4(),
             $user
         );
 
@@ -51,7 +51,7 @@ class CreateTest extends TestCase
         $date = new DateTimeImmutable('today');
 
         $schedule = Schedule::main(
-            $id = ScheduleId::uuid4(),
+            $id = Id::uuid4(),
             $user
         );
 

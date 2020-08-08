@@ -7,7 +7,7 @@ namespace Domain\User\Entity\User;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class LoginType extends StringType
+final class LoginType extends StringType
 {
     public const NAME = 'user_user_login';
 

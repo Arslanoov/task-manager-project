@@ -1,0 +1,125 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Domain\Todo\Entity\Schedule\Task\Step;
+
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DBALException;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
+use Domain\Exception\Schedule\StepNotFoundException;
+use Domain\Todo\Entity\Schedule\Task\Task;
+
+final class StepRepository
+{
+    private EntityManagerInterface $em;
+    private EntityRepository $steps;
+    private Connection $connection;
+
+    /**
+     * StepRepository constructor.
+     * @param EntityManagerInterface $em
+     */
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+        $this->steps = $em->getRepository(Step::class);
+        $this->connection = $em->getConnection();
+    }
+
+    public function findById(Id $id): ?Step
+    {
+        /** @var Step $step */
+        $step = $this->steps->find($id->getValue());
+        return $step;
+    }
+
+    public function findHigherStep(Task $task, SortOrder $order): ?Step
+    {
+        $stepId = $this->steps->createQueryBuilder('s')
+            ->where('s.sort_order', '<', ':sortOrder')
+            ->andWhere('task_id', '=', ':taskId')
+            ->setParameter(':sortOrder', $order->getValue())
+            ->setParameter(':taskId', $task->getId()->getValue())
+            ->getFirstResult()
+        ;
+
+        if ($stepId) {
+            /** @var Step $step */
+            $step = $this->steps->find($stepId);
+            return $step;
+        }
+
+        return null;
+    }
+
+    public function findLowerStep(Task $task, SortOrder $order): ?Step
+    {
+        $stepId = $this->steps->createQueryBuilder('s')
+            ->where('s.sort_order', '>', ':sortOrder')
+            ->andWhere('task_id', '=', ':taskId')
+            ->setParameter(':sortOrder', $order->getValue())
+            ->setParameter(':taskId', $task->getId()->getValue())
+            ->getFirstResult()
+        ;
+
+        if ($stepId) {
+            /** @var Step $step */
+            $step = $this->steps->find($stepId);
+            return $step;
+        }
+
+        return null;
+    }
+
+    public function getById(Id $id): Step
+    {
+        if (!$step = $this->findById($id)) {
+            throw new StepNotFoundException();
+        }
+
+        return $step;
+    }
+
+    public function getHigherStep(Task $task, SortOrder $order): Step
+    {
+        if (!$step = $this->findHigherStep($task, $order)) {
+            throw new StepNotFoundException('Higher step not found.');
+        }
+
+        return $step;
+    }
+
+    public function getLowerStep(Task $task, SortOrder $order): Step
+    {
+        if (!$step = $this->findHigherStep($task, $order)) {
+            throw new StepNotFoundException('Lower step not found.');
+        }
+
+        return $step;
+    }
+
+    /**
+     * @return Id
+     * @throws DBALException
+     */
+    public function getNextId(): Id
+    {
+        return new Id(
+            (int) $this->connection
+                ->query("SELECT nextval('todo_schedule_task_steps_id_seq')")
+                ->fetchColumn()
+        );
+    }
+
+    public function add(Step $step): void
+    {
+        $this->em->persist($step);
+    }
+
+    public function remove(Step $step): void
+    {
+        $this->em->remove($step);
+    }
+}

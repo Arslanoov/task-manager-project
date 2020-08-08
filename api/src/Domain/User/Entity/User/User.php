@@ -47,10 +47,10 @@ final class User
         $this->status = $status;
     }
 
-    public static function signUpByEmail(Login $login, Email $email, Password $password): self
+    public static function signUpByEmail(Id $id, Login $login, Email $email, Password $password): self
     {
         return new self(
-            Id::uuid4(),
+            $id,
             $login,
             $email,
             $password,

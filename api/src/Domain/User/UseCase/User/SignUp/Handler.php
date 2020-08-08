@@ -7,6 +7,7 @@ namespace Domain\User\UseCase\User\SignUp;
 use Domain\Exception\User\UserAlreadyExistsException;
 use Domain\FlusherInterface;
 use Domain\User\Entity\User\Email;
+use Domain\User\Entity\User\Id;
 use Domain\User\Entity\User\Login;
 use Domain\User\Entity\User\Password;
 use Domain\User\Entity\User\User;
@@ -42,6 +43,7 @@ final class Handler
         }
 
         $user = User::signUpByEmail(
+            new Id($command->id),
             $login,
             $email,
             new Password($this->hasher->hash($command->password))

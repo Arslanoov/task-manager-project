@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Auth;
 
+use App\Service\UuidGenerator;
+use Domain\Todo\UseCase\Person;
 use Domain\User\UseCase\User;
 use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
@@ -12,17 +14,24 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class SignUpAction implements RequestHandlerInterface
 {
-    private User\SignUp\Handler $handler;
+    private User\SignUp\Handler $userSignUpHandler;
+    private Person\Create\Handler $personCreateHandler;
     private ResponseFactory $response;
 
     /**
      * SignUpAction constructor.
-     * @param User\SignUp\Handler $handler
+     * @param User\SignUp\Handler $userSignUpHandler
+     * @param Person\Create\Handler $personCreateHandler
      * @param ResponseFactory $response
      */
-    public function __construct(User\SignUp\Handler $handler, ResponseFactory $response)
+    public function __construct(
+        User\SignUp\Handler $userSignUpHandler,
+        Person\Create\Handler $personCreateHandler,
+        ResponseFactory $response
+    )
     {
-        $this->handler = $handler;
+        $this->userSignUpHandler = $userSignUpHandler;
+        $this->personCreateHandler = $personCreateHandler;
         $this->response = $response;
     }
 
@@ -30,16 +39,27 @@ final class SignUpAction implements RequestHandlerInterface
     {
         $body = json_decode($request->getBody()->getContents(), true);
 
-        $command = new User\SignUp\Command(
+        $id = (new UuidGenerator())->uuid4();
+        $email = $body['email'] ?? '';
+
+        $signUpCommand = new User\SignUp\Command(
+            $id,
             $body['login'] ?? '',
-            $body['email'] ?? '',
+            $email,
             $body['password'] ?? '',
         );
 
-        $this->handler->handle($command);
+        $this->userSignUpHandler->handle($signUpCommand);
+
+        $createCommand = new Person\Create\Command(
+            $id,
+            $body['login'] ?? ''
+        );
+
+        $this->personCreateHandler->handle($createCommand);
 
         return $this->response->json([
-            'email' => $command->email,
+            'email' => $email
         ], 201);
     }
 }

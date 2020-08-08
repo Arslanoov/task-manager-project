@@ -1,0 +1,39 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Domain\Todo\Entity\Person;
+
+use Webmozart\Assert\Assert;
+
+final class Login
+{
+    private string $value;
+
+    /**
+     * Login constructor.
+     * @param string $value
+     */
+    public function __construct(string $value)
+    {
+        Assert::notEmpty($value);
+        Assert::string($value);
+        Assert::lengthBetween($value, 4, 32);
+        $this->value = $value;
+    }
+
+    public function getRaw(): string
+    {
+        return $this->value;
+    }
+
+    public function isEqual(\Domain\User\Entity\User\Login $login): bool
+    {
+        return $this->value === $login->getRaw();
+    }
+
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
+}
