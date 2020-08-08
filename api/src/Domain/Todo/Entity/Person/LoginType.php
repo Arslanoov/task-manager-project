@@ -13,7 +13,7 @@ final class LoginType extends StringType
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value instanceof Login ? $value->getValue() : $value;
+        return $value instanceof Login ? $value->getRaw() : $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
