@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Action\Auth\OAuthAction;
+  use App\Http\Action\Auth\OAuthAction;
 use Domain\OAuth\Entity\AccessToken\AccessTokenRepository;
 use Domain\OAuth\Entity\AuthCode\AuthCodeRepository;
 use Domain\OAuth\Entity\Client\ClientRepository;

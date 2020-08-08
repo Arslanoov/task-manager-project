@@ -2,7 +2,7 @@
 
 return [
     'doctrine' => [
-        'dev_mode' => true,
+        'dev_mode' => ENV === 'dev' ? true : false,
         'cache_dir' => 'var/cache/doctrine',
         'metadata_dirs' => ['src/Domain'],
         'connection' => [
