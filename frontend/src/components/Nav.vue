@@ -34,7 +34,7 @@
                 event.preventDefault();
                 this.$store.dispatch('logout')
                     .then(() => {
-                        this.$router.push({name: 'login'});
+                        this.$router.push({name: 'auth.login'});
                     })
             }
         }

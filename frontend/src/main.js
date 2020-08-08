@@ -18,7 +18,7 @@ axios.interceptors.response.use(null, error => {
   if (!error.response || error.response.status !== 401) {
     return Promise.reject(error);
   }
-  router.push({name: 'login'});
+  router.push({name: 'auth.login'});
   return Promise.reject(error)
 });
 
