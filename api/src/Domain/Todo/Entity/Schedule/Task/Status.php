@@ -65,6 +65,11 @@ final class Status
         return $this->value === self::STATUS_COMPLETE;
     }
 
+    public function __toString(): string
+    {
+        return $this->value;
+    }
+
     private static function statuses(): array
     {
         return [

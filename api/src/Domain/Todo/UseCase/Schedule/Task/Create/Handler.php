@@ -6,12 +6,13 @@ namespace Domain\Todo\UseCase\Schedule\Task\Create;
 
 use Domain\Todo\Entity\Schedule\ScheduleRepository;
 use Domain\Todo\Entity\Schedule\Task\Description;
+use Domain\Todo\Entity\Schedule\Task\Id;
 use Domain\Todo\Entity\Schedule\Task\ImportantLevel;
 use Domain\Todo\Entity\Schedule\Task\Name;
 use Domain\Todo\Entity\Schedule\Task\Task;
 use Domain\Todo\Entity\Schedule\Task\TaskRepository;
 use Domain\FlusherInterface;
-use Domain\Todo\Entity\Schedule\Id;
+use Domain\Todo\Entity\Schedule\Id as ScheduleId;
 
 final class Handler
 {
@@ -34,16 +35,20 @@ final class Handler
 
     public function handle(Command $command): void
     {
-        $schedule = $this->schedules->getById(new Id($command->scheduleId));
+        $schedule = $this->schedules->getById(new ScheduleId($command->scheduleId));
 
         $task = Task::new(
+            new Id($command->id),
             $schedule,
             new Name($command->name),
             new Description($command->description ?: 'Empty description'),
             new ImportantLevel($command->importantLevel)
         );
 
+        $schedule->addTask();
+
         $this->tasks->add($task);
+        $this->schedules->add($schedule);
 
         $this->flusher->flush();
     }

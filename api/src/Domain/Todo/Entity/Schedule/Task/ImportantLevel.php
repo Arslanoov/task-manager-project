@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 final class ImportantLevel
 {
     private const NOT_IMPORTANT_LEVEL = 'Not Important';
-    private const IMPORTANT_LEVEL = 'Import';
+    private const IMPORTANT_LEVEL = 'Important';
     private const VERY_IMPORTANT_LEVEL = 'Very Important';
 
     private string $value;
@@ -72,5 +72,10 @@ final class ImportantLevel
             self::IMPORTANT_LEVEL,
             self::VERY_IMPORTANT_LEVEL
         ];
+    }
+
+    public function __toString(): string
+    {
+        return $this->value;
     }
 }

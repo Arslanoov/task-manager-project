@@ -131,6 +131,11 @@ final class Schedule
         return $this->tasksCount;
     }
 
+    public function addTask(): void
+    {
+        $this->tasksCount += 1;
+    }
+
     public function isMain(): bool
     {
         return $this->getType()->isMain();

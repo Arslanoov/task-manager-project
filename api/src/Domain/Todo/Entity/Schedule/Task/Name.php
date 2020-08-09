@@ -34,4 +34,9 @@ final class Name
     {
         return $this->value === $name->getValue();
     }
+
+    public function __toString(): string
+    {
+        return $this->value;
+    }
 }

@@ -33,4 +33,9 @@ final class Description
     {
         return $this->value === $description->getValue();
     }
+
+    public function __toString(): string
+    {
+        return $this->value;
+    }
 }

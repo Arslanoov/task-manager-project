@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Todo\Entity\Schedule\Task;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Todo\Entity\Schedule\Schedule;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -45,6 +47,11 @@ final class Task
      * @ORM\Column(type="todo_schedule_task_status")
      */
     private Status $status;
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Domain\Todo\Entity\Schedule\Task\Step\Step", mappedBy="task")
+     */
+    private Collection $steps;
 
     /**
      * Task constructor.
@@ -66,15 +73,16 @@ final class Task
         $this->description = $description;
         $this->level = $level;
         $this->status = $status;
+        $this->steps = new ArrayCollection();
     }
 
     public static function new(
-        Schedule $schedule, Name $name,
+        Id $id, Schedule $schedule, Name $name,
         Description $description, ImportantLevel $level
     ): self
     {
         return new self(
-            Id::uuid4(),
+            $id,
             $schedule,
             $name,
             $description,
@@ -121,6 +129,14 @@ final class Task
     public function getLevel(): ImportantLevel
     {
         return $this->level;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getSteps(): Collection
+    {
+        return $this->steps;
     }
 
     /**

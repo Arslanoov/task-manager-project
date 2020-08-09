@@ -56,12 +56,12 @@ final class IndexAction implements RequestHandlerInterface
     {
         return array_map(function (Task $task) {
             return [
-                'id' => $task->getId(),
-                'name' => $task->getName(),
-                'description' => $task->getDescription(),
-                'important_level' => $task->getLevel(),
-                'status' => $task->getStatus()
+                'id' => $task->getId()->getValue(),
+                'name' => $task->getName()->getValue(),
+                'description' => $task->getDescription()->getValue(),
+                'importantLevel' => $task->getLevel()->getValue(),
+                'status' => $task->getStatus()->getValue()
             ];
-        }, $schedule->getTasks());
+        }, array_reverse($schedule->getTasks()));
     }
 }
