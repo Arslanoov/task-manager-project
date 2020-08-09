@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Domain\Exception\Schedule\ScheduleNotFoundException;
+use Domain\Todo\Entity\Person\Person;
 
 final class ScheduleRepository
 {
@@ -44,6 +45,25 @@ final class ScheduleRepository
     public function getById(Id $id): Schedule
     {
         if (!$schedule = $this->findById($id)) {
+            throw new ScheduleNotFoundException();
+        }
+
+        return $schedule;
+    }
+
+    public function findPersonMainScheduleByDate(Person $person): ?Schedule
+    {
+        /** @var Schedule|null $schedule */
+        $schedule = $this->schedules->findOneBy([
+            'person' => $person->getId()->getValue()
+        ]);
+
+        return $schedule;
+    }
+
+    public function getPersonMainSchedule(Person $person): ?Schedule
+    {
+        if (!$schedule = $this->findPersonMainScheduleByDate($person)) {
             throw new ScheduleNotFoundException();
         }
 

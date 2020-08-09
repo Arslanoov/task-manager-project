@@ -13,6 +13,7 @@
                     <b-nav-item :to="{name: 'about'}">About</b-nav-item>
 
                     <template v-if="$store.getters.isLoggedIn">
+                        <b-nav-item :to="{name: 'todo.main'}">Main list</b-nav-item>
                         <b-nav-item @click="logout" href="">Log Out</b-nav-item>
                     </template>
                     <template v-else>

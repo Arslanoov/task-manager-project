@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Domain\Todo\Entity\Schedule;
 
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Todo\Entity\Person\Person;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -37,6 +39,11 @@ final class Schedule
      */
     private Type $type;
     /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Domain\Todo\Entity\Schedule\Task\Task", mappedBy="schedule")
+     */
+    private Collection $tasks;
+    /**
      * @var int
      * @ORM\Column(type="integer", name="tasks_count")
      */
@@ -59,6 +66,7 @@ final class Schedule
         $this->person = $person;
         $this->date = $date;
         $this->type = $type;
+        $this->tasks = new ArrayCollection();
         $this->tasksCount = $tasksCount;
     }
 
@@ -108,6 +116,11 @@ final class Schedule
     public function getType(): Type
     {
         return $this->type;
+    }
+
+    public function getTasks(): array
+    {
+        return $this->tasks->toArray();
     }
 
     /**

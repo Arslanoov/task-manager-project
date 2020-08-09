@@ -10,6 +10,11 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
+    path: '/about',
+    name: 'about',
+    component: () => import('../views/About.vue')
+  },
+  {
     path: '/auth/login',
     name: 'auth.login',
     component: () => import('../views/Auth/Login.vue')
@@ -20,9 +25,9 @@ const routes = [
     component: () => import('../views/Auth/SignUp.vue')
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/About.vue')
+    path: '/todo/main',
+    name: 'todo.main',
+    component: () => import('../views/Todo/Main/Index.vue')
   }
 ];
 
