@@ -9,13 +9,17 @@
         <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
 
         <b-list-group class="tasks">
-            <b-list-group-item v-for="task in schedule.tasks" v-bind:key="task.id" class="task">
+            <b-list-group-item v-for="(task, index) in schedule.tasks" v-bind:key="task.id" class="task">
                 <div v-if="task.status === 'Complete'">
                     <b-form-input type="checkbox"> </b-form-input>
                 </div>
+
                 <div class="task-name">
                     {{ task.name }}
                 </div>
+
+                <b-button type="submit" variant="danger" @click="remove(index, task)">Remove</b-button>
+
                 <span class="task-important-level">
                     <span v-if="task.importantLevel === 'Not Important'">!</span>
                     <span v-else-if="task.importantLevel === 'Important'">!!</span>
@@ -25,10 +29,10 @@
         </b-list-group>
 
         <b-form @submit="create" class="taskAddForm">
-            <input type="hidden" name="schedule_id" v-model="form.schedule_id">
+            <input type="hidden" name="schedule_id" v-model="createForm.schedule_id">
 
             <b-form-group>
-                <b-form-input class="text-center mx-auto col-sm-6" type="text" placeholder="Add task" v-model="form.name" required> </b-form-input>
+                <b-form-input class="text-center mx-auto col-sm-6" type="text" placeholder="Add task" v-model="createForm.name" required> </b-form-input>
             </b-form-group>
         </b-form>
     </div>
@@ -43,9 +47,12 @@
             return {
                 schedule: null,
                 error: null,
-                form: {
+                createForm: {
                     'name': null,
                     'schedule_id': null
+                },
+                removeForm: {
+                    'task_id': null
                 },
                 sort: {
                     selected: 'latest',
@@ -64,10 +71,10 @@
             }
         },
         mounted() {
-            axios.get('/api/todo/main', this.form)
+            axios.get('/api/todo/main', this.createForm)
                 .then((response) => {
                     this.schedule = response.data;
-                    this.form.schedule_id = response.data.id;
+                    this.createForm.schedule_id = response.data.id;
                     this.sortList();
                 })
                 .catch(error => {
@@ -107,10 +114,9 @@
             },
             create(event) {
                 event.preventDefault();
-
                 this.error = null;
 
-                axios.post('/api/todo/main/task/create', this.form)
+                axios.post('/api/todo/task/create', this.createForm)
                     .then((response) => {
                         this.schedule.tasks.unshift({
                             id: response.data.id,
@@ -120,8 +126,25 @@
                             status: response.data.status
                         });
 
-                        this.form.name = null;
+                        this.createForm.name = null;
 
+                        this.sortList();
+                    })
+                    .catch(error => {
+                        this.error = error.response.data.error;
+                        console.log(error.message);
+                    });
+            },
+            remove(index, task) {
+                this.error = null;
+
+                this.removeForm.task_id = task.id;
+
+                axios.delete('/api/todo/task/remove', {
+                    data: this.removeForm
+                })
+                    .then(() => {
+                        this.schedule.tasks.splice(index, 1);
                         this.sortList();
                     })
                     .catch(error => {

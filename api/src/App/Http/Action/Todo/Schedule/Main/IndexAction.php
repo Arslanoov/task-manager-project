@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Action\Todo\Main;
+namespace App\Http\Action\Todo\Schedule\Main;
 
 use DateTimeImmutable;
 use Domain\Todo\Entity\Person\Id;

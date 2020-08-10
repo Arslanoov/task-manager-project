@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="todo_schedules")
  * @ORM\Entity()
  */
-final class Schedule
+class Schedule
 {
     /**
      * @var Id

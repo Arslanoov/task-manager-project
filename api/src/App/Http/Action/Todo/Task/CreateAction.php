@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Action\Todo\Main\Task;
+namespace App\Http\Action\Todo\Task;
 
 use App\Exception\ForbiddenException;
 use App\Service\UuidGenerator;

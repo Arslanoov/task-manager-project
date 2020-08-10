@@ -14,7 +14,8 @@ $app->post('api.oauth.auth', '/api/oauth/auth', Action\Auth\OAuthAction::class);
 
 // Todo
 
-$app->get('api.todo.main.index', '/api/todo/main', Action\Todo\Main\IndexAction::class);
+$app->get('api.todo.main.index', '/api/todo/main', Action\Todo\Schedule\Main\IndexAction::class);
 
 // Tasks
-$app->post('api.todo.main.tasks.create', '/api/todo/main/task/create', Action\Todo\Main\Task\CreateAction::class);
+$app->post('api.todo.main.tasks.create', '/api/todo/task/create', Action\Todo\Task\CreateAction::class);
+$app->delete('api.todo.main.tasks.remove', '/api/todo/task/remove', Action\Todo\Task\RemoveAction::class);
