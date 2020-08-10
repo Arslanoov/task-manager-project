@@ -4,6 +4,10 @@
 
         <p>{{ schedule.tasks_count }} tasks</p>
 
+        <b-form-select v-model="sort.selected" :options="sort.options" :aria-selected="this.sort.selected" @change="sortList"> </b-form-select>
+
+        <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
+
         <b-list-group class="tasks">
             <b-list-group-item v-for="task in schedule.tasks" v-bind:key="task.id" class="task">
                 <div v-if="task.status === 'Complete'">
@@ -13,9 +17,9 @@
                     {{ task.name }}
                 </div>
                 <span class="task-important-level">
-                    <span v-if="task.importantLevel === 'Not important'">!</span>
+                    <span v-if="task.importantLevel === 'Not Important'">!</span>
                     <span v-else-if="task.importantLevel === 'Important'">!!</span>
-                    <span v-else-if="task.importantLevel === 'Very important'">!!!</span>
+                    <span v-else-if="task.importantLevel === 'Very Important'">!!!</span>
                 </span>
             </b-list-group-item>
         </b-list-group>
@@ -38,9 +42,24 @@
         data() {
             return {
                 schedule: null,
+                error: null,
                 form: {
                     'name': null,
                     'schedule_id': null
+                },
+                sort: {
+                    selected: 'latest',
+                    options: {
+                        'latest': 'Latest',
+                        'oldest': 'Oldest',
+                        'important': 'Important',
+                        'less_important': 'Less important'
+                    },
+                    levels: {
+                        'Not Important': 0,
+                        'Important': 1,
+                        'Very Important': 2
+                    }
                 }
             }
         },
@@ -49,25 +68,47 @@
                 .then((response) => {
                     this.schedule = response.data;
                     this.form.schedule_id = response.data.id;
+                    this.sortList();
                 })
                 .catch(error => {
-                    if (error.response) {
-                        if (error.response.data.error) {
-                            this.error = error.response.data.error;
-                        } else if (error.response.data.errors) {
-                            this.errors = error.response.data.errors;
-                        }
-                    } else {
-                        console.log(error.message);
-                    }
+                    this.error = error.response.data.error;
+                    console.log(error.message);
                 });
         },
         methods: {
+            sortList() {
+                if (this.sort.selected === 'latest') {
+                    this.sortListByLatest();
+                }
+
+                if (this.sort.selected === 'oldest') {
+                    this.sortListByOldest();
+                }
+
+                if (this.sort.selected === 'important') {
+                    this.sortListByImportant();
+                }
+
+                if (this.sort.selected === 'less_important') {
+                    this.sortListByLessImportant();
+                }
+            },
+            sortListByLatest() {
+                this.schedule.tasks.sort((a, b) => ('' + b.id).localeCompare(a.id));
+            },
+            sortListByOldest() {
+                this.schedule.tasks.sort((a, b) => ('' + a.id).localeCompare(b.id));
+            },
+            sortListByImportant() {
+                this.schedule.tasks.sort((a, b) => this.sort.levels[b.importantLevel] - this.sort.levels[a.importantLevel]);
+            },
+            sortListByLessImportant() {
+                this.schedule.tasks.sort((a, b) => this.sort.levels[a.importantLevel] - this.sort.levels[b.importantLevel]);
+            },
             create(event) {
                 event.preventDefault();
 
                 this.error = null;
-                this.errors = [];
 
                 axios.post('/api/todo/main/task/create', this.form)
                     .then((response) => {
@@ -79,21 +120,13 @@
                             status: response.data.status
                         });
 
-                        this.form = {
-                            'name': null,
-                            'schedule_id': null
-                        };
+                        this.form.name = null;
+
+                        this.sortList();
                     })
                     .catch(error => {
-                        if (error.response) {
-                            if (error.response.data.error) {
-                                this.error = error.response.data.error;
-                            } else if (error.response.data.errors) {
-                                this.errors = error.response.data.errors;
-                            }
-                        } else {
-                            console.log(error.message);
-                        }
+                        this.error = error.response.data.error;
+                        console.log(error.message);
                     });
             }
         }

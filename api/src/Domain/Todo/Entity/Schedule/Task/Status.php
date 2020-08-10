@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 final class Status
 {
     private const STATUS_NOT_COMPLETE = 'Not Complete';
-    private const STATUS_IN_PROGRESS= 'In Progress';
+    private const STATUS_IN_PROGRESS = 'In Progress';
     private const STATUS_COMPLETE = 'Complete';
 
     private string $value;

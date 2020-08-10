@@ -12,4 +12,9 @@ final class UuidGenerator
     {
         return Uuid::uuid4()->toString();
     }
+
+    public function uuid1(): string
+    {
+        return Uuid::uuid1()->toString();
+    }
 }

@@ -56,7 +56,7 @@ final class CreateAction implements RequestHandlerInterface
         $schedule = $this->schedules->getById(new ScheduleId($scheduleId));
         $this->canCreateTask($request->getAttribute('oauth_user_id'), $schedule);
 
-        $taskId = (new UuidGenerator())->uuid4();
+        $taskId = (new UuidGenerator())->uuid1();
 
         $this->handler->handle(new Task\Create\Command(
             $scheduleId, $taskId, $name, $description, $level
