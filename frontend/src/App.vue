@@ -1,43 +1,60 @@
 <template>
   <div id="app">
-    <div class="container">
-      <header id="header">
-        <div id="nav">
-          <Nav/>
-        </div>
-      </header>
-      <main id="main">
+    <header id="header">
+      <div id="nav">
+        <Nav/>
+      </div>
+    </header>
+    <main id="main">
+      <div id="aside">
+        <Sidebar/>
+      </div>
+      <div class="container">
         <router-view/>
-      </main>
-    </div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="container">
+        <hr />
+        <p>&copy; App. All rights reserved.</p>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script>
   import Nav from './components/Nav';
+  import Sidebar from './components/Sidebar';
 
   export default {
     components: {
-      Nav
+      Nav,
+      Sidebar,
     }
   }
 </script>
 
 <style lang="scss">
+  @import "/assets/variables/bootstrap";
+  @import "/assets/variables/main";
   @import "~bootstrap/dist/css/bootstrap.css";
   @import "~bootstrap-vue/dist/bootstrap-vue.css";
+  @import "~@fortawesome/fontawesome-free/css/all.css";
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap');
 
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: $font;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: #34373d;
   }
 
-  #nav {
-    padding: 30px;
+  #header {
+    width: 100%;
+  }
 
+  #header {
     a {
       font-weight: bold;
       color: #2c3e50;
@@ -46,5 +63,13 @@
         color: #42b983;
       }
     }
+  }
+
+  #footer {
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    bottom: 30px;
+    text-align: center;
   }
 </style>

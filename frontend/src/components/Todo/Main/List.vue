@@ -1,6 +1,6 @@
 <template>
     <div v-if="schedule">
-        <h3>Main TODO list</h3>
+        <h3>Tasks</h3>
 
         <p>{{ schedule.tasks_count }} tasks</p>
 
@@ -8,8 +8,19 @@
 
         <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
 
+        <div class="row">
+            <div class="mx-auto col-sm-12">
+                <b-form @submit="create" class="taskAddForm form-inline">
+                    <input type="hidden" name="schedule_id" v-model="createForm.schedule_id">
+
+                    <b-form-input type="text" class="col-8 col-md-10" placeholder="Add task" v-model="createForm.name" required> </b-form-input>
+                    <b-button type="submit" class="task-add-button col-4 col-md-2" variant="primary">Add</b-button>
+                </b-form>
+            </div>
+        </div>
+
         <b-list-group class="tasks">
-            <b-list-group-item v-for="(task, index) in schedule.tasks" v-bind:key="task.id" class="task">
+            <b-list-group-item v-for="(task, index) in schedule.tasks" v-bind:key="task.id" class="task" v-bind:class="getTaskImportantClass(task.importantLevel)">
                 <div v-if="task.status === 'Complete'">
                     <b-form-input type="checkbox"> </b-form-input>
                 </div>
@@ -18,23 +29,11 @@
                     {{ task.name }}
                 </div>
 
-                <b-button type="submit" variant="danger" @click="remove(index, task)">Remove</b-button>
-
-                <span class="task-important-level">
-                    <span v-if="task.importantLevel === 'Not Important'">!</span>
-                    <span v-else-if="task.importantLevel === 'Important'">!!</span>
-                    <span v-else-if="task.importantLevel === 'Very Important'">!!!</span>
-                </span>
+                <a type="submit" @click="remove(index, task)">
+                    <i class="fa fa-trash"> </i>
+                </a>
             </b-list-group-item>
         </b-list-group>
-
-        <b-form @submit="create" class="taskAddForm">
-            <input type="hidden" name="schedule_id" v-model="createForm.schedule_id">
-
-            <b-form-group>
-                <b-form-input class="text-center mx-auto col-sm-6" type="text" placeholder="Add task" v-model="createForm.name" required> </b-form-input>
-            </b-form-group>
-        </b-form>
     </div>
 </template>
 
@@ -83,6 +82,19 @@
                 });
         },
         methods: {
+            getTaskImportantClass(level) {
+                if (level === 'Not Important') {
+                    return 'not-important-task';
+                }
+
+                if (level === 'Important') {
+                    return 'important-task';
+                }
+
+                if (level === 'Very Important') {
+                    return 'very-important-task';
+                }
+            },
             sortList() {
                 if (this.sort.selected === 'latest') {
                     this.sortListByLatest();
@@ -161,6 +173,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: 10px;
+        height: 40px;
+        border-radius: 0;
     }
 
     .task-name {
@@ -174,5 +189,17 @@
 
     .taskAddForm {
         margin-top: 20px;
+    }
+
+    .not-important-task {
+        background-color: $not-important-color;
+    }
+
+    .important-task {
+        background-color: $important-color;
+    }
+
+    .very-important-task {
+        background-color: $very-important-color;
     }
 </style>

@@ -136,6 +136,11 @@ class Schedule
         $this->tasksCount += 1;
     }
 
+    public function removeTask(): void
+    {
+        $this->tasksCount -= 1;
+    }
+
     public function isMain(): bool
     {
         return $this->getType()->isMain();
