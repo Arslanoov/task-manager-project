@@ -4,7 +4,7 @@
 
         <p>{{ schedule.tasks_count }} tasks</p>
 
-        <b-form-select v-model="sort.selected" :options="sort.options" :aria-selected="this.sort.selected" @change="sortList"> </b-form-select>
+        <b-form-select v-model="sort.selected" :options="sort.options" :aria-selected="sort.selected" @change="sortList"> </b-form-select>
 
         <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
 
@@ -13,8 +13,9 @@
                 <b-form @submit="create" class="taskAddForm form-inline">
                     <input type="hidden" name="schedule_id" v-model="createForm.schedule_id">
 
-                    <b-form-input type="text" class="col-8 col-md-10" placeholder="Add task" v-model="createForm.name" required> </b-form-input>
-                    <b-button type="submit" class="task-add-button col-4 col-md-2" variant="primary">Add</b-button>
+                    <b-form-input type="text" class="col-6 col-md-8" placeholder="Add task" v-model="createForm.name" required> </b-form-input>
+                    <b-form-select class="col-4 col-md-2" v-model="createForm.level" :options="levels" :aria-selected="createForm.level" @change="sortList"> </b-form-select>
+                    <b-button type="submit" class="task-add-button col-2 col-md-2" variant="primary">Add</b-button>
                 </b-form>
             </div>
         </div>
@@ -48,10 +49,16 @@
                 error: null,
                 createForm: {
                     'name': null,
-                    'schedule_id': null
+                    'schedule_id': null,
+                    'level': null
                 },
                 removeForm: {
                     'task_id': null
+                },
+                levels: {
+                    'Not Important': 'Not Important',
+                    'Important': 'Important',
+                    'Very Important': 'Very Important'
                 },
                 sort: {
                     selected: 'latest',
