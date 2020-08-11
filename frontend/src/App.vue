@@ -9,7 +9,7 @@
       <div id="aside">
         <Sidebar/>
       </div>
-      <div class="container">
+      <div class="container page">
         <router-view/>
       </div>
     </main>
@@ -63,6 +63,10 @@
         color: #42b983;
       }
     }
+  }
+
+  .page {
+    margin-top: 20px;
   }
 
   #footer {
