@@ -30,11 +30,42 @@
                     {{ task.name }}
                 </div>
 
-                <a type="submit" @click="remove(index, task)">
-                    <i class="fa fa-trash"> </i>
-                </a>
+                <div class="task-manage">
+                    <b-button v-b-toggle.sidebar-second-variant id="task-sidebar-button">
+                        <i class="fa fa-chevron-circle-right" @click="fillTaskForm(task)"> </i>
+                    </b-button>
+
+                    <a type="submit" @click="remove(index, task)">
+                        <i class="fa fa-trash"> </i>
+                    </a>
+                </div>
             </b-list-group-item>
         </b-list-group>
+
+        <b-sidebar id="sidebar-second-variant" text-variant="dark" class="shadow-none" right>
+            <div class="container">
+                <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
+                <b-alert variant="success" v-if="message" show>{{ message }}</b-alert>
+
+                <b-form @submit.prevent="edit()">
+                    <input type="hidden" name="schedule_id" v-model="editTask.schedule_id">
+
+                    <b-form-group>
+                        <b-form-input type="text" v-model="editTask.name" required> </b-form-input>
+                    </b-form-group>
+
+                    <b-form-group>
+                        <b-form-select v-model="editTask.level" :options="levels" :aria-selected="editTask.level"> </b-form-select>
+                    </b-form-group>
+
+                    <b-form-group>
+                        <b-form-textarea type="text" placeholder="Description..." v-model="editTask.description" required> </b-form-textarea>
+                    </b-form-group>
+
+                    <b-button type="submit" variant="primary">Edit</b-button>
+                </b-form>
+            </div>
+        </b-sidebar>
     </div>
 </template>
 
@@ -45,6 +76,8 @@
         name: "List",
         data() {
             return {
+                taskSidebarClosed: true,
+                message: null,
                 schedule: null,
                 error: null,
                 createForm: {
@@ -54,6 +87,13 @@
                 },
                 removeForm: {
                     'task_id': null
+                },
+                editTask: {
+                    'id': null,
+                    'name': null,
+                    'description': null,
+                    'level': null,
+                    'status': null
                 },
                 levels: {
                     'Not Important': 'Not Important',
@@ -77,18 +117,30 @@
             }
         },
         mounted() {
-            axios.get('/api/todo/main', this.createForm)
-                .then((response) => {
-                    this.schedule = response.data;
-                    this.createForm.schedule_id = response.data.id;
-                    this.sortList();
-                })
-                .catch(error => {
-                    this.error = error.response.data.error;
-                    console.log(error.message);
-                });
+            this.getList();
         },
         methods: {
+            getList() {
+                axios.get('/api/todo/main', this.createForm)
+                    .then((response) => {
+                        this.schedule = response.data;
+                        this.createForm.schedule_id = response.data.id;
+                        this.sortList();
+                    })
+                    .catch(error => {
+                        this.error = error.response.data.error;
+                        console.log(error.message);
+                    });
+            },
+            fillTaskForm(task) {
+                this.editTask = {
+                    'id': task.id,
+                    'name': task.name,
+                    'description': task.description,
+                    'level': task.importantLevel,
+                    'status': task.status
+                };
+            },
             getTaskImportantClass(level) {
                 if (level === 'Not Important') {
                     return 'not-important-task';
@@ -154,6 +206,20 @@
                         console.log(error.message);
                     });
             },
+            edit() {
+                this.message = null;
+                this.error = null;
+
+                axios.patch('/api/todo/task/edit', this.editTask)
+                    .then(() => {
+                        this.getList();
+                        this.message = 'Task successfully updated';
+                    })
+                    .catch(error => {
+                        this.error = error.response.data.error;
+                        console.log(error.message);
+                    });
+            },
             remove(index, task) {
                 this.error = null;
 
@@ -208,5 +274,25 @@
 
     .very-important-task {
         background-color: $very-important-color;
+    }
+
+    .task-manage a {
+        margin-left: 5px;
+    }
+
+    #task-sidebar-button {
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
+
+    #sidebar-second-variant {
+        padding: 0 20px;
+        width: 100%;
+        height: $sidebar-height;
     }
 </style>

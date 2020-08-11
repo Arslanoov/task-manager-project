@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-sidebar id="sidebar-variant" text-variant="light" class="shadow-none" shadow>
+        <b-sidebar id="sidebar-variant" text-variant="light">
             <b-navbar-nav class="ml-auto na">
                 <b-nav-item :to="{name: 'home'}">
                     <div class="nav-item__name">
@@ -39,7 +39,6 @@
         margin-top: $nav-height !important;
         padding: 0 20px;
         background: $sidebar-color;
-        box-shadow: none !important;
         text-shadow: none !important;
         width: $sidebar-width;
         height: $sidebar-height;

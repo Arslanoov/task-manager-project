@@ -50,7 +50,7 @@ final class CreateAction implements RequestHandlerInterface
 
         $scheduleId = $body['schedule_id'] ?? '';
         $name = $body['name'] ?? '';
-        $description = $body['description'] ?? 'desc';
+        $description = $body['description'] ?? 'Description';
         $level = $body['level'] ?? 'Important';
 
         $schedule = $this->schedules->getById(new ScheduleId($scheduleId));

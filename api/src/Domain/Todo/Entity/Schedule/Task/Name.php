@@ -18,7 +18,7 @@ final class Name
     {
         Assert::notEmpty($value);
         Assert::string($value);
-        Assert::lengthBetween($value, 1, 32);
+        Assert::lengthBetween($value, 1, 128);
         $this->value = $value;
     }
 

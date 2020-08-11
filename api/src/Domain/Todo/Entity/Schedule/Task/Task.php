@@ -182,6 +182,11 @@ final class Task
         $this->name = $name;
     }
 
+    public function changeImportantLevel(ImportantLevel $importantLevel): void
+    {
+        $this->level = $importantLevel;
+    }
+
     public function changeDescription(Description $description): void
     {
         $this->description = $description;

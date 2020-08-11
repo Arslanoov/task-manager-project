@@ -19,4 +19,5 @@ $app->get('api.todo.main.tasks.count', '/api/todo/main/tasks/count', Action\Todo
 
 // Tasks
 $app->post('api.todo.main.tasks.create', '/api/todo/task/create', Action\Todo\Task\CreateAction::class);
+$app->patch('api.todo.main.tasks.edit', '/api/todo/task/edit', Action\Todo\Task\EditAction::class);
 $app->delete('api.todo.main.tasks.remove', '/api/todo/task/remove', Action\Todo\Task\RemoveAction::class);
