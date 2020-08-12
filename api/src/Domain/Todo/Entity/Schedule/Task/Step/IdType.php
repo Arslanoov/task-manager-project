@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Domain\Todo\Entity\Schedule\Task\Step;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\GuidType;
+use Doctrine\DBAL\Types\IntegerType;
 
-final class IdType extends GuidType
+final class IdType extends IntegerType
 {
     public const NAME = 'todo_schedule_task_step_id';
 

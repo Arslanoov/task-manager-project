@@ -132,11 +132,11 @@ final class Task
     }
 
     /**
-     * @return Collection
+     * @return array
      */
-    public function getSteps(): Collection
+    public function getSteps(): array
     {
-        return $this->steps;
+        return $this->steps->toArray();
     }
 
     /**

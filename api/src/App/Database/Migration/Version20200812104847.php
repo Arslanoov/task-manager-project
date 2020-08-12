@@ -8,7 +8,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200808135250 extends AbstractMigration
+final class Version20200812104847 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
@@ -23,7 +23,7 @@ final class Version20200808135250 extends AbstractMigration
         $this->addSql('ALTER TABLE oauth_auth_codes ALTER client DROP DEFAULT');
         $this->addSql('ALTER TABLE oauth_auth_codes ALTER scopes TYPE JSON');
         $this->addSql('ALTER TABLE oauth_auth_codes ALTER scopes DROP DEFAULT');
-        $this->addSql('ALTER TABLE todo_schedules RENAME COLUMN taskscount TO tasks_count');
+        $this->addSql('ALTER TABLE todo_schedule_task_steps RENAME COLUMN sortorder TO sort_order');
     }
 
     public function down(Schema $schema) : void
@@ -40,6 +40,6 @@ final class Version20200808135250 extends AbstractMigration
         $this->addSql('ALTER TABLE oauth_access_tokens ALTER client DROP DEFAULT');
         $this->addSql('ALTER TABLE oauth_access_tokens ALTER scopes TYPE JSON');
         $this->addSql('ALTER TABLE oauth_access_tokens ALTER scopes DROP DEFAULT');
-        $this->addSql('ALTER TABLE todo_schedules RENAME COLUMN tasks_count TO taskscount');
+        $this->addSql('ALTER TABLE todo_schedule_task_steps RENAME COLUMN sort_order TO sortorder');
     }
 }

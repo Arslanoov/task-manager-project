@@ -25,7 +25,7 @@ final class Version20200808125735 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN todo_schedules.person_id IS \'(DC2Type:todo_person_id)\'');
         $this->addSql('COMMENT ON COLUMN todo_schedules.date IS \'(DC2Type:date_immutable)\'');
         $this->addSql('COMMENT ON COLUMN todo_schedules.type IS \'(DC2Type:todo_schedule_type)\'');
-        $this->addSql('CREATE TABLE todo_schedule_task_steps (id UUID NOT NULL, task_id UUID NOT NULL, name VARCHAR(255) NOT NULL, sortOrder INT NOT NULL, status VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE todo_schedule_task_steps (id int NOT NULL, task_id UUID NOT NULL, name VARCHAR(255) NOT NULL, sortOrder INT NOT NULL, status VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_FD20F0C38DB60186 ON todo_schedule_task_steps (task_id)');
         $this->addSql('COMMENT ON COLUMN todo_schedule_task_steps.id IS \'(DC2Type:todo_schedule_task_step_id)\'');
         $this->addSql('COMMENT ON COLUMN todo_schedule_task_steps.task_id IS \'(DC2Type:todo_schedule_task_id)\'');

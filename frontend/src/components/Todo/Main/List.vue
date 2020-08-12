@@ -21,12 +21,13 @@
         </div>
 
         <b-list-group class="tasks">
-            <b-list-group-item v-for="(task, index) in schedule.tasks" v-bind:key="task.id" class="task" v-bind:class="getTaskImportantClass(task.importantLevel)">
+            <b-list-group-item v-for="(task, index) in schedule.tasks" v-bind:key="task.id" class="task">
                 <div v-if="task.status === 'Complete'">
                     <b-form-input type="checkbox"> </b-form-input>
                 </div>
 
                 <div class="task-name">
+                    <i class="fa fa-circle task-level" v-bind:class="getTaskImportantClass(task.importantLevel)"> </i>
                     {{ task.name }}
                 </div>
 
@@ -64,6 +65,26 @@
 
                     <b-button type="submit" variant="primary">Edit</b-button>
                 </b-form>
+
+                <div class="task-steps">
+                    <h5>Steps</h5>
+
+                    <b-form @submit.prevent="createStep(editTask)" class="form-inline">
+                        <input type="hidden" name="task_id" v-model="editTask.id">
+
+                        <b-form-input type="text" class="col-8 col-md-9" placeholder="Add step" v-model="createStepForm.name" required> </b-form-input>
+                        <b-button type="submit" class="task-add-button col-4 col-md-3" variant="primary">Add</b-button>
+                    </b-form>
+
+                    <b-list-group v-if="steps.length > 0">
+                        <b-list-group-item v-for="step in steps" :key="step.id" class="step">
+                            {{ step.name }}
+                        </b-list-group-item>
+                    </b-list-group>
+                    <template v-else>
+                        This task doesn't have any steps
+                    </template>
+                </div>
             </div>
         </b-sidebar>
     </div>
@@ -93,7 +114,13 @@
                     'name': null,
                     'description': null,
                     'level': null,
-                    'status': null
+                    'status': null,
+                    'steps': null
+                },
+                steps: [],
+                createStepForm: {
+                    'task_id': null,
+                    'name': null
                 },
                 levels: {
                     'Not Important': 'Not Important',
@@ -133,6 +160,8 @@
                     });
             },
             fillTaskForm(task) {
+                this.steps = [];
+
                 this.editTask = {
                     'id': task.id,
                     'name': task.name,
@@ -140,6 +169,18 @@
                     'level': task.importantLevel,
                     'status': task.status
                 };
+
+                this.getTaskSteps(task);
+            },
+            getTaskSteps(task) {
+                axios.get('/api/todo/task/' + task.id + '/steps')
+                    .then((response) => {
+                        this.steps = response.data.steps;
+                    })
+                    .catch(error => {
+                        this.error = error.response.data.error;
+                        console.log(error.message);
+                    });
             },
             getTaskImportantClass(level) {
                 if (level === 'Not Important') {
@@ -236,13 +277,31 @@
                         this.error = error.response.data.error;
                         console.log(error.message);
                     });
+            },
+            createStep(task) {
+                this.createStepForm.task_id = task.id;
+
+                axios.post('/api/todo/task/step/create', this.createStepForm)
+                    .then(() => {
+                        this.steps.push({
+                            'task_id': task.id,
+                            'name': this.createStepForm.name,
+                            'status': 'Not Complete'
+                        });
+
+                        this.createStepForm.name = null;
+                    })
+                    .catch(error => {
+                        this.error = error.response.data.error;
+                        console.log(error.message);
+                    });
             }
         }
     }
 </script>
 
 <style lang="scss">
-    .task {
+    .task, .step {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -251,8 +310,17 @@
         border-radius: 0;
     }
 
+    .task-steps {
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+
     .task-name {
         margin-right: 30px;
+    }
+
+    .task-steps__step-name {
+        margin-top: 10px;
     }
 
     .task-important-level {
@@ -265,15 +333,19 @@
     }
 
     .not-important-task {
-        background-color: $not-important-color;
+        color: $not-important-color;
     }
 
     .important-task {
-        background-color: $important-color;
+        color: $important-color;
     }
 
     .very-important-task {
-        background-color: $very-important-color;
+        color: $very-important-color;
+    }
+
+    .task-level {
+        margin-right: 5px;
     }
 
     .task-manage a {

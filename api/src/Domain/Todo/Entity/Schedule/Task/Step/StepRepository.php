@@ -100,6 +100,17 @@ final class StepRepository
         return $step;
     }
 
+    public function getByTask(Task $task): array
+    {
+        return $this->steps->createQueryBuilder('s')
+            ->andWhere('s.task = :task')
+            ->setParameter(':task', $task)
+            ->orderBy('s.sortOrder', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     /**
      * @return Id
      * @throws DBALException
