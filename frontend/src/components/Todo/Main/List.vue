@@ -77,8 +77,11 @@
                     </b-form>
 
                     <b-list-group v-if="steps.length > 0">
-                        <b-list-group-item v-for="step in steps" :key="step.id" class="step">
+                        <b-list-group-item v-for="(step, index) in steps" :key="step.id" class="step">
                             {{ step.name }}
+                            <a type="submit" @click="removeStep(step, index)">
+                                <i class="fa fa-trash"> </i>
+                            </a>
                         </b-list-group-item>
                     </b-list-group>
                     <template v-else>
@@ -121,6 +124,9 @@
                 createStepForm: {
                     'task_id': null,
                     'name': null
+                },
+                removeStepForm: {
+                    'id': null
                 },
                 levels: {
                     'Not Important': 'Not Important',
@@ -263,7 +269,6 @@
             },
             remove(index, task) {
                 this.error = null;
-
                 this.removeForm.task_id = task.id;
 
                 axios.delete('/api/todo/task/remove', {
@@ -290,6 +295,21 @@
                         });
 
                         this.createStepForm.name = null;
+                    })
+                    .catch(error => {
+                        this.error = error.response.data.error;
+                        console.log(error.message);
+                    });
+            },
+            removeStep(step, index) {
+                this.error = null;
+                this.removeStepForm.id = step.id;
+
+                axios.delete('/api/todo/task/step/remove', {
+                    data: this.removeStepForm
+                })
+                    .then(() => {
+                        this.steps.splice(index, 1);
                     })
                     .catch(error => {
                         this.error = error.response.data.error;
