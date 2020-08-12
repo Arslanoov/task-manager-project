@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Exception\User;
 
-use DomainException;
+use Domain\Exception\DomainException;
 use Throwable;
 
 final class UserNotFoundException extends DomainException

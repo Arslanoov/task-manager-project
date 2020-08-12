@@ -16,8 +16,6 @@ final class Step
     /**
      * @var Id
      * @ORM\Column(type="todo_schedule_task_step_id")
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="todo_schedule_task_steps_id_seq", initialValue=1)
      * @ORM\Id()
      */
     private Id $id;

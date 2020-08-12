@@ -37,40 +37,30 @@ final class StepRepository
 
     public function findHigherStep(Task $task, SortOrder $order): ?Step
     {
-        $stepId = $this->steps->createQueryBuilder('s')
-            ->where('s.sort_order', '<', ':sortOrder')
-            ->andWhere('task_id', '=', ':taskId')
-            ->setParameter(':sortOrder', $order->getValue())
-            ->setParameter(':taskId', $task->getId()->getValue())
-            ->getFirstResult()
+        $steps = $this->steps->createQueryBuilder('s')
+            ->andWhere('s.sortOrder < :sortOrder')
+            ->andWhere('s.task = :task')
+            ->setParameter(':sortOrder', $order)
+            ->setParameter(':task', $task)
+            ->orderBy('s.sortOrder', 'DESC')
+            ->getQuery()->getResult()
         ;
 
-        if ($stepId) {
-            /** @var Step $step */
-            $step = $this->steps->find($stepId);
-            return $step;
-        }
-
-        return null;
+        return $steps[0] ?? null;
     }
 
     public function findLowerStep(Task $task, SortOrder $order): ?Step
     {
-        $stepId = $this->steps->createQueryBuilder('s')
-            ->where('s.sort_order', '>', ':sortOrder')
-            ->andWhere('task_id', '=', ':taskId')
-            ->setParameter(':sortOrder', $order->getValue())
-            ->setParameter(':taskId', $task->getId()->getValue())
-            ->getFirstResult()
+        $steps = $this->steps->createQueryBuilder('s')
+            ->andWhere('s.sortOrder > :sortOrder')
+            ->andWhere('s.task = :task')
+            ->setParameter(':sortOrder', $order)
+            ->setParameter(':task', $task)
+            ->orderBy('s.sortOrder', 'ASC')
+            ->getQuery()->getResult()
         ;
 
-        if ($stepId) {
-            /** @var Step $step */
-            $step = $this->steps->find($stepId);
-            return $step;
-        }
-
-        return null;
+        return $steps[0] ?? null;
     }
 
     public function getById(Id $id): Step
@@ -93,7 +83,7 @@ final class StepRepository
 
     public function getLowerStep(Task $task, SortOrder $order): Step
     {
-        if (!$step = $this->findHigherStep($task, $order)) {
+        if (!$step = $this->findLowerStep($task, $order)) {
             throw new StepNotFoundException('Lower step not found.');
         }
 

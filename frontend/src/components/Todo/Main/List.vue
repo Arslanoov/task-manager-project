@@ -79,14 +79,22 @@
                     <b-list-group v-if="steps.length > 0">
                         <b-list-group-item v-for="(step, index) in steps" :key="step.id" class="step">
                             {{ step.name }}
-                            <a type="submit" @click="removeStep(step, index)">
-                                <i class="fa fa-trash"> </i>
-                            </a>
+                            <div class="step-manage">
+                                <a type="submit" @click="upStep(editTask, step)">
+                                    <i class="fa fa-arrow-up"> </i>
+                                </a>
+                                <a type="submit" @click="downStep(editTask, step)">
+                                    <i class="fa fa-arrow-down"> </i>
+                                </a>
+                                <a type="submit" @click="removeStep(step, index)">
+                                    <i class="fa fa-trash"> </i>
+                                </a>
+                            </div>
                         </b-list-group-item>
                     </b-list-group>
-                    <template v-else>
+                    <div v-else class="steps-not-found">
                         This task doesn't have any steps
-                    </template>
+                    </div>
                 </div>
             </div>
         </b-sidebar>
@@ -124,6 +132,12 @@
                 createStepForm: {
                     'task_id': null,
                     'name': null
+                },
+                upStepForm: {
+                    'id': null
+                },
+                downStepForm: {
+                    'id': null
                 },
                 removeStepForm: {
                     'id': null
@@ -287,14 +301,41 @@
                 this.createStepForm.task_id = task.id;
 
                 axios.post('/api/todo/task/step/create', this.createStepForm)
-                    .then(() => {
+                    .then((response) => {
                         this.steps.push({
+                            'id': response.data.id,
                             'task_id': task.id,
                             'name': this.createStepForm.name,
                             'status': 'Not Complete'
                         });
 
                         this.createStepForm.name = null;
+                    })
+                    .catch(error => {
+                        this.error = error.response.data.error;
+                        console.log(error.message);
+                    });
+            },
+            upStep(task, step) {
+                this.error = null;
+                this.upStepForm.id = step.id;
+
+                axios.patch('/api/todo/task/step/up', this.upStepForm)
+                    .then(() => {
+                        this.getTaskSteps(task);
+                    })
+                    .catch(error => {
+                        this.error = error.response.data.error;
+                        console.log(error.message);
+                    });
+            },
+            downStep(task, step) {
+                this.error = null;
+                this.downStepForm.id = step.id;
+
+                axios.patch('/api/todo/task/step/down', this.downStepForm)
+                    .then(() => {
+                        this.getTaskSteps(task);
                     })
                     .catch(error => {
                         this.error = error.response.data.error;
@@ -368,8 +409,16 @@
         margin-right: 5px;
     }
 
+    .steps-not-found {
+        margin-top: 10px;
+    }
+
     .task-manage a {
         margin-left: 5px;
+    }
+
+    .step-manage a {
+        margin-right: 10px;
     }
 
     #task-sidebar-button {

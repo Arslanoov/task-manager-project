@@ -29,4 +29,9 @@ final class SortOrder
     {
         return $this->value === $order->getValue();
     }
+
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

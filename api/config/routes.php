@@ -25,4 +25,6 @@ $app->delete('api.todo.main.tasks.remove', '/api/todo/task/remove', Action\Todo\
 // Task steps
 $app->get('api.todo.main.task.steps.index', '/api/todo/task/{id}/steps', Action\Todo\Task\Step\IndexAction::class);
 $app->post('api.todo.main.task.steps.create', '/api/todo/task/step/create', Action\Todo\Task\Step\CreateAction::class);
+$app->patch('api.todo.main.task.steps.up', '/api/todo/task/step/up', Action\Todo\Task\Step\UpAction::class);
+$app->patch('api.todo.main.task.steps.down', '/api/todo/task/step/down', Action\Todo\Task\Step\DownAction::class);
 $app->delete('api.todo.main.task.steps.remove', '/api/todo/task/step/remove', Action\Todo\Task\Step\RemoveAction::class);

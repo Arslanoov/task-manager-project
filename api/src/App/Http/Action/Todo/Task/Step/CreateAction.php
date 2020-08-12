@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Action\Todo\Task\Step;
 
 use App\Exception\ForbiddenException;
+use Doctrine\DBAL\DBALException;
 use Domain\Todo\Entity\Schedule\Task\Id;
-use Domain\Todo\Entity\Schedule\Task\Step\Step;
 use Domain\Todo\Entity\Schedule\Task\Step\StepRepository;
 use Domain\Todo\Entity\Schedule\Task\Task;
 use Domain\Todo\Entity\Schedule\Task\TaskRepository;
@@ -43,6 +43,7 @@ final class CreateAction implements RequestHandlerInterface
      * @param ServerRequestInterface $request
      * @return ResponseInterface
      * @throws ForbiddenException
+     * @throws DBALException
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
@@ -52,12 +53,14 @@ final class CreateAction implements RequestHandlerInterface
         $name = $body['name'] ?? '';
 
         $task = $this->tasks->getById(new Id($taskId));
-
         $this->canCreateStepForTask($request->getAttribute('oauth_user_id'), $task);
 
-        $this->handler->handle(new Command($taskId, $name));
+        $stepId = $this->steps->getNextId();
+        $this->handler->handle(new Command($stepId->getValue(), $taskId, $name));
 
-        return $this->response->json([], 201);
+        return $this->response->json([
+            'id' => $stepId->getValue()
+        ], 201);
     }
 
     /**
