@@ -32,8 +32,12 @@ final class Handler
 
         $oldStatus = $step->getStatus();
         $step->changeStatus(new Status($command->status));
+
         if ($step->isComplete() and $oldStatus->isNotComplete()) {
             $task->finishStep();
+        }
+        if ($step->isNotComplete() and $oldStatus->isComplete()) {
+            $task->unFinishStep();
         }
 
         $this->steps->add($step);

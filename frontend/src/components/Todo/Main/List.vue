@@ -33,7 +33,9 @@
                     </b-form-checkbox>
                     <i class="fa fa-circle task-level" v-bind:class="getTaskImportantClass(task.importantLevel)"> </i>
                     {{ task.name }}
-                    ({{ task.finishedSteps }} of {{ task.stepsCount }})
+                    <template v-if="task.stepsCount !== 0">
+                        ({{ task.finishedSteps }} of {{ task.stepsCount }})
+                    </template>
                 </div>
 
                 <div class="task-manage">
@@ -321,6 +323,9 @@
                 this.statusStepForm.status = step.status;
 
                 axios.patch('/api/todo/task/step/change-status', this.statusStepForm)
+                    .then(() => {
+                        this.getList();
+                    })
                     .catch(error => {
                         this.error = error.response.data.error;
                         console.log(error.message);
@@ -355,6 +360,8 @@
                         });
 
                         this.createStepForm.name = null;
+
+                        this.getList();
                     })
                     .catch(error => {
                         this.error = error.response.data.error;
@@ -396,6 +403,7 @@
                 })
                     .then(() => {
                         this.steps.splice(index, 1);
+                        this.getList();
                     })
                     .catch(error => {
                         this.error = error.response.data.error;
