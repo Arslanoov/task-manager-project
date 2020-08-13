@@ -49,7 +49,7 @@ class Task
     private Status $status;
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Domain\Todo\Entity\Schedule\Task\Step\Step", mappedBy="task")
+     * @ORM\OneToMany(targetEntity="Domain\Todo\Entity\Schedule\Task\Step\Step", mappedBy="task", cascade={"REMOVE"})
      */
     private Collection $steps;
     /**
@@ -81,6 +81,7 @@ class Task
         $this->level = $level;
         $this->status = $status;
         $this->steps = new ArrayCollection();
+        $this->finishedSteps = 0;
     }
 
     public static function new(

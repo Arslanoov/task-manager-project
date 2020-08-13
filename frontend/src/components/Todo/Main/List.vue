@@ -33,7 +33,7 @@
                     </b-form-checkbox>
                     <i class="fa fa-circle task-level" v-bind:class="getTaskImportantClass(task.importantLevel)"> </i>
                     {{ task.name }}
-                    <template v-if="task.stepsCount !== 0">
+                    <template v-if="task.stepsCount !== 0 && task.stepsCount">
                         ({{ task.finishedSteps }} of {{ task.stepsCount }})
                     </template>
                 </div>
