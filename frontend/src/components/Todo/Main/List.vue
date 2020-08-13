@@ -173,17 +173,23 @@
                     'Very Important': 'Very Important'
                 },
                 sort: {
-                    selected: 'latest',
+                    selected: 'uncompleted_first',
                     options: {
                         'latest': 'Latest',
                         'oldest': 'Oldest',
                         'important': 'Important',
-                        'less_important': 'Less important'
+                        'less_important': 'Less important',
+                        'completed_first': 'Completed first',
+                        'uncompleted_first': 'Uncompleted first'
                     },
                     levels: {
                         'Not Important': 0,
                         'Important': 1,
                         'Very Important': 2
+                    },
+                    statuses: {
+                        'Not Complete': 0,
+                        'Complete': 1
                     }
                 }
             }
@@ -256,6 +262,14 @@
                 if (this.sort.selected === 'less_important') {
                     this.sortListByLessImportant();
                 }
+
+                if (this.sort.selected === 'completed_first') {
+                    this.sortListByCompleted();
+                }
+
+                if (this.sort.selected === 'uncompleted_first') {
+                    this.sortListByUncompleted();
+                }
             },
             sortListByLatest() {
                 this.schedule.tasks.sort((a, b) => ('' + b.id).localeCompare(a.id));
@@ -268,6 +282,12 @@
             },
             sortListByLessImportant() {
                 this.schedule.tasks.sort((a, b) => this.sort.levels[a.importantLevel] - this.sort.levels[b.importantLevel]);
+            },
+            sortListByCompleted() {
+                this.schedule.tasks.sort((a, b) => this.sort.statuses[b.status] - this.sort.statuses[a.status]);
+            },
+            sortListByUncompleted() {
+                this.schedule.tasks.sort((a, b) => this.sort.statuses[a.status] - this.sort.statuses[b.status]);
             },
             create(event) {
                 event.preventDefault();
