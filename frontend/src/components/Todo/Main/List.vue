@@ -83,7 +83,17 @@
 
                     <b-list-group v-if="steps.length > 0">
                         <b-list-group-item v-for="(step, index) in steps" :key="step.id" class="step">
-                            {{ step.name }}
+                            <div class="step-name">
+                                <b-form-checkbox
+                                        value="Complete"
+                                        unchecked-value="Not Complete"
+                                        v-model="step.status"
+                                        @input="changeStepStatus(step)"
+                                        inline
+                                >
+                                </b-form-checkbox>
+                                {{ step.name }}
+                            </div>
                             <div class="step-manage">
                                 <a type="submit" @click="upStep(editTask, step)">
                                     <i class="fa fa-arrow-up"> </i>
@@ -138,6 +148,10 @@
                     'steps': null
                 },
                 steps: [],
+                statusStepForm: {
+                    'id': null,
+                    'status': null
+                },
                 createStepForm: {
                     'task_id': null,
                     'name': null
@@ -301,6 +315,17 @@
                         console.log(error.message);
                     });
             },
+            changeStepStatus(step) {
+                this.error = null;
+                this.statusStepForm.id = step.id;
+                this.statusStepForm.status = step.status;
+
+                axios.patch('/api/todo/task/step/change-status', this.statusStepForm)
+                    .catch(error => {
+                        this.error = error.response.data.error;
+                        console.log(error.message);
+                    });
+            },
             remove(index, task) {
                 this.error = null;
                 this.removeForm.task_id = task.id;
@@ -398,6 +423,11 @@
 
     .task-name {
         margin-right: 30px;
+        display: flex;
+        align-items: center;
+    }
+
+    .step-name {
         display: flex;
         align-items: center;
     }
