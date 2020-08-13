@@ -9,7 +9,6 @@ use Webmozart\Assert\Assert;
 final class Status
 {
     private const STATUS_NOT_COMPLETE = 'Not Complete';
-    private const STATUS_IN_PROGRESS= 'In Progress';
     private const STATUS_COMPLETE = 'Complete';
 
     private string $value;
@@ -40,11 +39,6 @@ final class Status
         return new self(self::STATUS_NOT_COMPLETE);
     }
 
-    public static function inProgress(): self
-    {
-        return new self(self::STATUS_IN_PROGRESS);
-    }
-
     public static function complete(): self
     {
         return new self(self::STATUS_COMPLETE);
@@ -53,11 +47,6 @@ final class Status
     public function isNotComplete(): bool
     {
         return $this->value === self::STATUS_NOT_COMPLETE;
-    }
-
-    public function isInProgress(): bool
-    {
-        return $this->value === self::STATUS_IN_PROGRESS;
     }
 
     public function isComplete(): bool
@@ -69,7 +58,6 @@ final class Status
     {
         return [
             self::STATUS_NOT_COMPLETE,
-            self::STATUS_IN_PROGRESS,
             self::STATUS_COMPLETE
         ];
     }

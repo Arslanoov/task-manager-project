@@ -22,13 +22,18 @@
 
         <b-list-group class="tasks">
             <b-list-group-item v-for="(task, index) in schedule.tasks" v-bind:key="task.id" class="task">
-                <div v-if="task.status === 'Complete'">
-                    <b-form-input type="checkbox"> </b-form-input>
-                </div>
-
                 <div class="task-name">
+                    <b-form-checkbox
+                            value="Complete"
+                            unchecked-value="Not Complete"
+                            v-model="task.status"
+                            @input="changeStatus(task)"
+                            inline
+                    >
+                    </b-form-checkbox>
                     <i class="fa fa-circle task-level" v-bind:class="getTaskImportantClass(task.importantLevel)"> </i>
                     {{ task.name }}
+                    ({{ task.finishedSteps }} of {{ task.stepsCount }})
                 </div>
 
                 <div class="task-manage">
@@ -116,6 +121,10 @@
                     'name': null,
                     'schedule_id': null,
                     'level': null
+                },
+                statusForm: {
+                    'task_id': null,
+                    'status': null
                 },
                 removeForm: {
                     'task_id': null
@@ -281,6 +290,17 @@
                         console.log(error.message);
                     });
             },
+            changeStatus(task) {
+                this.error = null;
+                this.statusForm.task_id = task.id;
+                this.statusForm.status = task.status;
+
+                axios.patch('/api/todo/task/change-status', this.statusForm)
+                    .catch(error => {
+                        this.error = error.response.data.error;
+                        console.log(error.message);
+                    });
+            },
             remove(index, task) {
                 this.error = null;
                 this.removeForm.task_id = task.id;
@@ -378,6 +398,8 @@
 
     .task-name {
         margin-right: 30px;
+        display: flex;
+        align-items: center;
     }
 
     .task-steps__step-name {

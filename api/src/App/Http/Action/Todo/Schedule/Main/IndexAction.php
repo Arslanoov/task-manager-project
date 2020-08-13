@@ -60,7 +60,9 @@ final class IndexAction implements RequestHandlerInterface
                 'name' => $task->getName()->getValue(),
                 'description' => $task->getDescription()->getValue(),
                 'importantLevel' => $task->getLevel()->getValue(),
-                'status' => $task->getStatus()->getValue()
+                'status' => $task->getStatus()->getValue(),
+                'stepsCount' => $task->getStepsCollection()->count(),
+                'finishedSteps' => $task->getFinishedSteps()
             ];
         }, array_reverse($schedule->getTasks()));
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\UseCase\Schedule\Task\StopExecution;
+namespace Domain\Todo\UseCase\Schedule\Task\NotComplete;
 
 final class Command
 {

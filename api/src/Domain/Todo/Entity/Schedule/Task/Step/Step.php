@@ -114,6 +114,21 @@ final class Step
         $this->sortOrder = $order;
     }
 
+    public function changeStatus(Status $status): void
+    {
+        $this->status = $status;
+    }
+
+    public function isNotComplete(): bool
+    {
+        return $this->getStatus()->isNotComplete();
+    }
+
+    public function isComplete(): bool
+    {
+        return $this->getStatus()->isComplete();
+    }
+
     public function changeName(Name $name): void
     {
         $this->name = $name;

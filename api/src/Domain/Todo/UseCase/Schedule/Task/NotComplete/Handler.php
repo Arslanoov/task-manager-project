@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\UseCase\Schedule\Task\StopExecution;
+namespace Domain\Todo\UseCase\Schedule\Task\NotComplete;
 
 use Domain\Todo\Entity\Schedule\Task\Id;
 use Domain\Todo\Entity\Schedule\Task\TaskRepository;
@@ -28,7 +28,7 @@ final class Handler
     {
         $task = $this->tasks->findById(new Id($command->taskId));
 
-        $task->stopExecution();
+        $task->notComplete();
 
         $this->flusher->flush();
     }

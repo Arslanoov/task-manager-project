@@ -52,6 +52,11 @@ class Task
      * @ORM\OneToMany(targetEntity="Domain\Todo\Entity\Schedule\Task\Step\Step", mappedBy="task")
      */
     private Collection $steps;
+    /**
+     * @var int
+     * @ORM\Column(type="integer", name="finished_steps")
+     */
+    private int $finishedSteps = 0;
 
     /**
      * Task constructor.
@@ -61,10 +66,12 @@ class Task
      * @param Description $description
      * @param ImportantLevel $level
      * @param Status $status
+     * @param int $finishedSteps
      */
     private function __construct(
         Id $id, Schedule $schedule, Name $name,
-        Description $description, ImportantLevel $level, Status $status
+        Description $description, ImportantLevel $level, Status $status,
+        int $finishedSteps
     )
     {
         $this->id = $id;
@@ -87,7 +94,8 @@ class Task
             $name,
             $description,
             $level,
-            Status::notComplete()
+            Status::notComplete(),
+            0
         );
     }
 
@@ -140,11 +148,27 @@ class Task
     }
 
     /**
+     * @return Collection
+     */
+    public function getStepsCollection(): Collection
+    {
+        return $this->steps;
+    }
+
+    /**
      * @return Status
      */
     public function getStatus(): Status
     {
         return $this->status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFinishedSteps(): int
+    {
+        return $this->finishedSteps;
     }
 
     public function isNotImportant(): bool
@@ -167,11 +191,6 @@ class Task
         return $this->getStatus()->isNotComplete();
     }
 
-    public function isInProgress(): bool
-    {
-        return $this->getStatus()->isInProgress();
-    }
-
     public function isComplete(): bool
     {
         return $this->getStatus()->isComplete();
@@ -192,24 +211,34 @@ class Task
         $this->description = $description;
     }
 
+    public function changeStatus(Status $status): void
+    {
+        $this->status = $status;
+    }
+
     public function changeSchedule(Schedule $schedule): void
     {
         $this->schedule = $schedule;
     }
 
-    public function stopExecution(): void
+    public function notComplete(): void
     {
         $this->status = Status::notComplete();
-    }
-
-    public function startExecution(): void
-    {
-        $this->status = Status::inProgress();
     }
 
     public function complete(): void
     {
         $this->status = Status::complete();
+    }
+
+    public function finishStep(): void
+    {
+        $this->finishedSteps += 1;
+    }
+
+    public function unFinishStep(): void
+    {
+        $this->finishedSteps -= 1;
     }
 
     public function makeNotImportant(): void

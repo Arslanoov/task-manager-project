@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\UseCase\Schedule\Task\Step\Remove;
+namespace Domain\Todo\UseCase\Schedule\Task\Step\ChangeStatus;
 
-use Domain\Todo\Entity\Schedule\Task\Step\Id;
-use Domain\Todo\Entity\Schedule\Task\Step\StepRepository;
 use Domain\FlusherInterface;
+use Domain\Todo\Entity\Schedule\Task\Step\Id;
+use Domain\Todo\Entity\Schedule\Task\Step\Status;
+use Domain\Todo\Entity\Schedule\Task\Step\StepRepository;
 
 final class Handler
 {
@@ -26,14 +27,16 @@ final class Handler
 
     public function handle(Command $command): void
     {
-        $step = $this->steps->getById(new Id($command->stepId));
+        $step = $this->steps->getById(new Id($command->id));
         $task = $step->getTask();
 
-        if ($step->isComplete()) {
-            $task->unFinishStep();
+        $oldStatus = $step->getStatus();
+        $step->changeStatus(new Status($command->status));
+        if ($step->isComplete() and $oldStatus->isNotComplete()) {
+            $task->finishStep();
         }
 
-        $this->steps->remove($step);
+        $this->steps->add($step);
 
         $this->flusher->flush();
     }

@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\UseCase\Schedule\Task\StartExecution;
+namespace Domain\Todo\UseCase\Schedule\Task\ChangeStatus;
 
-use Domain\Todo\Entity\Schedule\Task\Id;
-use Domain\Todo\Entity\Schedule\Task\TaskRepository;
 use Domain\FlusherInterface;
+use Domain\Todo\Entity\Schedule\Task\Id;
+use Domain\Todo\Entity\Schedule\Task\Status;
+use Domain\Todo\Entity\Schedule\Task\TaskRepository;
 
 final class Handler
 {
@@ -26,9 +27,11 @@ final class Handler
 
     public function handle(Command $command): void
     {
-        $task = $this->tasks->findById(new Id($command->taskId));
+        $task = $this->tasks->getById(new Id($command->id));
 
-        $task->startExecution();
+        $task->changeStatus(new Status($command->status));
+
+        $this->tasks->add($task);
 
         $this->flusher->flush();
     }
