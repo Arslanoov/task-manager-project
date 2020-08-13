@@ -4,7 +4,28 @@
 
         <p>{{ schedule.tasks_count }} tasks</p>
 
-        <b-form-select v-model="sort.selected" :options="sort.options" :aria-selected="sort.selected" @change="sortList"> </b-form-select>
+        <div class="row">
+            <div class="col-sm-12">
+                <b-form-select v-model="sort.selected" :options="sort.options" :aria-selected="sort.selected" @change="sortList"> </b-form-select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="hide-checkbox">
+                    <span class="hide-checkbox__label">Hide completed</span>
+                    <b-form-checkbox
+                            value="hidden"
+                            unchecked-value="visible"
+                            v-model="sort.completedTasksVisibility"
+                            @input="changeCompletedTasksVisibility()"
+                            checked="checked"
+                            inline
+                    >
+                    </b-form-checkbox>
+                </div>
+            </div>
+        </div>
 
         <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
 
@@ -190,7 +211,8 @@
                     statuses: {
                         'Not Complete': 0,
                         'Complete': 1
-                    }
+                    },
+                    completedTasksVisibility: 'hidden'
                 }
             }
         },
@@ -288,6 +310,25 @@
             },
             sortListByUncompleted() {
                 this.schedule.tasks.sort((a, b) => this.sort.statuses[a.status] - this.sort.statuses[b.status]);
+            },
+            changeCompletedTasksVisibility() {
+                if (this.sort.completedTasksVisibility === 'hidden') {
+                    this.removeCompleted();
+                }
+
+                if (this.sort.completedTasksVisibility === 'visible') {
+                    this.returnCompleted();
+                }
+            },
+            removeCompleted() {
+                this.schedule.tasks.forEach(function (task, i, tasks) {
+                    if (task.status === 'Complete') {
+                        tasks.splice(i, 1);
+                    }
+                });
+            },
+            returnCompleted() {
+                this.getList();
             },
             create(event) {
                 event.preventDefault();
@@ -499,6 +540,17 @@
 
     .step-manage a {
         margin-right: 10px;
+    }
+
+    .hide-checkbox {
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hide-checkbox__label {
+        margin-right: 5px;
     }
 
     #task-sidebar-button {
