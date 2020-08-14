@@ -42,7 +42,6 @@
 </template>
 
 <script>
-    import axios from "axios";
     import TasksList from "./TasksList";
 
     export default {
@@ -50,12 +49,12 @@
         components: {
             TasksList
         },
-        mounted() {
-            this.getList();
+        props: {
+            schedule: Object,
+            getList: Function
         },
         data() {
             return {
-                schedule: null,
                 error: null,
                 createForm: {
                     'name': null,
@@ -86,24 +85,15 @@
             }
         },
         methods: {
-            getList(checkVisibility = true) {
-                axios.get('/api/todo/main', this.createForm)
-                    .then((response) => {
-                        this.schedule = response.data;
-                        this.createForm.schedule_id = response.data.id;
-                        this.sortList();
-                        if (checkVisibility) {
-                            this.changeCompletedTasksVisibility();
-                        }
-                    })
-                    .catch(error => {
-                        if (error.response) {
-                            this.error = error.response.data.error;
-                            console.log(error.message);
-                        } else {
-                            alert(error);
-                        }
-                    });
+            init(checkVisibility) {
+                if (this.schedule === null) {
+                    this.schedule = this.$parent.schedule;
+                }
+
+                this.sortList();
+                if (checkVisibility) {
+                    this.changeCompletedTasksVisibility();
+                }
             },
             sortList() {
                 if (this.sort.selected === 'latest') {

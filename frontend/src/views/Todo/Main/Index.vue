@@ -1,13 +1,13 @@
 <template>
-    <Schedule />
+    <MainSchedule />
 </template>
 
 <script>
-    import Schedule from "../../../components/Todo/Main/Schedule";
+    import MainSchedule from "../../../components/Todo/Main/MainSchedule";
 
     export default {
         components: {
-            Schedule
+            MainSchedule
         }
     }
 </script>
