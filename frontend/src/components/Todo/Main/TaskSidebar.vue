@@ -1,10 +1,10 @@
 <template>
-    <b-sidebar id="sidebar-second-variant" text-variant="dark" class="shadow-none" right>
+    <b-sidebar id="sidebar-second-variant" class="shadow-none" text-variant="dark" right>
         <div class="container">
             <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
             <b-alert variant="success" v-if="message" show>{{ message }}</b-alert>
 
-            <b-form @submit.prevent="edit()">
+            <b-form @submit.prevent="edit()" class="task-sidebar__edit-form">
                 <input type="hidden" name="schedule_id" v-model="editTask.schedule_id">
 
                 <b-form-group>
@@ -75,6 +75,9 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+    #sidebar-second-variant {
+        padding: 0 20px;
+        width: 650px;
+    }
 </style>

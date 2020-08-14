@@ -50,11 +50,15 @@
     color: #34373d;
   }
 
-  #header {
-    width: 100%;
+  button:focus, button:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 0 !important;
   }
 
   #header {
+    width: 100%;
+
     a {
       font-weight: bold;
       color: #2c3e50;

@@ -1,10 +1,24 @@
 <template>
-    <div v-if="schedule">
-        <h3>Tasks</h3>
+    <div v-if="schedule" class="schedule-list">
+        <h3 class="schedule-list__header">Tasks</h3>
 
-        <p>{{ schedule.tasksCount }} tasks</p>
+        <div class="schedule-list__hide-completed-form">
+            <div class="schedule-list__hide-completed-form_group">
+                <span class="schedule-list__hide-completed-form_group-label">Hide completed</span>
+                <b-form-checkbox
+                        value="hidden"
+                        unchecked-value="visible"
+                        v-model="sort.completedTasksVisibility"
+                        @input="changeCompletedTasksVisibility"
+                        checked="checked"
+                        class="schedule-list__hide-completed-form_group-checkbox"
+                        inline
+                >
+                </b-form-checkbox>
+            </div>
+        </div>
 
-        <div class="row">
+        <div class="schedule-list__sort-form row">
             <div class="col-sm-12">
                 <b-form-select
                         v-model="sort.selected"
@@ -15,23 +29,6 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="hide-checkbox">
-                    <span class="hide-checkbox__label">Hide completed</span>
-                    <b-form-checkbox
-                            value="hidden"
-                            unchecked-value="visible"
-                            v-model="sort.completedTasksVisibility"
-                            @input="changeCompletedTasksVisibility"
-                            checked="checked"
-                            inline
-                    >
-                    </b-form-checkbox>
-                </div>
-            </div>
-        </div>
-
         <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
 
         <TasksList
@@ -39,6 +36,7 @@
                 v-bind:getList="getList"
                 v-bind:sortList="sortList"
                 v-bind:createForm="createForm"
+                v-bind:changeCompletedTasksVisibility="changeCompletedTasksVisibility"
         />
     </div>
 </template>
@@ -53,7 +51,7 @@
             TasksList
         },
         mounted() {
-            this.getList(true);
+            this.getList();
         },
         data() {
             return {
@@ -88,7 +86,7 @@
             }
         },
         methods: {
-            getList(checkVisibility = false) {
+            getList(checkVisibility = true) {
                 axios.get('/api/todo/main', this.createForm)
                     .then((response) => {
                         this.schedule = response.data;
@@ -170,67 +168,34 @@
                 }
             },
             returnCompleted() {
-                this.getList();
+                this.getList(false);
             }
         }
     }
 </script>
 
 <style lang="scss">
-    .hide-checkbox {
-        margin-top: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    .schedule-list {
+        &__header {
+            font-size: 20px;
+        }
 
-    .hide-checkbox__label {
-        margin-right: 5px;
-    }
+        &__hide-completed-form {
+            margin-bottom: 15px;
 
+            &_group {
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
+                &-label {
+                    margin-right: 5px;
+                }
 
-    .task, .step {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 10px;
-        height: 40px;
-        border-radius: 0;
-    }
-
-    .task-steps {
-        margin-top: 15px;
-        margin-bottom: 20px;
-    }
-
-    .task-name {
-        margin-right: 30px;
-        display: flex;
-        align-items: center;
-    }
-
-    .step-name {
-        display: flex;
-        align-items: center;
-    }
-
-    .task-steps__step-name {
-        margin-top: 10px;
-    }
-
-    .task-important-level {
-        font-size: 30px;
-        font-weight: bold;
-    }
-
-    .step-manage a {
-        margin-right: 10px;
-    }
-
-    #sidebar-second-variant {
-        padding: 0 20px;
-        width: 100%;
-        height: $sidebar-height;
+                &-checkbox {
+                    margin-right: -1rem;
+                }
+            }
+        }
     }
 </style>

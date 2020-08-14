@@ -1,17 +1,17 @@
 <template>
-    <div class="task-steps">
+    <div class="steps-list">
         <h5>Steps</h5>
 
-        <b-form @submit.prevent="createStep(editTask)" class="form-inline">
+        <b-form @submit.prevent="createStep(editTask)" class="form-inline steps-list__create-form">
             <input type="hidden" name="task_id" v-model="editTask.id">
 
             <b-form-input type="text" class="col-8 col-md-9" placeholder="Add step" v-model="createStepForm.name" required> </b-form-input>
-            <b-button type="submit" class="task-add-button col-4 col-md-3" variant="primary">Add</b-button>
+            <b-button type="submit" class="steps-list__create-form_button col-4 col-md-3" variant="primary">Add</b-button>
         </b-form>
 
-        <b-list-group v-if="steps.length > 0">
-            <b-list-group-item v-for="(step, index) in steps" :key="step.id" class="step">
-                <div class="step-name">
+        <b-list-group v-if="steps.length > 0" class="steps-list__list">
+            <b-list-group-item v-for="(step, index) in steps" :key="step.id" class="steps-list__list-item">
+                <div class="steps-list__step-info">
                     <b-form-checkbox
                             value="Complete"
                             unchecked-value="Not Complete"
@@ -22,14 +22,14 @@
                     </b-form-checkbox>
                     {{ step.name }}
                 </div>
-                <div class="step-manage">
-                    <a type="submit" @click="upStep(editTask, step)">
+                <div class="steps-list__list-manage">
+                    <a type="submit" @click="upStep(editTask, step)" class="steps-list__list-manage_link">
                         <i class="fa fa-arrow-up"> </i>
                     </a>
-                    <a type="submit" @click="downStep(editTask, step)">
+                    <a type="submit" @click="downStep(editTask, step)" class="steps-list__list-manage_link">
                         <i class="fa fa-arrow-down"> </i>
                     </a>
-                    <a type="submit" @click="removeStep(step, index)">
+                    <a type="submit" @click="removeStep(step, index)" class="steps-list__list-manage_link">
                         <i class="fa fa-trash"> </i>
                     </a>
                 </div>
@@ -157,6 +157,35 @@
 </script>
 
 <style lang="scss">
+    .steps-list {
+        margin-top: 15px;
+        margin-bottom: 20px;
+
+        &__list {
+            &-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 10px;
+                height: 40px;
+                border-radius: 0;
+            }
+
+            &-manage {
+                &_link {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        &__step {
+            &-info {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
     .steps-not-found {
         margin-top: 10px;
     }
