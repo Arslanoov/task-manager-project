@@ -177,7 +177,7 @@
 <style lang="scss">
     .schedule-list {
         &__header {
-            font-size: 20px;
+            font-size: $schedule-header-size;
         }
 
         &__hide-completed-form {

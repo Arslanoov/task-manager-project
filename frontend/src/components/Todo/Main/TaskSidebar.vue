@@ -78,6 +78,6 @@
 <style lang="scss">
     #sidebar-second-variant {
         padding: 0 20px;
-        width: 650px;
+        width: $task-sidebar-width;
     }
 </style>

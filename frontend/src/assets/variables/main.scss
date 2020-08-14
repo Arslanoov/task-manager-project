@@ -13,7 +13,14 @@ $sidebar-font-size: 14px;
 $sidebar-font-weight: 300;
 $sidebar-font-color: black;
 
+// Task sidebar
+$task-sidebar-width: 650px;
+
+// Schedule
+$schedule-header-size: 20px;
+
 // Tasks
 $very-important-color: rgb(204, 51, 0);
 $important-color: rgb(255, 204, 0);
 $not-important-color: rgb(153, 204, 51);
+$task-height: 40px;

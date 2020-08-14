@@ -221,7 +221,7 @@
 
         &__task {
             margin-top: 10px;
-            height: 40px;
+            height: $task-height;
             display: flex;
             justify-content: space-between;
             align-items: center;
