@@ -1,13 +1,13 @@
 <template>
-    <List />
+    <Schedule />
 </template>
 
 <script>
-    import List from "@/components/Todo/Main/List";
+    import Schedule from "../../../components/Todo/Main/Schedule";
 
     export default {
         components: {
-            List
+            Schedule
         }
     }
 </script>

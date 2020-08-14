@@ -48,7 +48,7 @@ final class IndexAction implements RequestHandlerInterface
         return $this->response->json([
             'id' => $schedule->getId()->getValue(),
             'tasks' => $this->tasks($schedule),
-            'tasks_count' => $schedule->getTasksCount()
+            'tasksCount' => $schedule->getTasksCount()
         ]);
     }
 
