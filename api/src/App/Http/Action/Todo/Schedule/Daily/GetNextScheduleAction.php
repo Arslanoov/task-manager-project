@@ -4,20 +4,22 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Todo\Schedule\Daily;
 
+use App\Exception\ForbiddenException;
 use App\Service\Date;
-use Domain\Todo\Entity\Person\Id;
 use Domain\Todo\Entity\Person\PersonRepository;
+use Domain\Todo\Entity\Schedule\Id as ScheduleId;
+use Domain\Todo\Entity\Person\Id as PersonId;
 use Domain\Todo\Entity\Schedule\Schedule;
 use Domain\Todo\Entity\Schedule\ScheduleRepository;
 use Domain\Todo\Entity\Schedule\Task\Task;
-use Domain\Todo\UseCase\Schedule\CreateDaily\Command;
-use Domain\Todo\UseCase\Schedule\CreateDaily\Handler;
+use Domain\Todo\UseCase\Schedule\CreateByDate\Command;
+use Domain\Todo\UseCase\Schedule\CreateByDate\Handler;
 use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final class GetTodayAction implements RequestHandlerInterface
+final class GetNextScheduleAction implements RequestHandlerInterface
 {
     private ScheduleRepository $schedules;
     private PersonRepository $persons;
@@ -25,7 +27,7 @@ final class GetTodayAction implements RequestHandlerInterface
     private ResponseFactory $response;
 
     /**
-     * GetTodayAction constructor.
+     * GetNextSchedule constructor.
      * @param ScheduleRepository $schedules
      * @param PersonRepository $persons
      * @param Handler $handler
@@ -39,29 +41,53 @@ final class GetTodayAction implements RequestHandlerInterface
         $this->response = $response;
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     * @throws ForbiddenException
+     */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $userId = $request->getAttribute('oauth_user_id');
+        $scheduleId = $request->getAttribute('id') ?? '';
 
-        $person = $this->persons->getById(new Id($userId));
-        $schedule = $this->schedules->findPersonTodaySchedule($person);
-        if (!$schedule) {
-            $this->handler->handle(new Command($userId));
-            $schedule = $this->schedules->findPersonTodaySchedule($person);
+        $schedule = $this->schedules->getById(new ScheduleId($scheduleId));
+        $person = $this->persons->getById(new PersonId($userId));
+        $this->canGetNext($userId, $schedule);
+
+        $nextSchedule = $this->schedules->findNextSchedule($person, $schedule);
+        if (!$nextSchedule) {
+            $this->handler->handle(new Command(
+                $schedule->getDate()->modify('+1 day'),
+                $userId
+            ));
+            $nextSchedule = $this->schedules->findNextSchedule($person, $schedule);
         }
 
         return $this->response->json([
-            'id' => $schedule->getId()->getValue(),
+            'id' => $nextSchedule->getId()->getValue(),
             'date' => [
-                'day' => $schedule->getDate()->format('d'),
-                'month' => $schedule->getDate()->format('m') - 1,
-                'year' => $schedule->getDate()->format('Y'),
-                'string' => $schedule->getDate()->format('d') . 'th ' .
-                    Date::MONTHS[intval($schedule->getDate()->format('m')) - 1]
+                'day' => $nextSchedule->getDate()->format('d'),
+                'month' => $nextSchedule->getDate()->format('m') - 1,
+                'year' => $nextSchedule->getDate()->format('Y'),
+                'string' => $nextSchedule->getDate()->format('d') . 'th ' .
+                    Date::MONTHS[intval($nextSchedule->getDate()->format('m')) - 1]
             ],
-            'tasksCount' => $schedule->getTasksCount(),
-            'tasks' => $this->tasks($schedule)
+            'tasksCount' => $nextSchedule->getTasksCount(),
+            'tasks' => $this->tasks($nextSchedule)
         ]);
+    }
+
+    /**
+     * @param string $userId
+     * @param Schedule $schedule
+     * @throws ForbiddenException
+     */
+    private function canGetNext(string $userId, Schedule $schedule): void
+    {
+        if ($userId !== $schedule->getPerson()->getId()->getValue()) {
+            throw new ForbiddenException();
+        }
     }
 
     private function tasks(Schedule $schedule): array

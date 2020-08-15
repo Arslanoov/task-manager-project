@@ -86,6 +86,14 @@ class Schedule
         );
     }
 
+    public static function byDate(Id $id, Person $person, DateTimeImmutable $date): self
+    {
+        return new self(
+            $id, $person, $date,
+            Type::daily()
+        );
+    }
+
     /**
      * @return Id
      */

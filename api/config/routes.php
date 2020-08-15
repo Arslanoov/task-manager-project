@@ -17,9 +17,11 @@ $app->post('api.oauth.auth', '/api/oauth/auth', Action\Auth\OAuthAction::class);
 $app->get('api.todo.main.index', '/api/todo/main', Action\Todo\Schedule\Main\IndexAction::class);
 $app->get('api.todo.main.tasks.count', '/api/todo/main/tasks/count', Action\Todo\Schedule\Main\TasksCountAction::class);
 
+// Daily tasks
 $app->get('api.todo.daily.today', '/api/todo/daily/today', Action\Todo\Schedule\Daily\GetTodayAction::class);
 $app->get('api.todo.daily.today.tasks.count', '/api/todo/daily/today/tasks/count', Action\Todo\Schedule\Daily\TodayTasksCountAction::class);
-
+$app->get('api.todo.daily.next', '/api/todo/daily/next/{id}', Action\Todo\Schedule\Daily\GetNextScheduleAction::class);
+$app->get('api.todo.daily.previous', '/api/todo/daily/previous/{id}', Action\Todo\Schedule\Daily\GetPreviousScheduleAction::class);
 
 // Tasks
 $app->post('api.todo.main.tasks.create', '/api/todo/task/create', Action\Todo\Task\CreateAction::class);

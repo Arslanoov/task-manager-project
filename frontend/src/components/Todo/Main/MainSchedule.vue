@@ -1,9 +1,15 @@
 <template>
-    <Schedule
-            v-bind:schedule="schedule"
-            v-bind:getList="getList"
-            ref="schedule"
-    />
+    <div>
+        <div v-if="schedule" class="schedule-list">
+            <h3 class="schedule-list__header">Tasks</h3>
+        </div>
+
+        <Schedule
+                v-bind:schedule="schedule"
+                v-bind:getList="getList"
+                ref="schedule"
+        />
+    </div>
 </template>
 
 <script>

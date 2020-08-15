@@ -1,7 +1,5 @@
 <template>
-    <div v-if="schedule" class="schedule-list">
-        <h3 class="schedule-list__header">Tasks</h3>
-
+    <div>
         <div class="schedule-list__hide-completed-form">
             <div class="schedule-list__hide-completed-form_group">
                 <span class="schedule-list__hide-completed-form_group-label">Hide completed</span>

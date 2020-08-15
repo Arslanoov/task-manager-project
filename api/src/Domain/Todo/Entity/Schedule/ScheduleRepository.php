@@ -75,6 +75,30 @@ final class ScheduleRepository
 
     // Daily
 
+    public function findNextSchedule(Person $person, Schedule $schedule): ?Schedule
+    {
+        /** @var Schedule $schedule */
+        $schedule = $this->schedules->findOneBy([
+            'person' => $person,
+            'date' => $schedule->getDate()->modify('+1 day'),
+            'type' => Type::daily()
+        ]);
+
+        return $schedule;
+    }
+
+    public function findPreviousSchedule(Person $person, Schedule $schedule): ?Schedule
+    {
+        /** @var Schedule $schedule */
+        $schedule = $this->schedules->findOneBy([
+            'person' => $person,
+            'date' => $schedule->getDate()->modify('-1 day'),
+            'type' => Type::daily()
+        ]);
+
+        return $schedule;
+    }
+
     public function findPersonTodaySchedule(Person $person): ?Schedule
     {
         /** @var Schedule $schedule */
