@@ -39,7 +39,7 @@
         },
         mounted() {
             let date = new Date();
-            this.todayDate.day = parseInt(String(date.getDate()).padStart(2, '0'));
+            this.todayDate.day = parseInt(String(date.getUTCDate()).padStart(2, '0'));
             this.todayDate.month = date.getUTCMonth();
             this.todayDate.year = date.getUTCFullYear();
             this.getList(true, true);
