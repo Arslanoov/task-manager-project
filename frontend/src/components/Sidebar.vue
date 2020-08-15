@@ -17,6 +17,14 @@
                         </div>
                         <TasksCount/>
                     </b-nav-item>
+
+                    <b-nav-item :to="{name: 'todo.daily'}">
+                        <div class="nav-item__name">
+                            <i class="fa fa-calendar"> </i>
+                            Daily tasks
+                        </div>
+                        <TodayTasksCount/>
+                    </b-nav-item>
                 </template>
             </b-navbar-nav>
         </b-sidebar>
@@ -25,11 +33,13 @@
 
 <script>
     import TasksCount from "./Todo/Main/TasksCount";
+    import TodayTasksCount from "./Todo/Daily/TodayTasksCount";
 
     export default {
         name: "Sidebar",
         components: {
-            TasksCount
+            TasksCount,
+            TodayTasksCount
         }
     }
 </script>

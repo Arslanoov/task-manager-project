@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Action\Todo\Schedule\Main;
+namespace App\Http\Action\Todo\Schedule\Daily;
 
 use Domain\Todo\Entity\Person\Id;
 use Domain\Todo\Entity\Person\PersonRepository;
@@ -12,7 +12,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final class TasksCountAction implements RequestHandlerInterface
+final class TodayTasksCountAction implements RequestHandlerInterface
 {
     private ScheduleRepository $schedules;
     private PersonRepository $persons;
@@ -34,10 +34,12 @@ final class TasksCountAction implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $person = $this->persons->getById(new Id($request->getAttribute('oauth_user_id') ?? ''));
-        $schedule = $this->schedules->getPersonMainSchedule($person);
+
+        $schedule = $this->schedules->findPersonTodaySchedule($person);
+        $tasksCount = $schedule ? $schedule->getTasksCount() : 0;
 
         return $this->response->json([
-            'count' => $schedule->getTasksCount()
+            'count' => $tasksCount
         ]);
     }
 }

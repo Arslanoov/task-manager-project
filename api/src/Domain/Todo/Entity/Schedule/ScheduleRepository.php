@@ -51,11 +51,14 @@ final class ScheduleRepository
         return $schedule;
     }
 
-    public function findPersonMainScheduleByDate(Person $person): ?Schedule
+    // Main
+
+    public function findPersonMainSchedule(Person $person): ?Schedule
     {
         /** @var Schedule|null $schedule */
         $schedule = $this->schedules->findOneBy([
-            'person' => $person->getId()->getValue()
+            'person' => $person,
+            'type' => Type::main()
         ]);
 
         return $schedule;
@@ -63,9 +66,23 @@ final class ScheduleRepository
 
     public function getPersonMainSchedule(Person $person): ?Schedule
     {
-        if (!$schedule = $this->findPersonMainScheduleByDate($person)) {
+        if (!$schedule = $this->findPersonMainSchedule($person)) {
             throw new ScheduleNotFoundException();
         }
+
+        return $schedule;
+    }
+
+    // Daily
+
+    public function findPersonTodaySchedule(Person $person): ?Schedule
+    {
+        /** @var Schedule $schedule */
+        $schedule = $this->schedules->findOneBy([
+            'person' => $person,
+            'date' => new DateTimeImmutable('today'),
+            'type' => Type::daily()
+        ]);
 
         return $schedule;
     }

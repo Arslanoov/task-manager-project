@@ -23,6 +23,11 @@ const routes = [
     path: '/todo/main',
     name: 'todo.main',
     component: () => import('../views/Todo/Main/Index.vue')
+  },
+  {
+    path: '/todo/daily',
+    name: 'todo.daily',
+    component: () => import('../views/Todo/Daily/Index.vue')
   }
 ];
 
