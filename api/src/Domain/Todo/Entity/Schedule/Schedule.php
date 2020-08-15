@@ -139,6 +139,11 @@ class Schedule
         return $this->tasksCount;
     }
 
+    public function getTasksCollection(): Collection
+    {
+        return $this->tasks;
+    }
+
     public function addTask(): void
     {
         $this->tasksCount += 1;

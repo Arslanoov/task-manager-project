@@ -7,6 +7,7 @@ namespace App\Http\Action\Todo\Schedule\Main;
 use Domain\Todo\Entity\Person\Id;
 use Domain\Todo\Entity\Person\PersonRepository;
 use Domain\Todo\Entity\Schedule\ScheduleRepository;
+use Domain\Todo\Entity\Schedule\Task\Task;
 use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -36,8 +37,12 @@ final class TasksCountAction implements RequestHandlerInterface
         $person = $this->persons->getById(new Id($request->getAttribute('oauth_user_id') ?? ''));
         $schedule = $this->schedules->getPersonMainSchedule($person);
 
+        $tasksCount = count($schedule->getTasksCollection()->filter(function (Task $task) {
+            return $task->isNotComplete();
+        }));
+
         return $this->response->json([
-            'count' => $schedule->getTasksCount()
+            'count' => $tasksCount
         ]);
     }
 }
