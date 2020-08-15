@@ -84,10 +84,7 @@
         },
         methods: {
             init(checkVisibility) {
-                if (this.schedule === null) {
-                    this.schedule = this.$parent.schedule;
-                }
-
+                this.schedule = this.$parent.schedule;
                 this.sortList();
                 if (checkVisibility) {
                     this.changeCompletedTasksVisibility();

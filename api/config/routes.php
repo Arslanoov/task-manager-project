@@ -22,6 +22,7 @@ $app->get('api.todo.daily.today', '/api/todo/daily/today', Action\Todo\Schedule\
 $app->get('api.todo.daily.today.tasks.count', '/api/todo/daily/today/tasks/count', Action\Todo\Schedule\Daily\TodayTasksCountAction::class);
 $app->get('api.todo.daily.next', '/api/todo/daily/next/{id}', Action\Todo\Schedule\Daily\GetNextScheduleAction::class);
 $app->get('api.todo.daily.previous', '/api/todo/daily/previous/{id}', Action\Todo\Schedule\Daily\GetPreviousScheduleAction::class);
+$app->get('api.todo.daily.get-by-date', '/api/todo/daily/get-by-date/{day}/{month}/{year}', Action\Todo\Schedule\Daily\GetByDateAction::class);
 
 // Tasks
 $app->post('api.todo.main.tasks.create', '/api/todo/task/create', Action\Todo\Task\CreateAction::class);

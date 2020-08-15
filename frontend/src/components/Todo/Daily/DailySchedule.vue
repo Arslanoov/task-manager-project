@@ -6,8 +6,13 @@
             </a>
 
             <h3 class="schedule-list__header">
-                {{ this.schedule.date.string }}
-                tasks
+                <template v-if="this.schedule.date.string">
+                    {{ this.schedule.date.string }}
+                    tasks
+                </template>
+                <template v-else>
+                    Today
+                </template>
             </h3>
 
             <a type="button" @click="nextDay">
@@ -33,11 +38,20 @@
             Schedule
         },
         mounted() {
-            this.getList();
+            let date = new Date();
+            this.todayDate.day = parseInt(String(date.getDate()).padStart(2, '0'));
+            this.todayDate.month = date.getUTCMonth();
+            this.todayDate.year = date.getUTCFullYear();
+            this.getList(true, true);
         },
         data() {
             return {
                 error: null,
+                todayDate: {
+                    day: null,
+                    month: null,
+                    year: null
+                },
                 schedule: null,
                 createForm: {
                     'name': null,
@@ -47,11 +61,21 @@
             }
         },
         methods: {
-            getList(checkVisibility = true) {
-                axios.get('/api/todo/daily/today')
+            getList(checkVisibility = true, today = false) {
+                let link = '';
+                if (today) {
+                    link = '/api/todo/daily/today';
+                } else {
+                    link = '/api/todo/daily/get-by-date/' + this.schedule.date.day + '/' + this.schedule.date.month + '/' + this.schedule.date.year;
+                }
+
+                axios.get(link)
                     .then((response) => {
                         this.schedule = response.data;
                         this.$refs.schedule.init(checkVisibility);
+                        if (today) {
+                            this.schedule.date.string = null;
+                        }
                     })
                     .catch(error => {
                         if (error.response) {
@@ -63,34 +87,53 @@
                     });
             },
             previousDay() {
-                axios.get('/api/todo/daily/previous/' + this.schedule.id)
-                    .then((response) => {
-                        this.schedule = response.data;
-                        this.$refs.schedule.init();
-                    })
-                    .catch(error => {
-                        if (error.response) {
-                            this.error = error.response.data.error;
-                            console.log(error.message);
-                        } else {
-                            alert(error);
-                        }
-                    });
+                if (this.isToday(parseInt(this.schedule.date.day) - 1, this.schedule.date.month, this.schedule.date.year)) {
+                    this.getList(true, true);
+                } else {
+                    axios.get('/api/todo/daily/previous/' + this.schedule.id)
+                        .then((response) => {
+                            this.schedule = response.data;
+                            this.$refs.schedule.init(true);
+                        })
+                        .catch(error => {
+                            if (error.response) {
+                                this.error = error.response.data.error;
+                                console.log(error.message);
+                            } else {
+                                alert(error);
+                            }
+                        });
+                }
             },
             nextDay() {
-                axios.get('/api/todo/daily/next/' + this.schedule.id)
-                    .then((response) => {
-                        this.schedule = response.data;
-                        this.$refs.schedule.init();
-                    })
-                    .catch(error => {
-                        if (error.response) {
-                            this.error = error.response.data.error;
-                            console.log(error.message);
-                        } else {
-                            alert(error);
-                        }
-                    });
+                if (this.isToday(parseInt(this.schedule.date.day) + 1, this.schedule.date.month, this.schedule.date.year)) {
+                    this.getList(true, true);
+                } else {
+                    axios.get('/api/todo/daily/next/' + this.schedule.id)
+                        .then((response) => {
+                            this.schedule = response.data;
+                            this.$refs.schedule.init(true);
+                        })
+                        .catch(error => {
+                            if (error.response) {
+                                this.error = error.response.data.error;
+                                console.log(error.message);
+                            } else {
+                                alert(error);
+                            }
+                        });
+                }
+            },
+            isToday(day, month, year) {
+                if (
+                    parseInt(this.todayDate.day) === parseInt(day) &&
+                    parseInt(this.todayDate.month) === parseInt(month) &&
+                    parseInt(this.todayDate.year) === parseInt(year)
+                ) {
+                    return true;
+                }
+
+                return false;
             }
         }
     }

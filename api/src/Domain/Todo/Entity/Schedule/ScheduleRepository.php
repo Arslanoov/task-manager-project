@@ -51,6 +51,29 @@ final class ScheduleRepository
         return $schedule;
     }
 
+    // By date
+
+    public function findDailyByDate(Person $person, DateTimeImmutable $date): ?Schedule
+    {
+        /** @var Schedule|null $schedule */
+        $schedule = $this->schedules->findOneBy([
+            'person' => $person,
+            'date' => $date,
+            'type' => Type::daily()
+        ]);
+
+        return $schedule;
+    }
+
+    public function getDailyByDate(Person $person, DateTimeImmutable $date): Schedule
+    {
+        if (!$schedule = $this->findDailyByDate($person, $date)) {
+            throw new ScheduleNotFoundException();
+        }
+
+        return $schedule;
+    }
+
     // Main
 
     public function findPersonMainSchedule(Person $person): ?Schedule
