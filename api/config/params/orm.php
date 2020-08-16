@@ -26,6 +26,7 @@ return [
 
             // Schedule
             Domain\Todo\Entity\Schedule\IdType::NAME => Domain\Todo\Entity\Schedule\IdType::class,
+            Domain\Todo\Entity\Schedule\NameType::NAME => Domain\Todo\Entity\Schedule\NameType::class,
             Domain\Todo\Entity\Schedule\TypeType::NAME => Domain\Todo\Entity\Schedule\TypeType::class,
 
             // Task

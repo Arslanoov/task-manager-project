@@ -28,6 +28,11 @@ const routes = [
     path: '/todo/daily',
     name: 'todo.daily',
     component: () => import('../views/Todo/Daily/Index.vue')
+  },
+  {
+    path: '/todo/custom/:id',
+    name: 'todo.custom',
+    component: () => import('../views/Todo/Custom/Index.vue')
   }
 ];
 

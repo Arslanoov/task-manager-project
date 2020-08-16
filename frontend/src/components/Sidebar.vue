@@ -12,7 +12,7 @@
                 <template v-if="$store.getters.isLoggedIn">
                     <b-nav-item :to="{name: 'todo.main'}">
                         <div class="nav-item__name">
-                            <i class="fa fa-edit"> </i>
+                            <i class="fa fa-list-ul"> </i>
                             Tasks
                         </div>
                         <TasksCount/>
@@ -25,6 +25,8 @@
                         </div>
                         <TodayTasksCount/>
                     </b-nav-item>
+
+                    <CustomSchedulesList/>
                 </template>
             </b-navbar-nav>
         </b-sidebar>
@@ -34,12 +36,14 @@
 <script>
     import TasksCount from "./Todo/Main/TasksCount";
     import TodayTasksCount from "./Todo/Daily/TodayTasksCount";
+    import CustomSchedulesList from "./Todo/Custom/CustomSchedulesList";
 
     export default {
         name: "Sidebar",
         components: {
             TasksCount,
-            TodayTasksCount
+            TodayTasksCount,
+            CustomSchedulesList
         }
     }
 </script>
@@ -65,5 +69,9 @@
             font-size: $sidebar-font-size;
             font-weight: $sidebar-font-weight;
         }
+    }
+
+    .nav-item__name i {
+        margin-right: 5px;
     }
 </style>

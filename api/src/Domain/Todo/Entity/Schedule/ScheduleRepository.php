@@ -74,6 +74,40 @@ final class ScheduleRepository
         return $schedule;
     }
 
+    // Custom
+
+    public function findCustomById(Person $person, Id $id): ?Schedule
+    {
+        /** @var Schedule|null $schedule */
+        $schedule = $this->schedules->findOneBy([
+            'person' => $person,
+            'id' => $id,
+            'type' => Type::custom()
+        ]);
+
+        return $schedule;
+    }
+
+    public function getCustomById(Person $person, Id $id): Schedule
+    {
+        if (!$schedule = $this->findCustomById($person, $id)) {
+            throw new ScheduleNotFoundException();
+        }
+
+        return $schedule;
+    }
+
+    public function getPersonCustomSchedules(Person $person): array
+    {
+        /** @var array|Schedule[] $schedules */
+        $schedules = $this->schedules->findBy([
+            'person' => $person,
+            'type' => Type::custom()
+        ]);
+
+        return $schedules;
+    }
+
     // Main
 
     public function findPersonMainSchedule(Person $person): ?Schedule

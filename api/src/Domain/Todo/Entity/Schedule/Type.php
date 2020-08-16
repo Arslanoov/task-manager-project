@@ -10,6 +10,7 @@ final class Type
 {
     private const TYPE_MAIN = 'Main';
     private const TYPE_DAILY = 'Daily';
+    private const TYPE_CUSTOM = 'Custom';
 
     private string $value;
 
@@ -44,6 +45,11 @@ final class Type
         return new self(self::TYPE_DAILY);
     }
 
+    public static function custom(): self
+    {
+        return new self(self::TYPE_CUSTOM);
+    }
+
     public function isMain(): bool
     {
         return $this->value === self::TYPE_MAIN;
@@ -54,11 +60,17 @@ final class Type
         return $this->value === self::TYPE_DAILY;
     }
 
+    public function isCustom(): bool
+    {
+        return $this->value === self::TYPE_CUSTOM;
+    }
+
     public static function types(): array
     {
         return [
             self::TYPE_MAIN,
-            self::TYPE_DAILY
+            self::TYPE_DAILY,
+            self::TYPE_CUSTOM
         ];
     }
 }

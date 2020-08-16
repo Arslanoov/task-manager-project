@@ -12,17 +12,22 @@ $app->get('home', '/api', Action\HomeAction::class);
 $app->post('api.auth.signup', '/api/auth/signup', Action\Auth\SignUpAction::class);
 $app->post('api.oauth.auth', '/api/oauth/auth', Action\Auth\OAuthAction::class);
 
-// Todo
-
+// Main schedule
 $app->get('api.todo.main.index', '/api/todo/main', Action\Todo\Schedule\Main\IndexAction::class);
 $app->get('api.todo.main.tasks.count', '/api/todo/main/tasks/count', Action\Todo\Schedule\Main\TasksCountAction::class);
 
-// Daily tasks
+// Daily schedule
 $app->get('api.todo.daily.today', '/api/todo/daily/today', Action\Todo\Schedule\Daily\GetTodayAction::class);
 $app->get('api.todo.daily.today.tasks.count', '/api/todo/daily/today/tasks/count', Action\Todo\Schedule\Daily\TodayTasksCountAction::class);
 $app->get('api.todo.daily.next', '/api/todo/daily/next/{id}', Action\Todo\Schedule\Daily\GetNextScheduleAction::class);
 $app->get('api.todo.daily.previous', '/api/todo/daily/previous/{id}', Action\Todo\Schedule\Daily\GetPreviousScheduleAction::class);
 $app->get('api.todo.daily.get-by-date', '/api/todo/daily/get-by-date/{day}/{month}/{year}', Action\Todo\Schedule\Daily\GetByDateAction::class);
+
+// Custom schedule
+$app->get('api.todo.custom.index', '/api/todo/custom/list', Action\Todo\Schedule\Custom\IndexAction::class);
+$app->get('api.todo.custom.get', '/api/todo/custom/get/{name}', Action\Todo\Schedule\Custom\GetAction::class);
+$app->post('api.todo.custom.create', '/api/todo/custom/create', Action\Todo\Schedule\Custom\CreateAction::class);
+$app->delete('api.todo.custom.remove', '/api/todo/custom/remove', Action\Todo\Schedule\Custom\RemoveAction::class);
 
 // Tasks
 $app->post('api.todo.main.tasks.create', '/api/todo/task/create', Action\Todo\Task\CreateAction::class);

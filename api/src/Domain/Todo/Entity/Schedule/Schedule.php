@@ -7,6 +7,7 @@ namespace Domain\Todo\Entity\Schedule;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Domain\Exception\DomainException;
 use Domain\Todo\Entity\Person\Person;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,13 +35,18 @@ class Schedule
      */
     private DateTimeImmutable $date;
     /**
+     * @var Name
+     * @ORM\Column(type="todo_schedule_name")
+     */
+    private Name $name;
+    /**
      * @var Type
      * @ORM\Column(type="todo_schedule_type")
      */
     private Type $type;
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Domain\Todo\Entity\Schedule\Task\Task", mappedBy="schedule")
+     * @ORM\OneToMany(targetEntity="Domain\Todo\Entity\Schedule\Task\Task", mappedBy="schedule", cascade={"REMOVE"})
      */
     private Collection $tasks;
     /**
@@ -54,17 +60,19 @@ class Schedule
      * @param Id $id
      * @param Person $person
      * @param DateTimeImmutable $date
+     * @param Name $name
      * @param Type $type
      * @param int $tasksCount
      */
     private function __construct(
         Id $id, Person $person, DateTimeImmutable $date,
-        Type $type, int $tasksCount = 0
+        Name $name, Type $type, int $tasksCount = 0
     )
     {
         $this->id = $id;
         $this->person = $person;
         $this->date = $date;
+        $this->name = $name;
         $this->type = $type;
         $this->tasks = new ArrayCollection();
         $this->tasksCount = $tasksCount;
@@ -74,7 +82,7 @@ class Schedule
     {
         return new self(
             $id, $person, new DateTimeImmutable('today'),
-            Type::main()
+            new Name('Main list'), Type::main()
         );
     }
 
@@ -82,7 +90,7 @@ class Schedule
     {
         return new self(
             $id, $person, new DateTimeImmutable('today'),
-            Type::daily()
+            new Name('Daily list'), Type::daily()
         );
     }
 
@@ -90,7 +98,15 @@ class Schedule
     {
         return new self(
             $id, $person, $date,
-            Type::daily()
+            new Name('Daily list'), Type::daily()
+        );
+    }
+
+    public static function custom(Id $id, Name $name, Person $person): self
+    {
+        return new self(
+            $id, $person, new DateTimeImmutable('today'),
+            $name, Type::custom()
         );
     }
 
@@ -116,6 +132,14 @@ class Schedule
     public function getDate(): DateTimeImmutable
     {
         return $this->date;
+    }
+
+    /**
+     * @return Name
+     */
+    public function getName(): Name
+    {
+        return $this->name;
     }
 
     /**
@@ -162,5 +186,23 @@ class Schedule
     public function isDaily(): bool
     {
         return $this->getType()->isDaily();
+    }
+
+    public function isCustom(): bool
+    {
+        return $this->getType()->isCustom();
+    }
+
+    public function isNotCustom(): bool
+    {
+        return !$this->isCustom();
+    }
+
+    public function rename(Name $name): void
+    {
+        if ($this->isNotCustom()) {
+            throw new DomainException('You can rename only custom scheudle');
+        }
+        $this->name = $name;
     }
 }
