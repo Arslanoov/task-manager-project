@@ -92,6 +92,9 @@
                 this.schedule = this.$parent.schedule;
                 this.sortList();
                 if (checkVisibility) {
+                    if (localStorage.completedTasksVisibility) {
+                        this.sort.completedTasksVisibility = localStorage.completedTasksVisibility;
+                    }
                     this.changeCompletedTasksVisibility();
                 }
             },
@@ -141,6 +144,8 @@
                 this.schedule.tasks.sort((a, b) => this.sort.statuses[a.status] - this.sort.statuses[b.status]);
             },
             changeCompletedTasksVisibility() {
+                localStorage.completedTasksVisibility = this.sort.completedTasksVisibility;
+
                 if (this.sort.completedTasksVisibility === 'hidden') {
                     this.removeCompleted();
                 }
