@@ -12,7 +12,7 @@ diff:
 	docker-compose run --rm api-php-cli php bin/console migrations:diff
 
 migrate:
-	docker-compose run --rm api-php-cli php bin/console migrations:migrate
+	docker-compose run --rm api-php-cli php bin/console migrations:migrate -y
 
 build-sass:
 	docker-compose exec frontend-nodejs npm rebuild node-sass
