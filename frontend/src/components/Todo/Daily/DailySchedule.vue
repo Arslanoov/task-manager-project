@@ -72,7 +72,7 @@
                 axios.get(link)
                     .then((response) => {
                         this.schedule = response.data;
-                        this.$refs.schedule.init(checkVisibility);
+                        this.$refs.schedule.init(checkVisibility, today);
                         if (today) {
                             this.schedule.date.string = null;
                         }

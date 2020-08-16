@@ -88,14 +88,14 @@
             }
         },
         methods: {
-            init(checkVisibility) {
+            init(checkVisibility, today = false) {
                 this.schedule = this.$parent.schedule;
                 this.sortList();
                 if (checkVisibility) {
                     if (localStorage.completedTasksVisibility) {
                         this.sort.completedTasksVisibility = localStorage.completedTasksVisibility;
                     }
-                    this.changeCompletedTasksVisibility();
+                    this.changeCompletedTasksVisibility(today);
                 }
             },
             sortList() {
@@ -143,15 +143,15 @@
             sortListByUncompleted() {
                 this.schedule.tasks.sort((a, b) => this.sort.statuses[a.status] - this.sort.statuses[b.status]);
             },
-            changeCompletedTasksVisibility() {
+            changeCompletedTasksVisibility(today = false) {
                 localStorage.completedTasksVisibility = this.sort.completedTasksVisibility;
 
                 if (this.sort.completedTasksVisibility === 'hidden') {
                     this.removeCompleted();
                 }
 
-                if (this.sort.completedTasksVisibility === 'visible') {
-                    this.returnCompleted();
+                if (this.sort.completedTasksVisibility === 'visible' && !today) {
+                    this.returnCompleted(today);
                 }
             },
             removeCompleted() {
@@ -164,8 +164,8 @@
                     }
                 }
             },
-            returnCompleted() {
-                this.getList(false);
+            returnCompleted(today = false) {
+                this.getList(false, today);
             }
         }
     }
