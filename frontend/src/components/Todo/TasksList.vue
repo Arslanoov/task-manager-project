@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="tasks-list" v-if="schedule.tasks">
-            <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
+            <Alert v-bind:error="error"/>
 
             <div class="row tasks-list__create-form">
                 <div class="mx-auto col-sm-12">
@@ -62,6 +62,7 @@
 <script>
     import axios from "axios";
     import TaskSidebar from "./TaskSidebar";
+    import Alert from "../Alert";
 
     export default {
         name: "TasksList",
@@ -73,7 +74,8 @@
             changeCompletedTasksVisibility: Function
         },
         components: {
-            TaskSidebar
+            TaskSidebar,
+            Alert
         },
         data() {
             return {

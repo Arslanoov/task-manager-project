@@ -2,7 +2,7 @@
     <div class="steps-list">
         <h5>Steps</h5>
 
-        <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
+        <Alert v-bind:error="error"/>
 
         <b-form @submit.prevent="createStep(editTask)" class="form-inline steps-list__create-form">
             <input type="hidden" name="task_id" v-model="editTask.id">
@@ -45,6 +45,7 @@
 
 <script>
     import axios from "axios";
+    import Alert from "../Alert";
 
     export default {
         name: "StepsList",
@@ -53,6 +54,9 @@
             getList: Function,
             getTaskSteps: Function,
             steps: Array
+        },
+        components: {
+            Alert
         },
         data() {
             return {
@@ -108,7 +112,6 @@
                         });
 
                         this.createStepForm.name = null;
-
                         this.getList();
                     })
                     .catch(error => {

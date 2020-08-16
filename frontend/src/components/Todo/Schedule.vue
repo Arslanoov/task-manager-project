@@ -47,8 +47,7 @@
         },
         props: {
             schedule: Object,
-            getList: Function,
-            error: [Object, String]
+            getList: Function
         },
         mounted() {
             if (localStorage.sortMethod) {

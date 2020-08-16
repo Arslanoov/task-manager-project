@@ -1,7 +1,7 @@
 <template>
     <b-sidebar id="sidebar-second-variant" class="shadow-none" text-variant="dark" right>
         <div class="container">
-            <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
+            <Alert v-bind:error="error"/>
             <b-alert variant="success" v-if="message" show>{{ message }}</b-alert>
 
             <b-form @submit.prevent="edit()" class="task-sidebar__edit-form">
@@ -35,6 +35,7 @@
 <script>
     import StepsList from "./StepsList";
     import axios from "axios";
+    import Alert from "../Alert";
 
     export default {
         name: "TaskSidebar",
@@ -46,7 +47,8 @@
             steps: Array
         },
         components: {
-            StepsList
+            StepsList,
+            Alert
         },
         data() {
             return {
