@@ -51,6 +51,11 @@
             schedule: Object,
             getList: Function
         },
+        mounted() {
+            if (localStorage.sortMethod) {
+                this.sort.selected = localStorage.sortMethod;
+            }
+        },
         data() {
             return {
                 error: null,
@@ -91,6 +96,8 @@
                 }
             },
             sortList() {
+                 localStorage.sortMethod = this.sort.selected;
+
                 if (this.sort.selected === 'latest') {
                     this.sortListByLatest();
                 }
