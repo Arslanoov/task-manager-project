@@ -79,6 +79,10 @@
                 this.error = null;
                 this.statusStepForm.id = step.id;
                 this.statusStepForm.status = step.status;
+                if (step.status === 'Complete') {
+                    let audio = new Audio(require('../../assets/sounds/complete.mp3'));
+                    audio.play();
+                }
 
                 axios.patch('/api/todo/task/step/change-status', this.statusStepForm)
                     .then(() => {

@@ -152,10 +152,14 @@
                 this.error = null;
                 this.statusForm.task_id = task.id;
                 this.statusForm.status = task.status;
+                if (task.status === 'Complete') {
+                    let audio = new Audio(require('../../assets/sounds/complete.mp3'));
+                    audio.play();
+                }
 
                 axios.patch('/api/todo/task/change-status', this.statusForm)
                     .then(() => {
-                        window.setTimeout(this.changeCompletedTasksVisibility, 1000);
+                        this.changeCompletedTasksVisibility();
                     })
                     .catch(error => {
                         this.error = error.response.data.error;
