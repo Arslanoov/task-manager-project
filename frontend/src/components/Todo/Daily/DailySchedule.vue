@@ -20,7 +20,7 @@
             </a>
         </div>
 
-        <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
+        <Alert v-bind:error="error"/>
 
         <Schedule
                 v-bind:schedule="schedule"
@@ -34,11 +34,13 @@
 <script>
     import Schedule from "../Schedule";
     import axios from "axios";
+    import Alert from "../../Alert";
 
     export default {
         name: "DailySchedule",
         components: {
-            Schedule
+            Schedule,
+            Alert
         },
         mounted() {
             let date = new Date();

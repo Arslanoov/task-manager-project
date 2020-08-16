@@ -4,7 +4,7 @@
             <h3 class="schedule-list__header">{{ schedule.name }} tasks</h3>
         </div>
 
-        <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
+        <Alert v-bind:error="error"/>
 
         <Schedule
                 v-bind:schedule="schedule"
@@ -17,6 +17,7 @@
 <script>
     import Schedule from "../Schedule";
     import axios from "axios";
+    import Alert from "../../Alert";
 
     export default {
         name: "CustomSchedule",
@@ -24,7 +25,8 @@
             id: String
         },
         components: {
-            Schedule
+            Schedule,
+            Alert
         },
         mounted() {
             this.getList();

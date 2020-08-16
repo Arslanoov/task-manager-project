@@ -23,7 +23,7 @@
         </b-nav-item>
 
         <div class="form-inline schedule-create-form">
-            <input type="text" class="schedule-create-form__input" placeholder="Create schedule" v-model="createForm.name" min="1" max="32" required>
+            <input type="text" class="schedule-create-form__input" placeholder="Create schedule" v-model="createForm.name" required>
             <a type="submit" @click="create">
                 <i class="fa fa-plus"> </i>
             </a>
