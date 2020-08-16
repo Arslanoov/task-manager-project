@@ -1,5 +1,5 @@
 start: docker-build docker-up composer-install migrate compile generate-keys
-compile: build-sass compile-js-dev
+compile: frontend-install build-sass compile-js
 generate-keys: generate-private-key generate-public-key
 
 docker-build:
@@ -23,8 +23,14 @@ composer-install:
 compile-js-dev:
 	docker-compose exec frontend-nodejs npm run dev
 
+compile-js:
+	docker-compose exec frontend-nodejs npm run build
+
 generate-private-key:
 	docker-compose run --rm api-php-cli openssl genrsa -out private.key 2048
 
 generate-public-key:
 	docker-compose run --rm api-php-cli openssl rsa -in private.key -pubout -out public.key
+
+frontend-install:
+	docker-compose exec frontend-nodejs npm install
