@@ -23,6 +23,7 @@ return [
             // Person
             Domain\Todo\Entity\Person\IdType::NAME => Domain\Todo\Entity\Person\IdType::class,
             Domain\Todo\Entity\Person\LoginType::NAME => Domain\Todo\Entity\Person\LoginType::class,
+            Domain\Todo\Entity\Person\BackgroundPhotoType::NAME => Domain\Todo\Entity\Person\BackgroundPhotoType::class,
 
             // Schedule
             Domain\Todo\Entity\Schedule\IdType::NAME => Domain\Todo\Entity\Schedule\IdType::class,

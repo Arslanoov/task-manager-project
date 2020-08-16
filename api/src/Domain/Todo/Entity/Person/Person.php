@@ -25,6 +25,11 @@ class Person
      * @ORM\Column(type="todo_person_login")
      */
     private Login $login;
+    /**
+     * @var BackgroundPhoto
+     * @ORM\Column(type="todo_person_background_photo", name="background_photo", nullable=true)
+     */
+    private ?BackgroundPhoto $backgroundPhoto = null;
 
     /**
      * Person constructor.
@@ -56,5 +61,23 @@ class Person
     public function getLogin(): Login
     {
         return $this->login;
+    }
+
+    /**
+     * @return BackgroundPhoto
+     */
+    public function getBackgroundPhoto(): BackgroundPhoto
+    {
+        return $this->backgroundPhoto;
+    }
+
+    public function changeBackgroundPhoto(BackgroundPhoto $photo): void
+    {
+        $this->backgroundPhoto = $photo;
+    }
+
+    public function removeBackgroundPhoto(): void
+    {
+        $this->backgroundPhoto = null;
     }
 }
