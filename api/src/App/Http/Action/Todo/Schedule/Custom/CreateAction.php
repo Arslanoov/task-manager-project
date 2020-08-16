@@ -44,6 +44,6 @@ final class CreateAction implements RequestHandlerInterface
 
         return $this->response->json([
             'id' => $id
-        ], 204);
+        ], 201);
     }
 }
