@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import NotFound from "../components/Error/NotFound";
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,15 @@ const routes = [
     path: '/todo/custom/:id',
     name: 'todo.custom',
     component: () => import('../views/Todo/Custom/Index.vue')
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: NotFound
+  },
+  {
+    path: '*',
+    redirect: '/404'
   }
 ];
 

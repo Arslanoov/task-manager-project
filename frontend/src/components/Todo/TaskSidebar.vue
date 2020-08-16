@@ -66,7 +66,6 @@
                         this.message = 'Task successfully updated';
                     })
                     .catch(error => {
-                        alert(error);
                         this.error = error.response.data.error;
                         console.log(error.message);
                     });

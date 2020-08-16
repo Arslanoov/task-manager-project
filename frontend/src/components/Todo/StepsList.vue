@@ -2,6 +2,8 @@
     <div class="steps-list">
         <h5>Steps</h5>
 
+        <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
+
         <b-form @submit.prevent="createStep(editTask)" class="form-inline steps-list__create-form">
             <input type="hidden" name="task_id" v-model="editTask.id">
 

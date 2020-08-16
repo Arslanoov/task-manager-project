@@ -1,6 +1,8 @@
 <template>
     <div>
         <div class="tasks-list" v-if="schedule.tasks">
+            <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
+
             <div class="row tasks-list__create-form">
                 <div class="mx-auto col-sm-12">
                     <b-form @submit="create" class="form-inline tasks-list__create-form_form">
@@ -76,7 +78,6 @@
         data() {
             return {
                 error: null,
-                message: null,
                 steps: [],
                 statusForm: {
                     'task_id': null,
@@ -107,6 +108,9 @@
                         this.steps = response.data.steps;
                     })
                     .catch(error => {
+                        if (error.response.status === 404) {
+                            this.$router.push({name: '404'});
+                        }
                         this.error = error.response.data.error;
                         console.log(error.message);
                     });
@@ -140,10 +144,12 @@
                         });
 
                         this.createForm.name = null;
-
                         this.sortList();
                     })
                     .catch(error => {
+                        if (error.response.status === 404) {
+                            this.$router.push({name: '404'});
+                        }
                         this.error = error.response.data.error;
                         console.log(error.message);
                     });
@@ -208,7 +214,7 @@
                 if (level === 'Very Important') {
                     return 'task-very-important';
                 }
-            },
+            }
         }
     }
 </script>

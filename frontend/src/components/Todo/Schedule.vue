@@ -27,8 +27,6 @@
             </div>
         </div>
 
-        <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
-
         <TasksList
                 v-bind:schedule="schedule"
                 v-bind:getList="getList"
@@ -49,7 +47,8 @@
         },
         props: {
             schedule: Object,
-            getList: Function
+            getList: Function,
+            error: [Object, String]
         },
         mounted() {
             if (localStorage.sortMethod) {
@@ -58,7 +57,6 @@
         },
         data() {
             return {
-                error: null,
                 createForm: {
                     'name': null,
                     'schedule_id': null,

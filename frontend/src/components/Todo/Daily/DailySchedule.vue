@@ -20,9 +20,12 @@
             </a>
         </div>
 
+        <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
+
         <Schedule
                 v-bind:schedule="schedule"
                 v-bind:getList="getList"
+                @error="updateError()"
                 ref="schedule"
         />
     </div>
@@ -78,12 +81,11 @@
                         }
                     })
                     .catch(error => {
-                        if (error.response) {
-                            this.error = error.response.data.error;
-                            console.log(error.message);
-                        } else {
-                            alert(error);
+                        if (error.response.status === 404) {
+                            this.$router.push({name: '404'});
                         }
+                        this.error = error.response.data.error;
+                        console.log(error.message);
                     });
             },
             previousDay() {
@@ -99,8 +101,6 @@
                             if (error.response) {
                                 this.error = error.response.data.error;
                                 console.log(error.message);
-                            } else {
-                                alert(error);
                             }
                         });
                 }
@@ -115,12 +115,11 @@
                             this.$refs.schedule.init(true);
                         })
                         .catch(error => {
-                            if (error.response) {
-                                this.error = error.response.data.error;
-                                console.log(error.message);
-                            } else {
-                                alert(error);
+                            if (error.response.status === 404) {
+                                this.$router.push({name: '404'});
                             }
+                            this.error = error.response.data.error;
+                            console.log(error.message);
                         });
                 }
             },

@@ -4,6 +4,8 @@
             <h3 class="schedule-list__header">{{ schedule.name }} tasks</h3>
         </div>
 
+        <b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
+
         <Schedule
                 v-bind:schedule="schedule"
                 v-bind:getList="getList"
@@ -46,12 +48,11 @@
                         this.$refs.schedule.init(checkVisibility);
                     })
                     .catch(error => {
-                        if (error.response) {
-                            this.error = error.response.data.error;
-                            console.log(error.message);
-                        } else {
-                            alert(error);
+                        if (error.response.status === 404) {
+                            this.$router.push({name: '404'});
                         }
+                        this.error = error.response.data.error;
+                        console.log(error.message);
                     });
             }
         }
