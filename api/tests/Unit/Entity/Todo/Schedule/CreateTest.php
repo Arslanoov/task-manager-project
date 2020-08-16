@@ -6,6 +6,7 @@ namespace Tests\Unit\Entity\Todo\Schedule;
 
 use DateTimeImmutable;
 use Domain\Todo\Entity\Person\Person;
+use Domain\Todo\Entity\Schedule\Name;
 use Domain\Todo\Entity\Schedule\Schedule;
 use Domain\Todo\Entity\Schedule\Id;
 use PHPUnit\Framework\TestCase;
@@ -36,11 +37,15 @@ class CreateTest extends TestCase
 
         $this->assertEquals($schedule->getPerson(), $person);
 
+        $this->assertEquals($schedule->getName(), new Name('Daily list'));
+
         $this->assertEquals($schedule->getDate(), $date);
 
         $this->assertEquals($schedule->getTasksCount(), 0);
 
         $this->assertFalse($schedule->isMain());
+        $this->assertFalse($schedule->isCustom());
+        $this->assertTrue($schedule->isNotCustom());
         $this->assertTrue($schedule->isDaily());
     }
 
@@ -59,11 +64,44 @@ class CreateTest extends TestCase
 
         $this->assertEquals($schedule->getPerson(), $person);
 
+        $this->assertEquals($schedule->getName(), new Name('Main list'));
+
         $this->assertEquals($schedule->getDate(), $date);
 
         $this->assertEquals($schedule->getTasksCount(), 0);
 
         $this->assertFalse($schedule->isDaily());
+        $this->assertFalse($schedule->isCustom());
+        $this->assertTrue($schedule->isNotCustom());
         $this->assertTrue($schedule->isMain());
     }
+
+    public function testSuccessCustom(): void
+    {
+        $person = $this->person;
+        $date = new DateTimeImmutable('today');
+
+        $schedule = Schedule::custom(
+            $id = Id::uuid4(),
+            $name = new Name('Some custom list'),
+            $person
+        );
+
+        $this->assertEquals($schedule->getId(), $id);
+        $this->assertTrue($schedule->getId()->isEqual($id));
+
+        $this->assertEquals($schedule->getPerson(), $person);
+
+        $this->assertEquals($schedule->getName(), $name);
+
+        $this->assertEquals($schedule->getDate(), $date);
+
+        $this->assertEquals($schedule->getTasksCount(), 0);
+
+        $this->assertFalse($schedule->isMain());
+        $this->assertFalse($schedule->isDaily());
+        $this->assertFalse($schedule->isNotCustom());
+        $this->assertTrue($schedule->isCustom());
+    }
+
 }
