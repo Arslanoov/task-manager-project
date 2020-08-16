@@ -13,23 +13,30 @@
         <router-view/>
       </div>
     </main>
-    <footer id="footer">
-      <div class="container">
-        <hr />
-        <p>&copy; App. All rights reserved.</p>
-      </div>
-    </footer>
   </div>
 </template>
 
 <script>
   import Nav from './components/Nav';
   import Sidebar from './components/Sidebar';
+  import axios from "axios";
 
   export default {
     components: {
       Nav,
-      Sidebar,
+      Sidebar
+    },
+    mounted() {
+      axios.get('/api/profile/get/photo')
+          .then((response) => {
+            document.querySelector('body').style.backgroundImage = "url('" + response.data.url + "')";
+            document.querySelector('body').style.backgroundPosition = "center";
+            document.querySelector('body').style.backgroundRepeat = "no-repeat";
+            document.querySelector('body').style.backgroundSize = "cover";
+          })
+          .catch(error => {
+              console.log(error.message);
+          });
     }
   }
 </script>
@@ -44,6 +51,7 @@
 
   body {
     overflow-x: hidden;
+    min-height: 100vh;
   }
 
   #app {
@@ -76,12 +84,5 @@
   .page {
     margin-top: 20px;
     margin-bottom: 20px;
-  }
-
-  #footer {
-    width: 100%;
-    height: 40px;
-    bottom: 30px;
-    text-align: center;
   }
 </style>

@@ -12,5 +12,6 @@ $app->pipe(Middleware\ProfilerMiddleware::class);
 $app->pipe(new FrameworkMiddleware\RouteMiddleware($router));
 $app->pipe(Middleware\ErrorHandler::class);
 $app->pipe('/api/todo', Middleware\AuthMiddleware::class);
+$app->pipe('/api/profile', Middleware\AuthMiddleware::class);
 $app->pipe(Middleware\InvalidArgumentHandler::class);
 $app->pipe(FrameworkMiddleware\DispatchMiddleware::class);

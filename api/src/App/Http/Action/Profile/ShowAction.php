@@ -25,7 +25,9 @@ final class ShowAction implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         return $this->response->json([
-            'id' => $request->getAttribute('oauth_user_id'),
+            'user' => [
+                'id' => $request->getAttribute('oauth_user_id')
+            ]
         ]);
     }
 }

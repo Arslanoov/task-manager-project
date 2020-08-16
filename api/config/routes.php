@@ -12,6 +12,11 @@ $app->get('home', '/api', Action\HomeAction::class);
 $app->post('api.auth.signup', '/api/auth/signup', Action\Auth\SignUpAction::class);
 $app->post('api.oauth.auth', '/api/oauth/auth', Action\Auth\OAuthAction::class);
 
+// Profile
+$app->get('api.profile', '/api/profile', Action\Profile\ShowAction::class);
+$app->get('api.profile.photo', '/api/profile/get/photo', Action\Profile\GetPhotoAction::class);
+$app->post('api.profile.upload.photo', '/api/profile/upload/photo', Action\Profile\UploadPhotoAction::class);
+
 // Main schedule
 $app->get('api.todo.main.index', '/api/todo/main', Action\Todo\Schedule\Main\IndexAction::class);
 $app->get('api.todo.main.tasks.count', '/api/todo/main/tasks/count', Action\Todo\Schedule\Main\TasksCountAction::class);
