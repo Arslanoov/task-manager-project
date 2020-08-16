@@ -150,7 +150,7 @@
                     this.removeCompleted();
                 }
 
-                if (this.sort.completedTasksVisibility === 'visible' && !today) {
+                if (this.sort.completedTasksVisibility === 'visible') {
                     this.returnCompleted(today);
                 }
             },
