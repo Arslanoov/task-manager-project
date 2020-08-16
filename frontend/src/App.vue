@@ -71,10 +71,10 @@
 
   .page {
     margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   #footer {
-    position: fixed;
     width: 100%;
     height: 40px;
     bottom: 30px;
