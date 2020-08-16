@@ -1,4 +1,4 @@
-start: docker-build docker-up migrate compile generate-keys
+start: docker-build docker-up composer-install migrate compile generate-keys
 compile: build-sass compile-js-dev
 generate-keys: generate-private-key generate-public-key
 
@@ -16,6 +16,9 @@ migrate:
 
 build-sass:
 	docker-compose exec frontend-nodejs npm rebuild node-sass
+
+composer-install:
+	docker-compose run --rm api-php-cli composer install
 
 compile-js-dev:
 	docker-compose exec frontend-nodejs npm run dev
