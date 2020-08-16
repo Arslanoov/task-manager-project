@@ -5,17 +5,20 @@ declare(strict_types=1);
 namespace Tests\Builder;
 
 use Domain\Todo\Entity\Person\Person;
+use Domain\Todo\Entity\Schedule\Name;
 use Domain\Todo\Entity\Schedule\Schedule;
 use Domain\Todo\Entity\Schedule\Id;
 
 final class ScheduleBuilder
 {
     private Id $id;
+    private Name $name;
     private Person $person;
 
     public function __construct()
     {
         $this->id = Id::uuid4();
+        $this->name = new Name('Schedule name');
         $this->person = (new PersonBuilder())->build();
     }
 
@@ -23,6 +26,13 @@ final class ScheduleBuilder
     {
         $builder = clone $this;
         $builder->id = $id;
+        return $builder;
+    }
+
+    public function withName(Name $name): self
+    {
+        $builder = clone $this;
+        $builder->name = $name;
         return $builder;
     }
 
