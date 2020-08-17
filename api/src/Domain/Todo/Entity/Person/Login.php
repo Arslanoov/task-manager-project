@@ -27,7 +27,7 @@ final class Login
         return $this->value;
     }
 
-    public function isEqual(\Domain\User\Entity\User\Login $login): bool
+    public function isEqual(Login $login): bool
     {
         return $this->value === $login->getRaw();
     }

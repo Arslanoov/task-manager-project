@@ -71,6 +71,11 @@ class Person
         return $this->backgroundPhoto;
     }
 
+    public function hasBackgroundPhoto(): bool
+    {
+        return !empty($this->backgroundPhoto);
+    }
+
     public function changeBackgroundPhoto(BackgroundPhoto $photo): void
     {
         $this->backgroundPhoto = $photo;

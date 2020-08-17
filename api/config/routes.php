@@ -16,6 +16,7 @@ $app->post('api.oauth.auth', '/api/oauth/auth', Action\Auth\OAuthAction::class);
 $app->get('api.profile', '/api/profile', Action\Profile\ShowAction::class);
 $app->get('api.profile.photo', '/api/profile/get/photo', Action\Profile\GetPhotoAction::class);
 $app->post('api.profile.upload.photo', '/api/profile/upload/photo', Action\Profile\UploadPhotoAction::class);
+$app->delete('api.profile.upload.remove', '/api/profile/upload/remove', Action\Profile\RemovePhotoAction::class);
 
 // Main schedule
 $app->get('api.todo.main.index', '/api/todo/main', Action\Todo\Schedule\Main\IndexAction::class);

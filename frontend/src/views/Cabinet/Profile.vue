@@ -21,6 +21,10 @@
         <div v-if="progress">
             <b-progress :value="progress" :max="100" show-progress animated> </b-progress>
         </div>
+
+        <b-button type="submit" class="remove-form" variant="danger" @click="removeBackgroundPhoto">
+            Remove background photo
+        </b-button>
     </div>
 </template>
 
@@ -73,11 +77,23 @@
                     })
                     .catch(error => {
                         if (error.response) {
-                            if (error.response.data.error) {
-                                this.error = error.response.data.error;
-                            } else if (error.response.data.errors) {
-                                this.errors = error.response.data.errors;
-                            }
+                            this.error = error.response.data.error;
+                        } else {
+                            console.log(error.message);
+                        }
+                    });
+            },
+            removeBackgroundPhoto(event) {
+                event.preventDefault();
+
+                axios
+                    .delete('/api/profile/upload/remove')
+                    .then(() => {
+                        this.$router.push({name: 'home'});
+                    })
+                    .catch(error => {
+                        if (error.response) {
+                            this.error = error.response.data.error;
                         } else {
                             console.log(error.message);
                         }
@@ -90,5 +106,9 @@
 <style lang="scss">
     .upload-photo-form {
         margin-bottom: 20px;
+    }
+
+    .remove-form {
+        margin-top: 20px;
     }
 </style>
