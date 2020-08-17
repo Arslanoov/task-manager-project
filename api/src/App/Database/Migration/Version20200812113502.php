@@ -16,14 +16,6 @@ final class Version20200812113502 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE SEQUENCE todo_schedule_task_steps_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('ALTER TABLE oauth_access_tokens ALTER client TYPE VARCHAR(255)');
-        $this->addSql('ALTER TABLE oauth_access_tokens ALTER client DROP DEFAULT');
-        $this->addSql('ALTER TABLE oauth_access_tokens ALTER scopes TYPE JSON');
-        $this->addSql('ALTER TABLE oauth_access_tokens ALTER scopes DROP DEFAULT');
-        $this->addSql('ALTER TABLE oauth_auth_codes ALTER client TYPE VARCHAR(255)');
-        $this->addSql('ALTER TABLE oauth_auth_codes ALTER client DROP DEFAULT');
-        $this->addSql('ALTER TABLE oauth_auth_codes ALTER scopes TYPE JSON');
-        $this->addSql('ALTER TABLE oauth_auth_codes ALTER scopes DROP DEFAULT');
     }
 
     public function down(Schema $schema) : void
@@ -31,15 +23,6 @@ final class Version20200812113502 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('CREATE SCHEMA public');
         $this->addSql('DROP SEQUENCE todo_schedule_task_steps_id_seq CASCADE');
-        $this->addSql('ALTER TABLE oauth_auth_codes ALTER client TYPE VARCHAR(255)');
-        $this->addSql('ALTER TABLE oauth_auth_codes ALTER client DROP DEFAULT');
-        $this->addSql('ALTER TABLE oauth_auth_codes ALTER scopes TYPE JSON');
-        $this->addSql('ALTER TABLE oauth_auth_codes ALTER scopes DROP DEFAULT');
-        $this->addSql('ALTER TABLE oauth_access_tokens ALTER client TYPE VARCHAR(255)');
-        $this->addSql('ALTER TABLE oauth_access_tokens ALTER client DROP DEFAULT');
-        $this->addSql('ALTER TABLE oauth_access_tokens ALTER scopes TYPE JSON');
-        $this->addSql('ALTER TABLE oauth_access_tokens ALTER scopes DROP DEFAULT');
     }
 }

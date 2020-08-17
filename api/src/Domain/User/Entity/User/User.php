@@ -33,18 +33,13 @@ final class User
      * @ORM\Column(type="user_user_password")
      */
     private Password $password;
-    /**
-     * @ORM\Column(type="user_user_status")
-     */
-    private Status $status;
 
-    public function __construct(Id $id, Login $login, Email $email, Password $password, Status $status)
+    public function __construct(Id $id, Login $login, Email $email, Password $password)
     {
         $this->id = $id;
         $this->login = $login;
         $this->email = $email;
         $this->password = $password;
-        $this->status = $status;
     }
 
     public static function signUpByEmail(Id $id, Login $login, Email $email, Password $password): self
@@ -53,8 +48,7 @@ final class User
             $id,
             $login,
             $email,
-            $password,
-            Status::draft()
+            $password
         );
     }
 
@@ -88,13 +82,5 @@ final class User
     public function getPassword(): Password
     {
         return $this->password;
-    }
-
-    /**
-     * @return Status
-     */
-    public function getStatus(): Status
-    {
-        return $this->status;
     }
 }

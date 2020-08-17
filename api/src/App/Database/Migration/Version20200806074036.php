@@ -22,7 +22,6 @@ final class Version20200806074036 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN user_users.login IS \'(DC2Type:user_user_login)\'');
         $this->addSql('COMMENT ON COLUMN user_users.email IS \'(DC2Type:user_user_email)\'');
         $this->addSql('COMMENT ON COLUMN user_users.password IS \'(DC2Type:user_user_password)\'');
-        $this->addSql('COMMENT ON COLUMN user_users.status IS \'(DC2Type:user_user_status)\'');
     }
 
     public function down(Schema $schema) : void

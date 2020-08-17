@@ -8,14 +8,14 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200808135250 extends AbstractMigration
+final class Version20200817170607 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('ALTER TABLE todo_schedules RENAME COLUMN taskscount TO tasks_count');
+        $this->addSql('ALTER TABLE user_users DROP status');
     }
 
     public function down(Schema $schema) : void
@@ -23,7 +23,6 @@ final class Version20200808135250 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('CREATE SCHEMA public');
-        $this->addSql('ALTER TABLE todo_schedules RENAME COLUMN tasks_count TO taskscount');
+        $this->addSql('ALTER TABLE user_users ADD status VARCHAR(255) NOT NULL');
     }
 }

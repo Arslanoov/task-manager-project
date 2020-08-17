@@ -14,7 +14,6 @@ return [
             Domain\User\Entity\User\LoginType::NAME => Domain\User\Entity\User\LoginType::class,
             Domain\User\Entity\User\EmailType::NAME => Domain\User\Entity\User\EmailType::class,
             Domain\User\Entity\User\PasswordType::NAME => Domain\User\Entity\User\PasswordType::class,
-            Domain\User\Entity\User\StatusType::NAME => Domain\User\Entity\User\StatusType::class,
 
             // OAuth
             Domain\OAuth\Entity\Client\ClientType::NAME => Domain\OAuth\Entity\Client\ClientType::class,
