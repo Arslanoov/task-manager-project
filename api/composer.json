@@ -10,7 +10,6 @@
     "psr/container": "^1.0",
     "furious/router": "1.0.*",
     "furious/psr15": "^1.0",
-    "furious/container": "^1.0",
     "furious/http-runner": "^0.1",
     "symfony/console": "^4.1",
     "ramsey/uuid": "^4.0",
@@ -19,7 +18,8 @@
     "laminas/laminas-diactoros": "^2.3",
     "doctrine/migrations": "^1.8",
     "doctrine/orm": "^2.6",
-    "doctrine/dbal": "^2.10"
+    "doctrine/dbal": "^2.10",
+    "laminas/laminas-servicemanager": "^3.4"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

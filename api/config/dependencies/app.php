@@ -1,26 +1,29 @@
 <?php
 
 use App\Http\Middleware\ErrorHandler;
-use Framework\Http\Psr7\FuriousResponseFactory;
 use Framework\Http\Psr7\LaminasResponseFactory;
 use Framework\Http\Psr7\ResponseFactory;
-use Furious\Container\Container;
 use Laminas\Diactoros\ServerRequestFactory;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 
-/** @var Container $container */
-
-$container->set(ResponseFactory::class, function (Container $container) {
-    return $container->get(LaminasResponseFactory::class);
-});
-
-$container->set(ServerRequestInterface::class, function (Container $container) {
-    return (new ServerRequestFactory())->fromGlobals();
-});
-
-$container->set(ErrorHandler::class, function (Container $container) {
-    return new ErrorHandler(
-        $container->get(ResponseFactory::class),
-        boolval($container->get('config')['debug'])
-    );
-});
+return [
+    'abstract_factories' => [
+        ReflectionBasedAbstractFactory::class,
+    ],
+    'factories' => [
+        ResponseFactory::class => function (ContainerInterface $container) {
+            return $container->get(LaminasResponseFactory::class);
+        },
+        ServerRequestInterface::class => function (ContainerInterface $container) {
+            return (new ServerRequestFactory())->fromGlobals();
+        },
+        ErrorHandler::class => function (ContainerInterface $container) {
+            return new ErrorHandler(
+                $container->get(ResponseFactory::class),
+                boolval($container->get('config')['debug'])
+            );
+        }
+    ]
+];

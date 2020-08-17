@@ -3,39 +3,40 @@
 use Doctrine\ORM\EntityManagerInterface;
 use Domain\Flusher;
 use Domain\FlusherInterface;
-use Furious\Container\Container;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\DBAL;
+use Psr\Container\ContainerInterface;
 
-/** @var Container $container */
+return [
+    'factories' => [
+        EntityManagerInterface::class => function (ContainerInterface $container) {
+            $params = $container->get('config')['doctrine'];
 
-$container->set(EntityManagerInterface::class, function (Container $container) {
-    $params = $container->get('config')['doctrine'];
+            $config = Setup::createAnnotationMetadataConfiguration(
+                $params['metadata_dirs'],
+                $params['dev_mode'],
+                $params['cache_dir'],
+                new FilesystemCache(
+                    $params['cache_dir']
+                ),
+                false
+            );
 
-    $config = Setup::createAnnotationMetadataConfiguration(
-        $params['metadata_dirs'],
-        $params['dev_mode'],
-        $params['cache_dir'],
-        new FilesystemCache(
-            $params['cache_dir']
-        ),
-        false
-    );
+            foreach ($params['types'] as $type => $class) {
+                if (!DBAL\Types\Type::hasType($type)) {
+                    DBAL\Types\Type::addType($type, $class);
+                }
+            }
 
-    foreach ($params['types'] as $type => $class) {
-        if (!DBAL\Types\Type::hasType($type)) {
-            DBAL\Types\Type::addType($type, $class);
+            return EntityManager::create(
+                $params['connection'],
+                $config
+            );
+        },
+        FlusherInterface::class => function (ContainerInterface $container) {
+            return $container->get(Flusher::class);
         }
-    }
-
-    return EntityManager::create(
-        $params['connection'],
-        $config
-    );
-});
-
-$container->set(FlusherInterface::class, function (Container $container) {
-    return $container->get(Flusher::class);
-});
+    ]
+];
