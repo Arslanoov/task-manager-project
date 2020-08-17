@@ -16,9 +16,9 @@ final class Login
      */
     public function __construct(string $value)
     {
-        Assert::notEmpty($value);
-        Assert::string($value);
-        Assert::lengthBetween($value, 4, 32);
+        Assert::notEmpty($value, 'Person login required');
+        Assert::string($value, 'Person login must be string');
+        Assert::lengthBetween($value, 4, 32, 'Person login must be between 4 nd 32 chars length');
         $this->value = $value;
     }
 

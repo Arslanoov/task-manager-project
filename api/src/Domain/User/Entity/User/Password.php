@@ -16,8 +16,8 @@ final class Password
      */
     public function __construct(string $value)
     {
-        Assert::notEmpty($value);
-        Assert::string($value);
+        Assert::notEmpty($value, 'User password required');
+        Assert::string($value, 'User password must be string');
         $this->value = $value;
     }
 

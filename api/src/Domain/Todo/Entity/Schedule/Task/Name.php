@@ -16,9 +16,9 @@ final class Name
      */
     public function __construct(string $value)
     {
-        Assert::notEmpty($value);
-        Assert::string($value);
-        Assert::lengthBetween($value, 1, 128);
+        Assert::notEmpty($value, 'Task name required');
+        Assert::string($value, 'Task name must be string');
+        Assert::lengthBetween($value, 1, 128, 'Task name must be between 1 and 128 chars length');
         $this->value = $value;
     }
 

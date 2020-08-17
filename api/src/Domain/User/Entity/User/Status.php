@@ -19,9 +19,10 @@ final class Status
      */
     public function __construct(string $value)
     {
-        Assert::notEmpty($value);
-        Assert::lengthBetween($value, 2, 16);
-        Assert::oneOf($value, self::list());
+        Assert::notEmpty($value, 'User status required');
+        Assert::string($value, 'User status must be string');
+        Assert::lengthBetween($value, 2, 16, 'User status must be between 2 and 16 chars length');
+        Assert::oneOf($value, self::list(), 'Incorrect user status');
         $this->value = $value;
     }
 

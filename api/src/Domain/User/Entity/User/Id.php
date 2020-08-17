@@ -17,8 +17,9 @@ final class Id
      */
     public function __construct(string $value)
     {
-        Assert::notEmpty($value);
-        Assert::string($value);
+        Assert::notEmpty($value, 'User id required');
+        Assert::string($value, 'User id must be string');
+        Assert::uuid($value, 'User id must be uuid');
         $this->value = $value;
     }
 

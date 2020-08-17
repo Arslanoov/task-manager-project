@@ -17,8 +17,9 @@ final class Id
      */
     public function __construct(string $value)
     {
-        Assert::notEmpty($value);
-        Assert::string($value);
+        Assert::notEmpty($value, 'Schedule id required');
+        Assert::string($value, 'Schedule id must be string');
+        Assert::uuid($value, 'Schedule id must be uuid');
         $this->value = $value;
     }
 

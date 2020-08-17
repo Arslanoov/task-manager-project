@@ -20,10 +20,10 @@ final class ImportantLevel
      */
     public function __construct(string $value)
     {
-        Assert::notEmpty($value);
-        Assert::string($value);
-        Assert::lengthBetween($value, 4, 16);
-        Assert::oneOf($value, self::levels());
+        Assert::notEmpty($value, 'Task important level required');
+        Assert::string($value, 'Task important level must be string');
+        Assert::lengthBetween($value, 4, 16, 'Task important level must be between 4 and 16 chars length');
+        Assert::oneOf($value, self::levels(), 'Incorrect task important level');
         $this->value = $value;
     }
 
