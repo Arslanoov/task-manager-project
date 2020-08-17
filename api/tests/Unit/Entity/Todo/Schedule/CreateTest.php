@@ -103,5 +103,4 @@ class CreateTest extends TestCase
         $this->assertFalse($schedule->isNotCustom());
         $this->assertTrue($schedule->isCustom());
     }
-
 }

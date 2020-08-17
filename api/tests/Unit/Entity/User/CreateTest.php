@@ -32,15 +32,12 @@ class CreateTest extends TestCase
 
         $this->assertEquals($password, $user->getPassword());
         $this->assertTrue($user->getPassword()->isEqual($password));
-
-        $this->assertEquals($user->getStatus(), Status::draft());
-        $this->assertTrue($user->getStatus()->isEqual(Status::draft()));
     }
 
     public function testEmptyLogin(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected a non-empty value. Got: ""');
+        $this->expectExceptionMessage('User login required');
 
         User::signUpByEmail(
             Id::uuid4(),
@@ -53,7 +50,7 @@ class CreateTest extends TestCase
     public function testTooLongLogin(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected a value to contain between 4 and 32 characters. Got: "sssssssssssssssssssssssssssssssssssssssssssssssss"');
+        $this->expectExceptionMessage('User login must be between 4 and 32 chars length');
 
         User::signUpByEmail(
             Id::uuid4(),
@@ -66,7 +63,7 @@ class CreateTest extends TestCase
     public function testTooShortLogin(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected a value to contain between 4 and 32 characters. Got: "s"');
+        $this->expectExceptionMessage('User login must be between 4 and 32 chars length');
 
         User::signUpByEmail(
             Id::uuid4(),
@@ -79,7 +76,7 @@ class CreateTest extends TestCase
     public function testEmptyEmail(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected a non-empty value. Got: ""');
+        $this->expectExceptionMessage('User email required');
 
         User::signUpByEmail(
             Id::uuid4(),
@@ -92,7 +89,7 @@ class CreateTest extends TestCase
     public function testInvalidEmail(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected a value to be a valid e-mail address. Got: "email"');
+        $this->expectExceptionMessage('Incorrect email');
 
         User::signUpByEmail(
             Id::uuid4(),
@@ -105,7 +102,7 @@ class CreateTest extends TestCase
     public function testTooLongEmail(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected a value to contain between 5 and 32 characters. Got: "sssssssssssssssssssssssssssssssssssssssssssssssss"');
+        $this->expectExceptionMessage('User email must be between 5 and 32 chars length');
 
         User::signUpByEmail(
             Id::uuid4(),
@@ -118,7 +115,7 @@ class CreateTest extends TestCase
     public function testTooShortEmail(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected a value to contain between 5 and 32 characters. Got: "s"');
+        $this->expectExceptionMessage('User email must be between 5 and 32 chars length');
 
         User::signUpByEmail(
             Id::uuid4(),
