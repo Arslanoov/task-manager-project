@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1dd035687f9d070a6e6af198d562145c",
+    "content-hash": "cfe68bf8008f9d2ee1cd00a59d0eea57",
     "packages": [
         {
             "name": "brick/math",
@@ -51,6 +51,44 @@
                 "math"
             ],
             "time": "2020-04-15T15:59:35+00:00"
+        },
+        {
+            "name": "brick/varexporter",
+            "version": "0.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brick/varexporter.git",
+                "reference": "411110b797c6b1ecf947a0eec17ffaa59284f5a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brick/varexporter/zipball/411110b797c6b1ecf947a0eec17ffaa59284f5a0",
+                "reference": "411110b797c6b1ecf947a0eec17ffaa59284f5a0",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^4.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.0",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Brick\\VarExporter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A powerful alternative to var_export(), which can export closures and objects without __set_state()",
+            "keywords": [
+                "var_export"
+            ],
+            "time": "2020-03-13T16:56:53+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -1342,6 +1380,66 @@
             "time": "2019-12-31T16:28:24+00:00"
         },
         {
+            "name": "laminas/laminas-config-aggregator",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-config-aggregator.git",
+                "reference": "141382658ab4ebd0f6c2e529c4736f88bef5dcca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-config-aggregator/zipball/141382658ab4ebd0f6c2e529c4736f88bef5dcca",
+                "reference": "141382658ab4ebd0f6c2e529c4736f88bef5dcca",
+                "shasum": ""
+            },
+            "require": {
+                "brick/varexporter": "^0.3.2",
+                "laminas/laminas-stdlib": "^2.7.7 || ^3.1.0",
+                "laminas/laminas-zendframework-bridge": "^1.0",
+                "php": "^7.2",
+                "webimpress/safe-writer": "^1.0.2 || ^2.0.1"
+            },
+            "replace": {
+                "zendframework/zend-config-aggregator": "^1.2.0"
+            },
+            "require-dev": {
+                "laminas/laminas-coding-standard": "~1.0.0",
+                "laminas/laminas-config": "^2.6 || ^3.0",
+                "laminas/laminas-servicemanager": "^2.7.7 || ^3.1.1",
+                "malukenho/docheader": "^0.1.5",
+                "phpunit/phpunit": "^8.5.8"
+            },
+            "suggest": {
+                "laminas/laminas-config": "Allows loading configuration from XML, INI, YAML, and JSON files",
+                "laminas/laminas-config-aggregator-modulemanager": "Allows loading configuration from laminas-mvc Module classes",
+                "laminas/laminas-config-aggregator-parameters": "Allows usage of templated parameters within your configuration"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev",
+                    "dev-develop": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laminas\\ConfigAggregator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Lightweight library for collecting and merging configuration from different sources",
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "config-aggregator",
+                "laminas"
+            ],
+            "time": "2020-07-08T17:26:27+00:00"
+        },
+        {
             "name": "laminas/laminas-diactoros",
             "version": "2.3.1",
             "source": {
@@ -1842,6 +1940,58 @@
                 "server"
             ],
             "time": "2020-07-01T11:33:50+00:00"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "v4.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "8c58eb4cd4f3883f82611abeac2efbc3dbed787e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/8c58eb4cd4f3883f82611abeac2efbc3dbed787e",
+                "reference": "8c58eb4cd4f3883f82611abeac2efbc3dbed787e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "ircmaxell/php-yacc": "^0.0.6",
+                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
+            },
+            "bin": [
+                "bin/php-parse"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpParser\\": "lib/PhpParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ],
+            "time": "2020-08-09T10:23:20+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -3515,6 +3665,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {

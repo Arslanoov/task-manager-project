@@ -1,24 +1,20 @@
 <?php
 
+use Laminas\ConfigAggregator\PhpFileProvider;
 use Laminas\ServiceManager\ServiceManager;
+use Laminas\ConfigAggregator\ConfigAggregator;
 
-$dependencies = array_merge_recursive(
-    require __DIR__ . '/dependencies/app.php',
-    require __DIR__ . '/dependencies/console.php',
-    require __DIR__ . '/dependencies/framework.php',
-    require __DIR__ . '/dependencies/oauth.php',
-    require __DIR__ . '/dependencies/orm.php',
-    require __DIR__ . '/dependencies/photo.php'
-);
+$dependenciesAggregator = new ConfigAggregator([
+    new PhpFileProvider(__DIR__ . '/dependencies/{*}.php'),
+]);
+$dependencies = $dependenciesAggregator->getMergedConfig();
+
+$configAggregator = new ConfigAggregator([
+    new PhpFileProvider(__DIR__ . '/params/{*}.php'),
+]);
+$config = $configAggregator->getMergedConfig();
 
 $container = new ServiceManager($dependencies);
-
-$config = [];
-$configFiles = glob(__DIR__ . '/params/{*}.php', GLOB_BRACE);
-foreach ($configFiles as $configFile) {
-    $config += require $configFile;
-}
-
 $container->setService('config', $config);
 
 return $container;
