@@ -49,9 +49,9 @@
   @import "~@fortawesome/fontawesome-free/css/all.css";
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap');
 
-  body {
+  html, body {
     overflow-x: hidden;
-    min-height: 100vh;
+    min-height: 100%;
   }
 
   #app {
