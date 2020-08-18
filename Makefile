@@ -11,6 +11,8 @@ docker-up:
 api-set-permissions:
 	sudo chmod -R 777 api/var
 	sudo chmod 777 storage/public/photos
+	chmod 755 public.key
+	chmod 755 private.key
 
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install
