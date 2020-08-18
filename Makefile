@@ -9,8 +9,7 @@ docker-up:
 	docker-compose up -d
 
 api-set-permissions:
-	sudo chmod 777 api/var
-	sudo chmod 777 api/var/cache
+	sudo chmod -R 777 api/var
 	sudo chmod 777 storage/public/photos
 
 api-composer-install:
