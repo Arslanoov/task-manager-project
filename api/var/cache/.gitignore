@@ -1,2 +1,4 @@
 *
+!doctrine
+!doctrine/.gitignore
 !.gitignore
