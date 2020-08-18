@@ -6,11 +6,14 @@ use Symfony\Component\Console\Application;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Doctrine\DBAL\Migrations\Tools\Console\Helper\ConfigurationHelper;
+use Symfony\Component\Dotenv\Dotenv;
 
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
 
-define('ENV', 'dev');
+if (file_exists('.env')) {
+    (new Dotenv())->load('.env');
+}
 
 /**
  * @var ContainerInterface $container
