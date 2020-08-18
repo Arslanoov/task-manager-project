@@ -7,7 +7,7 @@ import axios from "axios";
 
 Vue.config.productionTip = false;
 
-axios.defaults.baseURL = 'http://127.0.0.1:8081';
+axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
 let user = JSON.parse(localStorage.getItem('user'));
 if (user) {
