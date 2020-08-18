@@ -38,7 +38,7 @@
                             <i class="fa fa-ellipsis-h" @click="fillTaskForm(task)"> </i>
                         </b-button>
 
-                        <a type="submit" @click="remove(index, task)" class="tasks-list__task-remove">
+                        <a @click="remove(index, task)" class="tasks-list__task-remove">
                             <i class="fa fa-trash"> </i>
                         </a>
                     </div>

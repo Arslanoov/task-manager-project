@@ -25,13 +25,13 @@
                     {{ step.name }}
                 </div>
                 <div class="steps-list__list-manage">
-                    <a type="submit" @click="upStep(editTask, step)" class="steps-list__list-manage_link">
+                    <a @click="upStep(editTask, step)" class="steps-list__list-manage_link">
                         <i class="fa fa-arrow-up"> </i>
                     </a>
-                    <a type="submit" @click="downStep(editTask, step)" class="steps-list__list-manage_link">
+                    <a @click="downStep(editTask, step)" class="steps-list__list-manage_link">
                         <i class="fa fa-arrow-down"> </i>
                     </a>
-                    <a type="submit" @click="removeStep(step, index)" class="steps-list__list-manage_link">
+                    <a @click="removeStep(step, index)" class="steps-list__list-manage_link">
                         <i class="fa fa-trash"> </i>
                     </a>
                 </div>

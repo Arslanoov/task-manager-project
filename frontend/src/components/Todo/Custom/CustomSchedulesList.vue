@@ -17,14 +17,14 @@
                 <i class="fa fa-list-ol"> </i>
                 {{ schedule.name }}
             </div>
-            <a type="submit" @click.prevent="remove(index, schedule)">
+            <a @click.prevent="remove(index, schedule)">
                 <i class="fa fa-trash"> </i>
             </a>
         </b-nav-item>
 
         <div class="form-inline schedule-create-form">
             <input type="text" class="schedule-create-form__input" placeholder="Create schedule" v-model="createForm.name" required>
-            <a type="submit" @click="create">
+            <a @click="create">
                 <i class="fa fa-plus"> </i>
             </a>
         </div>
