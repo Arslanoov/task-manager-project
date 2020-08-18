@@ -1,7 +1,11 @@
 <?php
 
+use App\Console\Commands;
+
 return [
     'console' => [
-        'commands' => []
+        'commands' => [
+            Commands\Api\GenerateDocCommand::class
+        ]
     ]
 ];
