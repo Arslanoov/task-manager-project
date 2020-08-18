@@ -1,4 +1,4 @@
-up: docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions
+up: docker-remove docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions
 compile: frontend-install frontend-build-sass frontend-compile-js
 generate-keys: generate-private-key generate-public-key
 test: api-load-fixtures api-tests-run
@@ -7,13 +7,16 @@ docker-build:
 	docker-compose build
 docker-up:
 	docker-compose up -d
+docker-remove:
+	docker-compose down --remove-orphans
+	sudo rm -rf api/var/docker
 
 api-set-permissions:
 	sudo chmod -R 777 api/var
 	sudo chmod 777 storage/public/photos
 api-set-keys-permissions:
-	chmod 755 public.key
-	chmod 755 private.key
+	chmod 755 api/public.key
+	chmod 755 api/private.key
 
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install
