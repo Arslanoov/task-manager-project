@@ -1,4 +1,4 @@
-up: docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys
+up: docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions
 compile: frontend-install frontend-build-sass frontend-compile-js
 generate-keys: generate-private-key generate-public-key
 test: api-load-fixtures api-tests-run
@@ -11,6 +11,7 @@ docker-up:
 api-set-permissions:
 	sudo chmod -R 777 api/var
 	sudo chmod 777 storage/public/photos
+api-set-keys-permissions:
 	chmod 755 public.key
 	chmod 755 private.key
 
