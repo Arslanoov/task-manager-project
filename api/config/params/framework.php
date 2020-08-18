@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ENV')) {
+    define('ENV', 'dev');
+}
+
 return [
-    'debug' => ENV === 'dev' ? true : false
+    'debug' => ENV and ENV === 'dev' ? true : false
 ];

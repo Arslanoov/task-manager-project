@@ -14,6 +14,12 @@ diff:
 migrate:
 	docker-compose run --rm api-php-cli php bin/console migrations:migrate
 
+run-tests:
+	docker-compose run --rm api-php-cli vendor/bin/phpunit
+
+load-fixtures:
+	docker-compose exec api-php-cli composer app fixtures:load
+
 build-sass:
 	docker-compose exec frontend-nodejs npm rebuild node-sass
 

@@ -17,8 +17,8 @@ require 'vendor/autoload.php';
     /** @var Application $app */
     $app = $container->get(Application::class);
 
-    require 'config/pipeline.php';
-    require 'config/routes.php';
+    (require 'config/pipeline.php')($app);
+    (require 'config/routes.php')($app);
 
     $request = (new ServerRequestFactory())->fromGlobals();
     $response = $app->handle($request);
