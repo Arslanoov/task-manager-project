@@ -10,7 +10,7 @@ final class PasswordHasher
 {
     public function hash(string $password): string
     {
-        $hash = password_hash($password, PASSWORD_ARGON2I);
+        $hash = password_hash($password, PASSWORD_ARGON2ID);
         if (false === $hash) {
             throw new RuntimeException('Unable to generate hash.');
         }
