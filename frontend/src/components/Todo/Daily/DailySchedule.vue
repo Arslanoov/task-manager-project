@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="schedule" class="schedule-list">
-            <a type="button" @click="previousDay">
+            <a @click="previousDay">
                 <i class="fa fa-chevron-left schedule-list__day-navigate"> </i>
             </a>
 
@@ -15,7 +15,7 @@
                 </template>
             </h3>
 
-            <a type="button" @click="nextDay">
+            <a @click="nextDay">
                 <i class="fa fa-chevron-right schedule-list__day-navigate"> </i>
             </a>
         </div>
