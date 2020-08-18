@@ -64,9 +64,9 @@ class Person
     }
 
     /**
-     * @return BackgroundPhoto
+     * @return BackgroundPhoto|null
      */
-    public function getBackgroundPhoto(): BackgroundPhoto
+    public function getBackgroundPhoto(): ?BackgroundPhoto
     {
         return $this->backgroundPhoto;
     }
