@@ -176,7 +176,7 @@
                 justify-content: space-between;
                 align-items: center;
                 margin-top: 10px;
-                height: 40px;
+                min-height: 40px;
                 border-radius: 0;
             }
 
