@@ -2,3 +2,4 @@ vendor
 .phpunit.result.cache
 /private.key
 /public.key
+.env

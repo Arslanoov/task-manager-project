@@ -2,11 +2,11 @@
 
 return [
     'doctrine' => [
-        'dev_mode' => ENV === 'dev' ? true : false,
+        'dev_mode' => getenv('ENV') === 'dev' ? true : false,
         'cache_dir' => 'var/cache/doctrine',
         'metadata_dirs' => ['src/Domain'],
         'connection' => [
-            'url' => 'pgsql://app:secret@api-postgres:5432/app?charset=utf8',
+            'url' => getenv('DB_URL'),
         ],
         'types' => [
             // User
