@@ -49,7 +49,7 @@ final class GetPhotoAction implements RequestHandlerInterface
      *         description="Photo not found",
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="error", type="object", nullable=true)
+     *             @OA\Property(property="error", type="string", nullable=true)
      *         )
      *     ),
      *     security={{"oauth2": {"common"}}}

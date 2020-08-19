@@ -33,6 +33,24 @@ final class UploadPhotoAction implements RequestHandlerInterface
      * @OA\Post(
      *     path="/profile/upload/photo",
      *     tags={"Profile photo upload"},
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"task_id", "name", "file"},
+     *             @OA\Property(property="task_id", type="string")
+     *          ),
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(
+     *                      property="file",
+     *                      type="file",
+     *                      description="Background photo file",
+     *                      @OA\Items(type="string", format="binary")
+     *                  )
+     *              )
+     *          )
+     *     ),
      *     @OA\Response(
      *         response=204,
      *         description="Success response",
@@ -42,9 +60,10 @@ final class UploadPhotoAction implements RequestHandlerInterface
      *         description="Errors",
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="error", type="object", nullable=true)
+     *             @OA\Property(property="error", type="string", nullable=true)
      *         )
-     *     )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
      * )
      * @param ServerRequestInterface $request
      * @return ResponseInterface

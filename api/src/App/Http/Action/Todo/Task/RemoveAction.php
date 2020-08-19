@@ -51,7 +51,7 @@ final class RemoveAction implements RequestHandlerInterface
      *          description="Errors",
      *          @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="error", type="object", nullable=true)
+     *             @OA\Property(property="error", type="string", nullable=true)
      *          )
      *     ),
      *     @OA\Response(

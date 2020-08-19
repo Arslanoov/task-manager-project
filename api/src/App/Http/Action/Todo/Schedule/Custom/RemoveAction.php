@@ -39,14 +39,14 @@ final class RemoveAction implements RequestHandlerInterface
 
     /**
      * @OA\Delete(
-     *     path="/todo/custom/removee",
+     *     path="/todo/custom/remove",
      *     tags={"Custom schedule remove"},
      *     @OA\Response(
      *          response=400,
      *          description="Errors",
      *          @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="error", type="object", nullable=true)
+     *             @OA\Property(property="error", type="string", nullable=true)
      *          )
      *     ),
      *     @OA\Response(

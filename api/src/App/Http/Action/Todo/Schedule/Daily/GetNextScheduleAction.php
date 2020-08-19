@@ -44,7 +44,7 @@ final class GetNextScheduleAction implements RequestHandlerInterface
     /**
      * @OA\Get(
      *     path="/todo/daily/next/{id}",
-     *     tags={"Find next daily schedule"},
+     *     tags={"Get next daily schedule"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -56,7 +56,7 @@ final class GetNextScheduleAction implements RequestHandlerInterface
      *          description="Errors",
      *          @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="error", type="object", nullable=true)
+     *             @OA\Property(property="error", type="string", nullable=true)
      *          )
      *     ),
      *     @OA\Response(
@@ -64,25 +64,23 @@ final class GetNextScheduleAction implements RequestHandlerInterface
      *         description="Success response",
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="schedules", type="array", @OA\Items(
+     *             @OA\Property(property="id", type="string"),
+     *             @OA\Property(property="date", type="array", @OA\Items(
+     *                 @OA\Property(property="day", type="integer"),
+     *                 @OA\Property(property="month", type="integer"),
+     *                 @OA\Property(property="year", type="integer"),
+     *                 @OA\Property(property="string", type="string")
+     *             )),
+     *             @OA\Property(property="tasks", type="array", @OA\Items(
      *                 @OA\Property(property="id", type="string"),
-     *                 @OA\Property(property="date", type="array", @OA\Items(
-     *                     @OA\Property(property="day", type="integer"),
-     *                     @OA\Property(property="month", type="integer"),
-     *                     @OA\Property(property="year", type="integer"),
-     *                     @OA\Property(property="string", type="string")
-     *                 )),
-     *                 @OA\Property(property="tasks", type="string", @OA\Items(
-     *                     @OA\Property(property="id", type="string"),
-     *                     @OA\Property(property="name", type="string"),
-     *                     @OA\Property(property="description", type="string"),
-     *                     @OA\Property(property="importantLevel", type="string"),
-     *                     @OA\Property(property="status", type="string"),
-     *                     @OA\Property(property="stepsCount", type="integer"),
-     *                     @OA\Property(property="finishedSteps", type="integer")
-     *                 )),
-     *                 @OA\Property(property="tasksCount", type="integer")
-     *             ))
+     *                 @OA\Property(property="name", type="string"),
+     *                 @OA\Property(property="description", type="string"),
+     *                 @OA\Property(property="importantLevel", type="string"),
+     *                 @OA\Property(property="status", type="string"),
+     *                 @OA\Property(property="stepsCount", type="integer"),
+     *                 @OA\Property(property="finishedSteps", type="integer")
+     *             )),
+     *             @OA\Property(property="tasksCount", type="integer")
      *         )
      *     ),
      *     security={{"oauth2": {"common"}}}

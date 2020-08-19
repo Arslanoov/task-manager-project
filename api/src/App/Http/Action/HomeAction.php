@@ -24,7 +24,7 @@ use OpenApi\Annotations as OA;
  *     securityScheme="oauth2",
  *     @OA\Flow(
  *         flow="implicit",
- *         authorizationUrl="/authorize",
+ *         authorizationUrl="/api/oauth/auth",
  *         scopes={
  *             "common": "Common"
  *         }

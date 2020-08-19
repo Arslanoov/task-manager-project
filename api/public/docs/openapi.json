@@ -65,7 +65,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -119,7 +119,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -186,7 +186,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -243,6 +243,40 @@
                     "Profile photo upload"
                 ],
                 "operationId": "App\\Http\\Action\\Profile\\UploadPhotoAction::handle",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "description": "Background photo file",
+                                        "type": "file",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "task_id",
+                                    "name",
+                                    "file"
+                                ],
+                                "properties": {
+                                    "task_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "204": {
                         "description": "Success response"
@@ -254,7 +288,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -263,7 +297,14 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "oauth2": [
+                            "common"
+                        ]
+                    }
+                ]
             }
         },
         "/todo/custom/create": {
@@ -297,7 +338,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -355,7 +396,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -371,7 +412,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -486,7 +527,7 @@
                 ]
             }
         },
-        "/todo/custom/removee": {
+        "/todo/custom/remove": {
             "delete": {
                 "tags": [
                     "Custom schedule remove"
@@ -500,7 +541,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -569,7 +610,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -584,68 +625,60 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "schedules": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "date": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "day": {
+                                                        "type": "integer"
+                                                    },
+                                                    "month": {
+                                                        "type": "integer"
+                                                    },
+                                                    "year": {
+                                                        "type": "integer"
+                                                    },
+                                                    "string": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "tasks": {
                                             "type": "array",
                                             "items": {
                                                 "properties": {
                                                     "id": {
                                                         "type": "string"
                                                     },
-                                                    "date": {
-                                                        "type": "array",
-                                                        "items": {
-                                                            "properties": {
-                                                                "day": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "month": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "year": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "string": {
-                                                                    "type": "string"
-                                                                }
-                                                            },
-                                                            "type": "object"
-                                                        }
+                                                    "name": {
+                                                        "type": "string"
                                                     },
-                                                    "tasks": {
-                                                        "type": "string",
-                                                        "items": {
-                                                            "properties": {
-                                                                "id": {
-                                                                    "type": "string"
-                                                                },
-                                                                "name": {
-                                                                    "type": "string"
-                                                                },
-                                                                "description": {
-                                                                    "type": "string"
-                                                                },
-                                                                "importantLevel": {
-                                                                    "type": "string"
-                                                                },
-                                                                "status": {
-                                                                    "type": "string"
-                                                                },
-                                                                "stepsCount": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "finishedSteps": {
-                                                                    "type": "integer"
-                                                                }
-                                                            },
-                                                            "type": "object"
-                                                        }
+                                                    "description": {
+                                                        "type": "string"
                                                     },
-                                                    "tasksCount": {
+                                                    "importantLevel": {
+                                                        "type": "string"
+                                                    },
+                                                    "status": {
+                                                        "type": "string"
+                                                    },
+                                                    "stepsCount": {
+                                                        "type": "integer"
+                                                    },
+                                                    "finishedSteps": {
                                                         "type": "integer"
                                                     }
                                                 },
                                                 "type": "object"
                                             }
+                                        },
+                                        "tasksCount": {
+                                            "type": "integer"
                                         }
                                     },
                                     "type": "object"
@@ -666,7 +699,7 @@
         "/todo/daily/next/{id}": {
             "get": {
                 "tags": [
-                    "Find next daily schedule"
+                    "Get next daily schedule"
                 ],
                 "operationId": "App\\Http\\Action\\Todo\\Schedule\\Daily\\GetNextScheduleAction::handle",
                 "parameters": [
@@ -687,7 +720,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -702,68 +735,60 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "schedules": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "date": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "day": {
+                                                        "type": "integer"
+                                                    },
+                                                    "month": {
+                                                        "type": "integer"
+                                                    },
+                                                    "year": {
+                                                        "type": "integer"
+                                                    },
+                                                    "string": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "tasks": {
                                             "type": "array",
                                             "items": {
                                                 "properties": {
                                                     "id": {
                                                         "type": "string"
                                                     },
-                                                    "date": {
-                                                        "type": "array",
-                                                        "items": {
-                                                            "properties": {
-                                                                "day": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "month": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "year": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "string": {
-                                                                    "type": "string"
-                                                                }
-                                                            },
-                                                            "type": "object"
-                                                        }
+                                                    "name": {
+                                                        "type": "string"
                                                     },
-                                                    "tasks": {
-                                                        "type": "string",
-                                                        "items": {
-                                                            "properties": {
-                                                                "id": {
-                                                                    "type": "string"
-                                                                },
-                                                                "name": {
-                                                                    "type": "string"
-                                                                },
-                                                                "description": {
-                                                                    "type": "string"
-                                                                },
-                                                                "importantLevel": {
-                                                                    "type": "string"
-                                                                },
-                                                                "status": {
-                                                                    "type": "string"
-                                                                },
-                                                                "stepsCount": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "finishedSteps": {
-                                                                    "type": "integer"
-                                                                }
-                                                            },
-                                                            "type": "object"
-                                                        }
+                                                    "description": {
+                                                        "type": "string"
                                                     },
-                                                    "tasksCount": {
+                                                    "importantLevel": {
+                                                        "type": "string"
+                                                    },
+                                                    "status": {
+                                                        "type": "string"
+                                                    },
+                                                    "stepsCount": {
+                                                        "type": "integer"
+                                                    },
+                                                    "finishedSteps": {
                                                         "type": "integer"
                                                     }
                                                 },
                                                 "type": "object"
                                             }
+                                        },
+                                        "tasksCount": {
+                                            "type": "integer"
                                         }
                                     },
                                     "type": "object"
@@ -784,7 +809,7 @@
         "/todo/daily/previous/{id}": {
             "get": {
                 "tags": [
-                    "Find previous daily schedule"
+                    "Get previous daily schedule"
                 ],
                 "operationId": "App\\Http\\Action\\Todo\\Schedule\\Daily\\GetPreviousScheduleAction::handle",
                 "parameters": [
@@ -805,7 +830,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -820,68 +845,60 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "schedules": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "date": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "day": {
+                                                        "type": "integer"
+                                                    },
+                                                    "month": {
+                                                        "type": "integer"
+                                                    },
+                                                    "year": {
+                                                        "type": "integer"
+                                                    },
+                                                    "string": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "tasks": {
                                             "type": "array",
                                             "items": {
                                                 "properties": {
                                                     "id": {
                                                         "type": "string"
                                                     },
-                                                    "date": {
-                                                        "type": "array",
-                                                        "items": {
-                                                            "properties": {
-                                                                "day": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "month": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "year": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "string": {
-                                                                    "type": "string"
-                                                                }
-                                                            },
-                                                            "type": "object"
-                                                        }
+                                                    "name": {
+                                                        "type": "string"
                                                     },
-                                                    "tasks": {
-                                                        "type": "string",
-                                                        "items": {
-                                                            "properties": {
-                                                                "id": {
-                                                                    "type": "string"
-                                                                },
-                                                                "name": {
-                                                                    "type": "string"
-                                                                },
-                                                                "description": {
-                                                                    "type": "string"
-                                                                },
-                                                                "importantLevel": {
-                                                                    "type": "string"
-                                                                },
-                                                                "status": {
-                                                                    "type": "string"
-                                                                },
-                                                                "stepsCount": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "finishedSteps": {
-                                                                    "type": "integer"
-                                                                }
-                                                            },
-                                                            "type": "object"
-                                                        }
+                                                    "description": {
+                                                        "type": "string"
                                                     },
-                                                    "tasksCount": {
+                                                    "importantLevel": {
+                                                        "type": "string"
+                                                    },
+                                                    "status": {
+                                                        "type": "string"
+                                                    },
+                                                    "stepsCount": {
+                                                        "type": "integer"
+                                                    },
+                                                    "finishedSteps": {
                                                         "type": "integer"
                                                     }
                                                 },
                                                 "type": "object"
                                             }
+                                        },
+                                        "tasksCount": {
+                                            "type": "integer"
                                         }
                                     },
                                     "type": "object"
@@ -913,7 +930,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -928,68 +945,60 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "schedules": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "date": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "day": {
+                                                        "type": "integer"
+                                                    },
+                                                    "month": {
+                                                        "type": "integer"
+                                                    },
+                                                    "year": {
+                                                        "type": "integer"
+                                                    },
+                                                    "string": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "tasks": {
                                             "type": "array",
                                             "items": {
                                                 "properties": {
                                                     "id": {
                                                         "type": "string"
                                                     },
-                                                    "date": {
-                                                        "type": "array",
-                                                        "items": {
-                                                            "properties": {
-                                                                "day": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "month": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "year": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "string": {
-                                                                    "type": "string"
-                                                                }
-                                                            },
-                                                            "type": "object"
-                                                        }
+                                                    "name": {
+                                                        "type": "string"
                                                     },
-                                                    "tasks": {
-                                                        "type": "string",
-                                                        "items": {
-                                                            "properties": {
-                                                                "id": {
-                                                                    "type": "string"
-                                                                },
-                                                                "name": {
-                                                                    "type": "string"
-                                                                },
-                                                                "description": {
-                                                                    "type": "string"
-                                                                },
-                                                                "importantLevel": {
-                                                                    "type": "string"
-                                                                },
-                                                                "status": {
-                                                                    "type": "string"
-                                                                },
-                                                                "stepsCount": {
-                                                                    "type": "integer"
-                                                                },
-                                                                "finishedSteps": {
-                                                                    "type": "integer"
-                                                                }
-                                                            },
-                                                            "type": "object"
-                                                        }
+                                                    "description": {
+                                                        "type": "string"
                                                     },
-                                                    "tasksCount": {
+                                                    "importantLevel": {
+                                                        "type": "string"
+                                                    },
+                                                    "status": {
+                                                        "type": "string"
+                                                    },
+                                                    "stepsCount": {
+                                                        "type": "integer"
+                                                    },
+                                                    "finishedSteps": {
                                                         "type": "integer"
                                                     }
                                                 },
                                                 "type": "object"
                                             }
+                                        },
+                                        "tasksCount": {
+                                            "type": "integer"
                                         }
                                     },
                                     "type": "object"
@@ -1053,7 +1062,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -1194,7 +1203,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -1266,7 +1275,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -1355,7 +1364,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -1415,7 +1424,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -1458,7 +1467,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -1522,7 +1531,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -1587,7 +1596,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -1603,7 +1612,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -1770,7 +1779,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -1786,7 +1795,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "type": "object",
+                                            "type": "string",
                                             "nullable": true
                                         }
                                     },
@@ -1828,7 +1837,7 @@
                         "schema": {
                             "properties": {
                                 "error": {
-                                    "type": "object",
+                                    "type": "string",
                                     "nullable": true
                                 }
                             },
@@ -1843,7 +1852,7 @@
                 "type": "oauth2",
                 "flows": {
                     "implicit": {
-                        "authorizationUrl": "/authorize",
+                        "authorizationUrl": "/api/oauth/auth",
                         "scopes": {
                             "common": "Common"
                         }

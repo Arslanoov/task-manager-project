@@ -51,7 +51,7 @@ final class GetAction implements RequestHandlerInterface
      *          description="Not found error",
      *          @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="error", type="object", nullable=true)
+     *             @OA\Property(property="error", type="string", nullable=true)
      *          )
      *     ),
      *     @OA\Response(
@@ -59,7 +59,7 @@ final class GetAction implements RequestHandlerInterface
      *          description="Errors",
      *          @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="error", type="object", nullable=true)
+     *             @OA\Property(property="error", type="string", nullable=true)
      *          )
      *     ),
      *     @OA\Response(
