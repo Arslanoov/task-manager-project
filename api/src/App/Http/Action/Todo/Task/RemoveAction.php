@@ -14,6 +14,7 @@ use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use OpenApi\Annotations as OA;
 
 final class RemoveAction implements RequestHandlerInterface
 {
@@ -35,6 +36,33 @@ final class RemoveAction implements RequestHandlerInterface
     }
 
     /**
+     * @OA\Delete(
+     *     path="/todo/task/remove",
+     *     tags={"Remove task"},
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"task_id"},
+     *             @OA\Property(property="task_id", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *          response=400,
+     *          description="Errors",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="Success response",
+     *         @OA\JsonContent(
+     *             type="object"
+     *         )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
+     * )
      * @param ServerRequestInterface $request
      * @return ResponseInterface
      * @throws ForbiddenException
@@ -49,7 +77,7 @@ final class RemoveAction implements RequestHandlerInterface
 
         $this->handler->handle(new Command($taskId));
 
-        return $this->response->json([]);
+        return $this->response->json([], 204);
     }
 
     /**

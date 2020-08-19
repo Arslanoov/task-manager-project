@@ -11,6 +11,7 @@ use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use OpenApi\Annotations as OA;
 
 final class GetPhotoAction implements RequestHandlerInterface
 {
@@ -31,6 +32,31 @@ final class GetPhotoAction implements RequestHandlerInterface
         $this->response = $response;
     }
 
+    /**
+     * @OA\Get(
+     *     path="/profile/get/photo",
+     *     tags={"Profile Photo"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="url", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Photo not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *         )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
+ *     )
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $person = $this->persons->getById(new Id($request->getAttribute('oauth_user_id')));

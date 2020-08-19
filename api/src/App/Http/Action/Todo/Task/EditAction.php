@@ -14,6 +14,7 @@ use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use OpenApi\Annotations as OA;
 
 final class EditAction implements RequestHandlerInterface
 {
@@ -35,6 +36,36 @@ final class EditAction implements RequestHandlerInterface
     }
 
     /**
+     * @OA\Patch(
+     *     path="/todo/task/edit",
+     *     tags={"Edit task"},
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"id", "name", "description", "level"},
+     *             @OA\Property(property="id", type="string"),
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="description", type="string"),
+     *             @OA\Property(property="level", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *          response=400,
+     *          description="Errors",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="Success response",
+     *         @OA\JsonContent(
+     *             type="object"
+     *         )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
+     * )
      * @param ServerRequestInterface $request
      * @return ResponseInterface
      * @throws ForbiddenException

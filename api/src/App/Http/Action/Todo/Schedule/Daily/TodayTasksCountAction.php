@@ -32,6 +32,23 @@ final class TodayTasksCountAction implements RequestHandlerInterface
         $this->response = $response;
     }
 
+    /**
+     * @OA\Get(
+     *     path="/todo/daily/today/tasks/count",
+     *     tags={"Get today daily schedule tasks count"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="count", type="integer")
+     *         )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
+     * )
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $person = $this->persons->getById(new Id($request->getAttribute('oauth_user_id') ?? ''));

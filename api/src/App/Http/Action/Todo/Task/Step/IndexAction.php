@@ -14,6 +14,7 @@ use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use OpenApi\Annotations as OA;
 
 final class IndexAction implements RequestHandlerInterface
 {
@@ -35,6 +36,31 @@ final class IndexAction implements RequestHandlerInterface
     }
 
     /**
+     * @OA\Get(
+     *     path="/todo/task/{id}/steps",
+     *     tags={"Get task steps"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="id", type="string"),
+     *             @OA\Property(property="steps", type="array", @OA\Items(
+     *                 @OA\Property(property="id", type="string"),
+     *                 @OA\Property(property="name", type="string"),
+     *                 @OA\Property(property="sort_order", type="string", nullable=true),
+     *                 @OA\Property(property="status", type="string")
+     *             ))
+     *         )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
+     * )
      * @param ServerRequestInterface $request
      * @return ResponseInterface
      * @throws ForbiddenException

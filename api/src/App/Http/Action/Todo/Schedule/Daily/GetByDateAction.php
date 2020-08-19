@@ -18,6 +18,7 @@ use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use OpenApi\Annotations as OA;
 
 final class GetByDateAction implements RequestHandlerInterface
 {
@@ -39,6 +40,63 @@ final class GetByDateAction implements RequestHandlerInterface
     }
 
     /**
+     * @OA\Get(
+     *     path="/todo/daily/get-by-date/{day}/{month}/{year}",
+     *     tags={"Get custom schedule by date"},
+     *     @OA\Parameter(
+     *         name="day",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="month",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="year",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *          response=400,
+     *          description="Errors",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="schedules", type="array", @OA\Items(
+     *                 @OA\Property(property="id", type="string"),
+     *                 @OA\Property(property="date", type="array", @OA\Items(
+     *                     @OA\Property(property="day", type="integer"),
+     *                     @OA\Property(property="month", type="integer"),
+     *                     @OA\Property(property="year", type="integer"),
+     *                     @OA\Property(property="string", type="string")
+     *                 )),
+     *                 @OA\Property(property="tasks", type="string", @OA\Items(
+     *                     @OA\Property(property="id", type="string"),
+     *                     @OA\Property(property="name", type="string"),
+     *                     @OA\Property(property="description", type="string"),
+     *                     @OA\Property(property="importantLevel", type="string"),
+     *                     @OA\Property(property="status", type="string"),
+     *                     @OA\Property(property="stepsCount", type="integer"),
+     *                     @OA\Property(property="finishedSteps", type="integer")
+     *                 )),
+     *                 @OA\Property(property="tasksCount", type="integer")
+     *             ))
+     *         )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
+     * )
      * @param ServerRequestInterface $request
      * @return ResponseInterface
      * @throws ForbiddenException
@@ -65,9 +123,9 @@ final class GetByDateAction implements RequestHandlerInterface
         return $this->response->json([
             'id' => $schedule->getId()->getValue(),
             'date' => [
-                'day' => $schedule->getDate()->format('d'),
-                'month' => $schedule->getDate()->format('m') - 1,
-                'year' => $schedule->getDate()->format('Y'),
+                'day' => (int) $schedule->getDate()->format('d'),
+                'month' => (int) $schedule->getDate()->format('m') - 1,
+                'year' => (int) $schedule->getDate()->format('Y'),
                 'string' => $schedule->getDate()->format('d') . 'th ' .
                     Date::MONTHS[intval($schedule->getDate()->format('m')) - 1]
             ],

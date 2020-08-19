@@ -42,6 +42,51 @@ final class GetNextScheduleAction implements RequestHandlerInterface
     }
 
     /**
+     * @OA\Get(
+     *     path="/todo/daily/next/{id}",
+     *     tags={"Find next daily schedule"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *          response=400,
+     *          description="Errors",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="schedules", type="array", @OA\Items(
+     *                 @OA\Property(property="id", type="string"),
+     *                 @OA\Property(property="date", type="array", @OA\Items(
+     *                     @OA\Property(property="day", type="integer"),
+     *                     @OA\Property(property="month", type="integer"),
+     *                     @OA\Property(property="year", type="integer"),
+     *                     @OA\Property(property="string", type="string")
+     *                 )),
+     *                 @OA\Property(property="tasks", type="string", @OA\Items(
+     *                     @OA\Property(property="id", type="string"),
+     *                     @OA\Property(property="name", type="string"),
+     *                     @OA\Property(property="description", type="string"),
+     *                     @OA\Property(property="importantLevel", type="string"),
+     *                     @OA\Property(property="status", type="string"),
+     *                     @OA\Property(property="stepsCount", type="integer"),
+     *                     @OA\Property(property="finishedSteps", type="integer")
+     *                 )),
+     *                 @OA\Property(property="tasksCount", type="integer")
+     *             ))
+     *         )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
+     * )
      * @param ServerRequestInterface $request
      * @return ResponseInterface
      * @throws ForbiddenException

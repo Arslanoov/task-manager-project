@@ -11,6 +11,7 @@ use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use OpenApi\Annotations as OA;
 
 final class UploadPhotoAction implements RequestHandlerInterface
 {
@@ -28,6 +29,26 @@ final class UploadPhotoAction implements RequestHandlerInterface
         $this->response = $response;
     }
 
+    /**
+     * @OA\Post(
+     *     path="/profile/upload/photo",
+     *     tags={"Profile photo upload"},
+     *     @OA\Response(
+     *         response=204,
+     *         description="Success response",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Errors",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *         )
+     *     )
+     * )
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $userId = $request->getAttribute('oauth_user_id');

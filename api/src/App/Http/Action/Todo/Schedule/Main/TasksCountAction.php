@@ -12,6 +12,7 @@ use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use OpenApi\Annotations as OA;
 
 final class TasksCountAction implements RequestHandlerInterface
 {
@@ -32,6 +33,23 @@ final class TasksCountAction implements RequestHandlerInterface
         $this->response = $response;
     }
 
+    /**
+     * @OA\Get(
+     *     path="/todo/main/tasks/count",
+     *     tags={"Get main schedule tasks count"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="count", type="integer")
+     *         )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
+     * )
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $person = $this->persons->getById(new Id($request->getAttribute('oauth_user_id') ?? ''));

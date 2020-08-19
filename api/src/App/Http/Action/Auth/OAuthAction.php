@@ -11,6 +11,7 @@ use League\OAuth2\Server\Exception\OAuthServerException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use OpenApi\Annotations as OA;
 
 final class OAuthAction implements RequestHandlerInterface
 {
@@ -28,6 +29,38 @@ final class OAuthAction implements RequestHandlerInterface
         $this->response = $response;
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/oauth/auth",
+     *     tags={"Log in"},
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"grant_type", "username", "password", "client_id", "client_secret", "access_type"},
+     *             @OA\Property(property="grant_type", type="string"),
+     *             @OA\Property(property="username", type="string"),
+     *             @OA\Property(property="password", type="string"),
+     *             @OA\Property(property="client_id", type="string"),
+     *             @OA\Property(property="client_secret", type="string"),
+     *             @OA\Property(property="access_type", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Errors",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *         )
+     *     ),
+     * )
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         try {

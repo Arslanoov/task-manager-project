@@ -12,6 +12,7 @@ use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use OpenApi\Annotations as OA;
 
 final class CreateAction implements RequestHandlerInterface
 {
@@ -32,6 +33,38 @@ final class CreateAction implements RequestHandlerInterface
         $this->response = $response;
     }
 
+    /**
+     * @OA\Post(
+     *     path="/todo/custom/create",
+     *     tags={"Custom schedule create"},
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"name"},
+     *             @OA\Property(property="name", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *          response=400,
+     *          description="Errors",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Success response",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="name", type="string")
+     *         )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
+     * )
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $body = json_decode($request->getBody()->getContents(), true);

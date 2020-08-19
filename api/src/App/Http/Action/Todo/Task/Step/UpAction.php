@@ -14,6 +14,7 @@ use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use OpenApi\Annotations as OA;
 
 final class UpAction implements RequestHandlerInterface
 {
@@ -35,6 +36,41 @@ final class UpAction implements RequestHandlerInterface
     }
 
     /**
+     * @OA\Patch(
+     *     path="/todo/task/step/up",
+     *     tags={"Move up step"},
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"id"},
+     *             @OA\Property(property="id", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *          response=404,
+     *          description="Higher step not found",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *          )
+     *     ),
+     *     @OA\Response(
+     *          response=400,
+     *          description="Errors",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="Success response",
+     *         @OA\JsonContent(
+     *             type="object"
+     *         )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
+     * )
      * @param ServerRequestInterface $request
      * @return ResponseInterface
      * @throws ForbiddenException

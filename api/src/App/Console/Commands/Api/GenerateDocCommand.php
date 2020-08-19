@@ -7,7 +7,6 @@ namespace App\Console\Commands\Api;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Process;
 
 final class GenerateDocCommand extends Command
 {
@@ -22,12 +21,9 @@ final class GenerateDocCommand extends Command
     {
         $actions = 'src/App/Http/Action';
         $swagger = 'vendor/bin/openapi';
-        $to = 'public/docs/openapi.json';
+        $to = './public/docs/openapi.json';
 
-        $process = new Process([PHP_BINARY, $swagger, $actions, '--output', $to]);
-        $process->run(static function ($type, $buffer) use ($output) {
-            $output->write($buffer);
-        });
+        passthru("$swagger --output $to $actions");
 
         $output->writeln('<info>Done!</info>');
     }

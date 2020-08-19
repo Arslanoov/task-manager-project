@@ -15,6 +15,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Domain\Todo\UseCase\Schedule;
+use OpenApi\Annotations as OA;
 
 final class SignUpAction implements RequestHandlerInterface
 {
@@ -48,10 +49,34 @@ final class SignUpAction implements RequestHandlerInterface
     }
 
     /**
+     * @OA\Post(
+     *     path="/api/auth/signup",
+     *     tags={"Sign Up"},
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"login", "email", "password"},
+     *             @OA\Property(property="login", type="string"),
+     *             @OA\Property(property="email", type="string"),
+     *             @OA\Property(property="password", type="string"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Success response",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Errors",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *         )
+     *     )
+     * )
      * @param ServerRequestInterface $request
      * @return ResponseInterface
      * @throws ConnectionException
-     * @throws Exception
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {

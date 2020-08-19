@@ -16,6 +16,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Domain\Todo\UseCase\Schedule\Task;
 use Domain\Todo\Entity\Schedule\Task\Id as TaskId;
+use OpenApi\Annotations as OA;
 
 final class CreateAction implements RequestHandlerInterface
 {
@@ -40,6 +41,41 @@ final class CreateAction implements RequestHandlerInterface
     }
 
     /**
+     * @OA\Post(
+     *     path="/todo/task/create",
+     *     tags={"Create task"},
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"schedule_id", "name"},
+     *             @OA\Property(property="schedule_id", type="string"),
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="description", type="string", nullable=true),
+     *             @OA\Property(property="level", type="string", nullable=true)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *          response=400,
+     *          description="Errors",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="object", nullable=true)
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="id", type="string"),
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="description", type="string"),
+     *             @OA\Property(property="level", type="string"),
+     *             @OA\Property(property="status", type="string")
+     *         )
+     *     ),
+     *     security={{"oauth2": {"common"}}}
+     * )
      * @param ServerRequestInterface $request
      * @return ResponseInterface
      * @throws ForbiddenException

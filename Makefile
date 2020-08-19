@@ -26,6 +26,9 @@ api-migrations-diff:
 api-migrations-migrate:
 	docker-compose run --rm api-php-cli php bin/console migrations:migrate
 
+api-generate-docs:
+	docker-compose run --rm api-php-cli php bin/console api:generate:docs
+
 api-load-fixtures:
 	docker-compose exec api-php-cli composer app fixtures:load
 api-tests-run:
