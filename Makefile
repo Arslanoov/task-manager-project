@@ -1,4 +1,4 @@
-up: docker-down docker-pull docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions
+up: docker-clear docker-pull docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions
 compile: frontend-install frontend-build-sass frontend-compile-js
 generate-keys: generate-private-key generate-public-key
 test: api-load-fixtures api-tests-run
@@ -9,6 +9,8 @@ docker-up:
 	docker-compose up -d
 docker-down:
 	docker-compose down --remove-orphans
+docker-clear:
+	docker-compose down --remove-orphans -v
 docker-pull:
 	docker-compose pull
 docker-remove:
