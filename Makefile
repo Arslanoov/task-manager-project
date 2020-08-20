@@ -2,6 +2,8 @@ up: docker-clear docker-pull docker-build docker-up api-set-permissions api-comp
 compile: frontend-install frontend-build-sass frontend-compile-js
 generate-keys: generate-private-key generate-public-key
 test: api-load-fixtures api-tests-run
+build: build-gateway build-frontend build-api
+push: push-gateway push-frontend push-api
 
 docker-build:
 	docker-compose build
@@ -56,8 +58,6 @@ generate-public-key:
 	docker-compose run --rm api-php-cli openssl rsa -in private.key -pubout -out public.key
 
 
-build: build-gateway build-frontend build-api
-
 build-gateway:
 	docker --log-level=debug build --pull --file=gateway/docker/prod/nginx.docker --tag=${REGISTRY}/todo-gateway:${IMAGE_TAG} gateway/docker
 
@@ -70,3 +70,13 @@ build-api:
 
 try-build:
 	REGISTRY=localhost IMAGE_TAG=0 make up
+
+push-gateway:
+	docker push ${REGISTRY}/todo-gateway:${IMAGE_TAG}
+
+push-frontend:
+	docker push ${REGISTRY}/todo-frontend-nginx:${IMAGE_TAG}
+
+push-api:
+	docker push ${REGISTRY}/todo-api-nginx:${IMAGE_TAG}
+	docker push ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
