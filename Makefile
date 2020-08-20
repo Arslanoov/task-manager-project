@@ -59,7 +59,7 @@ generate-public-key:
 build: build-gateway build-frontend build-api
 
 build-gateway:
-	docker --log-level=debug build --pull --file=gateway/docker/prod/nginx.docker --tag=${REGISTRY}/todo-gateway:${IMAGE_TAG} gateway/docker/prod/nginx
+	docker --log-level=debug build --pull --file=gateway/docker/prod/nginx.docker --tag=${REGISTRY}/todo-gateway:${IMAGE_TAG} gateway/docker
 
 build-frontend:
 	docker --log-level=debug build --pull --file=frontend/docker/prod/nginx.docker --tag=${REGISTRY}/todo-frontend-nginx:${IMAGE_TAG} frontend

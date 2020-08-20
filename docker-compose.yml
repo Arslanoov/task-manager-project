@@ -2,8 +2,8 @@ version: '3'
 services:
   gateway:
     build:
-      context: gateway/docker/dev
-      dockerfile: nginx.docker
+      context: gateway/docker
+      dockerfile: dev/nginx.docker
     ports:
       - "8080:8080"
       - "8081:8081"
