@@ -66,7 +66,9 @@ final class OAuthAction implements RequestHandlerInterface
         try {
             return $this->server->respondToAccessTokenRequest($request, $this->response->simple());
         } catch (OAuthServerException $exception) {
-            return $exception->generateHttpResponse($this->response->simple());
+            return $this->response->json([
+                'error' => 'Incorrect credentials'
+            ], 400);
         } catch (Exception $exception) {
             return (new OAuthServerException($exception->getMessage(), 0, 'unknown_error', 500))
                 ->generateHttpResponse($this->response->simple());

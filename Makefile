@@ -54,3 +54,19 @@ generate-private-key:
 	docker-compose run --rm api-php-cli openssl genrsa -out private.key 2048
 generate-public-key:
 	docker-compose run --rm api-php-cli openssl rsa -in private.key -pubout -out public.key
+
+
+build: build-gateway build-frontend build-api
+
+build-gateway:
+	docker --log-level=debug build --pull --file=gateway/docker/prod/nginx.docker --tag=${REGISTRY}/todo-gateway:${IMAGE_TAG} gateway/docker/prod/nginx
+
+build-frontend:
+	docker --log-level=debug build --pull --file=frontend/docker/prod/nginx.docker --tag=${REGISTRY}/todo-frontend-nginx:${IMAGE_TAG} frontend
+
+build-api:
+	docker --log-level=debug build --pull --file=api/docker/prod/php-fpm.docker --tag=${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG} api
+	docker --log-level=debug build --pull --file=api/docker/prod/nginx.docker --tag=${REGISTRY}/todo-api-nginx:${IMAGE_TAG} api
+
+try-build:
+	REGISTRY=localhost IMAGE_TAG=0 make up

@@ -72,7 +72,7 @@ final class UploadPhotoAction implements RequestHandlerInterface
     {
         $userId = $request->getAttribute('oauth_user_id');
         if (!$file = $request->getUploadedFiles()['file']) {
-            throw new InvalidArgumentException('File not found');
+            throw new InvalidArgumentException('File required');
         }
 
         $this->handler->handle(new Command($file, $userId));

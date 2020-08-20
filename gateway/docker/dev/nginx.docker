@@ -2,4 +2,4 @@ FROM nginx:1.10
 
 COPY ./nginx/conf.d /etc/nginx/conf.d/
 
-WORKDIR /var/www/frontend
+WORKDIR /var/www/gateway
