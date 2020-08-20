@@ -80,3 +80,16 @@ push-frontend:
 push-api:
 	docker push ${REGISTRY}/todo-api-nginx:${IMAGE_TAG}
 	docker push ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
+
+deploy:
+	ssh ${HOST} -p ${PORT} 'rm -rf todo_${BUILD_NUMBER}'
+	ssh ${HOST} -p ${PORT} 'mkdir todo_${BUILD_NUMBER}'
+	scp -P ${PORT} docker-compose-production.yml ${HOST}:todo_${BUILD_NUMBER}/docker-compose-production.yml
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "COMPOSE_PROJECT_NAME=todo" >> .env'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "REGISTRY=${REGISTRY}" >> .env'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "IMAGE_TAG=${IMAGE_TAG}" >> .env'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose -f docker-compose-production.yml pull'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose -f docker-compose-production.yml down'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose -f docker-compose-production.yml up -d'
+	ssh ${HOST} -p ${PORT} 'rm -f todo'
+	ssh ${HOST} -p ${PORT} 'ln -sr todo_${BUILD_NUMBER} todo'
