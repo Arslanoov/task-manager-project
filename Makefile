@@ -1,4 +1,4 @@
-up: docker-remove docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions
+up: docker-remove docker-pull docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions
 compile: frontend-install frontend-build-sass frontend-compile-js
 generate-keys: generate-private-key generate-public-key
 test: api-load-fixtures api-tests-run
@@ -7,6 +7,8 @@ docker-build:
 	docker-compose build
 docker-up:
 	docker-compose up -d
+docker-pull:
+	docker-compose pull
 docker-remove:
 	docker-compose down --remove-orphans
 	sudo rm -rf api/var/docker
