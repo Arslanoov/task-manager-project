@@ -1,15 +1,23 @@
 version: '3'
 services:
+  gateway:
+    build:
+      context: gateway/docker/dev/nginx
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - frontend-nginx
+      - api-nginx
+
   frontend-nginx:
     build:
-      context: ./frontend/docker
+      context: ./frontend/docker/dev/nginx
       dockerfile: nginx.docker
     volumes:
       - ./frontend:/var/www/frontend
     depends_on:
       - api-php-fpm
-    ports:
-      - "8080:80"
   frontend-nodejs:
     image: node:10.11-jessie
     volumes:
@@ -19,12 +27,10 @@ services:
 
   api-nginx:
     build:
-      context: ./api/docker
+      context: ./api/docker/dev/nginx
       dockerfile: nginx.docker
     volumes:
       - ./api:/var/www/api
-    ports:
-      - "8081:80"
   api-php-fpm:
     build:
       context: ./api/docker
