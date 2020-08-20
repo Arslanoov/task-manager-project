@@ -1,6 +1,6 @@
 FROM nginx:1.10
 
-ADD ./docker/prod/nginx/conf.d /etc/nginx/conf.d/
+ADD ./docker/common/nginx/conf.d /etc/nginx/conf.d/
 
 WORKDIR /var/www/api
 

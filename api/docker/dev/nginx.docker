@@ -1,5 +1,5 @@
 FROM nginx:1.10
 
-COPY ./nginx/conf.d /etc/nginx/conf.d/
+COPY ./common/nginx/conf.d /etc/nginx/conf.d/
 
 WORKDIR /var/www/api

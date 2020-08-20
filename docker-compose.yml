@@ -13,8 +13,8 @@ services:
 
   frontend-nginx:
     build:
-      context: ./frontend/docker/dev
-      dockerfile: nginx.docker
+      context: ./frontend/docker
+      dockerfile: dev/nginx.docker
     volumes:
       - ./frontend:/var/www/frontend
     depends_on:
@@ -28,16 +28,16 @@ services:
 
   api-nginx:
     build:
-      context: ./api/docker/dev
-      dockerfile: nginx.docker
+      context: ./api/docker
+      dockerfile: dev/nginx.docker
     volumes:
       - ./api:/var/www/api
     depends_on:
       - api-php-fpm
   api-php-fpm:
     build:
-      context: ./api/docker/dev
-      dockerfile: php-fpm.docker
+      context: ./api/docker
+      dockerfile: dev/php-fpm.docker
     volumes:
       - ./api:/var/www/api
       - ./storage:/var/www/storage
