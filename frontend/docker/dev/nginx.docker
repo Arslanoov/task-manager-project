@@ -1,5 +1,5 @@
 FROM nginx:1.10
 
-ADD ./docker/common/nginx/conf.d /etc/nginx/conf.d/
+ADD ./common/nginx/conf.d /etc/nginx/conf.d/
 
 WORKDIR /var/www/frontend
