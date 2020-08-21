@@ -1,17 +1,8 @@
 ---
 -   name: Provision Site
-    hosts: all
+    hosts: todo
     remote_user: root
-    vars_files:
-      - envs/certbot.yml
-    tasks:
-      -   import_tasks: tasks/docker.yml
-      -   import_tasks: tasks/certbot.yml
-      -   import_tasks: tasks/ssl.yml
-      -   import_tasks: tasks/create_user.yml
-    handlers:
-      -   name: Start docker on boot
-          systemd:
-            name: docker
-            state: started
-            enabled: yes
+    roles:
+      - docker
+      - certbot
+      - site

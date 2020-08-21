@@ -1,6 +1,6 @@
 ---
 -   name: Renew Certificates
-    hosts: all
+    hosts: todo
     remote_user: root
     tasks:
       -   name: Renew certificates
