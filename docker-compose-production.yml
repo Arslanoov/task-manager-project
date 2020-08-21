@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   gateway:
-    image: todo-gateway:${IMAGE_TAG}
+    image: ${REGISTRY}/todo-gateway:${IMAGE_TAG}
     restart: always
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
@@ -14,15 +14,15 @@ services:
       - api-nginx
 
   frontend-nginx:
-    image: todo-frontend:${IMAGE_TAG}
+    image: ${REGISTRY}/todo-frontend:${IMAGE_TAG}
     restart: always
 
   api-nginx:
-    image: todo-api:${IMAGE_TAG}
+    image: ${REGISTRY}/todo-api:${IMAGE_TAG}
     restart: always
     depends_on:
       - api-php-fpm
 
   api-php-fpm:
-    image: todo-api-php-fpm:${IMAGE_TAG}
+    image: ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
     restart: always

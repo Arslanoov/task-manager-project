@@ -59,27 +59,27 @@ generate-public-key:
 
 
 build-gateway:
-	docker --log-level=debug build --pull --file=gateway/docker/prod/nginx.docker --tag=todo-gateway:${IMAGE_TAG} gateway/docker
+	docker --log-level=debug build --pull --file=gateway/docker/prod/nginx.docker --tag=${REGISTRY}/todo-gateway:${IMAGE_TAG} gateway/docker
 
 build-frontend:
-	docker --log-level=debug build --pull --file=frontend/docker/prod/nginx.docker --tag=todo-frontend-nginx:${IMAGE_TAG} frontend
+	docker --log-level=debug build --pull --file=frontend/docker/prod/nginx.docker --tag=${REGISTRY}/todo-frontend-nginx:${IMAGE_TAG} frontend
 
 build-api:
-	docker --log-level=debug build --pull --file=api/docker/prod/php-fpm.docker --tag=todo-api-php-fpm:${IMAGE_TAG} api
-	docker --log-level=debug build --pull --file=api/docker/prod/nginx.docker --tag=todo-api-nginx:${IMAGE_TAG} api
+	docker --log-level=debug build --pull --file=api/docker/prod/php-fpm.docker --tag=${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG} api
+	docker --log-level=debug build --pull --file=api/docker/prod/nginx.docker --tag=${REGISTRY}/todo-api-nginx:${IMAGE_TAG} api
 
 try-build:
 	REGISTRY=localhost IMAGE_TAG=0 make up
 
 push-gateway:
-	docker push todo-gateway:${IMAGE_TAG}
+	docker push ${REGISTRY}/todo-gateway:${IMAGE_TAG}
 
 push-frontend:
-	docker push todo-frontend-nginx:${IMAGE_TAG}
+	docker push ${REGISTRY}/todo-frontend-nginx:${IMAGE_TAG}
 
 push-api:
-	docker push todo-api-nginx:${IMAGE_TAG}
-	docker push todo-api-php-fpm:${IMAGE_TAG}
+	docker push ${REGISTRY}/todo-api-nginx:${IMAGE_TAG}
+	docker push ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
 
 deploy:
 	ssh ${HOST} -p ${PORT} 'rm -rf todo_${BUILD_NUMBER}'
