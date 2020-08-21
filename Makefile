@@ -59,14 +59,14 @@ generate-public-key:
 
 
 build-gateway:
-	docker --log-level=debug build --pull --file=gateway/docker/prod/nginx.docker --tag=${REGISTRY}/todo-gateway:${IMAGE_TAG} gateway/docker
+	docker --log-level=debug build --pull --file=gateway/docker/prod/nginx.docker -t ${REGISTRY}/todo-gateway:${IMAGE_TAG} gateway/docker
 
 build-frontend:
-	docker --log-level=debug build --pull --file=frontend/docker/prod/nginx.docker --tag=${REGISTRY}/todo-frontend-nginx:${IMAGE_TAG} frontend
+	docker --log-level=debug build --pull --file=frontend/docker/prod/nginx.docker -t ${REGISTRY}/todo-frontend-nginx:${IMAGE_TAG} frontend
 
 build-api:
-	docker --log-level=debug build --pull --file=api/docker/prod/php-fpm.docker --tag=${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG} api
-	docker --log-level=debug build --pull --file=api/docker/prod/nginx.docker --tag=${REGISTRY}/todo-api-nginx:${IMAGE_TAG} api
+	docker --log-level=debug build --pull --file=api/docker/prod/php-fpm.docker -t ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG} api
+	docker --log-level=debug build --pull --file=api/docker/prod/nginx.docker -t ${REGISTRY}/todo-api-nginx:${IMAGE_TAG} api
 
 try-build:
 	REGISTRY=localhost IMAGE_TAG=0 make up
