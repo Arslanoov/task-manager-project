@@ -1,7 +1,7 @@
 FROM nginx:1.10
 
-ADD ./common/nginx/conf.d /etc/nginx/conf.d/
-
 WORKDIR /var/www/frontend
 
-COPY ./public ./public
+COPY ./ ./
+
+COPY ./common/nginx/conf.d /etc/nginx/conf.d
