@@ -14,11 +14,11 @@ services:
       - api-nginx
 
   frontend-nginx:
-    image: ${REGISTRY}/todo-frontend:${IMAGE_TAG}
+    image: ${REGISTRY}/todo-frontend-nginx:${IMAGE_TAG}
     restart: always
 
   api-nginx:
-    image: ${REGISTRY}/todo-api:${IMAGE_TAG}
+    image: ${REGISTRY}/todo-api-nginx:${IMAGE_TAG}
     restart: always
     depends_on:
       - api-php-fpm
