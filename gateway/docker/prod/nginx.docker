@@ -1,6 +1,6 @@
 FROM nginx:1.10
 
-COPY ./common/nginx/patterns /etc/nginx/snippets
+COPY ./common/nginx/patterns /etc/nginx/patterns
 COPY ./prod/nginx/conf.d /etc/nginx/conf.d/
 
 WORKDIR /var/www/frontend
