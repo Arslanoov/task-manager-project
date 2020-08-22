@@ -67,6 +67,7 @@ build-frontend:
 build-api:
 	docker --log-level=debug build --pull --file=api/docker/prod/php-fpm.docker --tag=${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG} api
 	docker --log-level=debug build --pull --file=api/docker/prod/nginx.docker --tag=${REGISTRY}/todo-api-nginx:${IMAGE_TAG} api
+	docker --log-level=debug build --pull --file=api/docker/prod/php-cli.docker --tag=${REGISTRY}/todo-api-php-cli:${IMAGE_TAG} api
 
 try-build:
 	REGISTRY=localhost IMAGE_TAG=0 make up
@@ -80,6 +81,7 @@ push-frontend:
 push-api:
 	docker push ${REGISTRY}/todo-api-nginx:${IMAGE_TAG}
 	docker push ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
+	docker push ${REGISTRY}/todo-api-php-cli:${IMAGE_TAG}
 
 deploy:
 	ssh ${HOST} -p ${PORT} 'rm -rf todo_${BUILD_NUMBER}'

@@ -26,3 +26,6 @@ services:
   api-php-fpm:
     image: ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
     restart: always
+
+  api-php-cli:
+    image: ${REGISTRY}/todo-api-php-cli:${IMAGE_TAG}
