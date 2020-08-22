@@ -16,7 +16,7 @@
                             Profile
                         </div>
                     </b-nav-item>
-                    
+
                     <b-nav-item :to="{name: 'todo.main'}">
                         <div class="nav-item__name">
                             <i class="fa fa-list-ul"> </i>
