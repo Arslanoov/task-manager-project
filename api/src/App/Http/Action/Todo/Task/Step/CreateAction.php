@@ -7,9 +7,9 @@ namespace App\Http\Action\Todo\Task\Step;
 use App\Exception\ForbiddenException;
 use Doctrine\DBAL\DBALException;
 use Domain\Todo\Entity\Schedule\Task\Id;
-use Domain\Todo\Entity\Schedule\Task\Step\StepRepository;
+use Domain\Todo\Entity\Schedule\Task\Step\DoctrineStepRepository;
 use Domain\Todo\Entity\Schedule\Task\Task;
-use Domain\Todo\Entity\Schedule\Task\TaskRepository;
+use Domain\Todo\Entity\Schedule\Task\DoctrineTaskRepository;
 use Domain\Todo\UseCase\Schedule\Task\Step\Create\Command;
 use Domain\Todo\UseCase\Schedule\Task\Step\Create\Handler;
 use Framework\Http\Psr7\ResponseFactory;
@@ -20,19 +20,19 @@ use OpenApi\Annotations as OA;
 
 final class CreateAction implements RequestHandlerInterface
 {
-    private StepRepository $steps;
-    private TaskRepository $tasks;
+    private DoctrineStepRepository $steps;
+    private DoctrineTaskRepository $tasks;
     private Handler $handler;
     private ResponseFactory $response;
 
     /**
      * CreateAction constructor.
-     * @param StepRepository $steps
-     * @param TaskRepository $tasks
+     * @param DoctrineStepRepository $steps
+     * @param DoctrineTaskRepository $tasks
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(StepRepository $steps, TaskRepository $tasks, Handler $handler, ResponseFactory $response)
+    public function __construct(DoctrineStepRepository $steps, DoctrineTaskRepository $tasks, Handler $handler, ResponseFactory $response)
     {
         $this->steps = $steps;
         $this->tasks = $tasks;

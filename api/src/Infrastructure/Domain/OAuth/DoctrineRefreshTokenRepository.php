@@ -2,24 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Domain\OAuth\Entity\RefreshToken;
+namespace Infrastructure\Domain\OAuth;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Domain\OAuth\Entity\RefreshToken\RefreshToken;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 
-final class RefreshTokenRepository implements RefreshTokenRepositoryInterface
+final class DoctrineRefreshTokenRepository implements RefreshTokenRepositoryInterface
 {
     private EntityRepository $repo;
     private EntityManagerInterface $em;
 
     public function __construct(EntityManagerInterface $em)
     {
-        $this->repo = $em->getRepository(RefreshToken::class);
+        /** @var EntityRepository $repo */
+        $repo = $em->getRepository(RefreshToken::class);
+        $this->repo = $repo;
         $this->em = $em;
     }
 

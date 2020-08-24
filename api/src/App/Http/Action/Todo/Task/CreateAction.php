@@ -8,8 +8,8 @@ use App\Exception\ForbiddenException;
 use App\Service\UuidGenerator;
 use Domain\Todo\Entity\Schedule\Id as ScheduleId;
 use Domain\Todo\Entity\Schedule\Schedule;
-use Domain\Todo\Entity\Schedule\ScheduleRepository;
-use Domain\Todo\Entity\Schedule\Task\TaskRepository;
+use Domain\Todo\Entity\Schedule\DoctrineScheduleRepository;
+use Domain\Todo\Entity\Schedule\Task\DoctrineTaskRepository;
 use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -21,18 +21,18 @@ use OpenApi\Annotations as OA;
 final class CreateAction implements RequestHandlerInterface
 {
     private Task\Create\Handler $handler;
-    private ScheduleRepository $schedules;
-    private TaskRepository $tasks;
+    private DoctrineScheduleRepository $schedules;
+    private DoctrineTaskRepository $tasks;
     private ResponseFactory $response;
 
     /**
      * CreateAction constructor.
      * @param Task\Create\Handler $handler
-     * @param ScheduleRepository $schedules
-     * @param TaskRepository $tasks
+     * @param DoctrineScheduleRepository $schedules
+     * @param DoctrineTaskRepository $tasks
      * @param ResponseFactory $response
      */
-    public function __construct(Task\Create\Handler $handler, ScheduleRepository $schedules, TaskRepository $tasks, ResponseFactory $response)
+    public function __construct(Task\Create\Handler $handler, DoctrineScheduleRepository $schedules, DoctrineTaskRepository $tasks, ResponseFactory $response)
     {
         $this->handler = $handler;
         $this->schedules = $schedules;

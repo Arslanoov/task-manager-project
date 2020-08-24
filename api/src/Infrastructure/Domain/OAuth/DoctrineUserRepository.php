@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Domain\OAuth\Entity\User;
+namespace Infrastructure\Domain\OAuth;
 
 use Doctrine\Persistence\ObjectRepository;
-use Domain\User\Entity\User\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Domain\User\Entity\User\User;
+use Domain\OAuth\Entity\User\User as OAuthUser;
 use Domain\User\Service\User\PasswordValidator;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
-use Domain\OAuth\Entity\User\User as OAuthUser;
 
-final class UserRepository implements UserRepositoryInterface
+final class DoctrineUserRepository implements UserRepositoryInterface
 {
     private ObjectRepository $repo;
     private PasswordValidator $validator;

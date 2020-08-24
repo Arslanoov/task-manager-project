@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Action\Todo\Schedule\Custom;
 
 use App\Service\UuidGenerator;
-use Domain\Todo\Entity\Schedule\ScheduleRepository;
+use Domain\Todo\Entity\Schedule\DoctrineScheduleRepository;
 use Domain\Todo\UseCase\Schedule\CreateCustom\Command;
 use Domain\Todo\UseCase\Schedule\CreateCustom\Handler;
 use Framework\Http\Psr7\ResponseFactory;
@@ -16,17 +16,17 @@ use OpenApi\Annotations as OA;
 
 final class CreateAction implements RequestHandlerInterface
 {
-    private ScheduleRepository $schedules;
+    private DoctrineScheduleRepository $schedules;
     private Handler $handler;
     private ResponseFactory $response;
 
     /**
      * CreateAction constructor.
-     * @param ScheduleRepository $schedules
+     * @param DoctrineScheduleRepository $schedules
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(ScheduleRepository $schedules, Handler $handler, ResponseFactory $response)
+    public function __construct(DoctrineScheduleRepository $schedules, Handler $handler, ResponseFactory $response)
     {
         $this->schedules = $schedules;
         $this->handler = $handler;

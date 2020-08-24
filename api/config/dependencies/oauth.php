@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Action\Auth\OAuthAction;
-use Domain\OAuth\Entity\AccessToken\AccessTokenRepository;
-use Domain\OAuth\Entity\AuthCode\AuthCodeRepository;
-use Domain\OAuth\Entity\Client\ClientRepository;
-use Domain\OAuth\Entity\RefreshToken\RefreshTokenRepository;
-use Domain\OAuth\Entity\Scope\ScopeRepository;
-use Domain\OAuth\Entity\User\UserRepository;
 use Framework\Http\Psr7\ResponseFactory;
+use Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository;
+use Infrastructure\Domain\OAuth\DoctrineAuthCodeRepository;
+use Infrastructure\Domain\OAuth\DoctrineClientRepository;
+use Infrastructure\Domain\OAuth\DoctrineRefreshTokenRepository;
+use Infrastructure\Domain\OAuth\DoctrineScopeRepository;
+use Infrastructure\Domain\OAuth\DoctrineUserRepository;
 use League\OAuth2\Server;
 use Psr\Container\ContainerInterface;
 
@@ -76,22 +76,22 @@ return [
         },
         Server\Repositories\ClientRepositoryInterface::class => function (ContainerInterface $ContainerInterface) {
             $config = $ContainerInterface->get('config')['oauth'];
-            return new ClientRepository($config['clients']);
+            return new DoctrineClientRepository($config['clients']);
         },
         Server\Repositories\ScopeRepositoryInterface::class => function (ContainerInterface $ContainerInterface) {
-            return new ScopeRepository();
+            return new DoctrineScopeRepository();
         },
         Server\Repositories\AuthCodeRepositoryInterface::class => function (ContainerInterface $ContainerInterface) {
-            return $ContainerInterface->get(AuthCodeRepository::class);
+            return $ContainerInterface->get(DoctrineAuthCodeRepository::class);
         },
         Server\Repositories\AccessTokenRepositoryInterface::class => function (ContainerInterface $ContainerInterface) {
-            return $ContainerInterface->get(AccessTokenRepository::class);
+            return $ContainerInterface->get(DoctrineAccessTokenRepository::class);
         },
         Server\Repositories\RefreshTokenRepositoryInterface::class => function (ContainerInterface $ContainerInterface) {
-            return $ContainerInterface->get(RefreshTokenRepository::class);
+            return $ContainerInterface->get(DoctrineRefreshTokenRepository::class);
         },
         Server\Repositories\UserRepositoryInterface::class => function (ContainerInterface $ContainerInterface) {
-            return $ContainerInterface->get(UserRepository::class);
+            return $ContainerInterface->get(DoctrineUserRepository::class);
         }
     ]
 ];

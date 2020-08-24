@@ -7,7 +7,7 @@ namespace App\Http\Action\Todo\Task\Step;
 use App\Exception\ForbiddenException;
 use Domain\Todo\Entity\Schedule\Task\Step\Id;
 use Domain\Todo\Entity\Schedule\Task\Step\Step;
-use Domain\Todo\Entity\Schedule\Task\Step\StepRepository;
+use Domain\Todo\Entity\Schedule\Task\Step\DoctrineStepRepository;
 use Domain\Todo\UseCase\Schedule\Task\Step\Down\Command;
 use Domain\Todo\UseCase\Schedule\Task\Step\Down\Handler;
 use Framework\Http\Psr7\ResponseFactory;
@@ -18,17 +18,17 @@ use OpenApi\Annotations as OA;
 
 final class DownAction implements RequestHandlerInterface
 {
-    private StepRepository $steps;
+    private DoctrineStepRepository $steps;
     private Handler $handler;
     private ResponseFactory $response;
 
     /**
      * RemoveAction constructor.
-     * @param StepRepository $steps
+     * @param DoctrineStepRepository $steps
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(StepRepository $steps, Handler $handler, ResponseFactory $response)
+    public function __construct(DoctrineStepRepository $steps, Handler $handler, ResponseFactory $response)
     {
         $this->steps = $steps;
         $this->handler = $handler;

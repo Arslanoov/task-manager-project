@@ -8,9 +8,9 @@ use App\Exception\ForbiddenException;
 use App\Service\Date;
 use DateTimeImmutable;
 use Domain\Todo\Entity\Person\Id;
-use Domain\Todo\Entity\Person\PersonRepository;
+use Domain\Todo\Entity\Person\DoctrinePersonRepository;
 use Domain\Todo\Entity\Schedule\Schedule;
-use Domain\Todo\Entity\Schedule\ScheduleRepository;
+use Domain\Todo\Entity\Schedule\DoctrineScheduleRepository;
 use Domain\Todo\Entity\Schedule\Task\Task;
 use Exception;
 use Framework\Http\Psr7\ResponseFactory;
@@ -22,17 +22,17 @@ use OpenApi\Annotations as OA;
 
 final class GetByDateAction implements RequestHandlerInterface
 {
-    private ScheduleRepository $schedules;
-    private PersonRepository $persons;
+    private DoctrineScheduleRepository $schedules;
+    private DoctrinePersonRepository $persons;
     private ResponseFactory $response;
 
     /**
      * GetByDateAction constructor.
-     * @param ScheduleRepository $schedules
-     * @param PersonRepository $persons
+     * @param DoctrineScheduleRepository $schedules
+     * @param DoctrinePersonRepository $persons
      * @param ResponseFactory $response
      */
-    public function __construct(ScheduleRepository $schedules, PersonRepository $persons, ResponseFactory $response)
+    public function __construct(DoctrineScheduleRepository $schedules, DoctrinePersonRepository $persons, ResponseFactory $response)
     {
         $this->schedules = $schedules;
         $this->persons = $persons;

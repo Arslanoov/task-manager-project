@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Domain\OAuth\Entity\Scope;
+namespace Infrastructure\Domain\OAuth;
 
+use Domain\OAuth\Entity\Scope\Scope;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
 
-final class ScopeRepository implements ScopeRepositoryInterface
+final class DoctrineScopeRepository implements ScopeRepositoryInterface
 {
     /**
      * @var array|ScopeEntityInterface[]

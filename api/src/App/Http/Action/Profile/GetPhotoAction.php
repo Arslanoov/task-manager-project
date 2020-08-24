@@ -6,7 +6,7 @@ namespace App\Http\Action\Profile;
 
 use Domain\Exception\Person\BackgroundPhotoNotFound;
 use Domain\Todo\Entity\Person\Id;
-use Domain\Todo\Entity\Person\PersonRepository;
+use Domain\Todo\Entity\Person\DoctrinePersonRepository;
 use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -16,16 +16,16 @@ use OpenApi\Annotations as OA;
 final class GetPhotoAction implements RequestHandlerInterface
 {
     private string $path;
-    private PersonRepository $persons;
+    private DoctrinePersonRepository $persons;
     private ResponseFactory $response;
 
     /**
      * GetPhotoAction constructor.
      * @param string $path
-     * @param PersonRepository $persons
+     * @param DoctrinePersonRepository $persons
      * @param ResponseFactory $response
      */
-    public function __construct(string $path, PersonRepository $persons, ResponseFactory $response)
+    public function __construct(string $path, DoctrinePersonRepository $persons, ResponseFactory $response)
     {
         $this->path = $path;
         $this->persons = $persons;

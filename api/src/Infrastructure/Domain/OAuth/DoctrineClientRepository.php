@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Domain\OAuth\Entity\Client;
+namespace Infrastructure\Domain\OAuth;
 
+use Domain\OAuth\Entity\Client\Client;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 
-final class ClientRepository implements ClientRepositoryInterface
+final class DoctrineClientRepository implements ClientRepositoryInterface
 {
     private array $clients;
 
