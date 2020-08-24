@@ -1,12 +1,12 @@
 <?php
 
 use Doctrine\ORM\EntityManagerInterface;
-use Domain\Flusher;
 use Domain\FlusherInterface;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\DBAL;
+use Infrastructure\Service\Flusher;
 use Psr\Container\ContainerInterface;
 
 return [

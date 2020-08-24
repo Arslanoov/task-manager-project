@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Domain;
+namespace Infrastructure\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Domain\FlusherInterface;
 
 final class Flusher implements FlusherInterface
 {
