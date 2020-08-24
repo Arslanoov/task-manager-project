@@ -7,7 +7,7 @@ namespace App\Service;
 use Doctrine\DBAL\ConnectionException;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class Transaction
+final class DoctrineTransaction implements TransactionInterface
 {
     private EntityManagerInterface $em;
 

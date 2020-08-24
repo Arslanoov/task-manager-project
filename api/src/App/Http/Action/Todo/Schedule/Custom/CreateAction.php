@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Todo\Schedule\Custom;
 
-use App\Service\UuidGenerator;
-use Domain\Todo\Entity\Schedule\DoctrineScheduleRepository;
+use App\Service\UuidGeneratorInterface;
+use Domain\Todo\Entity\Schedule\ScheduleRepository;
 use Domain\Todo\UseCase\Schedule\CreateCustom\Command;
 use Domain\Todo\UseCase\Schedule\CreateCustom\Handler;
 use Framework\Http\Psr7\ResponseFactory;
@@ -16,19 +16,22 @@ use OpenApi\Annotations as OA;
 
 final class CreateAction implements RequestHandlerInterface
 {
-    private DoctrineScheduleRepository $schedules;
+    private ScheduleRepository $schedules;
+    private UuidGeneratorInterface $uuid;
     private Handler $handler;
     private ResponseFactory $response;
 
     /**
      * CreateAction constructor.
-     * @param DoctrineScheduleRepository $schedules
+     * @param ScheduleRepository $schedules
+     * @param UuidGeneratorInterface $uuid
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(DoctrineScheduleRepository $schedules, Handler $handler, ResponseFactory $response)
+    public function __construct(ScheduleRepository $schedules, UuidGeneratorInterface $uuid, Handler $handler, ResponseFactory $response)
     {
         $this->schedules = $schedules;
+        $this->uuid = $uuid;
         $this->handler = $handler;
         $this->response = $response;
     }
@@ -70,7 +73,7 @@ final class CreateAction implements RequestHandlerInterface
         $body = json_decode($request->getBody()->getContents(), true);
 
         $userId = $request->getAttribute('oauth_user_id');
-        $id = (new UuidGenerator())->uuid4();
+        $id = $this->uuid->uuid4();
         $name = $body['name'] ?? '';
 
         $this->handler->handle(new Command($id, $userId, $name));

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Auth;
 
-use App\Service\Transaction;
-use App\Service\UuidGenerator;
+use App\Service\TransactionInterface;
+use App\Service\UuidGeneratorInterface;
 use Doctrine\DBAL\ConnectionException;
 use Domain\Todo\UseCase\Person;
 use Domain\User\UseCase\User;
@@ -23,7 +23,8 @@ final class SignUpAction implements RequestHandlerInterface
     private Person\Create\Handler $personCreateHandler;
     private Schedule\CreateMain\Handler $createScheduleHandler;
     private ResponseFactory $response;
-    private Transaction $transaction;
+    private UuidGeneratorInterface $uuid;
+    private TransactionInterface $transaction;
 
     /**
      * SignUpAction constructor.
@@ -31,20 +32,16 @@ final class SignUpAction implements RequestHandlerInterface
      * @param Person\Create\Handler $personCreateHandler
      * @param Schedule\CreateMain\Handler $createScheduleHandler
      * @param ResponseFactory $response
-     * @param Transaction $transaction
+     * @param UuidGeneratorInterface $uuid
+     * @param TransactionInterface $transaction
      */
-    public function __construct(
-        User\SignUp\Handler $userSignUpHandler,
-        Person\Create\Handler $personCreateHandler,
-        Schedule\CreateMain\Handler $createScheduleHandler,
-        ResponseFactory $response,
-        Transaction $transaction
-    )
+    public function __construct(User\SignUp\Handler $userSignUpHandler, Person\Create\Handler $personCreateHandler, Schedule\CreateMain\Handler $createScheduleHandler, ResponseFactory $response, UuidGeneratorInterface $uuid, TransactionInterface $transaction)
     {
         $this->userSignUpHandler = $userSignUpHandler;
         $this->personCreateHandler = $personCreateHandler;
         $this->createScheduleHandler = $createScheduleHandler;
         $this->response = $response;
+        $this->uuid = $uuid;
         $this->transaction = $transaction;
     }
 
@@ -82,7 +79,7 @@ final class SignUpAction implements RequestHandlerInterface
     {
         $body = json_decode($request->getBody()->getContents(), true);
 
-        $id = (new UuidGenerator())->uuid4();
+        $id = $this->uuid->uuid4();
         $login = $body['login'] ?? '';
         $email = $body['email'] ?? '';
 

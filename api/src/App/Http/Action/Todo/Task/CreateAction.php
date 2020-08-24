@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Action\Todo\Task;
 
 use App\Exception\ForbiddenException;
-use App\Service\UuidGenerator;
+use App\Service\UuidGeneratorInterface;
 use Domain\Todo\Entity\Schedule\Id as ScheduleId;
 use Domain\Todo\Entity\Schedule\Schedule;
-use Domain\Todo\Entity\Schedule\DoctrineScheduleRepository;
-use Domain\Todo\Entity\Schedule\Task\DoctrineTaskRepository;
+use Domain\Todo\Entity\Schedule\ScheduleRepository;
+use Domain\Todo\Entity\Schedule\Task\TaskRepository;
 use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -21,22 +21,25 @@ use OpenApi\Annotations as OA;
 final class CreateAction implements RequestHandlerInterface
 {
     private Task\Create\Handler $handler;
-    private DoctrineScheduleRepository $schedules;
-    private DoctrineTaskRepository $tasks;
+    private ScheduleRepository $schedules;
+    private TaskRepository $tasks;
+    private UuidGeneratorInterface $uuid;
     private ResponseFactory $response;
 
     /**
      * CreateAction constructor.
      * @param Task\Create\Handler $handler
-     * @param DoctrineScheduleRepository $schedules
-     * @param DoctrineTaskRepository $tasks
+     * @param ScheduleRepository $schedules
+     * @param TaskRepository $tasks
+     * @param UuidGeneratorInterface $uuid
      * @param ResponseFactory $response
      */
-    public function __construct(Task\Create\Handler $handler, DoctrineScheduleRepository $schedules, DoctrineTaskRepository $tasks, ResponseFactory $response)
+    public function __construct(Task\Create\Handler $handler, ScheduleRepository $schedules, TaskRepository $tasks, UuidGeneratorInterface $uuid, ResponseFactory $response)
     {
         $this->handler = $handler;
         $this->schedules = $schedules;
         $this->tasks = $tasks;
+        $this->uuid = $uuid;
         $this->response = $response;
     }
 
@@ -92,7 +95,7 @@ final class CreateAction implements RequestHandlerInterface
         $schedule = $this->schedules->getById(new ScheduleId($scheduleId));
         $this->canCreateTask($request->getAttribute('oauth_user_id'), $schedule);
 
-        $taskId = (new UuidGenerator())->uuid1();
+        $taskId = $this->uuid->uuid1();
 
         $this->handler->handle(new Task\Create\Command(
             $scheduleId, $taskId, $name, $description, $level

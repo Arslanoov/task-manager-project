@@ -6,7 +6,7 @@ use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\DBAL;
-use Infrastructure\Service\Flusher;
+use Infrastructure\Service\DoctrineFlusher;
 use Psr\Container\ContainerInterface;
 
 return [
@@ -34,9 +34,6 @@ return [
                 $params['connection'],
                 $config
             );
-        },
-        FlusherInterface::class => function (ContainerInterface $container) {
-            return $container->get(Flusher::class);
         }
     ]
 ];

@@ -7,7 +7,7 @@ namespace Infrastructure\Service;
 use Doctrine\ORM\EntityManagerInterface;
 use Domain\FlusherInterface;
 
-final class Flusher implements FlusherInterface
+final class DoctrineFlusher implements FlusherInterface
 {
     private EntityManagerInterface $em;
 
