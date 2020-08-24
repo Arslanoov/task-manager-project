@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Domain\OAuth\Entity\Scope;
+namespace Infrastructure\App\Doctrine\Type\OAuth\Scope;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\JsonType;
+use Domain\OAuth\Entity\Scope\Scope;
 
 final class ScopeType extends JsonType
 {

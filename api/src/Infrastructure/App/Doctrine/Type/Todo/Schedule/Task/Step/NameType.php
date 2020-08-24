@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\Entity\Schedule\Task\Step;
+namespace Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\Step;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
+use Domain\Todo\Entity\Schedule\Task\Step\Name;
 
 final class NameType extends StringType
 {

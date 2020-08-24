@@ -10,37 +10,37 @@ return [
         ],
         'types' => [
             // User
-            Domain\User\Entity\User\IdType::NAME => Domain\User\Entity\User\IdType::class,
-            Domain\User\Entity\User\LoginType::NAME => Domain\User\Entity\User\LoginType::class,
-            Domain\User\Entity\User\EmailType::NAME => Domain\User\Entity\User\EmailType::class,
-            Domain\User\Entity\User\PasswordType::NAME => Domain\User\Entity\User\PasswordType::class,
+            Infrastructure\App\Doctrine\Type\User\IdType::NAME => Infrastructure\App\Doctrine\Type\User\IdType::class,
+            Infrastructure\App\Doctrine\Type\User\LoginType::NAME => Infrastructure\App\Doctrine\Type\User\LoginType::class,
+            Infrastructure\App\Doctrine\Type\User\EmailType::NAME => Infrastructure\App\Doctrine\Type\User\EmailType::class,
+            Infrastructure\App\Doctrine\Type\User\PasswordType::NAME => Infrastructure\App\Doctrine\Type\User\PasswordType::class,
 
             // OAuth
-            Domain\OAuth\Entity\Client\ClientType::NAME => Domain\OAuth\Entity\Client\ClientType::class,
-            Domain\OAuth\Entity\Scope\ScopeType::NAME => Domain\OAuth\Entity\Scope\ScopeType::class,
+            Infrastructure\App\Doctrine\Type\OAuth\Client\ClientType::NAME => Infrastructure\App\Doctrine\Type\OAuth\Client\ClientType::class,
+            Infrastructure\App\Doctrine\Type\OAuth\Scope\ScopeType::NAME => Infrastructure\App\Doctrine\Type\OAuth\Scope\ScopeType::class,
 
             // Person
-            Domain\Todo\Entity\Person\IdType::NAME => Domain\Todo\Entity\Person\IdType::class,
-            Domain\Todo\Entity\Person\LoginType::NAME => Domain\Todo\Entity\Person\LoginType::class,
-            Domain\Todo\Entity\Person\BackgroundPhotoType::NAME => Domain\Todo\Entity\Person\BackgroundPhotoType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Person\IdType::NAME => Infrastructure\App\Doctrine\Type\Todo\Person\IdType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Person\LoginType::NAME => Infrastructure\App\Doctrine\Type\Todo\Person\LoginType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Person\BackgroundPhotoType::NAME => Infrastructure\App\Doctrine\Type\Todo\Person\BackgroundPhotoType::class,
 
             // Schedule
-            Domain\Todo\Entity\Schedule\IdType::NAME => Domain\Todo\Entity\Schedule\IdType::class,
-            Domain\Todo\Entity\Schedule\NameType::NAME => Domain\Todo\Entity\Schedule\NameType::class,
-            Domain\Todo\Entity\Schedule\TypeType::NAME => Domain\Todo\Entity\Schedule\TypeType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\IdType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\IdType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\NameType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\NameType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\TypeType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\TypeType::class,
 
             // Task
-            Domain\Todo\Entity\Schedule\Task\IdType::NAME => Domain\Todo\Entity\Schedule\Task\IdType::class,
-            Domain\Todo\Entity\Schedule\Task\NameType::NAME => Domain\Todo\Entity\Schedule\Task\NameType::class,
-            Domain\Todo\Entity\Schedule\Task\DescriptionType::NAME => Domain\Todo\Entity\Schedule\Task\DescriptionType::class,
-            Domain\Todo\Entity\Schedule\Task\ImportantLevelType::NAME => Domain\Todo\Entity\Schedule\Task\ImportantLevelType::class,
-            Domain\Todo\Entity\Schedule\Task\StatusType::NAME => Domain\Todo\Entity\Schedule\Task\StatusType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\IdType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\IdType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\NameType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\NameType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\DescriptionType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\DescriptionType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\ImportantLevelType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\ImportantLevelType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\StatusType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\StatusType::class,
 
             // Step
-            Domain\Todo\Entity\Schedule\Task\Step\IdType::NAME => Domain\Todo\Entity\Schedule\Task\Step\IdType::class,
-            Domain\Todo\Entity\Schedule\Task\Step\NameType::NAME => Domain\Todo\Entity\Schedule\Task\Step\NameType::class,
-            Domain\Todo\Entity\Schedule\Task\Step\SortOrderType::NAME => Domain\Todo\Entity\Schedule\Task\Step\SortOrderType::class,
-            Domain\Todo\Entity\Schedule\Task\Step\StatusType::NAME => Domain\Todo\Entity\Schedule\Task\Step\StatusType::class
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\Step\IdType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\Step\IdType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\Step\NameType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\Step\NameType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\Step\SortOrderType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\Step\SortOrderType::class,
+            Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\Step\StatusType::NAME => Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\Step\StatusType::class
         ]
     ]
 ];

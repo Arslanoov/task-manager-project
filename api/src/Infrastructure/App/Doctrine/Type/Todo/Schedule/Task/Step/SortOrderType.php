@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\Entity\Schedule\Task;
+namespace Infrastructure\App\Doctrine\Type\Todo\Schedule\Task\Step;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\StringType;
+use Doctrine\DBAL\Types\IntegerType;
+use Domain\Todo\Entity\Schedule\Task\Step\SortOrder;
 
-final class ImportantLevelType extends StringType
+final class SortOrderType extends IntegerType
 {
-    public const NAME = 'todo_schedule_task_important_level';
+    public const NAME = 'todo_schedule_task_step_sort_order';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value instanceof ImportantLevel ? $value->getValue() : $value;
+        return $value instanceof SortOrder ? $value->getValue() : $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return !empty($value) ? new ImportantLevel($value) : null;
+        return new SortOrder($value);
     }
 
     public function getName(): string

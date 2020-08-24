@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\OAuth\Entity\Client;
+namespace Infrastructure\App\Doctrine\Type\OAuth\Client;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
+use Domain\OAuth\Entity\Client\Client;
 
 final class ClientType extends StringType
 {

@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Entity\User;
+namespace Infrastructure\App\Doctrine\Type\Todo\Schedule;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
+use Domain\Todo\Entity\Schedule\Type;
 
-final class EmailType extends StringType
+final class TypeType extends StringType
 {
-    public const NAME = 'user_user_email';
+    public const NAME = 'todo_schedule_type';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value instanceof Id ? $value->getValue() : $value;
+        return $value instanceof Type ? $value->getValue() : $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return !empty($value) ? new Email($value) : null;
+        return !empty($value) ? new Type($value) : null;
     }
 
     public function getName(): string

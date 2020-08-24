@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\Entity\Schedule\Task\Step;
+namespace Infrastructure\App\Doctrine\Type\User;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\IntegerType;
+use Doctrine\DBAL\Types\GuidType;
+use Domain\User\Entity\User\Id;
 
-final class IdType extends IntegerType
+final class IdType extends GuidType
 {
-    public const NAME = 'todo_schedule_task_step_id';
+    public const NAME = 'user_user_id';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {

@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\Entity\Schedule;
+namespace Infrastructure\App\Doctrine\Type\User;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
+use Domain\User\Entity\User\Password;
 
-final class TypeType extends StringType
+final class PasswordType extends StringType
 {
-    public const NAME = 'todo_schedule_type';
+    public const NAME = 'user_user_password';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value instanceof Type ? $value->getValue() : $value;
+        return $value instanceof Password ? $value->getValue() : $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return !empty($value) ? new Type($value) : null;
+        return !empty($value) ? new Password($value) : null;
     }
 
     public function getName(): string

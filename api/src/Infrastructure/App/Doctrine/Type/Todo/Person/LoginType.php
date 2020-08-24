@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\Entity\Schedule;
+namespace Infrastructure\App\Doctrine\Type\Todo\Person;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
+use Domain\Todo\Entity\Person\Login;
 
-final class NameType extends StringType
+final class LoginType extends StringType
 {
-    public const NAME = 'todo_schedule_name';
+    public const NAME = 'todo_person_login';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value instanceof Name ? $value->getValue() : $value;
+        return $value instanceof Login ? $value->getRaw() : $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return !empty($value) ? new Name($value) : null;
+        return !empty($value) ? new Login($value) : null;
     }
 
     public function getName(): string

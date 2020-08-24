@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Entity\User;
+namespace Infrastructure\App\Doctrine\Type\User;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\GuidType;
+use Doctrine\DBAL\Types\StringType;
+use Domain\User\Entity\User\Login;
 
-final class IdType extends GuidType
+final class LoginType extends StringType
 {
-    public const NAME = 'user_user_id';
+    public const NAME = 'user_user_login';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value instanceof Id ? $value->getValue() : $value;
+        return $value instanceof Login ? $value->getRaw() : $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return !empty($value) ? new Id($value) : null;
+        return !empty($value) ? new Login($value) : null;
     }
 
     public function getName(): string

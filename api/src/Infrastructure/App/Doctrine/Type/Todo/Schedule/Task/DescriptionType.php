@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\Entity\Person;
+namespace Infrastructure\App\Doctrine\Type\Todo\Schedule\Task;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\GuidType;
+use Doctrine\DBAL\Types\StringType;
+use Domain\Todo\Entity\Schedule\Task\Description;
 
-final class IdType extends GuidType
+final class DescriptionType extends StringType
 {
-    public const NAME = 'todo_person_id';
+    public const NAME = 'todo_schedule_task_description';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value instanceof Id ? $value->getValue() : $value;
+        return $value instanceof Description ? $value->getValue() : $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return !empty($value) ? new Id($value) : null;
+        return !empty($value) ? new Description($value) : null;
     }
 
     public function getName(): string

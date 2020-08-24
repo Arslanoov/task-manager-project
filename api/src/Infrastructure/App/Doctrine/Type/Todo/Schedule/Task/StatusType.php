@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\Entity\Schedule\Task\Step;
+namespace Infrastructure\App\Doctrine\Type\Todo\Schedule\Task;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
+use Domain\Todo\Entity\Schedule\Task\Status;
 
 final class StatusType extends StringType
 {
-    public const NAME = 'todo_schedule_task_step_status';
+    public const NAME = 'todo_schedule_task_status';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
