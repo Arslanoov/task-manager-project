@@ -12,9 +12,10 @@ use Domain\Exception\Schedule\StepNotFoundException;
 use Domain\Todo\Entity\Schedule\Task\Step\Id;
 use Domain\Todo\Entity\Schedule\Task\Step\SortOrder;
 use Domain\Todo\Entity\Schedule\Task\Step\Step;
+use Domain\Todo\Entity\Schedule\Task\Step\StepRepository;
 use Domain\Todo\Entity\Schedule\Task\Task;
 
-final class DoctrineStepRepository
+final class DoctrineStepRepository implements StepRepository
 {
     private EntityManagerInterface $em;
     private EntityRepository $steps;

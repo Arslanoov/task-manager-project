@@ -7,7 +7,7 @@ namespace App\Http\Action\Todo\Task;
 use App\Exception\ForbiddenException;
 use Domain\Todo\Entity\Schedule\Task\Id;
 use Domain\Todo\Entity\Schedule\Task\Task;
-use Domain\Todo\Entity\Schedule\Task\DoctrineTaskRepository;
+use Domain\Todo\Entity\Schedule\Task\TaskRepository;
 use Domain\Todo\UseCase\Schedule\Task\Edit\Command;
 use Domain\Todo\UseCase\Schedule\Task\Edit\Handler;
 use Framework\Http\Psr7\ResponseFactory;
@@ -19,16 +19,16 @@ use OpenApi\Annotations as OA;
 final class EditAction implements RequestHandlerInterface
 {
     private Handler $handler;
-    private DoctrineTaskRepository $tasks;
+    private TaskRepository $tasks;
     private ResponseFactory $response;
 
     /**
      * EditAction constructor.
      * @param Handler $handler
-     * @param DoctrineTaskRepository $tasks
+     * @param TaskRepository $tasks
      * @param ResponseFactory $response
      */
-    public function __construct(Handler $handler, DoctrineTaskRepository $tasks, ResponseFactory $response)
+    public function __construct(Handler $handler, TaskRepository $tasks, ResponseFactory $response)
     {
         $this->handler = $handler;
         $this->tasks = $tasks;

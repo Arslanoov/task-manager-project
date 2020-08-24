@@ -7,9 +7,9 @@ namespace App\Http\Action\Todo\Task\Step;
 use App\Exception\ForbiddenException;
 use Domain\Todo\Entity\Schedule\Task\Id;
 use Domain\Todo\Entity\Schedule\Task\Step\Step;
-use Domain\Todo\Entity\Schedule\Task\Step\DoctrineStepRepository;
+use Domain\Todo\Entity\Schedule\Task\Step\StepRepository;
 use Domain\Todo\Entity\Schedule\Task\Task;
-use Domain\Todo\Entity\Schedule\Task\DoctrineTaskRepository;
+use Domain\Todo\Entity\Schedule\Task\TaskRepository;
 use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -18,17 +18,17 @@ use OpenApi\Annotations as OA;
 
 final class IndexAction implements RequestHandlerInterface
 {
-    private DoctrineTaskRepository $tasks;
-    private DoctrineStepRepository $steps;
+    private TaskRepository $tasks;
+    private StepRepository $steps;
     private ResponseFactory $response;
 
     /**
      * IndexAction constructor.
-     * @param DoctrineTaskRepository $tasks
-     * @param DoctrineStepRepository $steps
+     * @param TaskRepository $tasks
+     * @param StepRepository $steps
      * @param ResponseFactory $response
      */
-    public function __construct(DoctrineTaskRepository $tasks, DoctrineStepRepository $steps, ResponseFactory $response)
+    public function __construct(TaskRepository $tasks, StepRepository $steps, ResponseFactory $response)
     {
         $this->tasks = $tasks;
         $this->steps = $steps;

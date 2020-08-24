@@ -11,8 +11,9 @@ use Domain\User\Entity\User\Email;
 use Domain\User\Entity\User\Id;
 use Domain\User\Entity\User\Login;
 use Domain\User\Entity\User\User;
+use Domain\User\Entity\User\UserRepository;
 
-final class DoctrineUserRepository
+final class DoctrineUserRepository implements UserRepository
 {
     private EntityManagerInterface $em;
     private ObjectRepository $users;

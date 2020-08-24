@@ -9,8 +9,9 @@ use Doctrine\ORM\EntityRepository;
 use Domain\Exception\Schedule\PersonNotFoundException;
 use Domain\Todo\Entity\Person\Id;
 use Domain\Todo\Entity\Person\Person;
+use Domain\Todo\Entity\Person\PersonRepository;
 
-final class DoctrinePersonRepository
+final class DoctrinePersonRepository implements PersonRepository
 {
     private EntityManagerInterface $em;
     private EntityRepository $persons;

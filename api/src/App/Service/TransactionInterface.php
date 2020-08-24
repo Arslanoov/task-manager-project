@@ -11,7 +11,13 @@ interface TransactionInterface
 {
     public function begin(): void;
 
+    /**
+     * @throws ConnectionException
+     */
     public function commit(): void;
 
+    /**
+     * @throws ConnectionException
+     */
     public function rollback(): void;
 }

@@ -7,7 +7,7 @@ namespace App\Http\Action\Todo\Task\Step;
 use App\Exception\ForbiddenException;
 use Domain\Todo\Entity\Schedule\Task\Step\Id;
 use Domain\Todo\Entity\Schedule\Task\Step\Step;
-use Domain\Todo\Entity\Schedule\Task\Step\DoctrineStepRepository;
+use Domain\Todo\Entity\Schedule\Task\Step\StepRepository;
 use Domain\Todo\UseCase\Schedule\Task\Step\ChangeStatus\Command;
 use Domain\Todo\UseCase\Schedule\Task\Step\ChangeStatus\Handler;
 use Framework\Http\Psr7\ResponseFactory;
@@ -18,17 +18,17 @@ use OpenApi\Annotations as OA;
 
 final class ChangeStatusAction implements RequestHandlerInterface
 {
-    private DoctrineStepRepository $steps;
+    private StepRepository $steps;
     private Handler $handler;
     private ResponseFactory $response;
 
     /**
      * ChangeStatusAction constructor.
-     * @param DoctrineStepRepository $steps
+     * @param StepRepository $steps
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(DoctrineStepRepository $steps, Handler $handler, ResponseFactory $response)
+    public function __construct(StepRepository $steps, Handler $handler, ResponseFactory $response)
     {
         $this->steps = $steps;
         $this->handler = $handler;

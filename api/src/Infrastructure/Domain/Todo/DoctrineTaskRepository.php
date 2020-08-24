@@ -9,8 +9,9 @@ use Doctrine\ORM\EntityRepository;
 use Domain\Exception\Schedule\TaskNotFoundException;
 use Domain\Todo\Entity\Schedule\Task\Id;
 use Domain\Todo\Entity\Schedule\Task\Task;
+use Domain\Todo\Entity\Schedule\Task\TaskRepository;
 
-final class DoctrineTaskRepository
+final class DoctrineTaskRepository implements TaskRepository
 {
     private EntityManagerInterface $em;
     private EntityRepository $tasks;

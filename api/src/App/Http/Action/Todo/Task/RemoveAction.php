@@ -7,7 +7,7 @@ namespace App\Http\Action\Todo\Task;
 use App\Exception\ForbiddenException;
 use Domain\Todo\Entity\Schedule\Task\Id;
 use Domain\Todo\Entity\Schedule\Task\Task;
-use Domain\Todo\Entity\Schedule\Task\DoctrineTaskRepository;
+use Domain\Todo\Entity\Schedule\Task\TaskRepository;
 use Domain\Todo\UseCase\Schedule\Task\Remove\Command;
 use Domain\Todo\UseCase\Schedule\Task\Remove\Handler;
 use Framework\Http\Psr7\ResponseFactory;
@@ -18,17 +18,17 @@ use OpenApi\Annotations as OA;
 
 final class RemoveAction implements RequestHandlerInterface
 {
-    private DoctrineTaskRepository $tasks;
+    private TaskRepository $tasks;
     private Handler $handler;
     private ResponseFactory $response;
 
     /**
      * RemoveAction constructor.
-     * @param DoctrineTaskRepository $tasks
+     * @param TaskRepository $tasks
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(DoctrineTaskRepository $tasks, Handler $handler, ResponseFactory $response)
+    public function __construct(TaskRepository $tasks, Handler $handler, ResponseFactory $response)
     {
         $this->tasks = $tasks;
         $this->handler = $handler;

@@ -6,9 +6,9 @@ namespace App\Http\Action\Todo\Schedule\Daily;
 
 use App\Service\Date;
 use Domain\Todo\Entity\Person\Id;
-use Domain\Todo\Entity\Person\DoctrinePersonRepository;
+use Domain\Todo\Entity\Person\PersonRepository;
 use Domain\Todo\Entity\Schedule\Schedule;
-use Domain\Todo\Entity\Schedule\DoctrineScheduleRepository;
+use Domain\Todo\Entity\Schedule\ScheduleRepository;
 use Domain\Todo\Entity\Schedule\Task\Task;
 use Domain\Todo\UseCase\Schedule\CreateDaily\Command;
 use Domain\Todo\UseCase\Schedule\CreateDaily\Handler;
@@ -19,19 +19,19 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class GetTodayAction implements RequestHandlerInterface
 {
-    private DoctrineScheduleRepository $schedules;
-    private DoctrinePersonRepository $persons;
+    private ScheduleRepository $schedules;
+    private PersonRepository $persons;
     private Handler $handler;
     private ResponseFactory $response;
 
     /**
      * GetTodayAction constructor.
-     * @param DoctrineScheduleRepository $schedules
-     * @param DoctrinePersonRepository $persons
+     * @param ScheduleRepository $schedules
+     * @param PersonRepository $persons
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(DoctrineScheduleRepository $schedules, DoctrinePersonRepository $persons, Handler $handler, ResponseFactory $response)
+    public function __construct(ScheduleRepository $schedules, PersonRepository $persons, Handler $handler, ResponseFactory $response)
     {
         $this->schedules = $schedules;
         $this->persons = $persons;

@@ -11,9 +11,10 @@ use Domain\Exception\Schedule\ScheduleNotFoundException;
 use Domain\Todo\Entity\Person\Person;
 use Domain\Todo\Entity\Schedule\Id;
 use Domain\Todo\Entity\Schedule\Schedule;
+use Domain\Todo\Entity\Schedule\ScheduleRepository;
 use Domain\Todo\Entity\Schedule\Type;
 
-final class DoctrineScheduleRepository
+final class DoctrineScheduleRepository implements ScheduleRepository
 {
     private EntityManagerInterface $em;
     private EntityRepository $schedules;
