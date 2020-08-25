@@ -1,6 +1,6 @@
 FROM nginx:1.17-alpine
 
-COPY ./common/nginx/patterns /etc/nginx/patterns
+COPY ./common/nginx/patterns /etc/nginx/snippets
 COPY ./dev/nginx/conf.d /etc/nginx/conf.d/
 
 WORKDIR /var/www/gateway
