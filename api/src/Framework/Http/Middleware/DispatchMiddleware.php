@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Framework\Http\Middleware;
 
-use Framework\Http\Pipeline\MiddlewareResolver;
+use Framework\Http\Pipeline\MiddlewareResolverInterface;
 use Framework\Http\Router\Result;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,9 +13,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class DispatchMiddleware implements MiddlewareInterface
 {
-    private MiddlewareResolver $resolver;
+    private MiddlewareResolverInterface $resolver;
 
-    public function __construct(MiddlewareResolver $resolver)
+    public function __construct(MiddlewareResolverInterface $resolver)
     {
         $this->resolver = $resolver;
     }

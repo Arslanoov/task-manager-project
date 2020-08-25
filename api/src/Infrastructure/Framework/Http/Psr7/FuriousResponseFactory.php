@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Framework\Http\Psr7;
+namespace Infrastructure\Framework\Http\Psr7;
 
+use Framework\Http\Psr7\ResponseFactory;
 use Furious\Psr7\Response;
 use Furious\Psr7\Response\EmptyResponse;
 use Furious\Psr7\Response\HtmlResponse;

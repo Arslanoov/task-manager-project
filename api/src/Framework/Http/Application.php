@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Framework\Http;
 
 use Framework\Http\Pipeline\MiddlewarePipeInterface;
-use Framework\Http\Pipeline\MiddlewareResolver;
+use Framework\Http\Pipeline\MiddlewareResolverInterface;
 use Framework\Http\Pipeline\PathMiddlewareDecorator;
 use Framework\Http\Router\Route;
 use Framework\Http\Router\Router;
@@ -17,11 +17,11 @@ final class Application
 {
     private Router $router;
     private RequestHandlerInterface $default;
-    private MiddlewareResolver $resolver;
+    private MiddlewareResolverInterface $resolver;
     private MiddlewarePipeInterface $pipeline;
 
     public function __construct(
-        MiddlewareResolver $resolver, Router $router,
+        MiddlewareResolverInterface $resolver, Router $router,
         RequestHandlerInterface $default, MiddlewarePipeInterface $pipeline
     )
     {

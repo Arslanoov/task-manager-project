@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Framework\Http\Pipeline;
+namespace Infrastructure\Framework\Http\Pipeline;
 
+use Framework\Http\Pipeline\MiddlewarePipeInterface;
 use Furious\Psr15\MiddlewarePipe;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

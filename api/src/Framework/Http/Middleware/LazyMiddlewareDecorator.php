@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Framework\Http\Middleware;
 
-use Framework\Http\Pipeline\MiddlewareResolver;
+use Framework\Http\Pipeline\MiddlewareResolverInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,17 +13,17 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class LazyMiddlewareDecorator implements MiddlewareInterface
 {
-    private MiddlewareResolver $resolver;
+    private MiddlewareResolverInterface $resolver;
     private ContainerInterface $container;
     private string $action;
 
     /**
      * LazyMiddlewareDecorator constructor.
-     * @param MiddlewareResolver $resolver
+     * @param MiddlewareResolverInterface $resolver
      * @param ContainerInterface $container
      * @param string $action
      */
-    public function __construct(MiddlewareResolver $resolver, ContainerInterface $container, string $action)
+    public function __construct(MiddlewareResolverInterface $resolver, ContainerInterface $container, string $action)
     {
         $this->resolver = $resolver;
         $this->container = $container;

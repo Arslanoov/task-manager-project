@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Middleware\ErrorHandler;
-use Framework\Http\Psr7\LaminasResponseFactory;
 use Framework\Http\Psr7\ResponseFactory;
 use Laminas\Diactoros\ServerRequestFactory;
 use Psr\Container\ContainerInterface;
@@ -13,9 +12,6 @@ return [
         ReflectionBasedAbstractFactory::class,
     ],
     'factories' => [
-        ResponseFactory::class => function (ContainerInterface $container) {
-            return $container->get(LaminasResponseFactory::class);
-        },
         ServerRequestInterface::class => function (ContainerInterface $container) {
             return (new ServerRequestFactory())->fromGlobals();
         },
