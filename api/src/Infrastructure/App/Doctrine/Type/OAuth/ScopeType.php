@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\App\Doctrine\Type\OAuth\Scope;
+namespace Infrastructure\App\Doctrine\Type\OAuth;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;

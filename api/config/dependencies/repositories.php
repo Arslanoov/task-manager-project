@@ -1,7 +1,6 @@
 <?php
 
 use Infrastructure\Domain as Implementation;
-use Domain;
 use Psr\Container\ContainerInterface;
 
 return [

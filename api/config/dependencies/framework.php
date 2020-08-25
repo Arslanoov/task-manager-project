@@ -6,7 +6,6 @@ use Framework\Http\Application;
 use Framework\Http\Pipeline\MiddlewarePipeInterface;
 use Framework\Http\Pipeline\MiddlewareResolverInterface;
 use Framework\Http\Psr7\ResponseFactory;
-use Framework\Http\Router\FuriousRouterAdapter;
 use Framework\Http\Router\Router;
 use Infrastructure as Implementation;
 use Psr\Container\ContainerInterface;
@@ -16,8 +15,8 @@ return [
         ResponseFactory::class => function (ContainerInterface $container) {
             return $container->get(Implementation\Framework\Http\Psr7\LaminasResponseFactory::class);
         },
-        Router::class => function (ContainerInterface $container) {
-            return $container->get(FuriousRouterAdapter::class);
+        Router::class => function (ContainerInterface $container)  {
+            return $container->get(Implementation\Framework\Http\Router\FuriousRouterAdapter::class);
         },
         MiddlewareResolverInterface::class => function (ContainerInterface $container) {
             return new Implementation\Framework\Http\Pipeline\FuriousMiddlewareResolver($container);

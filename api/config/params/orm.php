@@ -16,8 +16,8 @@ return [
             Infrastructure\App\Doctrine\Type\User\PasswordType::NAME => Infrastructure\App\Doctrine\Type\User\PasswordType::class,
 
             // OAuth
-            Infrastructure\App\Doctrine\Type\OAuth\Client\ClientType::NAME => Infrastructure\App\Doctrine\Type\OAuth\Client\ClientType::class,
-            Infrastructure\App\Doctrine\Type\OAuth\Scope\ScopeType::NAME => Infrastructure\App\Doctrine\Type\OAuth\Scope\ScopeType::class,
+            Infrastructure\App\Doctrine\Type\OAuth\ClientType::NAME => Infrastructure\App\Doctrine\Type\OAuth\ClientType::class,
+            Infrastructure\App\Doctrine\Type\OAuth\ScopeType::NAME => Infrastructure\App\Doctrine\Type\OAuth\ScopeType::class,
 
             // Person
             Infrastructure\App\Doctrine\Type\Todo\Person\IdType::NAME => Infrastructure\App\Doctrine\Type\Todo\Person\IdType::class,

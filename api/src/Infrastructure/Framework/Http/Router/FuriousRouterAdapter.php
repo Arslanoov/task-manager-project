@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Framework\Http\Router;
+namespace Infrastructure\Framework\Http\Router;
 
+use Framework\Http\Router\Result;
+use Framework\Http\Router\Route;
+use Framework\Http\Router\Router;
 use Furious\Router\Collection\RouteCollection;
 use Psr\Http\Message\ServerRequestInterface;
 use Furious\Router\Router as FuriousRouter;
