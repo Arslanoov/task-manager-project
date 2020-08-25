@@ -6,7 +6,7 @@ use Psr\Container\ContainerInterface;
 return [
     'factories' => [
         Domain\User\Entity\User\UserRepository::class => function (ContainerInterface $container) {
-            return $container->get(Implementation\User\DoctrineUserRepository::class);
+            return $container->get(Implementation\User\Repository\DoctrineUserRepository::class);
         },
 
         Domain\Todo\Entity\Person\PersonRepository::class => function (ContainerInterface $container) {

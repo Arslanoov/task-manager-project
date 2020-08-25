@@ -8,24 +8,24 @@ use Domain\FlusherInterface;
 use Domain\Todo\Entity\Person\BackgroundPhoto;
 use Domain\Todo\Entity\Person\Id;
 use Domain\Todo\Entity\Person\PersonRepository;
-use Domain\Todo\Service\PhotoRemover;
-use Domain\Todo\Service\PhotoUploader;
+use Domain\Todo\Service\PhotoRemoverInterface;
+use Domain\Todo\Service\PhotoUploaderInterface;
 
 final class Handler
 {
     private PersonRepository $persons;
-    private PhotoUploader $uploader;
-    private PhotoRemover $remover;
+    private PhotoUploaderInterface $uploader;
+    private PhotoRemoverInterface $remover;
     private FlusherInterface $flusher;
 
     /**
      * Handler constructor.
      * @param PersonRepository $persons
-     * @param PhotoUploader $uploader
-     * @param PhotoRemover $remover
+     * @param PhotoUploaderInterface $uploader
+     * @param PhotoRemoverInterface $remover
      * @param FlusherInterface $flusher
      */
-    public function __construct(PersonRepository $persons, PhotoUploader $uploader, PhotoRemover $remover, FlusherInterface $flusher)
+    public function __construct(PersonRepository $persons, PhotoUploaderInterface $uploader, PhotoRemoverInterface $remover, FlusherInterface $flusher)
     {
         $this->persons = $persons;
         $this->uploader = $uploader;

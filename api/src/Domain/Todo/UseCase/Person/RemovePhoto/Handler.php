@@ -7,21 +7,21 @@ namespace Domain\Todo\UseCase\Person\RemovePhoto;
 use Domain\FlusherInterface;
 use Domain\Todo\Entity\Person\Id;
 use Domain\Todo\Entity\Person\PersonRepository;
-use Domain\Todo\Service\PhotoRemover;
+use Domain\Todo\Service\PhotoRemoverInterface;
 
 final class Handler
 {
     private PersonRepository $persons;
-    private PhotoRemover $remover;
+    private PhotoRemoverInterface $remover;
     private FlusherInterface $flusher;
 
     /**
      * Handler constructor.
      * @param PersonRepository $persons
-     * @param PhotoRemover $remover
+     * @param PhotoRemoverInterface $remover
      * @param FlusherInterface $flusher
      */
-    public function __construct(PersonRepository $persons, PhotoRemover $remover, FlusherInterface $flusher)
+    public function __construct(PersonRepository $persons, PhotoRemoverInterface $remover, FlusherInterface $flusher)
     {
         $this->persons = $persons;
         $this->remover = $remover;

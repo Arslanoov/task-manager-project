@@ -12,21 +12,21 @@ use Domain\User\Entity\User\Login;
 use Domain\User\Entity\User\Password;
 use Domain\User\Entity\User\User;
 use Domain\User\Entity\User\UserRepository;
-use Domain\User\Service\User\PasswordHasher;
+use Domain\User\Service\PasswordHasherInterface;
 
 final class Handler
 {
     private UserRepository $users;
-    private PasswordHasher $hasher;
+    private PasswordHasherInterface $hasher;
     private FlusherInterface $flusher;
 
     /**
      * Handler constructor.
      * @param UserRepository $users
-     * @param PasswordHasher $hasher
+     * @param PasswordHasherInterface $hasher
      * @param FlusherInterface $flusher
      */
-    public function __construct(UserRepository $users, PasswordHasher $hasher, FlusherInterface $flusher)
+    public function __construct(UserRepository $users, PasswordHasherInterface $hasher, FlusherInterface $flusher)
     {
         $this->users = $users;
         $this->hasher = $hasher;

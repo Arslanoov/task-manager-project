@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Domain\User\Service;
 
-use Domain\User\Service\User\PasswordValidatorInterface;
+use Domain\User\Service\PasswordValidatorInterface;
 
 final class PasswordValidator implements PasswordValidatorInterface
 {
