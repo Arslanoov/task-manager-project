@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\Service;
+namespace Infrastructure\Domain\Todo\Service;
 
+use Domain\Todo\Service\PhotoUploaderInterface;
 use Psr\Http\Message\UploadedFileInterface;
 use Ramsey\Uuid\Uuid;
 
-final class PhotoUploader
+final class PhotoUploader implements PhotoUploaderInterface
 {
     private string $path;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Domain\Todo;
+namespace Infrastructure\Domain\Todo\Repository;
 
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;

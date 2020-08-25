@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\Todo\Service;
+namespace Infrastructure\Domain\Todo\Service;
 
-use Psr\Http\Message\UploadedFileInterface;
-use Ramsey\Uuid\Uuid;
+use Domain\Todo\Service\PhotoRemoverInterface;
 
-final class PhotoRemover
+final class PhotoRemover implements PhotoRemoverInterface
 {
     private string $path;
 

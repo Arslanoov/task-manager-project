@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Service\User;
+namespace Infrastructure\Domain\User\Service;
 
+use Domain\User\Service\User\PasswordHasherInterface;
 use RuntimeException;
 
-final class PasswordHasher
+final class PasswordHasher implements PasswordHasherInterface
 {
     public function hash(string $password): string
     {

@@ -11,16 +11,16 @@ return [
         },
 
         Domain\Todo\Entity\Person\PersonRepository::class => function (ContainerInterface $container) {
-            return $container->get(Implementation\Todo\DoctrinePersonRepository::class);
+            return $container->get(Implementation\Todo\Repository\DoctrinePersonRepository::class);
         },
         Domain\Todo\Entity\Schedule\ScheduleRepository::class => function (ContainerInterface $container) {
-            return $container->get(Implementation\Todo\DoctrineScheduleRepository::class);
+            return $container->get(Implementation\Todo\Repository\DoctrineScheduleRepository::class);
         },
         Domain\Todo\Entity\Schedule\Task\TaskRepository::class => function (ContainerInterface $container) {
             return $container->get(Domain\Todo\Entity\Schedule\Task\TaskRepository::class);
         },
         Domain\Todo\Entity\Schedule\Task\Step\StepRepository::class => function (ContainerInterface $container) {
-            return $container->get(Implementation\Todo\DoctrineStepRepository::class);
+            return $container->get(Implementation\Todo\Repository\DoctrineStepRepository::class);
         }
     ]
 ];
