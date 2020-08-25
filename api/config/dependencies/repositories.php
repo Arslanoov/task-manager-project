@@ -16,7 +16,7 @@ return [
             return $container->get(Implementation\Todo\Repository\DoctrineScheduleRepository::class);
         },
         Domain\Todo\Entity\Schedule\Task\TaskRepository::class => function (ContainerInterface $container) {
-            return $container->get(Domain\Todo\Entity\Schedule\Task\TaskRepository::class);
+            return $container->get(Implementation\Todo\Repository\DoctrineTaskRepository::class);
         },
         Domain\Todo\Entity\Schedule\Task\Step\StepRepository::class => function (ContainerInterface $container) {
             return $container->get(Implementation\Todo\Repository\DoctrineStepRepository::class);
