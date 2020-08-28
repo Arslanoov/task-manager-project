@@ -17,6 +17,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Laminas\Diactoros\ServerRequest;
 use Laminas\Diactoros\Stream;
 use Laminas\Diactoros\Uri;
+use Symfony\Component\Dotenv\Dotenv;
 
 class FunctionalTestCase extends TestCase
 {
@@ -104,6 +105,7 @@ class FunctionalTestCase extends TestCase
 
     private function container(): ContainerInterface
     {
+        (new Dotenv(true))->load('.env');
         return require 'config/container.php';
     }
 }

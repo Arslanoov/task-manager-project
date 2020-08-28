@@ -103,4 +103,32 @@ class CreateTest extends TestCase
         $this->assertFalse($schedule->isNotCustom());
         $this->assertTrue($schedule->isCustom());
     }
+
+    public function testSuccessByDate(): void
+    {
+        $person = $this->person;
+        $date = new DateTimeImmutable('-10 day');
+
+        $schedule = Schedule::byDate(
+            $id = Id::uuid4(),
+            $person,
+            $date
+        );
+
+        $this->assertEquals($schedule->getId(), $id);
+        $this->assertTrue($schedule->getId()->isEqual($id));
+
+        $this->assertEquals($schedule->getPerson(), $person);
+
+        $this->assertEquals($schedule->getName(), new Name('Daily list'));
+
+        $this->assertEquals($schedule->getDate(), $date);
+
+        $this->assertEquals($schedule->getTasksCount(), 0);
+
+        $this->assertFalse($schedule->isMain());
+        $this->assertTrue($schedule->isNotCustom());
+        $this->assertFalse($schedule->isCustom());
+        $this->assertTrue($schedule->isDaily());
+    }
 }

@@ -81,7 +81,7 @@ class Task
         $this->level = $level;
         $this->status = $status;
         $this->steps = new ArrayCollection();
-        $this->finishedSteps = 0;
+        $this->finishedSteps = $finishedSteps;
     }
 
     public static function new(

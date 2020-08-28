@@ -38,9 +38,13 @@ api-generate-docs:
 	docker-compose run --rm api-php-cli php bin/console api:generate:docs
 
 api-load-fixtures:
-	docker-compose exec api-php-cli composer app fixtures:load
+	docker-compose run --rm api-php-cli vendor/bin/phpunit fixtures:load
 api-tests-run:
-	docker-compose run --rm api-php-cli vendor/bin/phpunit
+	docker-compose run --rm api-php-cli vendor/bin/phpunit --colors=always
+api-tests-unit:
+	docker-compose run --rm api-php-cli vendor/bin/phpunit --colors=always --testsuite=Unit
+api-tests-functional:
+	docker-compose run --rm api-php-cli vendor/bin/phpunit --colors=always --testsuite=Functional
 
 frontend-install:
 	docker-compose exec frontend-nodejs npm install

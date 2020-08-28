@@ -39,9 +39,7 @@ class OAuthTest extends FunctionalTestCase
 
         $data = json_decode($content, true);
 
-        $this->assertArraySubset([
-            'token_type' => 'Bearer',
-        ], $data);
+        $this->assertEquals('Bearer', $data['token_type']);
 
         $this->assertArrayHasKey('expires_in', $data);
         $this->assertNotEmpty($data['expires_in']);

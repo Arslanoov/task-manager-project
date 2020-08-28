@@ -58,4 +58,13 @@ final class ScheduleBuilder
             $this->person
         );
     }
+
+    public function custom(): Schedule
+    {
+        return Schedule::custom(
+            $this->id,
+            $this->name,
+            $this->person
+        );
+    }
 }
