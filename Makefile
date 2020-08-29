@@ -44,6 +44,9 @@ api-tests-unit:
 api-tests-functional:
 	docker-compose run --rm api-php-cli vendor/bin/phpunit --colors=always --testsuite=Functional
 
+api-lint:
+	docker-compose run --rm api-php-cli composer lint
+
 frontend-install:
 	docker-compose exec frontend-nodejs npm install
 frontend-build-sass:

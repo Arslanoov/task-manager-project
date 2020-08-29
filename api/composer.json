@@ -42,6 +42,6 @@
     "sort-packages": true
   },
   "scripts": {
-    "serve": "php -S 0.0.0.0:8093 -t public"
+    "lint": "find bin config public src config tests -name \\\"*.php\\\" -print0 | xargs -0 -n1 php -l"
   }
 }
