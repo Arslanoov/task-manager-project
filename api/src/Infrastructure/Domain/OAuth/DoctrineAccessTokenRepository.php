@@ -28,9 +28,10 @@ final class DoctrineAccessTokenRepository implements AccessTokenRepositoryInterf
     }
 
     public function getNewToken(
-        ClientEntityInterface $clientEntity, array $scopes, $userIdentifier = null
-    ): AccessTokenEntityInterface
-    {
+        ClientEntityInterface $clientEntity,
+        array $scopes,
+        $userIdentifier = null
+    ): AccessTokenEntityInterface {
         $accessToken = new AccessToken();
         $accessToken->setClient($clientEntity);
 

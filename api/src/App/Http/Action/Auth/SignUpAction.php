@@ -35,8 +35,14 @@ final class SignUpAction implements RequestHandlerInterface
      * @param UuidGeneratorInterface $uuid
      * @param TransactionInterface $transaction
      */
-    public function __construct(User\SignUp\Handler $userSignUpHandler, Person\Create\Handler $personCreateHandler, Schedule\CreateMain\Handler $createScheduleHandler, ResponseFactory $response, UuidGeneratorInterface $uuid, TransactionInterface $transaction)
-    {
+    public function __construct(
+        User\SignUp\Handler $userSignUpHandler,
+        Person\Create\Handler $personCreateHandler,
+        Schedule\CreateMain\Handler $createScheduleHandler,
+        ResponseFactory $response,
+        UuidGeneratorInterface $uuid,
+        TransactionInterface $transaction
+    ) {
         $this->userSignUpHandler = $userSignUpHandler;
         $this->personCreateHandler = $personCreateHandler;
         $this->createScheduleHandler = $createScheduleHandler;
@@ -83,7 +89,7 @@ final class SignUpAction implements RequestHandlerInterface
         $login = $body['login'] ?? '';
         $email = $body['email'] ?? '';
 
-        $signUpCommand = new User\SignUp\Command($id, $login, $email, $body['password'] ?? '',);
+        $signUpCommand = new User\SignUp\Command($id, $login, $email, $body['password'] ?? '');
         $createPersonCommand = new Person\Create\Command($id, $login);
         $createScheduleCommand = new Schedule\CreateMain\Command($id);
 

@@ -65,10 +65,13 @@ class Schedule
      * @param int $tasksCount
      */
     private function __construct(
-        Id $id, Person $person, DateTimeImmutable $date,
-        Name $name, Type $type, int $tasksCount = 0
-    )
-    {
+        Id $id,
+        Person $person,
+        DateTimeImmutable $date,
+        Name $name,
+        Type $type,
+        int $tasksCount = 0
+    ) {
         $this->id = $id;
         $this->person = $person;
         $this->date = $date;
@@ -81,32 +84,44 @@ class Schedule
     public static function main(Id $id, Person $person): self
     {
         return new self(
-            $id, $person, new DateTimeImmutable('today'),
-            new Name('Main list'), Type::main()
+            $id,
+            $person,
+            new DateTimeImmutable('today'),
+            new Name('Main list'),
+            Type::main()
         );
     }
 
     public static function daily(Id $id, Person $person): self
     {
         return new self(
-            $id, $person, new DateTimeImmutable('today'),
-            new Name('Daily list'), Type::daily()
+            $id,
+            $person,
+            new DateTimeImmutable('today'),
+            new Name('Daily list'),
+            Type::daily()
         );
     }
 
     public static function byDate(Id $id, Person $person, DateTimeImmutable $date): self
     {
         return new self(
-            $id, $person, $date,
-            new Name('Daily list'), Type::daily()
+            $id,
+            $person,
+            $date,
+            new Name('Daily list'),
+            Type::daily()
         );
     }
 
     public static function custom(Id $id, Name $name, Person $person): self
     {
         return new self(
-            $id, $person, new DateTimeImmutable('today'),
-            $name, Type::custom()
+            $id,
+            $person,
+            new DateTimeImmutable('today'),
+            $name,
+            Type::custom()
         );
     }
 
@@ -201,7 +216,7 @@ class Schedule
     public function rename(Name $name): void
     {
         if ($this->isNotCustom()) {
-            throw new DomainException('You can rename only custom scheudle');
+            throw new DomainException('You can rename only custom schedule');
         }
         $this->name = $name;
     }

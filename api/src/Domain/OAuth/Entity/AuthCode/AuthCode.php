@@ -18,7 +18,9 @@ use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
  */
 final class AuthCode implements AuthCodeEntityInterface
 {
-    use EntityTrait, TokenEntityTrait, AuthCodeTrait;
+    use EntityTrait;
+    use TokenEntityTrait;
+    use AuthCodeTrait;
 
     /**
      * @ORM\Column(type="string", length=80)

@@ -28,8 +28,12 @@ final class CreateAction implements RequestHandlerInterface
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(ScheduleRepository $schedules, UuidGeneratorInterface $uuid, Handler $handler, ResponseFactory $response)
-    {
+    public function __construct(
+        ScheduleRepository $schedules,
+        UuidGeneratorInterface $uuid,
+        Handler $handler,
+        ResponseFactory $response
+    ) {
         $this->schedules = $schedules;
         $this->uuid = $uuid;
         $this->handler = $handler;

@@ -24,8 +24,12 @@ final class DoctrineUserRepository implements UserRepositoryInterface
         $this->validator = $validator;
     }
 
-    public function getUserEntityByUserCredentials($username, $password, $grantType, ClientEntityInterface $clientEntity): ?UserEntityInterface
-    {
+    public function getUserEntityByUserCredentials(
+        $username,
+        $password,
+        $grantType,
+        ClientEntityInterface $clientEntity
+    ): ?UserEntityInterface {
         /** @var User $user */
         if ($user = $this->repo->findOneBy(['email' => $username])) {
             if (!$this->validator->validate($password, $user->getPassword()->getValue())) {

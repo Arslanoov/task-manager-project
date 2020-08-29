@@ -20,7 +20,7 @@ final class PathMiddlewareDecorator implements MiddlewareInterface
         $this->middleware = $middleware;
     }
 
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $path = $request->getUri()->getPath() ?: '/';
 
@@ -47,7 +47,7 @@ final class PathMiddlewareDecorator implements MiddlewareInterface
         );
     }
 
-    private function getBorder(string $path) : string
+    private function getBorder(string $path): string
     {
         if ($this->prefix === '/') {
             return '/';
@@ -57,7 +57,7 @@ final class PathMiddlewareDecorator implements MiddlewareInterface
         return strlen($path) > $length ? $path[$length] : '';
     }
 
-    private function prepareRequestWithTruncatedPrefix(ServerRequestInterface $request) : ServerRequestInterface
+    private function prepareRequestWithTruncatedPrefix(ServerRequestInterface $request): ServerRequestInterface
     {
         $uri  = $request->getUri();
         $path = $this->getTruncatedPath($this->prefix, $uri->getPath());
@@ -65,7 +65,7 @@ final class PathMiddlewareDecorator implements MiddlewareInterface
         return $request->withUri($new);
     }
 
-    private function getTruncatedPath(string $segment, string $path) : string
+    private function getTruncatedPath(string $segment, string $path): string
     {
         if ($segment === $path) {
             return '';
@@ -74,7 +74,7 @@ final class PathMiddlewareDecorator implements MiddlewareInterface
         return substr($path, strlen($segment));
     }
 
-    private function prepareHandlerForOriginalRequest(RequestHandlerInterface $handler) : RequestHandlerInterface
+    private function prepareHandlerForOriginalRequest(RequestHandlerInterface $handler): RequestHandlerInterface
     {
         return new class ($handler, $this->prefix) implements RequestHandlerInterface {
             private RequestHandlerInterface $handler;
@@ -86,7 +86,7 @@ final class PathMiddlewareDecorator implements MiddlewareInterface
                 $this->prefix = $prefix;
             }
 
-            public function handle(ServerRequestInterface $request) : ResponseInterface
+            public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 $uri = $request->getUri();
                 $uri = $uri->withPath($this->prefix . $uri->getPath());
@@ -95,7 +95,7 @@ final class PathMiddlewareDecorator implements MiddlewareInterface
         };
     }
 
-    private function normalizePrefix(string $prefix) : string
+    private function normalizePrefix(string $prefix): string
     {
         $prefix = strlen($prefix) > 1 ? rtrim($prefix, '/') : $prefix;
         if (0 !== strpos($prefix, '/')) {

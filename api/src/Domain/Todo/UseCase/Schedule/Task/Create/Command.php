@@ -20,8 +20,13 @@ final class Command
      * @param string|null $description
      * @param string $importantLevel
      */
-    public function __construct(string $scheduleId, string $id, string $name, ?string $description, string $importantLevel)
-    {
+    public function __construct(
+        string $scheduleId,
+        string $id,
+        string $name,
+        ?string $description,
+        string $importantLevel
+    ) {
         $this->scheduleId = $scheduleId;
         $this->id = $id;
         $this->name = $name;

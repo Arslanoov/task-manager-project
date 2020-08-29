@@ -33,8 +33,12 @@ final class GetNextScheduleAction implements RequestHandlerInterface
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(ScheduleRepository $schedules, PersonRepository $persons, Handler $handler, ResponseFactory $response)
-    {
+    public function __construct(
+        ScheduleRepository $schedules,
+        PersonRepository $persons,
+        Handler $handler,
+        ResponseFactory $response
+    ) {
         $this->schedules = $schedules;
         $this->persons = $persons;
         $this->handler = $handler;

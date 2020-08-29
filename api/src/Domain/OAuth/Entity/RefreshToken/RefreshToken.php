@@ -17,7 +17,8 @@ use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
  */
 final class RefreshToken implements RefreshTokenEntityInterface
 {
-    use RefreshTokenTrait, EntityTrait;
+    use RefreshTokenTrait;
+    use EntityTrait;
 
     /**
      * @ORM\Column(type="string", length=80)
@@ -28,7 +29,12 @@ final class RefreshToken implements RefreshTokenEntityInterface
     /**
      * @var AccessTokenEntityInterface
      * @ORM\ManyToOne(targetEntity="\Domain\OAuth\Entity\AccessToken\AccessToken")
-     * @ORM\JoinColumn(name="access_token_identifier", referencedColumnName="identifier", nullable=false, onDelete="CASCADE")
+     * @ORM\JoinColumn(
+     *     name="access_token_identifier",
+     *     referencedColumnName="identifier",
+     *     nullable=false,
+     *     onDelete="CASCADE"
+     * )
      */
     protected $accessToken;
 

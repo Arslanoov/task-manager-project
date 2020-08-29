@@ -33,7 +33,7 @@ final class Handler
 
         $step->changeSortOrder($lowerStep->getSortOrder());
         $lowerStep->changeSortOrder($oldOrder);
-        
+
         $this->steps->add($step);
         $this->steps->add($lowerStep);
 

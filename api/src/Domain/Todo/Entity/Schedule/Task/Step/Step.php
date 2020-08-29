@@ -50,10 +50,12 @@ final class Step
      * @param Status $status
      */
     private function __construct(
-        Id $id, Task $task, Name $name,
-        SortOrder $sortOrder, Status $status
-    )
-    {
+        Id $id,
+        Task $task,
+        Name $name,
+        SortOrder $sortOrder,
+        Status $status
+    ) {
         $this->id = $id;
         $this->task = $task;
         $this->name = $name;
@@ -64,7 +66,10 @@ final class Step
     public static function new(Id $id, Task $task, Name $name): self
     {
         return new self(
-            $id, $task, $name, new SortOrder(null),
+            $id,
+            $task,
+            $name,
+            new SortOrder(null),
             Status::notComplete()
         );
     }

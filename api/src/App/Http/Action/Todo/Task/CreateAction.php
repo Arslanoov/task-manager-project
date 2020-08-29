@@ -34,8 +34,13 @@ final class CreateAction implements RequestHandlerInterface
      * @param UuidGeneratorInterface $uuid
      * @param ResponseFactory $response
      */
-    public function __construct(Task\Create\Handler $handler, ScheduleRepository $schedules, TaskRepository $tasks, UuidGeneratorInterface $uuid, ResponseFactory $response)
-    {
+    public function __construct(
+        Task\Create\Handler $handler,
+        ScheduleRepository $schedules,
+        TaskRepository $tasks,
+        UuidGeneratorInterface $uuid,
+        ResponseFactory $response
+    ) {
         $this->handler = $handler;
         $this->schedules = $schedules;
         $this->tasks = $tasks;
@@ -97,9 +102,15 @@ final class CreateAction implements RequestHandlerInterface
 
         $taskId = $this->uuid->uuid1();
 
-        $this->handler->handle(new Task\Create\Command(
-            $scheduleId, $taskId, $name, $description, $level
-        ));
+        $this->handler->handle(
+            new Task\Create\Command(
+                $scheduleId,
+                $taskId,
+                $name,
+                $description,
+                $level
+            )
+        );
 
         $task = $this->tasks->getById(new TaskId($taskId));
 

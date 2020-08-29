@@ -21,10 +21,11 @@ final class Application
     private MiddlewarePipeInterface $pipeline;
 
     public function __construct(
-        MiddlewareResolverInterface $resolver, Router $router,
-        RequestHandlerInterface $default, MiddlewarePipeInterface $pipeline
-    )
-    {
+        MiddlewareResolverInterface $resolver,
+        Router $router,
+        RequestHandlerInterface $default,
+        MiddlewarePipeInterface $pipeline
+    ) {
         $this->resolver = $resolver;
         $this->router = $router;
         $this->default = $default;

@@ -32,8 +32,12 @@ final class CreateAction implements RequestHandlerInterface
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(StepRepository $steps, TaskRepository $tasks, Handler $handler, ResponseFactory $response)
-    {
+    public function __construct(
+        StepRepository $steps,
+        TaskRepository $tasks,
+        Handler $handler,
+        ResponseFactory $response
+    ) {
         $this->steps = $steps;
         $this->tasks = $tasks;
         $this->handler = $handler;

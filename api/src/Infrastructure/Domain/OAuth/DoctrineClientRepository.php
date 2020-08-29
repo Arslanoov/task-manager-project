@@ -18,10 +18,11 @@ final class DoctrineClientRepository implements ClientRepositoryInterface
     }
 
     public function getClientEntity(
-        $clientIdentifier, $grantType = null, $clientSecret = null,
+        $clientIdentifier,
+        $grantType = null,
+        $clientSecret = null,
         $mustValidateSecret = true
-    ): ?ClientEntityInterface
-    {
+    ): ?ClientEntityInterface {
         if (array_key_exists($clientIdentifier, $this->clients) === false) {
             return null;
         }
@@ -43,6 +44,6 @@ final class DoctrineClientRepository implements ClientRepositoryInterface
 
     public function validateClient($clientIdentifier, $clientSecret, $grantType)
     {
-
+        return true;
     }
 }

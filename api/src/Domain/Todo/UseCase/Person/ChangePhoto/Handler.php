@@ -25,8 +25,12 @@ final class Handler
      * @param PhotoRemoverInterface $remover
      * @param FlusherInterface $flusher
      */
-    public function __construct(PersonRepository $persons, PhotoUploaderInterface $uploader, PhotoRemoverInterface $remover, FlusherInterface $flusher)
-    {
+    public function __construct(
+        PersonRepository $persons,
+        PhotoUploaderInterface $uploader,
+        PhotoRemoverInterface $remover,
+        FlusherInterface $flusher
+    ) {
         $this->persons = $persons;
         $this->uploader = $uploader;
         $this->remover = $remover;

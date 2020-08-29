@@ -19,7 +19,9 @@ use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
  */
 final class AccessToken implements AccessTokenEntityInterface
 {
-    use AccessTokenTrait, TokenEntityTrait, EntityTrait;
+    use AccessTokenTrait;
+    use TokenEntityTrait;
+    use EntityTrait;
 
     /**
      * @ORM\Column(type="string", length=80)

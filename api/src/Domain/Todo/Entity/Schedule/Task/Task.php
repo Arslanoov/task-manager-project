@@ -69,11 +69,14 @@ class Task
      * @param int $finishedSteps
      */
     private function __construct(
-        Id $id, Schedule $schedule, Name $name,
-        Description $description, ImportantLevel $level, Status $status,
+        Id $id,
+        Schedule $schedule,
+        Name $name,
+        Description $description,
+        ImportantLevel $level,
+        Status $status,
         int $finishedSteps
-    )
-    {
+    ) {
         $this->id = $id;
         $this->schedule = $schedule;
         $this->name = $name;
@@ -85,10 +88,12 @@ class Task
     }
 
     public static function new(
-        Id $id, Schedule $schedule, Name $name,
-        Description $description, ImportantLevel $level
-    ): self
-    {
+        Id $id,
+        Schedule $schedule,
+        Name $name,
+        Description $description,
+        ImportantLevel $level
+    ): self {
         return new self(
             $id,
             $schedule,

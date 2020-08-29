@@ -46,6 +46,7 @@ api-tests-functional:
 
 api-lint:
 	docker-compose run --rm api-php-cli composer lint
+	docker-compose run --rm api-php-cli composer cs-check
 
 frontend-install:
 	docker-compose exec frontend-nodejs npm install

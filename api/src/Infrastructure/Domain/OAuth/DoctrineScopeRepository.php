@@ -28,8 +28,12 @@ final class DoctrineScopeRepository implements ScopeRepositoryInterface
         return $this->scopes[$identifier] ?? null;
     }
 
-    public function finalizeScopes(array $scopes, $grantType, ClientEntityInterface $clientEntity, $userIdentifier = null): array
-    {
+    public function finalizeScopes(
+        array $scopes,
+        $grantType,
+        ClientEntityInterface $clientEntity,
+        $userIdentifier = null
+    ): array {
         return array_filter($scopes, function (ScopeEntityInterface $scope) {
             foreach ($this->scopes as $item) {
                 if ($scope->getIdentifier() === $item->getIdentifier()) {

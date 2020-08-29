@@ -1,4 +1,5 @@
 <?php
+
 #!/usr/bin/env php
 
 use Psr\Container\ContainerInterface;
