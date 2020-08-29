@@ -30,15 +30,13 @@ api-composer-install:
 	docker-compose run --rm api-php-cli composer install
 
 api-migrations-diff:
-	docker-compose run --rm api-php-cli php bin/console migrations:diff
+	docker-compose run --rm api-php-cli php bin/console.php migrations:diff
 api-migrations-migrate:
-	docker-compose run --rm api-php-cli php bin/console migrations:migrate
+	docker-compose run --rm api-php-cli php bin/console.php migrations:migrate
 
 api-generate-docs:
-	docker-compose run --rm api-php-cli php bin/console api:generate:docs
+	docker-compose run --rm api-php-cli php bin/console.php api:generate:docs
 
-api-load-fixtures:
-	docker-compose run --rm api-php-cli vendor/bin/phpunit fixtures:load
 api-tests-run:
 	docker-compose run --rm api-php-cli vendor/bin/phpunit --colors=always
 api-tests-unit:

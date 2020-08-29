@@ -2,8 +2,15 @@ FROM php:7.4-fpm
 
 RUN apt-get update && apt-get install -y libpq-dev \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo_pgsql
+    && docker-php-ext-install pdo_pgsql \
+    && pecl install xdebug-2.9.5 \
+    && docker-php-ext-enable xdebug
 
-ADD ./common/php/main.ini /usr/local/etc/php/conf.d/default.ini
+COPY ./common/php/main.ini /usr/local/etc/php/conf.d/default.ini
+COPY ./dev/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY ./dev/php/timeout.ini /usr/local/etc/php/conf.d/timeout.ini
 
 WORKDIR /var/www/api
+
+COPY ./dev/php-fpm-entrypoint.sh /usr/local/bin/docker-php-entrypoint
+RUN chmod +x /usr/local/bin/docker-php-entrypoint

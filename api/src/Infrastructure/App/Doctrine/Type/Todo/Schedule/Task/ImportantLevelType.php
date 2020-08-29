@@ -6,6 +6,7 @@ namespace Infrastructure\App\Doctrine\Type\Todo\Schedule\Task;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
+use Domain\Todo\Entity\Schedule\Task\ImportantLevel;
 
 final class ImportantLevelType extends StringType
 {

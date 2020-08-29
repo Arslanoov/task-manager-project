@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y libpq-dev unzip \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --filename=composer --quiet
 
+COPY ./dev/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
 WORKDIR /var/www/api

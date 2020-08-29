@@ -38,6 +38,8 @@ services:
     build:
       context: ./api/docker
       dockerfile: dev/php-fpm.docker
+    environment:
+      PHP_IDE_CONFIG: "serverName=API"
     volumes:
       - ./api:/var/www/api
       - ./storage:/var/www/storage
@@ -45,8 +47,8 @@ services:
       - api-postgres
   api-php-cli:
     build:
-      context: ./api/docker/dev
-      dockerfile: php-cli.docker
+      context: ./api/docker
+      dockerfile: dev/php-cli.docker
     volumes:
       - ./api:/var/www/api
       - ./storage:/var/www/storage
