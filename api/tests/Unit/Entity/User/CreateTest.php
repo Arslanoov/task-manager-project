@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Entity\User;
 
+use Domain\User\Entity\User\ConfirmToken;
 use Domain\User\Entity\User\Email;
 use Domain\User\Entity\User\Id;
 use Domain\User\Entity\User\Login;
@@ -32,6 +33,12 @@ class CreateTest extends TestCase
 
         $this->assertEquals($password, $user->getPassword());
         $this->assertTrue($user->getPassword()->isEqual($password));
+
+        $this->assertNotEmpty($user->getSignUpConfirmToken());
+
+        $this->assertEquals(Status::draft(), $user->getStatus());
+        $this->assertTrue($user->isDraft());
+        $this->assertFalse($user->isActive());
     }
 
     public function testEmptyLogin(): void

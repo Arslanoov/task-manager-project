@@ -14,6 +14,7 @@ return [
             Infrastructure\App\Doctrine\Type\User\LoginType::NAME => Infrastructure\App\Doctrine\Type\User\LoginType::class,
             Infrastructure\App\Doctrine\Type\User\EmailType::NAME => Infrastructure\App\Doctrine\Type\User\EmailType::class,
             Infrastructure\App\Doctrine\Type\User\PasswordType::NAME => Infrastructure\App\Doctrine\Type\User\PasswordType::class,
+            Infrastructure\App\Doctrine\Type\User\StatusType::NAME => Infrastructure\App\Doctrine\Type\User\StatusType::class,
 
             // OAuth
             Infrastructure\App\Doctrine\Type\OAuth\ClientType::NAME => Infrastructure\App\Doctrine\Type\OAuth\ClientType::class,

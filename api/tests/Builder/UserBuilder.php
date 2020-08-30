@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Builder;
 
+use Domain\User\Entity\User\ConfirmToken;
 use Domain\User\Entity\User\Email;
 use Domain\User\Entity\User\Password;
 use Domain\User\Entity\User\Id;
 use Domain\User\Entity\User\Login;
+use Domain\User\Entity\User\Status;
 use Domain\User\Entity\User\User;
 
 final class UserBuilder
@@ -16,6 +18,8 @@ final class UserBuilder
     private Login $login;
     private Email $email;
     private Password $password;
+    private Status $status;
+    private ConfirmToken $signUpConfirmToken;
 
     public function __construct()
     {
@@ -23,6 +27,8 @@ final class UserBuilder
         $this->login = new Login('User login');
         $this->email = new Email('app@test.app');
         $this->password = new Password('Password');
+        $this->status = Status::draft();
+        $this->signUpConfirmToken = ConfirmToken::generate();
     }
 
     public function withId(Id $id): self
@@ -53,13 +59,29 @@ final class UserBuilder
         return $builder;
     }
 
+    public function withStatus(Status $status): self
+    {
+        $builder = clone $this;
+        $builder->status = $status;
+        return $builder;
+    }
+
+    public function withSignUpConfirmToken(ConfirmToken $token): self
+    {
+        $builder = clone $this;
+        $builder->signUpConfirmToken = $token;
+        return $builder;
+    }
+
     public function build(): User
     {
         return new User(
             $this->id,
             $this->login,
             $this->email,
-            $this->password
+            $this->password,
+            $this->status,
+            $this->signUpConfirmToken
         );
     }
 }
