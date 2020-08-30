@@ -1,4 +1,4 @@
-up: docker-clear docker-pull docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions
+up: docker-clear docker-pull docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions api-check
 compile: frontend-install frontend-build-sass frontend-compile-js
 generate-keys: generate-private-key generate-public-key
 test: api-load-fixtures api-tests-run
@@ -28,6 +28,8 @@ api-set-keys-permissions:
 
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install
+api-composer-update:
+	docker-compose run --rm api-php-cli composer update
 
 api-migrations-diff:
 	docker-compose run --rm api-php-cli php bin/console.php migrations:diff
@@ -44,7 +46,7 @@ api-tests-unit:
 api-tests-functional:
 	docker-compose run --rm api-php-cli vendor/bin/phpunit --colors=always --testsuite=Functional
 
-api-lint:
+api-check:
 	docker-compose run --rm api-php-cli composer lint
 	docker-compose run --rm api-php-cli composer cs-check
 
