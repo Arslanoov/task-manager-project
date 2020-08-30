@@ -21,6 +21,7 @@ use Symfony\Component\Dotenv\Dotenv;
 
 class FunctionalTestCase extends TestCase
 {
+    private ?Application $app = null;
     private array $fixtures = [];
 
     protected function get(string $uri, array $headers = []): ResponseInterface
@@ -97,10 +98,12 @@ class FunctionalTestCase extends TestCase
     private function app(): Application
     {
         $container = $this->container();
-        $app = $container->get(Application::class);
-        (require 'config/routes.php')($app);
-        (require 'config/pipeline.php')($app);
-        return $app;
+        if ($this->app === null) {
+            $this->app = $container->get(Application::class);
+        }
+        (require 'config/routes.php')($this->app);
+        (require 'config/pipeline.php')($this->app);
+        return $this->app;
     }
 
     private function container(): ContainerInterface
