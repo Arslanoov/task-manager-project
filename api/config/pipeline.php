@@ -4,8 +4,6 @@ use Framework\Http\Middleware as FrameworkMiddleware;
 use App\Http\Middleware as Middleware;
 use Framework\Http\Application;
 
-/** @var Application $app */
-
 return function (Application $app) {
     $router = $app->getRouter();
     $app->pipe(Middleware\ProfilerMiddleware::class);
