@@ -27,7 +27,8 @@
     "webmozart/assert": "^1.9",
     "zircote/swagger-php": "^3.0",
     "sentry/sdk": "^2.1",
-    "symfony/validator": "^5.1"
+    "symfony/validator": "^5.1",
+    "swiftmailer/swiftmailer": "^6.2"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
