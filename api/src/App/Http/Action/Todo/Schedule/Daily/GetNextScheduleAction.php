@@ -6,6 +6,7 @@ namespace App\Http\Action\Todo\Schedule\Daily;
 
 use App\Exception\ForbiddenException;
 use App\Service\Date;
+use App\Validation\Validator;
 use Domain\Todo\Entity\Person\PersonRepository;
 use Domain\Todo\Entity\Schedule\Id as ScheduleId;
 use Domain\Todo\Entity\Person\Id as PersonId;
@@ -24,24 +25,28 @@ final class GetNextScheduleAction implements RequestHandlerInterface
     private ScheduleRepository $schedules;
     private PersonRepository $persons;
     private Handler $handler;
+    private Validator $validator;
     private ResponseFactory $response;
 
     /**
-     * GetNextSchedule constructor.
+     * GetNextScheduleAction constructor.
      * @param ScheduleRepository $schedules
      * @param PersonRepository $persons
      * @param Handler $handler
+     * @param Validator $validator
      * @param ResponseFactory $response
      */
     public function __construct(
         ScheduleRepository $schedules,
         PersonRepository $persons,
         Handler $handler,
+        Validator $validator,
         ResponseFactory $response
     ) {
         $this->schedules = $schedules;
         $this->persons = $persons;
         $this->handler = $handler;
+        $this->validator = $validator;
         $this->response = $response;
     }
 
@@ -104,10 +109,11 @@ final class GetNextScheduleAction implements RequestHandlerInterface
 
         $nextSchedule = $this->schedules->findNextSchedule($person, $schedule);
         if (!$nextSchedule) {
-            $this->handler->handle(new Command(
+            $this->validator->validate($command = new Command(
                 $schedule->getDate()->modify('+1 day'),
                 $userId
             ));
+            $this->handler->handle($command);
             $nextSchedule = $this->schedules->findNextSchedule($person, $schedule);
         }
 

@@ -6,6 +6,7 @@ namespace App\Http\Action\Todo\Task;
 
 use App\Exception\ForbiddenException;
 use App\Service\UuidGeneratorInterface;
+use App\Validation\Validator;
 use Domain\Todo\Entity\Schedule\Id as ScheduleId;
 use Domain\Todo\Entity\Schedule\Schedule;
 use Domain\Todo\Entity\Schedule\ScheduleRepository;
@@ -21,6 +22,7 @@ use OpenApi\Annotations as OA;
 final class CreateAction implements RequestHandlerInterface
 {
     private Task\Create\Handler $handler;
+    private Validator $validator;
     private ScheduleRepository $schedules;
     private TaskRepository $tasks;
     private UuidGeneratorInterface $uuid;
@@ -29,6 +31,7 @@ final class CreateAction implements RequestHandlerInterface
     /**
      * CreateAction constructor.
      * @param Task\Create\Handler $handler
+     * @param Validator $validator
      * @param ScheduleRepository $schedules
      * @param TaskRepository $tasks
      * @param UuidGeneratorInterface $uuid
@@ -36,12 +39,15 @@ final class CreateAction implements RequestHandlerInterface
      */
     public function __construct(
         Task\Create\Handler $handler,
+        Validator $validator,
         ScheduleRepository $schedules,
         TaskRepository $tasks,
         UuidGeneratorInterface $uuid,
         ResponseFactory $response
-    ) {
+    )
+    {
         $this->handler = $handler;
+        $this->validator = $validator;
         $this->schedules = $schedules;
         $this->tasks = $tasks;
         $this->uuid = $uuid;
@@ -102,15 +108,14 @@ final class CreateAction implements RequestHandlerInterface
 
         $taskId = $this->uuid->uuid1();
 
-        $this->handler->handle(
-            new Task\Create\Command(
-                $scheduleId,
-                $taskId,
-                $name,
-                $description,
-                $level
-            )
-        );
+        $this->validator->validate($command = new Task\Create\Command(
+            $scheduleId,
+            $taskId,
+            $name,
+            $description,
+            $level
+        ));
+        $this->handler->handle($command);
 
         $task = $this->tasks->getById(new TaskId($taskId));
 

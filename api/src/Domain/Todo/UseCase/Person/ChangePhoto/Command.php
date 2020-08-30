@@ -11,12 +11,7 @@ final class Command
 {
     /**
      * @var UploadedFileInterface
-     * @Assert\Image(
-     *     minWidth = 200,
-     *     minHeight = 200,
-     *     maxWidth = 4000,
-     *     maxHeight = 2500
-     * )
+     * @Assert\NotBlank()
      */
     public UploadedFileInterface $file;
     /**

@@ -6,6 +6,11 @@ namespace Domain\Todo\Entity\Person;
 
 final class BackgroundPhoto
 {
+    public const MEDIA_TYPES = [
+        'image/jpeg',
+        'image/png'
+    ];
+
     private string $path;
 
     /**

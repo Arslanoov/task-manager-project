@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Validation;
+
+use App\Exception\ValidationException;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
+final class Validator
+{
+    private ValidatorInterface $validator;
+
+    public function __construct(ValidatorInterface $validator)
+    {
+        $this->validator = $validator;
+    }
+
+    public function validateObjects(...$objects): void
+    {
+        foreach ($objects as $object) {
+            $this->validate($object);
+        }
+    }
+
+    public function validate(object $object): void
+    {
+        $violations = $this->validator->validate($object);
+        if ($violations->count() > 0) {
+            throw new ValidationException($violations);
+        }
+    }
+}

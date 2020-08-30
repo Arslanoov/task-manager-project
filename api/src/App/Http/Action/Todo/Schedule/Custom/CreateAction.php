@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Action\Todo\Schedule\Custom;
 
 use App\Service\UuidGeneratorInterface;
+use App\Validation\Validator;
 use Domain\Todo\Entity\Schedule\ScheduleRepository;
 use Domain\Todo\UseCase\Schedule\CreateCustom\Command;
 use Domain\Todo\UseCase\Schedule\CreateCustom\Handler;
@@ -17,6 +18,7 @@ use OpenApi\Annotations as OA;
 final class CreateAction implements RequestHandlerInterface
 {
     private ScheduleRepository $schedules;
+    private Validator $validate;
     private UuidGeneratorInterface $uuid;
     private Handler $handler;
     private ResponseFactory $response;
@@ -24,17 +26,15 @@ final class CreateAction implements RequestHandlerInterface
     /**
      * CreateAction constructor.
      * @param ScheduleRepository $schedules
+     * @param Validator $validate
      * @param UuidGeneratorInterface $uuid
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(
-        ScheduleRepository $schedules,
-        UuidGeneratorInterface $uuid,
-        Handler $handler,
-        ResponseFactory $response
-    ) {
+    public function __construct(ScheduleRepository $schedules, Validator $validate, UuidGeneratorInterface $uuid, Handler $handler, ResponseFactory $response)
+    {
         $this->schedules = $schedules;
+        $this->validate = $validate;
         $this->uuid = $uuid;
         $this->handler = $handler;
         $this->response = $response;
@@ -80,7 +80,9 @@ final class CreateAction implements RequestHandlerInterface
         $id = $this->uuid->uuid4();
         $name = $body['name'] ?? '';
 
-        $this->handler->handle(new Command($id, $userId, $name));
+        $this->validate->validate($command = new Command($id, $userId, $name));
+
+        $this->handler->handle($command);
 
         return $this->response->json([
             'id' => $id

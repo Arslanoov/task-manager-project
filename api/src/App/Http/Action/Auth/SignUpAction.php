@@ -6,6 +6,7 @@ namespace App\Http\Action\Auth;
 
 use App\Service\TransactionInterface;
 use App\Service\UuidGeneratorInterface;
+use App\Validation\Validator;
 use Doctrine\DBAL\ConnectionException;
 use Domain\Todo\UseCase\Person;
 use Domain\User\UseCase\User;
@@ -22,6 +23,7 @@ final class SignUpAction implements RequestHandlerInterface
     private User\SignUp\Handler $userSignUpHandler;
     private Person\Create\Handler $personCreateHandler;
     private Schedule\CreateMain\Handler $createScheduleHandler;
+    private Validator $validator;
     private ResponseFactory $response;
     private UuidGeneratorInterface $uuid;
     private TransactionInterface $transaction;
@@ -31,21 +33,17 @@ final class SignUpAction implements RequestHandlerInterface
      * @param User\SignUp\Handler $userSignUpHandler
      * @param Person\Create\Handler $personCreateHandler
      * @param Schedule\CreateMain\Handler $createScheduleHandler
+     * @param Validator $validator
      * @param ResponseFactory $response
      * @param UuidGeneratorInterface $uuid
      * @param TransactionInterface $transaction
      */
-    public function __construct(
-        User\SignUp\Handler $userSignUpHandler,
-        Person\Create\Handler $personCreateHandler,
-        Schedule\CreateMain\Handler $createScheduleHandler,
-        ResponseFactory $response,
-        UuidGeneratorInterface $uuid,
-        TransactionInterface $transaction
-    ) {
+    public function __construct(User\SignUp\Handler $userSignUpHandler, Person\Create\Handler $personCreateHandler, Schedule\CreateMain\Handler $createScheduleHandler, Validator $validator, ResponseFactory $response, UuidGeneratorInterface $uuid, TransactionInterface $transaction)
+    {
         $this->userSignUpHandler = $userSignUpHandler;
         $this->personCreateHandler = $personCreateHandler;
         $this->createScheduleHandler = $createScheduleHandler;
+        $this->validator = $validator;
         $this->response = $response;
         $this->uuid = $uuid;
         $this->transaction = $transaction;
@@ -94,7 +92,9 @@ final class SignUpAction implements RequestHandlerInterface
         $createScheduleCommand = new Schedule\CreateMain\Command($id);
 
         $this->transaction->begin();
+
         try {
+            $this->validator->validateObjects($signUpCommand, $createPersonCommand, $createScheduleCommand);
             $this->userSignUpHandler->handle($signUpCommand);
             $this->personCreateHandler->handle($createPersonCommand);
             $this->createScheduleHandler->handle($createScheduleCommand);

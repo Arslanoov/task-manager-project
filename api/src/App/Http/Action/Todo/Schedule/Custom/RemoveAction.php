@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Action\Todo\Schedule\Custom;
 
 use App\Exception\ForbiddenException;
+use App\Validation\Validator;
 use Domain\Todo\Entity\Schedule\Id;
 use Domain\Todo\Entity\Schedule\Schedule;
 use Domain\Todo\Entity\Schedule\ScheduleRepository;
@@ -20,18 +21,21 @@ use OpenApi\Annotations as OA;
 final class RemoveAction implements RequestHandlerInterface
 {
     private ScheduleRepository $schedules;
+    private Validator $validator;
     private Handler $handler;
     private ResponseFactory $response;
 
     /**
      * RemoveAction constructor.
      * @param ScheduleRepository $schedules
+     * @param Validator $validator
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(ScheduleRepository $schedules, Handler $handler, ResponseFactory $response)
+    public function __construct(ScheduleRepository $schedules, Validator $validator, Handler $handler, ResponseFactory $response)
     {
         $this->schedules = $schedules;
+        $this->validator = $validator;
         $this->handler = $handler;
         $this->response = $response;
     }
@@ -75,7 +79,9 @@ final class RemoveAction implements RequestHandlerInterface
             throw new InvalidArgumentException('Schedule is not custom');
         }
 
-        $this->handler->handle(new Command($id));
+        $this->validator->validate($command = new Command($id));
+
+        $this->handler->handle($command);
 
         return $this->response->json([], 204);
     }

@@ -10,6 +10,7 @@ use Domain\Todo\Entity\Person\Id;
 use Domain\Todo\Entity\Person\PersonRepository;
 use Domain\Todo\Service\PhotoRemoverInterface;
 use Domain\Todo\Service\PhotoUploaderInterface;
+use InvalidArgumentException;
 
 final class Handler
 {
@@ -44,7 +45,11 @@ final class Handler
             $this->remover->remove($person->getBackgroundPhoto()->getPath());
         }
 
-        $path = $this->uploader->upload($command->file);
+        $file = $command->file;
+        if (!in_array($file->getClientMediaType(), BackgroundPhoto::MEDIA_TYPES)) {
+            throw new InvalidArgumentException('Not an image');
+        }
+        $path = $this->uploader->upload($file);
         $person->changeBackgroundPhoto(new BackgroundPhoto($path));
 
         $this->persons->add($person);

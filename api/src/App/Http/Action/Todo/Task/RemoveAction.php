@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Action\Todo\Task;
 
 use App\Exception\ForbiddenException;
+use App\Validation\Validator;
 use Domain\Todo\Entity\Schedule\Task\Id;
 use Domain\Todo\Entity\Schedule\Task\Task;
 use Domain\Todo\Entity\Schedule\Task\TaskRepository;
@@ -20,18 +21,25 @@ final class RemoveAction implements RequestHandlerInterface
 {
     private TaskRepository $tasks;
     private Handler $handler;
+    private Validator $validator;
     private ResponseFactory $response;
 
     /**
      * RemoveAction constructor.
      * @param TaskRepository $tasks
      * @param Handler $handler
+     * @param Validator $validator
      * @param ResponseFactory $response
      */
-    public function __construct(TaskRepository $tasks, Handler $handler, ResponseFactory $response)
-    {
+    public function __construct(
+        TaskRepository $tasks,
+        Handler $handler,
+        Validator $validator,
+        ResponseFactory $response
+    ) {
         $this->tasks = $tasks;
         $this->handler = $handler;
+        $this->validator = $validator;
         $this->response = $response;
     }
 
@@ -75,7 +83,8 @@ final class RemoveAction implements RequestHandlerInterface
         $task = $this->tasks->getById(new Id($taskId));
         $this->canRemoveTask($request->getAttribute('oauth_user_id'), $task);
 
-        $this->handler->handle(new Command($taskId));
+        $this->validator->validate($command = new Command($taskId));
+        $this->handler->handle($command);
 
         return $this->response->json([], 204);
     }

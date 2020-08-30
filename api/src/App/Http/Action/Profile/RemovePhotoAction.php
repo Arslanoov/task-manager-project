@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Profile;
 
+use App\Validation\Validator;
 use Domain\Todo\UseCase\Person\RemovePhoto\Command;
 use Domain\Todo\UseCase\Person\RemovePhoto\Handler;
 use Framework\Http\Psr7\ResponseFactory;
@@ -15,6 +16,7 @@ use OpenApi\Annotations as OA;
 final class RemovePhotoAction implements RequestHandlerInterface
 {
     private Handler $handler;
+    private Validator $validator;
     private ResponseFactory $response;
 
     /**
@@ -52,7 +54,8 @@ final class RemovePhotoAction implements RequestHandlerInterface
     {
         $userId = $request->getAttribute('oauth_user_id');
 
-        $this->handler->handle(new Command($userId));
+        $this->validator->validate($command = new Command($userId));
+        $this->handler->handle($command);
 
         return $this->response->json([], 204);
     }

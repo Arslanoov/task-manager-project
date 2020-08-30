@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Profile;
 
+use App\Validation\Validator;
 use Domain\Todo\UseCase\Person\ChangePhoto\Command;
 use Domain\Todo\UseCase\Person\ChangePhoto\Handler;
 use Framework\Http\Psr7\ResponseFactory;
@@ -16,16 +17,19 @@ use OpenApi\Annotations as OA;
 final class UploadPhotoAction implements RequestHandlerInterface
 {
     private Handler $handler;
+    private Validator $validator;
     private ResponseFactory $response;
 
     /**
      * UploadPhotoAction constructor.
      * @param Handler $handler
+     * @param Validator $validator
      * @param ResponseFactory $response
      */
-    public function __construct(Handler $handler, ResponseFactory $response)
+    public function __construct(Handler $handler, Validator $validator, ResponseFactory $response)
     {
         $this->handler = $handler;
+        $this->validator = $validator;
         $this->response = $response;
     }
 
@@ -75,7 +79,9 @@ final class UploadPhotoAction implements RequestHandlerInterface
             throw new InvalidArgumentException('File required');
         }
 
-        $this->handler->handle(new Command($file, $userId));
+        $this->validator->validate($command = new Command($file, $userId));
+
+        $this->handler->handle($command);
 
         return $this->response->json([], 204);
     }

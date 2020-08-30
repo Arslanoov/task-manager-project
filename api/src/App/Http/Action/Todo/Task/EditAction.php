@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Action\Todo\Task;
 
 use App\Exception\ForbiddenException;
+use App\Validation\Validator;
 use Domain\Todo\Entity\Schedule\Task\Id;
 use Domain\Todo\Entity\Schedule\Task\Task;
 use Domain\Todo\Entity\Schedule\Task\TaskRepository;
@@ -19,18 +20,25 @@ use OpenApi\Annotations as OA;
 final class EditAction implements RequestHandlerInterface
 {
     private Handler $handler;
+    private Validator $validator;
     private TaskRepository $tasks;
     private ResponseFactory $response;
 
     /**
      * EditAction constructor.
      * @param Handler $handler
+     * @param Validator $validator
      * @param TaskRepository $tasks
      * @param ResponseFactory $response
      */
-    public function __construct(Handler $handler, TaskRepository $tasks, ResponseFactory $response)
-    {
+    public function __construct(
+        Handler $handler,
+        Validator $validator,
+        TaskRepository $tasks,
+        ResponseFactory $response
+    ) {
         $this->handler = $handler;
+        $this->validator = $validator;
         $this->tasks = $tasks;
         $this->response = $response;
     }
@@ -82,7 +90,8 @@ final class EditAction implements RequestHandlerInterface
         $task = $this->tasks->getById(new Id($taskId));
         $this->canEditTask($request->getAttribute('oauth_user_id'), $task);
 
-        $this->handler->handle(new Command($taskId, $name, $level, $description));
+        $this->validator->validate($command = new Command($taskId, $name, $level, $description));
+        $this->handler->handle($command);
 
         return $this->response->json([], 204);
     }

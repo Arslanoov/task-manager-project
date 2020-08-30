@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Action\Todo\Task\Step;
 
 use App\Exception\ForbiddenException;
+use App\Validation\Validator;
 use Doctrine\DBAL\DBALException;
 use Domain\Todo\Entity\Schedule\Task\Id;
 use Domain\Todo\Entity\Schedule\Task\Step\StepRepository;
@@ -23,6 +24,7 @@ final class CreateAction implements RequestHandlerInterface
     private StepRepository $steps;
     private TaskRepository $tasks;
     private Handler $handler;
+    private Validator $validator;
     private ResponseFactory $response;
 
     /**
@@ -30,17 +32,20 @@ final class CreateAction implements RequestHandlerInterface
      * @param StepRepository $steps
      * @param TaskRepository $tasks
      * @param Handler $handler
+     * @param Validator $validator
      * @param ResponseFactory $response
      */
     public function __construct(
         StepRepository $steps,
         TaskRepository $tasks,
         Handler $handler,
+        Validator $validator,
         ResponseFactory $response
     ) {
         $this->steps = $steps;
         $this->tasks = $tasks;
         $this->handler = $handler;
+        $this->validator = $validator;
         $this->response = $response;
     }
 
@@ -90,7 +95,8 @@ final class CreateAction implements RequestHandlerInterface
         $this->canCreateStepForTask($request->getAttribute('oauth_user_id'), $task);
 
         $stepId = $this->steps->getNextId();
-        $this->handler->handle(new Command($stepId->getValue(), $taskId, $name));
+        $this->validator->validate($command = new Command($stepId->getValue(), $taskId, $name));
+        $this->handler->handle($command);
 
         return $this->response->json([
             'id' => $stepId->getValue()

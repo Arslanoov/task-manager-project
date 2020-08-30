@@ -6,6 +6,7 @@ namespace App\Http\Action\Todo\Schedule\Daily;
 
 use App\Exception\ForbiddenException;
 use App\Service\Date;
+use App\Validation\Validator;
 use Domain\Todo\Entity\Person\PersonRepository;
 use Domain\Todo\Entity\Schedule\Id as ScheduleId;
 use Domain\Todo\Entity\Person\Id as PersonId;
@@ -23,24 +24,28 @@ final class GetPreviousScheduleAction implements RequestHandlerInterface
 {
     private ScheduleRepository $schedules;
     private PersonRepository $persons;
+    private Validator $validator;
     private Handler $handler;
     private ResponseFactory $response;
 
     /**
-     * GetNextSchedule constructor.
+     * GetPreviousScheduleAction constructor.
      * @param ScheduleRepository $schedules
      * @param PersonRepository $persons
+     * @param Validator $validator
      * @param Handler $handler
      * @param ResponseFactory $response
      */
     public function __construct(
         ScheduleRepository $schedules,
         PersonRepository $persons,
+        Validator $validator,
         Handler $handler,
         ResponseFactory $response
     ) {
         $this->schedules = $schedules;
         $this->persons = $persons;
+        $this->validator = $validator;
         $this->handler = $handler;
         $this->response = $response;
     }
@@ -104,10 +109,11 @@ final class GetPreviousScheduleAction implements RequestHandlerInterface
 
         $previousSchedule = $this->schedules->findPreviousSchedule($person, $schedule);
         if (!$previousSchedule) {
-            $this->handler->handle(new Command(
+            $this->validator->validate($command = new Command(
                 $schedule->getDate()->modify('-1 day'),
                 $userId
             ));
+            $this->handler->handle($command);
             $previousSchedule = $this->schedules->findPreviousSchedule($person, $schedule);
         }
 

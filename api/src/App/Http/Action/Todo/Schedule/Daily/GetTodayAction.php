@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Action\Todo\Schedule\Daily;
 
 use App\Service\Date;
+use App\Validation\Validator;
 use Domain\Todo\Entity\Person\Id;
 use Domain\Todo\Entity\Person\PersonRepository;
 use Domain\Todo\Entity\Schedule\Schedule;
@@ -22,6 +23,7 @@ final class GetTodayAction implements RequestHandlerInterface
     private ScheduleRepository $schedules;
     private PersonRepository $persons;
     private Handler $handler;
+    private Validator $validator;
     private ResponseFactory $response;
 
     /**
@@ -29,17 +31,20 @@ final class GetTodayAction implements RequestHandlerInterface
      * @param ScheduleRepository $schedules
      * @param PersonRepository $persons
      * @param Handler $handler
+     * @param Validator $validator
      * @param ResponseFactory $response
      */
     public function __construct(
         ScheduleRepository $schedules,
         PersonRepository $persons,
         Handler $handler,
+        Validator $validator,
         ResponseFactory $response
     ) {
         $this->schedules = $schedules;
         $this->persons = $persons;
         $this->handler = $handler;
+        $this->validator = $validator;
         $this->response = $response;
     }
 
@@ -91,7 +96,8 @@ final class GetTodayAction implements RequestHandlerInterface
         $person = $this->persons->getById(new Id($userId));
         $schedule = $this->schedules->findPersonTodaySchedule($person);
         if (!$schedule) {
-            $this->handler->handle(new Command($userId));
+            $this->validator->validate($command = new Command($userId));
+            $this->handler->handle($command);
             $schedule = $this->schedules->findPersonTodaySchedule($person);
         }
 

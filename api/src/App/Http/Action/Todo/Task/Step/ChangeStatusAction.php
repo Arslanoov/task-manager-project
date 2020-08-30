@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Action\Todo\Task\Step;
 
 use App\Exception\ForbiddenException;
+use App\Validation\Validator;
 use Domain\Todo\Entity\Schedule\Task\Step\Id;
 use Domain\Todo\Entity\Schedule\Task\Step\Step;
 use Domain\Todo\Entity\Schedule\Task\Step\StepRepository;
@@ -20,18 +21,21 @@ final class ChangeStatusAction implements RequestHandlerInterface
 {
     private StepRepository $steps;
     private Handler $handler;
+    private Validator $validator;
     private ResponseFactory $response;
 
     /**
      * ChangeStatusAction constructor.
      * @param StepRepository $steps
      * @param Handler $handler
+     * @param Validator $validator
      * @param ResponseFactory $response
      */
-    public function __construct(StepRepository $steps, Handler $handler, ResponseFactory $response)
+    public function __construct(StepRepository $steps, Handler $handler, Validator $validator, ResponseFactory $response)
     {
         $this->steps = $steps;
         $this->handler = $handler;
+        $this->validator = $validator;
         $this->response = $response;
     }
 
@@ -70,7 +74,8 @@ final class ChangeStatusAction implements RequestHandlerInterface
         $step = $this->steps->getById(new Id($id));
         $this->canChangeStatus($request->getAttribute('oauth_user_id'), $step);
 
-        $this->handler->handle(new Command($id, $status));
+        $this->validator->validate($command = new Command($id, $status));
+        $this->handler->handle($command);
 
         return $this->response->json([], 204);
     }
