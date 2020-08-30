@@ -6,6 +6,7 @@ use Laminas\Diactoros\ServerRequestFactory;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
+use Psr\Log\LoggerInterface;
 
 return [
     'abstract_factories' => [
@@ -18,7 +19,8 @@ return [
         ErrorHandler::class => function (ContainerInterface $container) {
             return new ErrorHandler(
                 $container->get(ResponseFactory::class),
-                boolval($container->get('config')['debug'])
+                $container->get(LoggerInterface::class),
+                $container->get('config')['debug']
             );
         }
     ]
