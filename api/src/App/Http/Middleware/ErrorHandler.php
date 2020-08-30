@@ -37,7 +37,11 @@ class ErrorHandler implements MiddlewareInterface
             return $handler->handle($request);
         } catch (Throwable $e) {
             $code = $e->getCode() ?: 500;
-            $this->logger->error($e->getMessage());
+            if ($code == 500) {
+                $this->logger->error($e->getMessage());
+            } else {
+                $this->logger->warning($e->getMessage());
+            }
 
             return $this->response->json([
                 'error' => $this->canShowErrorMessage($code) ? $e->getMessage() : 'Something went wrong.'

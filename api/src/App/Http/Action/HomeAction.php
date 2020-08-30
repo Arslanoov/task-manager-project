@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Action;
 
+use Domain\Exception\DomainException;
 use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
