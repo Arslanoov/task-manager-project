@@ -25,10 +25,14 @@ services:
 
   api-php-fpm:
     image: ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
+    environment:
+      SENTRY_DSN: ${SENTRY_DSN}
     restart: always
 
   api-php-cli:
     image: ${REGISTRY}/todo-api-php-cli:${IMAGE_TAG}
+    environment:
+      SENTRY_DSN: ${SENTRY_DSN}
 
   api-postgres:
     image: ${REGISTRY}/todo-api-postgres:${IMAGE_TAG}

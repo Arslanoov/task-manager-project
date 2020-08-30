@@ -15,6 +15,10 @@ if (file_exists('.env')) {
     (new Dotenv(true))->load('.env');
 }
 
+if (getenv('SENTRY_DSN')) {
+    Sentry\init(['dsn' => getenv('SENTRY_DSN')]);
+}
+
 (function () {
     /** @var ContainerInterface $container */
     $container = require 'config/container.php';

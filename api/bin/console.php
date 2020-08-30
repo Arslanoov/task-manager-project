@@ -16,12 +16,19 @@ if (file_exists('.env')) {
     (new Dotenv(true))->load('.env');
 }
 
+if (getenv('SENTRY_DSN')) {
+    Sentry\init(['dsn' => getenv('SENTRY_DSN')]);
+}
+
 /**
  * @var ContainerInterface $container
  */
 $container = require 'config/container.php';
 
 $app = new Application('Application console');
+if (getenv('SENTRY_DSN')) {
+    $cli->setCatchExceptions(false);
+}
 
 $entityManager = $container->get(EntityManagerInterface::class);
 $connection = $entityManager->getConnection();

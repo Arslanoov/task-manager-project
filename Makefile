@@ -98,6 +98,7 @@ deploy:
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "COMPOSE_PROJECT_NAME=todo" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "REGISTRY=${REGISTRY}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "IMAGE_TAG=${IMAGE_TAG}" >> .env'
+	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "SENTRY_DSN=${SENTRY_DSN}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose pull'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose down'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose up --build --remove-orphans -d'

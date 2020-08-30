@@ -40,6 +40,7 @@ services:
       dockerfile: dev/php-fpm.docker
     environment:
       PHP_IDE_CONFIG: "serverName=API"
+      SENTRY_DSN: null
     volumes:
       - ./api:/var/www/api
       - ./storage:/var/www/storage
@@ -49,6 +50,8 @@ services:
     build:
       context: ./api/docker
       dockerfile: dev/php-cli.docker
+    environment:
+      SENTRY_DSN: null
     volumes:
       - ./api:/var/www/api
       - ./storage:/var/www/storage
