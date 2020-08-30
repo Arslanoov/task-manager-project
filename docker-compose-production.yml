@@ -27,22 +27,24 @@ services:
     image: ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
     environment:
       SENTRY_DSN: ${SENTRY_DSN}
-      MAILER_HOST: ${API_MAILER_HOST}
-      MAILER_PORT: ${API_MAILER_PORT}
-      MAILER_USER: ${API_MAILER_USER}
-      MAILER_PASSWORD: ${API_MAILER_PASSWORD}
+      MAILER_HOST: ${MAILER_HOST}
+      MAILER_PORT: ${MAILER_PORT}
+      MAILER_USER: ${MAILER_USER}
+      MAILER_PASSWORD: ${MAILER_PASSWORD}
       MAILER_ENCRYPTION: tls
+      MAILER_FROM: ${MAILER_FROM}
     restart: always
 
   api-php-cli:
     image: ${REGISTRY}/todo-api-php-cli:${IMAGE_TAG}
     environment:
       SENTRY_DSN: ${SENTRY_DSN}
-      MAILER_HOST: ${API_MAILER_HOST}
-      MAILER_PORT: ${API_MAILER_PORT}
-      MAILER_USER: ${API_MAILER_USER}
-      MAILER_PASSWORD: ${API_MAILER_PASSWORD}
+      MAILER_HOST: ${MAILER_HOST}
+      MAILER_PORT: ${MAILER_PORT}
+      MAILER_USER: ${MAILER_USER}
+      MAILER_PASSWORD: ${MAILER_PASSWORD}
       MAILER_ENCRYPTION: tls
+      MAILER_FROM: ${MAILER_FROM}
 
   api-postgres:
     image: ${REGISTRY}/todo-api-postgres:${IMAGE_TAG}
