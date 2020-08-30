@@ -4,8 +4,15 @@ declare(strict_types=1);
 
 namespace Domain\Todo\UseCase\Schedule\Task\Step\Up;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 final class Command
 {
+    /**
+     * @var int
+     * @Assert\NotBlank()
+     * @Assert\Positive()
+     */
     public int $stepId;
 
     /**

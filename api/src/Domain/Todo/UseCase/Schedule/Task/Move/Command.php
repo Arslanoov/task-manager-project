@@ -4,9 +4,21 @@ declare(strict_types=1);
 
 namespace Domain\Todo\UseCase\Schedule\Task\Move;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 final class Command
 {
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @Assert\Uuid()
+     */
     public string $taskId;
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @Assert\Uuid()
+     */
     public string $newScheduleId;
 
     /**

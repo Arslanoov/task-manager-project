@@ -26,7 +26,8 @@
     "symfony/dotenv": "^5.1",
     "webmozart/assert": "^1.9",
     "zircote/swagger-php": "^3.0",
-    "sentry/sdk": "^2.1"
+    "sentry/sdk": "^2.1",
+    "symfony/validator": "^5.1"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

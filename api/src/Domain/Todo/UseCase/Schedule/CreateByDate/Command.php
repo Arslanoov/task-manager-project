@@ -5,10 +5,21 @@ declare(strict_types=1);
 namespace Domain\Todo\UseCase\Schedule\CreateByDate;
 
 use DateTimeImmutable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 final class Command
 {
+    /**
+     * @var DateTimeImmutable
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
+     */
     public DateTimeImmutable $date;
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @Assert\Uuid()
+     */
     public string $personId;
 
     /**

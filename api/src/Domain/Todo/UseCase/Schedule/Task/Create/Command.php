@@ -4,12 +4,37 @@ declare(strict_types=1);
 
 namespace Domain\Todo\UseCase\Schedule\Task\Create;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 final class Command
 {
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @Assert\Uuid()
+     */
     public string $scheduleId;
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @Assert\Uuid()
+     */
     public string $id;
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @Assert\Length(min=1, max=128, allowEmptyString=true)
+     */
     public string $name;
+    /**
+     * @var string|null
+     */
     public ?string $description = null;
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @Assert\Length(min=4, max=16, allowEmptyString=true)
+     */
     public string $importantLevel;
 
     /**
