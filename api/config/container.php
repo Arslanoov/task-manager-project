@@ -1,20 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 use Laminas\ConfigAggregator\PhpFileProvider;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\ConfigAggregator\ConfigAggregator;
 
-$dependenciesAggregator = new ConfigAggregator([
-    new PhpFileProvider(__DIR__ . '/dependencies/{*}.php'),
-]);
-$dependencies = $dependenciesAggregator->getMergedConfig();
-
-$configAggregator = new ConfigAggregator([
-    new PhpFileProvider(__DIR__ . '/params/{*}.php'),
-]);
-$config = $configAggregator->getMergedConfig();
+$dependencies = require_once(__DIR__ . '/dependencies.php');
+$params = require_once(__DIR__ . '/params.php');
 
 $container = new ServiceManager($dependencies);
-$container->setService('config', $config);
+$container->setService('config', $params);
 
 return $container;
