@@ -32,7 +32,7 @@ services:
       MAILER_USER: ${MAILER_USER}
       MAILER_PASSWORD: ${MAILER_PASSWORD}
       MAILER_ENCRYPTION: tls
-      MAILER_FROM: ${MAILER_FROM}
+      MAILER_FROM_EMAIL: ${API_MAILER_FROM_EMAIL}
     restart: always
 
   api-php-cli:
@@ -44,7 +44,7 @@ services:
       MAILER_USER: ${MAILER_USER}
       MAILER_PASSWORD: ${MAILER_PASSWORD}
       MAILER_ENCRYPTION: tls
-      MAILER_FROM: ${MAILER_FROM}
+      MAILER_FROM_EMAIL: ${API_MAILER_FROM_EMAIL}
 
   api-postgres:
     image: ${REGISTRY}/todo-api-postgres:${IMAGE_TAG}

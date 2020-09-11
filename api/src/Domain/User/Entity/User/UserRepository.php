@@ -16,6 +16,10 @@ interface UserRepository
 
     public function findByEmail(Email $email): ?User;
 
+    public function findBySignUpConfirmToken(string $token): ?User;
+
+    public function getBySignUpConfirmToken(string $token): User;
+
     public function hasByLogin(Login $login): bool;
 
     public function hasByEmail(Email $email): bool;

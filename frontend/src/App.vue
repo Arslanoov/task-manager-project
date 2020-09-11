@@ -1,88 +1,96 @@
 <template>
-  <div id="app">
-    <header id="header">
-      <div id="nav">
-        <Nav/>
-      </div>
-    </header>
-    <main id="main">
-      <div id="aside">
-        <Sidebar/>
-      </div>
-      <div class="container page">
-        <router-view/>
-      </div>
-    </main>
-  </div>
+    <div id="app">
+        <header id="header">
+            <div id="nav">
+                <Nav/>
+            </div>
+        </header>
+        <main id="main">
+            <div id="aside">
+                <Sidebar/>
+            </div>
+            <div class="container page">
+                <router-view/>
+            </div>
+        </main>
+    </div>
 </template>
 
 <script>
-  import Nav from './components/Nav';
-  import Sidebar from './components/Sidebar';
-  import axios from "axios";
+    import Nav from './components/Nav';
+    import Sidebar from './components/Sidebar';
+    import { mapGetters } from 'vuex';
+    import axios from "axios";
 
-  export default {
-    components: {
-      Nav,
-      Sidebar
-    },
-    mounted() {
-      axios.get('/api/profile/get/photo')
-          .then((response) => {
-            document.querySelector('body').style.backgroundImage = "url('" + response.data.url + "')";
-            document.querySelector('body').style.backgroundPosition = "center";
-            document.querySelector('body').style.backgroundRepeat = "no-repeat";
-            document.querySelector('body').style.backgroundSize = "cover";
-          })
-          .catch(error => {
-              console.log(error.message);
-          });
+    export default {
+        components: {
+            Nav,
+            Sidebar
+        },
+        computed: {
+            ...mapGetters({
+                isLoggedIn: 'isLoggedIn'
+            })
+        },
+        mounted() {
+            if (this.isLoggedIn) {
+                axios.get('/api/profile/get/photo')
+                    .then((response) => {
+                        document.querySelector('body').style.backgroundImage = "url('" + response.data.url + "')";
+                        document.querySelector('body').style.backgroundPosition = "center";
+                        document.querySelector('body').style.backgroundRepeat = "no-repeat";
+                        document.querySelector('body').style.backgroundSize = "cover";
+                    })
+                    .catch(error => {
+                        console.log(error.message);
+                    });
+            }
+        }
     }
-  }
 </script>
 
 <style lang="scss">
-  @import "/assets/variables/bootstrap";
-  @import "/assets/variables/main";
-  @import "~bootstrap/dist/css/bootstrap.css";
-  @import "~bootstrap-vue/dist/bootstrap-vue.css";
-  @import "~@fortawesome/fontawesome-free/css/all.css";
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap');
+    @import "/assets/variables/bootstrap";
+    @import "/assets/variables/main";
+    @import "~bootstrap/dist/css/bootstrap.css";
+    @import "~bootstrap-vue/dist/bootstrap-vue.css";
+    @import "~@fortawesome/fontawesome-free/css/all.css";
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap');
 
-  html, body {
-    overflow-x: hidden;
-    min-height: 100%;
-  }
-
-  #app {
-    font-family: $font;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #34373d;
-  }
-
-  button:focus, button:active {
-    outline: none !important;
-    box-shadow: none !important;
-    border: 0 !important;
-  }
-
-  #header {
-    width: 100%;
-
-    a {
-      font-weight: bold;
-      color: #2c3e50;
-
-      &.router-link-exact-active {
-        color: #42b983;
-      }
+    html, body {
+        overflow-x: hidden;
+        min-height: 100%;
     }
-  }
 
-  .page {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
+    #app {
+        font-family: $font;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #34373d;
+    }
+
+    button:focus, button:active {
+        outline: none !important;
+        box-shadow: none !important;
+        border: 0 !important;
+    }
+
+    #header {
+        width: 100%;
+
+        a {
+            font-weight: bold;
+            color: #2c3e50;
+
+            &.router-link-exact-active {
+                color: #42b983;
+            }
+        }
+    }
+
+    .page {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 </style>

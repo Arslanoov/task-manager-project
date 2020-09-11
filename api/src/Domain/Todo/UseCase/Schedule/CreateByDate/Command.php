@@ -12,7 +12,6 @@ final class Command
     /**
      * @var DateTimeImmutable
      * @Assert\NotBlank()
-     * @Assert\DateTime()
      */
     public DateTimeImmutable $date;
     /**

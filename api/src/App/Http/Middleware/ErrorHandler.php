@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use DateTimeImmutable;
 use Framework\Http\Psr7\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -38,9 +39,15 @@ class ErrorHandler implements MiddlewareInterface
         } catch (Throwable $e) {
             $code = $e->getCode() ?: 500;
             if ($code == 500) {
-                $this->logger->error($e->getMessage());
+                $this->logger->error($e->getMessage(), [
+                    'date' => new DateTimeImmutable(),
+                    'trace' => $e->getTrace()
+                ]);
             } else {
-                $this->logger->warning($e->getMessage());
+                $this->logger->warning($e->getMessage(), [
+                    'date' => new DateTimeImmutable(),
+                    'trace' => $e->getTrace()
+                ]);
             }
 
             return $this->response->json([

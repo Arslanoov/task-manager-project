@@ -6,7 +6,6 @@ namespace Domain\User\Entity\User;
 
 use DateTimeImmutable;
 use Domain\Exception\DomainException;
-use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -44,18 +43,10 @@ final class ConfirmToken
         $this->expires = $expires;
     }
 
-    public static function generate(): self
-    {
-        return new self(
-            Uuid::uuid4()->toString(),
-            new DateTimeImmutable()
-        );
-    }
-
     public function validate(string $value, DateTimeImmutable $date): void
     {
         if (!$this->isEqualTo($value) or $this->isExpiredTo($date)) {
-            throw new DomainException('Token is invalid.');
+            throw new DomainException('Token is expired.');
         }
     }
 

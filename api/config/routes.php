@@ -9,7 +9,8 @@ return function (Application $app) {
     $app->get('home', '/api', Action\HomeAction::class);
 
     // Auth
-    $app->post('api.auth.signup', '/api/auth/signup', Action\Auth\SignUpAction::class);
+    $app->post('api.auth.signup.request', '/api/auth/sign-up/request', Action\Auth\SignUp\RequestAction::class);
+    $app->post('api.auth.signup.confirm', '/api/auth/sign-up/confirm', Action\Auth\SignUp\ConfirmAction::class);
     $app->post('api.oauth.auth', '/api/oauth/auth', Action\Auth\OAuthAction::class);
 
     // Profile

@@ -18,7 +18,7 @@ use OpenApi\Annotations as OA;
  *     description="HTTP JSON API",
  * ),
  * @OA\Server(
- *     url="/api"
+ *     url="http://localhost:8081/api"
  * ),
  * @OA\SecurityScheme(
  *     type="oauth2",

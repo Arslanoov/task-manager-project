@@ -51,9 +51,8 @@
                 this.error = null;
                 this.errors = [];
 
-                axios.post('/api/auth/signup', this.form)
+                axios.post('/api/auth/sign-up/request', this.form)
                     .then(() => {
-                        this.$store.commit('changeCurrentEmail', this.form.email);
                         this.$router.push({name: 'home'});
                     })
                     .catch(error => {

@@ -65,7 +65,8 @@ final class User
         Id $id,
         Login $login,
         Email $email,
-        Password $password
+        Password $password,
+        ConfirmToken $signUpConfirmToken
     ): self {
         return new self(
             $id,
@@ -73,7 +74,7 @@ final class User
             $email,
             $password,
             Status::draft(),
-            ConfirmToken::generate()
+            $signUpConfirmToken
         );
     }
 

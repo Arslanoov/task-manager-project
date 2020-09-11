@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "/api"
+            "url": "http://localhost:8081/api"
         }
     ],
     "paths": {
@@ -77,12 +77,94 @@
                 }
             }
         },
-        "/api/auth/signup": {
+        "/auth/sign-up/confirm": {
             "post": {
                 "tags": [
-                    "Sign Up"
+                    "Sign Up Confirm"
                 ],
-                "operationId": "App\\Http\\Action\\Auth\\SignUpAction::handle",
+                "operationId": "App\\Http\\Action\\Auth\\SignUp\\ConfirmAction::handle",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "token"
+                                ],
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Success response"
+                    },
+                    "400": {
+                        "description": "Errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "nullable": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "419": {
+                        "description": "Domain errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "nullable": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/sign-up/request": {
+            "post": {
+                "tags": [
+                    "Sign Request"
+                ],
+                "operationId": "App\\Http\\Action\\Auth\\SignUp\\RequestAction::handle",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -121,6 +203,42 @@
                                         "error": {
                                             "type": "string",
                                             "nullable": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "419": {
+                        "description": "Domain errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "nullable": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {}
                                         }
                                     },
                                     "type": "object"
@@ -219,6 +337,15 @@
                                 "schema": {
                                     "properties": {
                                         "id": {
+                                            "type": "string"
+                                        },
+                                        "login": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "string"
                                         }
                                     },

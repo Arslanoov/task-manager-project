@@ -27,6 +27,8 @@
 </template>
 
 <script>
+    import axios from "axios";
+
     export default {
         data() {
             return {
@@ -44,10 +46,23 @@
                 this.error = null;
                 this.$store.dispatch('login', {
                     username: this.form.email,
-                    password: this.form.password,
+                    password: this.form.password
                 })
                     .then(() => {
-                        this.$router.push({name: 'home'});
+                        axios.get('/api/profile')
+                            .then(response => {
+                                if (response.data.user.status !== 'Draft') {
+                                    this.$router.push({name: 'home'});
+                                } else {
+                                    this.$store.dispatch('logout')
+                                        .then(() => {
+                                            this.$router.push({name: 'home'});
+                                        });
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
                     })
                     .catch(error => {
                         this.error = error.response.data.error;

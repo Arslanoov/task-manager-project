@@ -10,7 +10,7 @@ use Psr\Log\LoggerInterface;
 
 return [
     'abstract_factories' => [
-        ReflectionBasedAbstractFactory::class,
+        ReflectionBasedAbstractFactory::class
     ],
     'factories' => [
         ServerRequestInterface::class => function (ContainerInterface $container) {
