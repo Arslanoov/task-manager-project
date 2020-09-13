@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Builder;
 
+use DateTimeImmutable;
 use Domain\User\Entity\User\ConfirmToken;
 use Domain\User\Entity\User\Email;
 use Domain\User\Entity\User\Password;
@@ -11,6 +12,7 @@ use Domain\User\Entity\User\Id;
 use Domain\User\Entity\User\Login;
 use Domain\User\Entity\User\Status;
 use Domain\User\Entity\User\User;
+use Ramsey\Uuid\Uuid;
 
 final class UserBuilder
 {
@@ -28,7 +30,7 @@ final class UserBuilder
         $this->email = new Email('app@test.app');
         $this->password = new Password('Password');
         $this->status = Status::draft();
-        $this->signUpConfirmToken = ConfirmToken::generate();
+        $this->signUpConfirmToken = new ConfirmToken(Uuid::uuid4()->toString(), new DateTimeImmutable());
     }
 
     public function withId(Id $id): self

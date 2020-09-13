@@ -1,7 +1,7 @@
 up: docker-clear docker-pull docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions api-check
 compile: frontend-install frontend-build-sass frontend-compile-js
 generate-keys: generate-private-key generate-public-key
-test: api-load-fixtures api-tests-run
+test: api-tests-run
 build: build-gateway build-frontend build-api
 push: push-gateway push-frontend push-api
 

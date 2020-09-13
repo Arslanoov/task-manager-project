@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Entity\User;
 
+use DateTimeImmutable;
 use Domain\User\Entity\User\ConfirmToken;
 use Domain\User\Entity\User\Email;
 use Domain\User\Entity\User\Id;
@@ -13,6 +14,7 @@ use Domain\User\Entity\User\Status;
 use Domain\User\Entity\User\User;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
 class CreateTest extends TestCase
 {
@@ -22,7 +24,8 @@ class CreateTest extends TestCase
             Id::uuid4(),
             $login = new Login('some login'),
             $email = new Email('app@test.app'),
-            $password = new Password('Some password')
+            $password = new Password('Some password'),
+            $token = new ConfirmToken(Uuid::uuid4()->toString(), new DateTimeImmutable())
         );
 
         $this->assertEquals($user->getLogin(), $login);
@@ -39,96 +42,7 @@ class CreateTest extends TestCase
         $this->assertEquals(Status::draft(), $user->getStatus());
         $this->assertTrue($user->isDraft());
         $this->assertFalse($user->isActive());
-    }
 
-    public function testEmptyLogin(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('User login required');
-
-        User::signUpByEmail(
-            Id::uuid4(),
-            $login = new Login(''),
-            $email = new Email('app@test.app'),
-            new Password('Some password')
-        );
-    }
-
-    public function testTooLongLogin(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('User login must be between 4 and 32 chars length');
-
-        User::signUpByEmail(
-            Id::uuid4(),
-            $login = new Login('sssssssssssssssssssssssssssssssssssssssssssssssss'),
-            $email = new Email('app@test.app'),
-            new Password('Some password')
-        );
-    }
-
-    public function testTooShortLogin(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('User login must be between 4 and 32 chars length');
-
-        User::signUpByEmail(
-            Id::uuid4(),
-            $login = new Login('s'),
-            $email = new Email('app@test.app'),
-            new Password('Some password')
-        );
-    }
-
-    public function testEmptyEmail(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('User email required');
-
-        User::signUpByEmail(
-            Id::uuid4(),
-            $login = new Login('login'),
-            $email = new Email(''),
-            new Password('Some password')
-        );
-    }
-
-    public function testInvalidEmail(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Incorrect email');
-
-        User::signUpByEmail(
-            Id::uuid4(),
-            $login = new Login('login'),
-            $email = new Email('email'),
-            new Password('Some password')
-        );
-    }
-
-    public function testTooLongEmail(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('User email must be between 5 and 32 chars length');
-
-        User::signUpByEmail(
-            Id::uuid4(),
-            $login = new Login('login'),
-            $email = new Email('sssssssssssssssssssssssssssssssssssssssssssssssss'),
-            new Password('Some password')
-        );
-    }
-
-    public function testTooShortEmail(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('User email must be between 5 and 32 chars length');
-
-        User::signUpByEmail(
-            Id::uuid4(),
-            $login = new Login('login'),
-            $email = new Email('s'),
-            new Password('Some password')
-        );
+        $this->assertEquals($token, $user->getSignUpConfirmToken());
     }
 }

@@ -34,18 +34,22 @@ final class ConfirmToken
      */
     public function __construct(string $value, DateTimeImmutable $expires)
     {
-        Assert::notEmpty($value);
-        Assert::string($value);
-        Assert::lengthBetween($value, 16, 64);
-        Assert::uuid($value);
+        Assert::notEmpty($value, 'User confirm token value required');
+        Assert::string($value, 'User confirm token value must be string');
+        Assert::lengthBetween($value, 16, 64, 'User confirm token value must be between 16 and 64 chars length');
+        Assert::uuid($value, 'User confirm token value must be uuid');
         $this->value = mb_strtolower($value);
-        Assert::notEmpty($expires);
+        Assert::notEmpty($expires, 'User confirm token expires date required');
         $this->expires = $expires;
     }
 
     public function validate(string $value, DateTimeImmutable $date): void
     {
-        if (!$this->isEqualTo($value) or $this->isExpiredTo($date)) {
+        if (!$this->isEqualTo($value)) {
+            throw new DomainException('Token is invalid.');
+        }
+
+        if ($this->isExpiredTo($date)) {
             throw new DomainException('Token is expired.');
         }
     }
