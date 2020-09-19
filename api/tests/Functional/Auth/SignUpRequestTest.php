@@ -6,7 +6,7 @@ namespace Tests\Functional\Auth;
 
 use Tests\Functional\FunctionalTestCase;
 
-class SignUpTest extends FunctionalTestCase
+class SignUpRequestTest extends FunctionalTestCase
 {
     protected function setUp(): void
     {
@@ -25,8 +25,8 @@ class SignUpTest extends FunctionalTestCase
 
     public function testSuccess(): void
     {
-        $response = $this->post('/api/auth/signup', [
-            'login' => 'user',
+        $response = $this->post('/api/auth/sign-up/request', [
+            'login' => 'some user',
             'email' => 'mail@email.com',
             'password' => 'password'
         ]);
