@@ -46,5 +46,7 @@ class CreateTest extends TestCase
         $this->assertFalse($task->isComplete());
 
         $this->assertEquals($task->getFinishedSteps(), 0);
+
+        $this->assertEquals([], $task->getSteps());
     }
 }

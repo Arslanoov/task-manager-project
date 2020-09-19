@@ -190,6 +190,9 @@ class Schedule
 
     public function removeTask(): void
     {
+        if ($this->tasksCount === 0) {
+            throw new DomainException('The number of tasks cannot be negative');
+        }
         $this->tasksCount -= 1;
     }
 

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/api/src/Infrastructure/Domain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../_css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../../_css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="../../_css/style.css" rel="stylesheet" type="text/css">
+  <link href="../../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../../index.html">/var/www/api/src</a></li>
+         <li class="breadcrumb-item"><a href="../index.html">Infrastructure</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Domain</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="OAuth/DoctrineAccessTokenRepository.php.html#17">Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineTaskRepository.php.html#14">Infrastructure\Domain\Todo\Repository\DoctrineTaskRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Service/PasswordValidator.php.html#9">Infrastructure\Domain\User\Service\PasswordValidator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Service/PasswordHasher.php.html#10">Infrastructure\Domain\User\Service\PasswordHasher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Service/ConfirmTokenGenerator.php.html#13">Infrastructure\Domain\User\Service\ConfirmTokenGenerator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#17">Infrastructure\Domain\User\Repository\DoctrineUserRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Service/PhotoUploader.php.html#11">Infrastructure\Domain\Todo\Service\PhotoUploader</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Service/PhotoRemover.php.html#9">Infrastructure\Domain\Todo\Service\PhotoRemover</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#18">Infrastructure\Domain\Todo\Repository\DoctrineStepRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAuthCodeRepository.php.html#16">Infrastructure\Domain\OAuth\DoctrineAuthCodeRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#17">Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrinePersonRepository.php.html#14">Infrastructure\Domain\Todo\Repository\DoctrinePersonRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineUserRepository.php.html#16">Infrastructure\Domain\OAuth\DoctrineUserRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineScopeRepository.php.html#12">Infrastructure\Domain\OAuth\DoctrineScopeRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineRefreshTokenRepository.php.html#16">Infrastructure\Domain\OAuth\DoctrineRefreshTokenRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineClientRepository.php.html#11">Infrastructure\Domain\OAuth\DoctrineClientRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Service/SignUpConfirmEmailSender.php.html#19">Infrastructure\Domain\User\Service\SignUpConfirmEmailSender</a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#17">Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository</a></td><td class="text-right">870</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#18">Infrastructure\Domain\Todo\Repository\DoctrineStepRepository</a></td><td class="text-right">306</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#17">Infrastructure\Domain\User\Repository\DoctrineUserRepository</a></td><td class="text-right">306</td></tr>
+       <tr><td><a href="OAuth/DoctrineAccessTokenRepository.php.html#17">Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository</a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="OAuth/DoctrineAuthCodeRepository.php.html#16">Infrastructure\Domain\OAuth\DoctrineAuthCodeRepository</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="OAuth/DoctrineClientRepository.php.html#11">Infrastructure\Domain\OAuth\DoctrineClientRepository</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="OAuth/DoctrineRefreshTokenRepository.php.html#16">Infrastructure\Domain\OAuth\DoctrineRefreshTokenRepository</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrinePersonRepository.php.html#14">Infrastructure\Domain\Todo\Repository\DoctrinePersonRepository</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineTaskRepository.php.html#14">Infrastructure\Domain\Todo\Repository\DoctrineTaskRepository</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="OAuth/DoctrineScopeRepository.php.html#12">Infrastructure\Domain\OAuth\DoctrineScopeRepository</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="OAuth/DoctrineUserRepository.php.html#16">Infrastructure\Domain\OAuth\DoctrineUserRepository</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Todo/Service/PhotoUploader.php.html#11">Infrastructure\Domain\Todo\Service\PhotoUploader</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Todo/Service/PhotoRemover.php.html#9">Infrastructure\Domain\Todo\Service\PhotoRemover</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="User/Service/SignUpConfirmEmailSender.php.html#19">Infrastructure\Domain\User\Service\SignUpConfirmEmailSender</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="User/Service/PasswordHasher.php.html#10">Infrastructure\Domain\User\Service\PasswordHasher</a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="OAuth/DoctrineAccessTokenRepository.php.html#22"><abbr title="Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#99"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::getByTask">getByTask</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineTaskRepository.php.html#47"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineTaskRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineTaskRepository.php.html#38"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineTaskRepository::getById">getById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineTaskRepository.php.html#31"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineTaskRepository::findById">findById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineTaskRepository.php.html#23"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineTaskRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#128"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#123"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#114"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::getNextId">getNextId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#90"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::getLowerStep">getLowerStep</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Service/PhotoRemover.php.html#17"><abbr title="Infrastructure\Domain\Todo\Service\PhotoRemover::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#81"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::getHigherStep">getHigherStep</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#72"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::getById">getById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#58"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::findLowerStep">findLowerStep</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#44"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::findHigherStep">findHigherStep</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#37"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::findById">findById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#28"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#182"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#177"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineTaskRepository.php.html#52"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineTaskRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Service/PhotoRemover.php.html#22"><abbr title="Infrastructure\Domain\Todo\Service\PhotoRemover::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#153"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findPreviousSchedule">findPreviousSchedule</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#83"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::hasByEmail">hasByEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Service/SignUpConfirmEmailSender.php.html#24"><abbr title="Infrastructure\Domain\User\Service\SignUpConfirmEmailSender::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Service/PasswordValidator.php.html#11"><abbr title="Infrastructure\Domain\User\Service\PasswordValidator::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Service/PasswordHasher.php.html#12"><abbr title="Infrastructure\Domain\User\Service\PasswordHasher::hash">hash</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Service/ConfirmTokenGenerator.php.html#26"><abbr title="Infrastructure\Domain\User\Service\ConfirmTokenGenerator::generate">generate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Service/ConfirmTokenGenerator.php.html#21"><abbr title="Infrastructure\Domain\User\Service\ConfirmTokenGenerator::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#102"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#97"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#88"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::getById">getById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#78"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::hasByLogin">hasByLogin</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Service/PhotoUploader.php.html#19"><abbr title="Infrastructure\Domain\Todo\Service\PhotoUploader::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#69"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::getBySignUpConfirmToken">getBySignUpConfirmToken</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#59"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::findBySignUpConfirmToken">findBySignUpConfirmToken</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#49"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::findByEmail">findByEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#39"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::findByLogin">findByLogin</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#32"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::findById">findById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#26"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Service/PhotoUploader.php.html#31"><abbr title="Infrastructure\Domain\Todo\Service\PhotoUploader::generateName">generateName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Service/PhotoUploader.php.html#24"><abbr title="Infrastructure\Domain\Todo\Service\PhotoUploader::upload">upload</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#165"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findPersonTodaySchedule">findPersonTodaySchedule</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#141"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findNextSchedule">findNextSchedule</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAccessTokenRepository.php.html#30"><abbr title="Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository::getNewToken">getNewToken</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAuthCodeRepository.php.html#75"><abbr title="Infrastructure\Domain\OAuth\DoctrineAuthCodeRepository::exists">exists</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineRefreshTokenRepository.php.html#50"><abbr title="Infrastructure\Domain\OAuth\DoctrineRefreshTokenRepository::revokeRefreshToken">revokeRefreshToken</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineRefreshTokenRepository.php.html#40"><abbr title="Infrastructure\Domain\OAuth\DoctrineRefreshTokenRepository::persistNewRefreshToken">persistNewRefreshToken</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineRefreshTokenRepository.php.html#29"><abbr title="Infrastructure\Domain\OAuth\DoctrineRefreshTokenRepository::getNewRefreshToken">getNewRefreshToken</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineRefreshTokenRepository.php.html#21"><abbr title="Infrastructure\Domain\OAuth\DoctrineRefreshTokenRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineClientRepository.php.html#45"><abbr title="Infrastructure\Domain\OAuth\DoctrineClientRepository::validateClient">validateClient</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineClientRepository.php.html#20"><abbr title="Infrastructure\Domain\OAuth\DoctrineClientRepository::getClientEntity">getClientEntity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineClientRepository.php.html#15"><abbr title="Infrastructure\Domain\OAuth\DoctrineClientRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAuthCodeRepository.php.html#64"><abbr title="Infrastructure\Domain\OAuth\DoctrineAuthCodeRepository::isAuthCodeRevoked">isAuthCodeRevoked</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineRefreshTokenRepository.php.html#75"><abbr title="Infrastructure\Domain\OAuth\DoctrineRefreshTokenRepository::exists">exists</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAuthCodeRepository.php.html#50"><abbr title="Infrastructure\Domain\OAuth\DoctrineAuthCodeRepository::revokeAuthCode">revokeAuthCode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAuthCodeRepository.php.html#40"><abbr title="Infrastructure\Domain\OAuth\DoctrineAuthCodeRepository::persistNewAuthCode">persistNewAuthCode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAuthCodeRepository.php.html#29"><abbr title="Infrastructure\Domain\OAuth\DoctrineAuthCodeRepository::getNewAuthCode">getNewAuthCode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAuthCodeRepository.php.html#21"><abbr title="Infrastructure\Domain\OAuth\DoctrineAuthCodeRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAccessTokenRepository.php.html#87"><abbr title="Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository::exists">exists</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAccessTokenRepository.php.html#76"><abbr title="Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository::isAccessTokenRevoked">isAccessTokenRevoked</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAccessTokenRepository.php.html#62"><abbr title="Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository::revokeAccessToken">revokeAccessToken</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineAccessTokenRepository.php.html#52"><abbr title="Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository::persistNewAccessToken">persistNewAccessToken</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineRefreshTokenRepository.php.html#64"><abbr title="Infrastructure\Domain\OAuth\DoctrineRefreshTokenRepository::isRefreshTokenRevoked">isRefreshTokenRevoked</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineScopeRepository.php.html#19"><abbr title="Infrastructure\Domain\OAuth\DoctrineScopeRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#130"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::getPersonMainSchedule">getPersonMainSchedule</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#34"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findByDate">findByDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#119"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findPersonMainSchedule">findPersonMainSchedule</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#106"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::getPersonCustomSchedules">getPersonCustomSchedules</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#97"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::getCustomById">getCustomById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#85"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findCustomById">findCustomById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#74"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::getDailyByDate">getDailyByDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#62"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findDailyByDate">findDailyByDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#51"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::getById">getById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#44"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findById">findById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#26"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineScopeRepository.php.html#26"><abbr title="Infrastructure\Domain\OAuth\DoctrineScopeRepository::getScopeEntityByIdentifier">getScopeEntityByIdentifier</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrinePersonRepository.php.html#52"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrinePersonRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrinePersonRepository.php.html#47"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrinePersonRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrinePersonRepository.php.html#38"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrinePersonRepository::getById">getById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrinePersonRepository.php.html#31"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrinePersonRepository::findById">findById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrinePersonRepository.php.html#23"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrinePersonRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineUserRepository.php.html#27"><abbr title="Infrastructure\Domain\OAuth\DoctrineUserRepository::getUserEntityByUserCredentials">getUserEntityByUserCredentials</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineUserRepository.php.html#21"><abbr title="Infrastructure\Domain\OAuth\DoctrineUserRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/DoctrineScopeRepository.php.html#31"><abbr title="Infrastructure\Domain\OAuth\DoctrineScopeRepository::finalizeScopes">finalizeScopes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User/Service/SignUpConfirmEmailSender.php.html#39"><abbr title="Infrastructure\Domain\User\Service\SignUpConfirmEmailSender::send">send</abbr></a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="OAuth/DoctrineClientRepository.php.html#20"><abbr title="Infrastructure\Domain\OAuth\DoctrineClientRepository::getClientEntity">getClientEntity</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="OAuth/DoctrineUserRepository.php.html#27"><abbr title="Infrastructure\Domain\OAuth\DoctrineUserRepository::getUserEntityByUserCredentials">getUserEntityByUserCredentials</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#130"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::getPersonMainSchedule">getPersonMainSchedule</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="OAuth/DoctrineScopeRepository.php.html#31"><abbr title="Infrastructure\Domain\OAuth\DoctrineScopeRepository::finalizeScopes">finalizeScopes</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Todo/Service/PhotoRemover.php.html#22"><abbr title="Infrastructure\Domain\Todo\Service\PhotoRemover::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#44"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::findHigherStep">findHigherStep</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#58"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::findLowerStep">findLowerStep</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#72"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::getById">getById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#81"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::getHigherStep">getHigherStep</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#90"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::getLowerStep">getLowerStep</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineTaskRepository.php.html#31"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineTaskRepository::findById">findById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineTaskRepository.php.html#38"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineTaskRepository::getById">getById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#32"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::findById">findById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Service/PhotoUploader.php.html#31"><abbr title="Infrastructure\Domain\Todo\Service\PhotoUploader::generateName">generateName</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#165"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findPersonTodaySchedule">findPersonTodaySchedule</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#39"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::findByLogin">findByLogin</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#49"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::findByEmail">findByEmail</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#59"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::findBySignUpConfirmToken">findBySignUpConfirmToken</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#69"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::getBySignUpConfirmToken">getBySignUpConfirmToken</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User/Repository/DoctrineUserRepository.php.html#88"><abbr title="Infrastructure\Domain\User\Repository\DoctrineUserRepository::getById">getById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User/Service/PasswordHasher.php.html#12"><abbr title="Infrastructure\Domain\User\Service\PasswordHasher::hash">hash</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineStepRepository.php.html#37"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineStepRepository::findById">findById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/DoctrineAccessTokenRepository.php.html#30"><abbr title="Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository::getNewToken">getNewToken</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#153"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findPreviousSchedule">findPreviousSchedule</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrinePersonRepository.php.html#38"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrinePersonRepository::getById">getById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/DoctrineAccessTokenRepository.php.html#62"><abbr title="Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository::revokeAccessToken">revokeAccessToken</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/DoctrineAuthCodeRepository.php.html#40"><abbr title="Infrastructure\Domain\OAuth\DoctrineAuthCodeRepository::persistNewAuthCode">persistNewAuthCode</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/DoctrineAuthCodeRepository.php.html#50"><abbr title="Infrastructure\Domain\OAuth\DoctrineAuthCodeRepository::revokeAuthCode">revokeAuthCode</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/DoctrineRefreshTokenRepository.php.html#40"><abbr title="Infrastructure\Domain\OAuth\DoctrineRefreshTokenRepository::persistNewRefreshToken">persistNewRefreshToken</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/DoctrineRefreshTokenRepository.php.html#50"><abbr title="Infrastructure\Domain\OAuth\DoctrineRefreshTokenRepository::revokeRefreshToken">revokeRefreshToken</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/DoctrineScopeRepository.php.html#26"><abbr title="Infrastructure\Domain\OAuth\DoctrineScopeRepository::getScopeEntityByIdentifier">getScopeEntityByIdentifier</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrinePersonRepository.php.html#31"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrinePersonRepository::findById">findById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#34"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findByDate">findByDate</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#141"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findNextSchedule">findNextSchedule</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#44"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findById">findById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#51"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::getById">getById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#62"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findDailyByDate">findDailyByDate</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#74"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::getDailyByDate">getDailyByDate</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#85"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findCustomById">findCustomById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#97"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::getCustomById">getCustomById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Todo/Repository/DoctrineScheduleRepository.php.html#119"><abbr title="Infrastructure\Domain\Todo\Repository\DoctrineScheduleRepository::findPersonMainSchedule">findPersonMainSchedule</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/DoctrineAccessTokenRepository.php.html#52"><abbr title="Infrastructure\Domain\OAuth\DoctrineAccessTokenRepository::persistNewAccessToken">persistNewAccessToken</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User/Service/SignUpConfirmEmailSender.php.html#39"><abbr title="Infrastructure\Domain\User\Service\SignUpConfirmEmailSender::send">send</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 7.0.10</a> using <a href="https://secure.php.net/" target="_top">PHP 7.4.4</a> with <a href="https://xdebug.org/">Xdebug 2.9.5</a> and <a href="https://phpunit.de/">PHPUnit 8.5.8</a> at Tue Sep 15 15:34:35 UTC 2020.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../../_js/jquery.min.js" type="text/javascript"></script>
+  <script src="../../_js/d3.min.js" type="text/javascript"></script>
+  <script src="../../_js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([17,0,0,0,0,0,0,0,0,0,0,0], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([85,0,0,0,0,0,0,0,0,0,0,0], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,9,"<a href=\"OAuth\/DoctrineAccessTokenRepository.php.html#17\">Infrastructure\\Domain\\OAuth\\DoctrineAccessTokenRepository<\/a>"],[0,8,"<a href=\"OAuth\/DoctrineAuthCodeRepository.php.html#16\">Infrastructure\\Domain\\OAuth\\DoctrineAuthCodeRepository<\/a>"],[0,8,"<a href=\"OAuth\/DoctrineClientRepository.php.html#11\">Infrastructure\\Domain\\OAuth\\DoctrineClientRepository<\/a>"],[0,8,"<a href=\"OAuth\/DoctrineRefreshTokenRepository.php.html#16\">Infrastructure\\Domain\\OAuth\\DoctrineRefreshTokenRepository<\/a>"],[0,6,"<a href=\"OAuth\/DoctrineScopeRepository.php.html#12\">Infrastructure\\Domain\\OAuth\\DoctrineScopeRepository<\/a>"],[0,5,"<a href=\"OAuth\/DoctrineUserRepository.php.html#16\">Infrastructure\\Domain\\OAuth\\DoctrineUserRepository<\/a>"],[0,7,"<a href=\"Todo\/Repository\/DoctrinePersonRepository.php.html#14\">Infrastructure\\Domain\\Todo\\Repository\\DoctrinePersonRepository<\/a>"],[0,29,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#17\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository<\/a>"],[0,17,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#18\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository<\/a>"],[0,7,"<a href=\"Todo\/Repository\/DoctrineTaskRepository.php.html#14\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineTaskRepository<\/a>"],[0,3,"<a href=\"Todo\/Service\/PhotoRemover.php.html#9\">Infrastructure\\Domain\\Todo\\Service\\PhotoRemover<\/a>"],[0,4,"<a href=\"Todo\/Service\/PhotoUploader.php.html#11\">Infrastructure\\Domain\\Todo\\Service\\PhotoUploader<\/a>"],[0,17,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#17\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository<\/a>"],[0,2,"<a href=\"User\/Service\/ConfirmTokenGenerator.php.html#13\">Infrastructure\\Domain\\User\\Service\\ConfirmTokenGenerator<\/a>"],[0,2,"<a href=\"User\/Service\/PasswordHasher.php.html#10\">Infrastructure\\Domain\\User\\Service\\PasswordHasher<\/a>"],[0,1,"<a href=\"User\/Service\/PasswordValidator.php.html#9\">Infrastructure\\Domain\\User\\Service\\PasswordValidator<\/a>"],[0,3,"<a href=\"User\/Service\/SignUpConfirmEmailSender.php.html#19\">Infrastructure\\Domain\\User\\Service\\SignUpConfirmEmailSender<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"OAuth\/DoctrineAccessTokenRepository.php.html#22\">Infrastructure\\Domain\\OAuth\\DoctrineAccessTokenRepository::__construct<\/a>"],[0,2,"<a href=\"OAuth\/DoctrineAccessTokenRepository.php.html#30\">Infrastructure\\Domain\\OAuth\\DoctrineAccessTokenRepository::getNewToken<\/a>"],[0,2,"<a href=\"OAuth\/DoctrineAccessTokenRepository.php.html#52\">Infrastructure\\Domain\\OAuth\\DoctrineAccessTokenRepository::persistNewAccessToken<\/a>"],[0,2,"<a href=\"OAuth\/DoctrineAccessTokenRepository.php.html#62\">Infrastructure\\Domain\\OAuth\\DoctrineAccessTokenRepository::revokeAccessToken<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineAccessTokenRepository.php.html#76\">Infrastructure\\Domain\\OAuth\\DoctrineAccessTokenRepository::isAccessTokenRevoked<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineAccessTokenRepository.php.html#87\">Infrastructure\\Domain\\OAuth\\DoctrineAccessTokenRepository::exists<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineAuthCodeRepository.php.html#21\">Infrastructure\\Domain\\OAuth\\DoctrineAuthCodeRepository::__construct<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineAuthCodeRepository.php.html#29\">Infrastructure\\Domain\\OAuth\\DoctrineAuthCodeRepository::getNewAuthCode<\/a>"],[0,2,"<a href=\"OAuth\/DoctrineAuthCodeRepository.php.html#40\">Infrastructure\\Domain\\OAuth\\DoctrineAuthCodeRepository::persistNewAuthCode<\/a>"],[0,2,"<a href=\"OAuth\/DoctrineAuthCodeRepository.php.html#50\">Infrastructure\\Domain\\OAuth\\DoctrineAuthCodeRepository::revokeAuthCode<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineAuthCodeRepository.php.html#64\">Infrastructure\\Domain\\OAuth\\DoctrineAuthCodeRepository::isAuthCodeRevoked<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineAuthCodeRepository.php.html#75\">Infrastructure\\Domain\\OAuth\\DoctrineAuthCodeRepository::exists<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineClientRepository.php.html#15\">Infrastructure\\Domain\\OAuth\\DoctrineClientRepository::__construct<\/a>"],[0,6,"<a href=\"OAuth\/DoctrineClientRepository.php.html#20\">Infrastructure\\Domain\\OAuth\\DoctrineClientRepository::getClientEntity<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineClientRepository.php.html#45\">Infrastructure\\Domain\\OAuth\\DoctrineClientRepository::validateClient<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineRefreshTokenRepository.php.html#21\">Infrastructure\\Domain\\OAuth\\DoctrineRefreshTokenRepository::__construct<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineRefreshTokenRepository.php.html#29\">Infrastructure\\Domain\\OAuth\\DoctrineRefreshTokenRepository::getNewRefreshToken<\/a>"],[0,2,"<a href=\"OAuth\/DoctrineRefreshTokenRepository.php.html#40\">Infrastructure\\Domain\\OAuth\\DoctrineRefreshTokenRepository::persistNewRefreshToken<\/a>"],[0,2,"<a href=\"OAuth\/DoctrineRefreshTokenRepository.php.html#50\">Infrastructure\\Domain\\OAuth\\DoctrineRefreshTokenRepository::revokeRefreshToken<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineRefreshTokenRepository.php.html#64\">Infrastructure\\Domain\\OAuth\\DoctrineRefreshTokenRepository::isRefreshTokenRevoked<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineRefreshTokenRepository.php.html#75\">Infrastructure\\Domain\\OAuth\\DoctrineRefreshTokenRepository::exists<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineScopeRepository.php.html#19\">Infrastructure\\Domain\\OAuth\\DoctrineScopeRepository::__construct<\/a>"],[0,2,"<a href=\"OAuth\/DoctrineScopeRepository.php.html#26\">Infrastructure\\Domain\\OAuth\\DoctrineScopeRepository::getScopeEntityByIdentifier<\/a>"],[0,3,"<a href=\"OAuth\/DoctrineScopeRepository.php.html#31\">Infrastructure\\Domain\\OAuth\\DoctrineScopeRepository::finalizeScopes<\/a>"],[0,1,"<a href=\"OAuth\/DoctrineUserRepository.php.html#21\">Infrastructure\\Domain\\OAuth\\DoctrineUserRepository::__construct<\/a>"],[0,4,"<a href=\"OAuth\/DoctrineUserRepository.php.html#27\">Infrastructure\\Domain\\OAuth\\DoctrineUserRepository::getUserEntityByUserCredentials<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrinePersonRepository.php.html#23\">Infrastructure\\Domain\\Todo\\Repository\\DoctrinePersonRepository::__construct<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrinePersonRepository.php.html#31\">Infrastructure\\Domain\\Todo\\Repository\\DoctrinePersonRepository::findById<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrinePersonRepository.php.html#38\">Infrastructure\\Domain\\Todo\\Repository\\DoctrinePersonRepository::getById<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrinePersonRepository.php.html#47\">Infrastructure\\Domain\\Todo\\Repository\\DoctrinePersonRepository::add<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrinePersonRepository.php.html#52\">Infrastructure\\Domain\\Todo\\Repository\\DoctrinePersonRepository::remove<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#26\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::__construct<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#34\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::findByDate<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#44\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::findById<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#51\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::getById<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#62\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::findDailyByDate<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#74\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::getDailyByDate<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#85\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::findCustomById<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#97\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::getCustomById<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#106\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::getPersonCustomSchedules<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#119\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::findPersonMainSchedule<\/a>"],[0,3,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#130\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::getPersonMainSchedule<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#141\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::findNextSchedule<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#153\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::findPreviousSchedule<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#165\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::findPersonTodaySchedule<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#177\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::add<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineScheduleRepository.php.html#182\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineScheduleRepository::remove<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#28\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository::__construct<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#37\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository::findById<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#44\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository::findHigherStep<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#58\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository::findLowerStep<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#72\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository::getById<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#81\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository::getHigherStep<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#90\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository::getLowerStep<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#99\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository::getByTask<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#114\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository::getNextId<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#123\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository::add<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineStepRepository.php.html#128\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineStepRepository::remove<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineTaskRepository.php.html#23\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineTaskRepository::__construct<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineTaskRepository.php.html#31\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineTaskRepository::findById<\/a>"],[0,2,"<a href=\"Todo\/Repository\/DoctrineTaskRepository.php.html#38\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineTaskRepository::getById<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineTaskRepository.php.html#47\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineTaskRepository::add<\/a>"],[0,1,"<a href=\"Todo\/Repository\/DoctrineTaskRepository.php.html#52\">Infrastructure\\Domain\\Todo\\Repository\\DoctrineTaskRepository::remove<\/a>"],[0,1,"<a href=\"Todo\/Service\/PhotoRemover.php.html#17\">Infrastructure\\Domain\\Todo\\Service\\PhotoRemover::__construct<\/a>"],[0,2,"<a href=\"Todo\/Service\/PhotoRemover.php.html#22\">Infrastructure\\Domain\\Todo\\Service\\PhotoRemover::remove<\/a>"],[0,1,"<a href=\"Todo\/Service\/PhotoUploader.php.html#19\">Infrastructure\\Domain\\Todo\\Service\\PhotoUploader::__construct<\/a>"],[0,1,"<a href=\"Todo\/Service\/PhotoUploader.php.html#24\">Infrastructure\\Domain\\Todo\\Service\\PhotoUploader::upload<\/a>"],[0,2,"<a href=\"Todo\/Service\/PhotoUploader.php.html#31\">Infrastructure\\Domain\\Todo\\Service\\PhotoUploader::generateName<\/a>"],[0,1,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#26\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository::__construct<\/a>"],[0,2,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#32\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository::findById<\/a>"],[0,2,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#39\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository::findByLogin<\/a>"],[0,2,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#49\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository::findByEmail<\/a>"],[0,2,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#59\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository::findBySignUpConfirmToken<\/a>"],[0,2,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#69\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository::getBySignUpConfirmToken<\/a>"],[0,1,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#78\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository::hasByLogin<\/a>"],[0,1,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#83\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository::hasByEmail<\/a>"],[0,2,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#88\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository::getById<\/a>"],[0,1,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#97\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository::add<\/a>"],[0,1,"<a href=\"User\/Repository\/DoctrineUserRepository.php.html#102\">Infrastructure\\Domain\\User\\Repository\\DoctrineUserRepository::remove<\/a>"],[0,1,"<a href=\"User\/Service\/ConfirmTokenGenerator.php.html#21\">Infrastructure\\Domain\\User\\Service\\ConfirmTokenGenerator::__construct<\/a>"],[0,1,"<a href=\"User\/Service\/ConfirmTokenGenerator.php.html#26\">Infrastructure\\Domain\\User\\Service\\ConfirmTokenGenerator::generate<\/a>"],[0,2,"<a href=\"User\/Service\/PasswordHasher.php.html#12\">Infrastructure\\Domain\\User\\Service\\PasswordHasher::hash<\/a>"],[0,1,"<a href=\"User\/Service\/PasswordValidator.php.html#11\">Infrastructure\\Domain\\User\\Service\\PasswordValidator::validate<\/a>"],[0,1,"<a href=\"User\/Service\/SignUpConfirmEmailSender.php.html#24\">Infrastructure\\Domain\\User\\Service\\SignUpConfirmEmailSender::__construct<\/a>"],[0,2,"<a href=\"User\/Service\/SignUpConfirmEmailSender.php.html#39\">Infrastructure\\Domain\\User\\Service\\SignUpConfirmEmailSender::send<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

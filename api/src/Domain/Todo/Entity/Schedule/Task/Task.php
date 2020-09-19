@@ -6,6 +6,7 @@ namespace Domain\Todo\Entity\Schedule\Task;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Domain\Exception\DomainException;
 use Domain\Todo\Entity\Schedule\Schedule;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -244,6 +245,9 @@ class Task
 
     public function unFinishStep(): void
     {
+        if ($this->finishedSteps === 0) {
+            throw new DomainException('The number of steps cannot be negative');
+        }
         $this->finishedSteps -= 1;
     }
 

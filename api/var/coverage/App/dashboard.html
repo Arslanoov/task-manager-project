@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/api/src/App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">/var/www/api/src</a></li>
+         <li class="breadcrumb-item"><a href="index.html">App</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Console/Commands/Api/GenerateDocCommand.php.html#11">App\Console\Commands\Api\GenerateDocCommand</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/DownAction.php.html#20">App\Http\Action\Todo\Task\Step\DownAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetTodayAction.php.html#21">App\Http\Action\Todo\Schedule\Daily\GetTodayAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/TodayTasksCountAction.php.html#16">App\Http\Action\Todo\Schedule\Daily\TodayTasksCountAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Main/IndexAction.php.html#18">App\Http\Action\Todo\Schedule\Main\IndexAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Main/TasksCountAction.php.html#17">App\Http\Action\Todo\Schedule\Main\TasksCountAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/ChangeStatusAction.php.html#20">App\Http\Action\Todo\Task\ChangeStatusAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/CreateAction.php.html#22">App\Http\Action\Todo\Task\CreateAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/EditAction.php.html#20">App\Http\Action\Todo\Task\EditAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/RemoveAction.php.html#20">App\Http\Action\Todo\Task\RemoveAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/ChangeStatusAction.php.html#20">App\Http\Action\Todo\Task\Step\ChangeStatusAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/CreateAction.php.html#22">App\Http\Action\Todo\Task\Step\CreateAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/IndexAction.php.html#19">App\Http\Action\Todo\Task\Step\IndexAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetNextScheduleAction.php.html#23">App\Http\Action\Todo\Schedule\Daily\GetNextScheduleAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/RemoveAction.php.html#20">App\Http\Action\Todo\Task\Step\RemoveAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/UpAction.php.html#20">App\Http\Action\Todo\Task\Step\UpAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/AuthMiddleware.php.html#16">App\Http\Middleware\AuthMiddleware</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ErrorHandler.php.html#16">App\Http\Middleware\ErrorHandler</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/InvalidArgumentHandler.php.html#15">App\Http\Middleware\InvalidArgumentHandler</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/IsActiveMiddleware.php.html#15">App\Http\Middleware\IsActiveMiddleware</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/NotFoundHandler.php.html#12">App\Http\Middleware\NotFoundHandler</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ProfilerMiddleware.php.html#12">App\Http\Middleware\ProfilerMiddleware</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/SentryDecoratorMiddleware.php.html#14">App\Http\Middleware\SentryDecoratorMiddleware</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ValidationMiddleware.php.html#16">App\Http\Middleware\ValidationMiddleware</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetPreviousScheduleAction.php.html#23">App\Http\Action\Todo\Schedule\Daily\GetPreviousScheduleAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetByDateAction.php.html#23">App\Http\Action\Todo\Schedule\Daily\GetByDateAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200806074036.php.html#13">App\Database\Migration\Version20200806074036</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exception/ForbiddenException.php.html#10">App\Exception\ForbiddenException</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200806080631.php.html#13">App\Database\Migration\Version20200806080631</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200808125735.php.html#13">App\Database\Migration\Version20200808125735</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200808135250.php.html#13">App\Database\Migration\Version20200808135250</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200812104847.php.html#13">App\Database\Migration\Version20200812104847</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200812113502.php.html#13">App\Database\Migration\Version20200812113502</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200813104403.php.html#13">App\Database\Migration\Version20200813104403</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200816112606.php.html#13">App\Database\Migration\Version20200816112606</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200816203016.php.html#13">App\Database\Migration\Version20200816203016</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200817170607.php.html#13">App\Database\Migration\Version20200817170607</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200830151107.php.html#11">App\Database\Migration\Version20200830151107</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exception/ValidationException.php.html#11">App\Exception\ValidationException</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/RemoveAction.php.html#21">App\Http\Action\Todo\Schedule\Custom\RemoveAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Auth/OAuthAction.php.html#16">App\Http\Action\Auth\OAuthAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Auth/SignUp/ConfirmAction.php.html#21">App\Http\Action\Auth\SignUp\ConfirmAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Auth/SignUp/RequestAction.php.html#21">App\Http\Action\Auth\SignUp\RequestAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/HomeAction.php.html#35">App\Http\Action\HomeAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/GetPhotoAction.php.html#16">App\Http\Action\Profile\GetPhotoAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/RemovePhotoAction.php.html#16">App\Http\Action\Profile\RemovePhotoAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/ShowAction.php.html#15">App\Http\Action\Profile\ShowAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/UploadPhotoAction.php.html#17">App\Http\Action\Profile\UploadPhotoAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/CreateAction.php.html#18">App\Http\Action\Todo\Schedule\Custom\CreateAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/GetAction.php.html#20">App\Http\Action\Todo\Schedule\Custom\GetAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/IndexAction.php.html#17">App\Http\Action\Todo\Schedule\Custom\IndexAction</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validation/Validator.php.html#11">App\Validation\Validator</a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Http/Middleware/ErrorHandler.php.html#16">App\Http\Middleware\ErrorHandler</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Http/Middleware/ValidationMiddleware.php.html#16">App\Http\Middleware\ValidationMiddleware</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetByDateAction.php.html#23">App\Http\Action\Todo\Schedule\Daily\GetByDateAction</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetNextScheduleAction.php.html#23">App\Http\Action\Todo\Schedule\Daily\GetNextScheduleAction</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetPreviousScheduleAction.php.html#23">App\Http\Action\Todo\Schedule\Daily\GetPreviousScheduleAction</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Validation/Validator.php.html#11">App\Validation\Validator</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/GetAction.php.html#20">App\Http\Action\Todo\Schedule\Custom\GetAction</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/RemoveAction.php.html#21">App\Http\Action\Todo\Schedule\Custom\RemoveAction</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/IndexAction.php.html#19">App\Http\Action\Todo\Task\Step\IndexAction</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/CreateAction.php.html#22">App\Http\Action\Todo\Task\Step\CreateAction</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Middleware/IsActiveMiddleware.php.html#15">App\Http\Middleware\IsActiveMiddleware</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Middleware/InvalidArgumentHandler.php.html#15">App\Http\Middleware\InvalidArgumentHandler</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Middleware/AuthMiddleware.php.html#16">App\Http\Middleware\AuthMiddleware</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/UpAction.php.html#20">App\Http\Action\Todo\Task\Step\UpAction</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/RemoveAction.php.html#20">App\Http\Action\Todo\Task\Step\RemoveAction</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/DownAction.php.html#20">App\Http\Action\Todo\Task\Step\DownAction</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Action/Auth/OAuthAction.php.html#16">App\Http\Action\Auth\OAuthAction</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/ChangeStatusAction.php.html#20">App\Http\Action\Todo\Task\Step\ChangeStatusAction</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/RemoveAction.php.html#20">App\Http\Action\Todo\Task\RemoveAction</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/CreateAction.php.html#22">App\Http\Action\Todo\Task\CreateAction</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/ChangeStatusAction.php.html#20">App\Http\Action\Todo\Task\ChangeStatusAction</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetTodayAction.php.html#21">App\Http\Action\Todo\Schedule\Daily\GetTodayAction</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/EditAction.php.html#20">App\Http\Action\Todo\Task\EditAction</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Action/Auth/SignUp/ConfirmAction.php.html#21">App\Http\Action\Auth\SignUp\ConfirmAction</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/TodayTasksCountAction.php.html#16">App\Http\Action\Todo\Schedule\Daily\TodayTasksCountAction</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Action/Profile/UploadPhotoAction.php.html#17">App\Http\Action\Profile\UploadPhotoAction</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Action/Profile/GetPhotoAction.php.html#16">App\Http\Action\Profile\GetPhotoAction</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Middleware/SentryDecoratorMiddleware.php.html#14">App\Http\Middleware\SentryDecoratorMiddleware</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Action/Auth/SignUp/RequestAction.php.html#21">App\Http\Action\Auth\SignUp\RequestAction</a></td><td class="text-right">12</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Console/Commands/Api/GenerateDocCommand.php.html#13"><abbr title="App\Console\Commands\Api\GenerateDocCommand::configure">configure</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/CreateAction.php.html#97"><abbr title="App\Http\Action\Todo\Task\CreateAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/CreateAction.php.html#111"><abbr title="App\Http\Action\Todo\Task\Step\CreateAction::canCreateStepForTask">canCreateStepForTask</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/CreateAction.php.html#87"><abbr title="App\Http\Action\Todo\Task\Step\CreateAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/CreateAction.php.html#38"><abbr title="App\Http\Action\Todo\Task\Step\CreateAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/ChangeStatusAction.php.html#88"><abbr title="App\Http\Action\Todo\Task\Step\ChangeStatusAction::canChangeStatus">canChangeStatus</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/ChangeStatusAction.php.html#67"><abbr title="App\Http\Action\Todo\Task\Step\ChangeStatusAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/ChangeStatusAction.php.html#34"><abbr title="App\Http\Action\Todo\Task\Step\ChangeStatusAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/RemoveAction.php.html#97"><abbr title="App\Http\Action\Todo\Task\RemoveAction::canRemoveTask">canRemoveTask</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/RemoveAction.php.html#78"><abbr title="App\Http\Action\Todo\Task\RemoveAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/RemoveAction.php.html#34"><abbr title="App\Http\Action\Todo\Task\RemoveAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/EditAction.php.html#104"><abbr title="App\Http\Action\Todo\Task\EditAction::canEditTask">canEditTask</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/EditAction.php.html#81"><abbr title="App\Http\Action\Todo\Task\EditAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/EditAction.php.html#34"><abbr title="App\Http\Action\Todo\Task\EditAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/CreateAction.php.html#136"><abbr title="App\Http\Action\Todo\Task\CreateAction::canCreateTask">canCreateTask</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/CreateAction.php.html#40"><abbr title="App\Http\Action\Todo\Task\CreateAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/DownAction.php.html#82"><abbr title="App\Http\Action\Todo\Task\Step\DownAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/ChangeStatusAction.php.html#100"><abbr title="App\Http\Action\Todo\Task\ChangeStatusAction::canChangeStatus">canChangeStatus</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/ChangeStatusAction.php.html#79"><abbr title="App\Http\Action\Todo\Task\ChangeStatusAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/ChangeStatusAction.php.html#34"><abbr title="App\Http\Action\Todo\Task\ChangeStatusAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Main/TasksCountAction.php.html#53"><abbr title="App\Http\Action\Todo\Schedule\Main\TasksCountAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Main/TasksCountAction.php.html#29"><abbr title="App\Http\Action\Todo\Schedule\Main\TasksCountAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Main/IndexAction.php.html#86"><abbr title="App\Http\Action\Todo\Schedule\Main\IndexAction::tasks">tasks</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Main/IndexAction.php.html#74"><abbr title="App\Http\Action\Todo\Schedule\Main\IndexAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Main/IndexAction.php.html#30"><abbr title="App\Http\Action\Todo\Schedule\Main\IndexAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/TodayTasksCountAction.php.html#52"><abbr title="App\Http\Action\Todo\Schedule\Daily\TodayTasksCountAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/TodayTasksCountAction.php.html#28"><abbr title="App\Http\Action\Todo\Schedule\Daily\TodayTasksCountAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetTodayAction.php.html#118"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetTodayAction::tasks">tasks</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetTodayAction.php.html#92"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetTodayAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetTodayAction.php.html#37"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetTodayAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/DownAction.php.html#34"><abbr title="App\Http\Action\Todo\Task\Step\DownAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/DownAction.php.html#101"><abbr title="App\Http\Action\Todo\Task\Step\DownAction::canDownStep">canDownStep</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetPreviousScheduleAction.php.html#139"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetPreviousScheduleAction::canGetPrevious">canGetPrevious</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/InvalidArgumentHandler.php.html#31"><abbr title="App\Http\Middleware\InvalidArgumentHandler::process">process</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validation/Validator.php.html#27"><abbr title="App\Validation\Validator::validateObjects">validateObjects</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validation/Validator.php.html#21"><abbr title="App\Validation\Validator::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ValidationMiddleware.php.html#54"><abbr title="App\Http\Middleware\ValidationMiddleware::error">error</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ValidationMiddleware.php.html#42"><abbr title="App\Http\Middleware\ValidationMiddleware::errors">errors</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ValidationMiddleware.php.html#29"><abbr title="App\Http\Middleware\ValidationMiddleware::process">process</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ValidationMiddleware.php.html#24"><abbr title="App\Http\Middleware\ValidationMiddleware::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/SentryDecoratorMiddleware.php.html#33"><abbr title="App\Http\Middleware\SentryDecoratorMiddleware::process">process</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/SentryDecoratorMiddleware.php.html#22"><abbr title="App\Http\Middleware\SentryDecoratorMiddleware::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ProfilerMiddleware.php.html#14"><abbr title="App\Http\Middleware\ProfilerMiddleware::process">process</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/NotFoundHandler.php.html#25"><abbr title="App\Http\Middleware\NotFoundHandler::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/NotFoundHandler.php.html#20"><abbr title="App\Http\Middleware\NotFoundHandler::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/IsActiveMiddleware.php.html#34"><abbr title="App\Http\Middleware\IsActiveMiddleware::process">process</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/IsActiveMiddleware.php.html#23"><abbr title="App\Http\Middleware\IsActiveMiddleware::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/InvalidArgumentHandler.php.html#25"><abbr title="App\Http\Middleware\InvalidArgumentHandler::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/IndexAction.php.html#31"><abbr title="App\Http\Action\Todo\Task\Step\IndexAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ErrorHandler.php.html#59"><abbr title="App\Http\Middleware\ErrorHandler::canShowErrorMessage">canShowErrorMessage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ErrorHandler.php.html#35"><abbr title="App\Http\Middleware\ErrorHandler::process">process</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ErrorHandler.php.html#28"><abbr title="App\Http\Middleware\ErrorHandler::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/AuthMiddleware.php.html#32"><abbr title="App\Http\Middleware\AuthMiddleware::process">process</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/AuthMiddleware.php.html#26"><abbr title="App\Http\Middleware\AuthMiddleware::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/UpAction.php.html#101"><abbr title="App\Http\Action\Todo\Task\Step\UpAction::canUpStep">canUpStep</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/UpAction.php.html#82"><abbr title="App\Http\Action\Todo\Task\Step\UpAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/UpAction.php.html#34"><abbr title="App\Http\Action\Todo\Task\Step\UpAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/RemoveAction.php.html#85"><abbr title="App\Http\Action\Todo\Task\Step\RemoveAction::canDeleteStep">canDeleteStep</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/RemoveAction.php.html#66"><abbr title="App\Http\Action\Todo\Task\Step\RemoveAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/RemoveAction.php.html#34"><abbr title="App\Http\Action\Todo\Task\Step\RemoveAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/IndexAction.php.html#104"><abbr title="App\Http\Action\Todo\Task\Step\IndexAction::canShowTask">canShowTask</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/IndexAction.php.html#87"><abbr title="App\Http\Action\Todo\Task\Step\IndexAction::steps">steps</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/IndexAction.php.html#68"><abbr title="App\Http\Action\Todo\Task\Step\IndexAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetPreviousScheduleAction.php.html#146"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetPreviousScheduleAction::tasks">tasks</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetPreviousScheduleAction.php.html#101"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetPreviousScheduleAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Console/Commands/Api/GenerateDocCommand.php.html#20"><abbr title="App\Console\Commands\Api\GenerateDocCommand::execute">execute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200816112606.php.html#15"><abbr title="App\Database\Migration\Version20200816112606::up">up</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Auth/SignUp/ConfirmAction.php.html#39"><abbr title="App\Http\Action\Auth\SignUp\ConfirmAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Auth/OAuthAction.php.html#64"><abbr title="App\Http\Action\Auth\OAuthAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Auth/OAuthAction.php.html#26"><abbr title="App\Http\Action\Auth\OAuthAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exception/ValidationException.php.html#25"><abbr title="App\Exception\ValidationException::getViolations">getViolations</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exception/ValidationException.php.html#15"><abbr title="App\Exception\ValidationException::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exception/ForbiddenException.php.html#12"><abbr title="App\Exception\ForbiddenException::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200830151107.php.html#25"><abbr title="App\Database\Migration\Version20200830151107::down">down</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200830151107.php.html#13"><abbr title="App\Database\Migration\Version20200830151107::up">up</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200817170607.php.html#23"><abbr title="App\Database\Migration\Version20200817170607::down">down</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200817170607.php.html#15"><abbr title="App\Database\Migration\Version20200817170607::up">up</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200816203016.php.html#24"><abbr title="App\Database\Migration\Version20200816203016::down">down</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200816203016.php.html#15"><abbr title="App\Database\Migration\Version20200816203016::up">up</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200816112606.php.html#25"><abbr title="App\Database\Migration\Version20200816112606::down">down</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200813104403.php.html#23"><abbr title="App\Database\Migration\Version20200813104403::down">down</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Auth/SignUp/RequestAction.php.html#41"><abbr title="App\Http\Action\Auth\SignUp\RequestAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200813104403.php.html#15"><abbr title="App\Database\Migration\Version20200813104403::up">up</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200812113502.php.html#23"><abbr title="App\Database\Migration\Version20200812113502::down">down</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200812113502.php.html#15"><abbr title="App\Database\Migration\Version20200812113502::up">up</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200812104847.php.html#23"><abbr title="App\Database\Migration\Version20200812104847::down">down</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200812104847.php.html#15"><abbr title="App\Database\Migration\Version20200812104847::up">up</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200808135250.php.html#23"><abbr title="App\Database\Migration\Version20200808135250::down">down</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200808135250.php.html#15"><abbr title="App\Database\Migration\Version20200808135250::up">up</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200808125735.php.html#58"><abbr title="App\Database\Migration\Version20200808125735::down">down</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200808125735.php.html#15"><abbr title="App\Database\Migration\Version20200808125735::up">up</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200806080631.php.html#27"><abbr title="App\Database\Migration\Version20200806080631::down">down</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200806080631.php.html#15"><abbr title="App\Database\Migration\Version20200806080631::up">up</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200806074036.php.html#29"><abbr title="App\Database\Migration\Version20200806074036::down">down</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Migration/Version20200806074036.php.html#15"><abbr title="App\Database\Migration\Version20200806074036::up">up</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Auth/SignUp/ConfirmAction.php.html#101"><abbr title="App\Http\Action\Auth\SignUp\ConfirmAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Auth/SignUp/RequestAction.php.html#100"><abbr title="App\Http\Action\Auth\SignUp\RequestAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetPreviousScheduleAction.php.html#39"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetPreviousScheduleAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/IndexAction.php.html#29"><abbr title="App\Http\Action\Todo\Schedule\Custom\IndexAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetNextScheduleAction.php.html#146"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetNextScheduleAction::tasks">tasks</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetNextScheduleAction.php.html#139"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetNextScheduleAction::canGetNext">canGetNext</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetNextScheduleAction.php.html#101"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetNextScheduleAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetNextScheduleAction.php.html#39"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetNextScheduleAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetByDateAction.php.html#147"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetByDateAction::tasks">tasks</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetByDateAction.php.html#140"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetByDateAction::canGetByDate">canGetByDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetByDateAction.php.html#102"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetByDateAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetByDateAction.php.html#35"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetByDateAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/RemoveAction.php.html#94"><abbr title="App\Http\Action\Todo\Schedule\Custom\RemoveAction::canRemove">canRemove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/RemoveAction.php.html#68"><abbr title="App\Http\Action\Todo\Schedule\Custom\RemoveAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/RemoveAction.php.html#35"><abbr title="App\Http\Action\Todo\Schedule\Custom\RemoveAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/IndexAction.php.html#67"><abbr title="App\Http\Action\Todo\Schedule\Custom\IndexAction::schedules">schedules</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/IndexAction.php.html#57"><abbr title="App\Http\Action\Todo\Schedule\Custom\IndexAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/GetAction.php.html#120"><abbr title="App\Http\Action\Todo\Schedule\Custom\GetAction::tasks">tasks</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/HomeAction.php.html#43"><abbr title="App\Http\Action\HomeAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/GetAction.php.html#113"><abbr title="App\Http\Action\Todo\Schedule\Custom\GetAction::canGet">canGet</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/GetAction.php.html#90"><abbr title="App\Http\Action\Todo\Schedule\Custom\GetAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/GetAction.php.html#32"><abbr title="App\Http\Action\Todo\Schedule\Custom\GetAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/CreateAction.php.html#75"><abbr title="App\Http\Action\Todo\Schedule\Custom\CreateAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/CreateAction.php.html#34"><abbr title="App\Http\Action\Todo\Schedule\Custom\CreateAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/UploadPhotoAction.php.html#75"><abbr title="App\Http\Action\Profile\UploadPhotoAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/UploadPhotoAction.php.html#29"><abbr title="App\Http\Action\Profile\UploadPhotoAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/ShowAction.php.html#51"><abbr title="App\Http\Action\Profile\ShowAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/ShowAction.php.html#25"><abbr title="App\Http\Action\Profile\ShowAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/RemovePhotoAction.php.html#53"><abbr title="App\Http\Action\Profile\RemovePhotoAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/RemovePhotoAction.php.html#27"><abbr title="App\Http\Action\Profile\RemovePhotoAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/GetPhotoAction.php.html#60"><abbr title="App\Http\Action\Profile\GetPhotoAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/Profile/GetPhotoAction.php.html#28"><abbr title="App\Http\Action\Profile\GetPhotoAction::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Action/HomeAction.php.html#65"><abbr title="App\Http\Action\HomeAction::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validation/Validator.php.html#34"><abbr title="App\Validation\Validator::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Http/Middleware/ErrorHandler.php.html#35"><abbr title="App\Http\Middleware\ErrorHandler::process">process</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Action/Auth/OAuthAction.php.html#64"><abbr title="App\Http\Action\Auth\OAuthAction::handle">handle</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Middleware/AuthMiddleware.php.html#32"><abbr title="App\Http\Middleware\AuthMiddleware::process">process</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Middleware/IsActiveMiddleware.php.html#34"><abbr title="App\Http\Middleware\IsActiveMiddleware::process">process</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Middleware/InvalidArgumentHandler.php.html#31"><abbr title="App\Http\Middleware\InvalidArgumentHandler::process">process</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/CreateAction.php.html#111"><abbr title="App\Http\Action\Todo\Task\Step\CreateAction::canCreateStepForTask">canCreateStepForTask</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/DownAction.php.html#101"><abbr title="App\Http\Action\Todo\Task\Step\DownAction::canDownStep">canDownStep</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/IndexAction.php.html#104"><abbr title="App\Http\Action\Todo\Task\Step\IndexAction::canShowTask">canShowTask</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/RemoveAction.php.html#85"><abbr title="App\Http\Action\Todo\Task\Step\RemoveAction::canDeleteStep">canDeleteStep</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/UpAction.php.html#101"><abbr title="App\Http\Action\Todo\Task\Step\UpAction::canUpStep">canUpStep</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Middleware/ErrorHandler.php.html#59"><abbr title="App\Http\Middleware\ErrorHandler::canShowErrorMessage">canShowErrorMessage</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/RemoveAction.php.html#97"><abbr title="App\Http\Action\Todo\Task\RemoveAction::canRemoveTask">canRemoveTask</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Middleware/SentryDecoratorMiddleware.php.html#33"><abbr title="App\Http\Middleware\SentryDecoratorMiddleware::process">process</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Middleware/ValidationMiddleware.php.html#29"><abbr title="App\Http\Middleware\ValidationMiddleware::process">process</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Middleware/ValidationMiddleware.php.html#42"><abbr title="App\Http\Middleware\ValidationMiddleware::errors">errors</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Validation/Validator.php.html#27"><abbr title="App\Validation\Validator::validateObjects">validateObjects</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/Step/ChangeStatusAction.php.html#88"><abbr title="App\Http\Action\Todo\Task\Step\ChangeStatusAction::canChangeStatus">canChangeStatus</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/EditAction.php.html#104"><abbr title="App\Http\Action\Todo\Task\EditAction::canEditTask">canEditTask</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Auth/SignUp/ConfirmAction.php.html#101"><abbr title="App\Http\Action\Auth\SignUp\ConfirmAction::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetByDateAction.php.html#102"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetByDateAction::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Auth/SignUp/RequestAction.php.html#100"><abbr title="App\Http\Action\Auth\SignUp\RequestAction::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Profile/GetPhotoAction.php.html#60"><abbr title="App\Http\Action\Profile\GetPhotoAction::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Profile/UploadPhotoAction.php.html#75"><abbr title="App\Http\Action\Profile\UploadPhotoAction::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/GetAction.php.html#113"><abbr title="App\Http\Action\Todo\Schedule\Custom\GetAction::canGet">canGet</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/RemoveAction.php.html#68"><abbr title="App\Http\Action\Todo\Schedule\Custom\RemoveAction::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Custom/RemoveAction.php.html#94"><abbr title="App\Http\Action\Todo\Schedule\Custom\RemoveAction::canRemove">canRemove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetByDateAction.php.html#140"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetByDateAction::canGetByDate">canGetByDate</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/CreateAction.php.html#136"><abbr title="App\Http\Action\Todo\Task\CreateAction::canCreateTask">canCreateTask</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetNextScheduleAction.php.html#101"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetNextScheduleAction::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetNextScheduleAction.php.html#139"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetNextScheduleAction::canGetNext">canGetNext</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetPreviousScheduleAction.php.html#101"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetPreviousScheduleAction::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetPreviousScheduleAction.php.html#139"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetPreviousScheduleAction::canGetPrevious">canGetPrevious</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/GetTodayAction.php.html#92"><abbr title="App\Http\Action\Todo\Schedule\Daily\GetTodayAction::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Schedule/Daily/TodayTasksCountAction.php.html#52"><abbr title="App\Http\Action\Todo\Schedule\Daily\TodayTasksCountAction::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Action/Todo/Task/ChangeStatusAction.php.html#100"><abbr title="App\Http\Action\Todo\Task\ChangeStatusAction::canChangeStatus">canChangeStatus</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Validation/Validator.php.html#34"><abbr title="App\Validation\Validator::validate">validate</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 7.0.10</a> using <a href="https://secure.php.net/" target="_top">PHP 7.4.4</a> with <a href="https://xdebug.org/">Xdebug 2.9.5</a> and <a href="https://phpunit.de/">PHPUnit 8.5.8</a> at Tue Sep 15 15:34:35 UTC 2020.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js" type="text/javascript"></script>
+  <script src="../_js/d3.min.js" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([52,0,0,0,0,0,0,0,0,0,0,1], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([129,0,0,0,0,0,0,0,0,0,0,0], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,2,"<a href=\"Console\/Commands\/Api\/GenerateDocCommand.php.html#11\">App\\Console\\Commands\\Api\\GenerateDocCommand<\/a>"],[0,2,"<a href=\"Database\/Migration\/Version20200806074036.php.html#13\">App\\Database\\Migration\\Version20200806074036<\/a>"],[0,2,"<a href=\"Database\/Migration\/Version20200806080631.php.html#13\">App\\Database\\Migration\\Version20200806080631<\/a>"],[0,2,"<a href=\"Database\/Migration\/Version20200808125735.php.html#13\">App\\Database\\Migration\\Version20200808125735<\/a>"],[0,2,"<a href=\"Database\/Migration\/Version20200808135250.php.html#13\">App\\Database\\Migration\\Version20200808135250<\/a>"],[0,2,"<a href=\"Database\/Migration\/Version20200812104847.php.html#13\">App\\Database\\Migration\\Version20200812104847<\/a>"],[0,2,"<a href=\"Database\/Migration\/Version20200812113502.php.html#13\">App\\Database\\Migration\\Version20200812113502<\/a>"],[0,2,"<a href=\"Database\/Migration\/Version20200813104403.php.html#13\">App\\Database\\Migration\\Version20200813104403<\/a>"],[0,2,"<a href=\"Database\/Migration\/Version20200816112606.php.html#13\">App\\Database\\Migration\\Version20200816112606<\/a>"],[0,2,"<a href=\"Database\/Migration\/Version20200816203016.php.html#13\">App\\Database\\Migration\\Version20200816203016<\/a>"],[0,2,"<a href=\"Database\/Migration\/Version20200817170607.php.html#13\">App\\Database\\Migration\\Version20200817170607<\/a>"],[0,2,"<a href=\"Database\/Migration\/Version20200830151107.php.html#11\">App\\Database\\Migration\\Version20200830151107<\/a>"],[0,1,"<a href=\"Exception\/ForbiddenException.php.html#10\">App\\Exception\\ForbiddenException<\/a>"],[0,2,"<a href=\"Exception\/ValidationException.php.html#11\">App\\Exception\\ValidationException<\/a>"],[0,4,"<a href=\"Http\/Action\/Auth\/OAuthAction.php.html#16\">App\\Http\\Action\\Auth\\OAuthAction<\/a>"],[0,3,"<a href=\"Http\/Action\/Auth\/SignUp\/ConfirmAction.php.html#21\">App\\Http\\Action\\Auth\\SignUp\\ConfirmAction<\/a>"],[0,3,"<a href=\"Http\/Action\/Auth\/SignUp\/RequestAction.php.html#21\">App\\Http\\Action\\Auth\\SignUp\\RequestAction<\/a>"],[0,2,"<a href=\"Http\/Action\/HomeAction.php.html#35\">App\\Http\\Action\\HomeAction<\/a>"],[0,3,"<a href=\"Http\/Action\/Profile\/GetPhotoAction.php.html#16\">App\\Http\\Action\\Profile\\GetPhotoAction<\/a>"],[0,2,"<a href=\"Http\/Action\/Profile\/RemovePhotoAction.php.html#16\">App\\Http\\Action\\Profile\\RemovePhotoAction<\/a>"],[0,2,"<a href=\"Http\/Action\/Profile\/ShowAction.php.html#15\">App\\Http\\Action\\Profile\\ShowAction<\/a>"],[0,3,"<a href=\"Http\/Action\/Profile\/UploadPhotoAction.php.html#17\">App\\Http\\Action\\Profile\\UploadPhotoAction<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/CreateAction.php.html#18\">App\\Http\\Action\\Todo\\Schedule\\Custom\\CreateAction<\/a>"],[0,5,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/GetAction.php.html#20\">App\\Http\\Action\\Todo\\Schedule\\Custom\\GetAction<\/a>"],[0,3,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/IndexAction.php.html#17\">App\\Http\\Action\\Todo\\Schedule\\Custom\\IndexAction<\/a>"],[0,5,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/RemoveAction.php.html#21\">App\\Http\\Action\\Todo\\Schedule\\Custom\\RemoveAction<\/a>"],[0,6,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetByDateAction.php.html#23\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetByDateAction<\/a>"],[0,6,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetNextScheduleAction.php.html#23\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetNextScheduleAction<\/a>"],[0,6,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetPreviousScheduleAction.php.html#23\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetPreviousScheduleAction<\/a>"],[0,4,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetTodayAction.php.html#21\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetTodayAction<\/a>"],[0,3,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/TodayTasksCountAction.php.html#16\">App\\Http\\Action\\Todo\\Schedule\\Daily\\TodayTasksCountAction<\/a>"],[0,3,"<a href=\"Http\/Action\/Todo\/Schedule\/Main\/IndexAction.php.html#18\">App\\Http\\Action\\Todo\\Schedule\\Main\\IndexAction<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Main\/TasksCountAction.php.html#17\">App\\Http\\Action\\Todo\\Schedule\\Main\\TasksCountAction<\/a>"],[0,4,"<a href=\"Http\/Action\/Todo\/Task\/ChangeStatusAction.php.html#20\">App\\Http\\Action\\Todo\\Task\\ChangeStatusAction<\/a>"],[0,4,"<a href=\"Http\/Action\/Todo\/Task\/CreateAction.php.html#22\">App\\Http\\Action\\Todo\\Task\\CreateAction<\/a>"],[0,4,"<a href=\"Http\/Action\/Todo\/Task\/EditAction.php.html#20\">App\\Http\\Action\\Todo\\Task\\EditAction<\/a>"],[0,4,"<a href=\"Http\/Action\/Todo\/Task\/RemoveAction.php.html#20\">App\\Http\\Action\\Todo\\Task\\RemoveAction<\/a>"],[0,4,"<a href=\"Http\/Action\/Todo\/Task\/Step\/ChangeStatusAction.php.html#20\">App\\Http\\Action\\Todo\\Task\\Step\\ChangeStatusAction<\/a>"],[0,4,"<a href=\"Http\/Action\/Todo\/Task\/Step\/CreateAction.php.html#22\">App\\Http\\Action\\Todo\\Task\\Step\\CreateAction<\/a>"],[0,4,"<a href=\"Http\/Action\/Todo\/Task\/Step\/DownAction.php.html#20\">App\\Http\\Action\\Todo\\Task\\Step\\DownAction<\/a>"],[0,5,"<a href=\"Http\/Action\/Todo\/Task\/Step\/IndexAction.php.html#19\">App\\Http\\Action\\Todo\\Task\\Step\\IndexAction<\/a>"],[0,4,"<a href=\"Http\/Action\/Todo\/Task\/Step\/RemoveAction.php.html#20\">App\\Http\\Action\\Todo\\Task\\Step\\RemoveAction<\/a>"],[0,4,"<a href=\"Http\/Action\/Todo\/Task\/Step\/UpAction.php.html#20\">App\\Http\\Action\\Todo\\Task\\Step\\UpAction<\/a>"],[0,4,"<a href=\"Http\/Middleware\/AuthMiddleware.php.html#16\">App\\Http\\Middleware\\AuthMiddleware<\/a>"],[0,8,"<a href=\"Http\/Middleware\/ErrorHandler.php.html#16\">App\\Http\\Middleware\\ErrorHandler<\/a>"],[0,4,"<a href=\"Http\/Middleware\/InvalidArgumentHandler.php.html#15\">App\\Http\\Middleware\\InvalidArgumentHandler<\/a>"],[0,4,"<a href=\"Http\/Middleware\/IsActiveMiddleware.php.html#15\">App\\Http\\Middleware\\IsActiveMiddleware<\/a>"],[0,2,"<a href=\"Http\/Middleware\/NotFoundHandler.php.html#12\">App\\Http\\Middleware\\NotFoundHandler<\/a>"],[0,1,"<a href=\"Http\/Middleware\/ProfilerMiddleware.php.html#12\">App\\Http\\Middleware\\ProfilerMiddleware<\/a>"],[0,3,"<a href=\"Http\/Middleware\/SentryDecoratorMiddleware.php.html#14\">App\\Http\\Middleware\\SentryDecoratorMiddleware<\/a>"],[0,6,"<a href=\"Http\/Middleware\/ValidationMiddleware.php.html#16\">App\\Http\\Middleware\\ValidationMiddleware<\/a>"],[100,0,"<a href=\"Service\/Date.php.html#7\">App\\Service\\Date<\/a>"],[0,5,"<a href=\"Validation\/Validator.php.html#11\">App\\Validation\\Validator<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Console\/Commands\/Api\/GenerateDocCommand.php.html#13\">App\\Console\\Commands\\Api\\GenerateDocCommand::configure<\/a>"],[0,1,"<a href=\"Console\/Commands\/Api\/GenerateDocCommand.php.html#20\">App\\Console\\Commands\\Api\\GenerateDocCommand::execute<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200806074036.php.html#15\">App\\Database\\Migration\\Version20200806074036::up<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200806074036.php.html#29\">App\\Database\\Migration\\Version20200806074036::down<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200806080631.php.html#15\">App\\Database\\Migration\\Version20200806080631::up<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200806080631.php.html#27\">App\\Database\\Migration\\Version20200806080631::down<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200808125735.php.html#15\">App\\Database\\Migration\\Version20200808125735::up<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200808125735.php.html#58\">App\\Database\\Migration\\Version20200808125735::down<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200808135250.php.html#15\">App\\Database\\Migration\\Version20200808135250::up<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200808135250.php.html#23\">App\\Database\\Migration\\Version20200808135250::down<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200812104847.php.html#15\">App\\Database\\Migration\\Version20200812104847::up<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200812104847.php.html#23\">App\\Database\\Migration\\Version20200812104847::down<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200812113502.php.html#15\">App\\Database\\Migration\\Version20200812113502::up<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200812113502.php.html#23\">App\\Database\\Migration\\Version20200812113502::down<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200813104403.php.html#15\">App\\Database\\Migration\\Version20200813104403::up<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200813104403.php.html#23\">App\\Database\\Migration\\Version20200813104403::down<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200816112606.php.html#15\">App\\Database\\Migration\\Version20200816112606::up<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200816112606.php.html#25\">App\\Database\\Migration\\Version20200816112606::down<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200816203016.php.html#15\">App\\Database\\Migration\\Version20200816203016::up<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200816203016.php.html#24\">App\\Database\\Migration\\Version20200816203016::down<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200817170607.php.html#15\">App\\Database\\Migration\\Version20200817170607::up<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200817170607.php.html#23\">App\\Database\\Migration\\Version20200817170607::down<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200830151107.php.html#13\">App\\Database\\Migration\\Version20200830151107::up<\/a>"],[0,1,"<a href=\"Database\/Migration\/Version20200830151107.php.html#25\">App\\Database\\Migration\\Version20200830151107::down<\/a>"],[0,1,"<a href=\"Exception\/ForbiddenException.php.html#12\">App\\Exception\\ForbiddenException::__construct<\/a>"],[0,1,"<a href=\"Exception\/ValidationException.php.html#15\">App\\Exception\\ValidationException::__construct<\/a>"],[0,1,"<a href=\"Exception\/ValidationException.php.html#25\">App\\Exception\\ValidationException::getViolations<\/a>"],[0,1,"<a href=\"Http\/Action\/Auth\/OAuthAction.php.html#26\">App\\Http\\Action\\Auth\\OAuthAction::__construct<\/a>"],[0,3,"<a href=\"Http\/Action\/Auth\/OAuthAction.php.html#64\">App\\Http\\Action\\Auth\\OAuthAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Auth\/SignUp\/ConfirmAction.php.html#39\">App\\Http\\Action\\Auth\\SignUp\\ConfirmAction::__construct<\/a>"],[0,2,"<a href=\"Http\/Action\/Auth\/SignUp\/ConfirmAction.php.html#101\">App\\Http\\Action\\Auth\\SignUp\\ConfirmAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Auth\/SignUp\/RequestAction.php.html#41\">App\\Http\\Action\\Auth\\SignUp\\RequestAction::__construct<\/a>"],[0,2,"<a href=\"Http\/Action\/Auth\/SignUp\/RequestAction.php.html#100\">App\\Http\\Action\\Auth\\SignUp\\RequestAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/HomeAction.php.html#43\">App\\Http\\Action\\HomeAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/HomeAction.php.html#65\">App\\Http\\Action\\HomeAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Profile\/GetPhotoAction.php.html#28\">App\\Http\\Action\\Profile\\GetPhotoAction::__construct<\/a>"],[0,2,"<a href=\"Http\/Action\/Profile\/GetPhotoAction.php.html#60\">App\\Http\\Action\\Profile\\GetPhotoAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Profile\/RemovePhotoAction.php.html#27\">App\\Http\\Action\\Profile\\RemovePhotoAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Profile\/RemovePhotoAction.php.html#53\">App\\Http\\Action\\Profile\\RemovePhotoAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Profile\/ShowAction.php.html#25\">App\\Http\\Action\\Profile\\ShowAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Profile\/ShowAction.php.html#51\">App\\Http\\Action\\Profile\\ShowAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Profile\/UploadPhotoAction.php.html#29\">App\\Http\\Action\\Profile\\UploadPhotoAction::__construct<\/a>"],[0,2,"<a href=\"Http\/Action\/Profile\/UploadPhotoAction.php.html#75\">App\\Http\\Action\\Profile\\UploadPhotoAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/CreateAction.php.html#34\">App\\Http\\Action\\Todo\\Schedule\\Custom\\CreateAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/CreateAction.php.html#75\">App\\Http\\Action\\Todo\\Schedule\\Custom\\CreateAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/GetAction.php.html#32\">App\\Http\\Action\\Todo\\Schedule\\Custom\\GetAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/GetAction.php.html#90\">App\\Http\\Action\\Todo\\Schedule\\Custom\\GetAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/GetAction.php.html#113\">App\\Http\\Action\\Todo\\Schedule\\Custom\\GetAction::canGet<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/GetAction.php.html#120\">App\\Http\\Action\\Todo\\Schedule\\Custom\\GetAction::tasks<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/IndexAction.php.html#29\">App\\Http\\Action\\Todo\\Schedule\\Custom\\IndexAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/IndexAction.php.html#57\">App\\Http\\Action\\Todo\\Schedule\\Custom\\IndexAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/IndexAction.php.html#67\">App\\Http\\Action\\Todo\\Schedule\\Custom\\IndexAction::schedules<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/RemoveAction.php.html#35\">App\\Http\\Action\\Todo\\Schedule\\Custom\\RemoveAction::__construct<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/RemoveAction.php.html#68\">App\\Http\\Action\\Todo\\Schedule\\Custom\\RemoveAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Custom\/RemoveAction.php.html#94\">App\\Http\\Action\\Todo\\Schedule\\Custom\\RemoveAction::canRemove<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetByDateAction.php.html#35\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetByDateAction::__construct<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetByDateAction.php.html#102\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetByDateAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetByDateAction.php.html#140\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetByDateAction::canGetByDate<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetByDateAction.php.html#147\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetByDateAction::tasks<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetNextScheduleAction.php.html#39\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetNextScheduleAction::__construct<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetNextScheduleAction.php.html#101\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetNextScheduleAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetNextScheduleAction.php.html#139\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetNextScheduleAction::canGetNext<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetNextScheduleAction.php.html#146\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetNextScheduleAction::tasks<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetPreviousScheduleAction.php.html#39\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetPreviousScheduleAction::__construct<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetPreviousScheduleAction.php.html#101\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetPreviousScheduleAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetPreviousScheduleAction.php.html#139\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetPreviousScheduleAction::canGetPrevious<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetPreviousScheduleAction.php.html#146\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetPreviousScheduleAction::tasks<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetTodayAction.php.html#37\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetTodayAction::__construct<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetTodayAction.php.html#92\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetTodayAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/GetTodayAction.php.html#118\">App\\Http\\Action\\Todo\\Schedule\\Daily\\GetTodayAction::tasks<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/TodayTasksCountAction.php.html#28\">App\\Http\\Action\\Todo\\Schedule\\Daily\\TodayTasksCountAction::__construct<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Schedule\/Daily\/TodayTasksCountAction.php.html#52\">App\\Http\\Action\\Todo\\Schedule\\Daily\\TodayTasksCountAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Main\/IndexAction.php.html#30\">App\\Http\\Action\\Todo\\Schedule\\Main\\IndexAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Main\/IndexAction.php.html#74\">App\\Http\\Action\\Todo\\Schedule\\Main\\IndexAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Main\/IndexAction.php.html#86\">App\\Http\\Action\\Todo\\Schedule\\Main\\IndexAction::tasks<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Main\/TasksCountAction.php.html#29\">App\\Http\\Action\\Todo\\Schedule\\Main\\TasksCountAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Schedule\/Main\/TasksCountAction.php.html#53\">App\\Http\\Action\\Todo\\Schedule\\Main\\TasksCountAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/ChangeStatusAction.php.html#34\">App\\Http\\Action\\Todo\\Task\\ChangeStatusAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/ChangeStatusAction.php.html#79\">App\\Http\\Action\\Todo\\Task\\ChangeStatusAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Task\/ChangeStatusAction.php.html#100\">App\\Http\\Action\\Todo\\Task\\ChangeStatusAction::canChangeStatus<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/CreateAction.php.html#40\">App\\Http\\Action\\Todo\\Task\\CreateAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/CreateAction.php.html#97\">App\\Http\\Action\\Todo\\Task\\CreateAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Task\/CreateAction.php.html#136\">App\\Http\\Action\\Todo\\Task\\CreateAction::canCreateTask<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/EditAction.php.html#34\">App\\Http\\Action\\Todo\\Task\\EditAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/EditAction.php.html#81\">App\\Http\\Action\\Todo\\Task\\EditAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Task\/EditAction.php.html#104\">App\\Http\\Action\\Todo\\Task\\EditAction::canEditTask<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/RemoveAction.php.html#34\">App\\Http\\Action\\Todo\\Task\\RemoveAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/RemoveAction.php.html#78\">App\\Http\\Action\\Todo\\Task\\RemoveAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Task\/RemoveAction.php.html#97\">App\\Http\\Action\\Todo\\Task\\RemoveAction::canRemoveTask<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/ChangeStatusAction.php.html#34\">App\\Http\\Action\\Todo\\Task\\Step\\ChangeStatusAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/ChangeStatusAction.php.html#67\">App\\Http\\Action\\Todo\\Task\\Step\\ChangeStatusAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Task\/Step\/ChangeStatusAction.php.html#88\">App\\Http\\Action\\Todo\\Task\\Step\\ChangeStatusAction::canChangeStatus<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/CreateAction.php.html#38\">App\\Http\\Action\\Todo\\Task\\Step\\CreateAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/CreateAction.php.html#87\">App\\Http\\Action\\Todo\\Task\\Step\\CreateAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Task\/Step\/CreateAction.php.html#111\">App\\Http\\Action\\Todo\\Task\\Step\\CreateAction::canCreateStepForTask<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/DownAction.php.html#34\">App\\Http\\Action\\Todo\\Task\\Step\\DownAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/DownAction.php.html#82\">App\\Http\\Action\\Todo\\Task\\Step\\DownAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Task\/Step\/DownAction.php.html#101\">App\\Http\\Action\\Todo\\Task\\Step\\DownAction::canDownStep<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/IndexAction.php.html#31\">App\\Http\\Action\\Todo\\Task\\Step\\IndexAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/IndexAction.php.html#68\">App\\Http\\Action\\Todo\\Task\\Step\\IndexAction::handle<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/IndexAction.php.html#87\">App\\Http\\Action\\Todo\\Task\\Step\\IndexAction::steps<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Task\/Step\/IndexAction.php.html#104\">App\\Http\\Action\\Todo\\Task\\Step\\IndexAction::canShowTask<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/RemoveAction.php.html#34\">App\\Http\\Action\\Todo\\Task\\Step\\RemoveAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/RemoveAction.php.html#66\">App\\Http\\Action\\Todo\\Task\\Step\\RemoveAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Task\/Step\/RemoveAction.php.html#85\">App\\Http\\Action\\Todo\\Task\\Step\\RemoveAction::canDeleteStep<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/UpAction.php.html#34\">App\\Http\\Action\\Todo\\Task\\Step\\UpAction::__construct<\/a>"],[0,1,"<a href=\"Http\/Action\/Todo\/Task\/Step\/UpAction.php.html#82\">App\\Http\\Action\\Todo\\Task\\Step\\UpAction::handle<\/a>"],[0,2,"<a href=\"Http\/Action\/Todo\/Task\/Step\/UpAction.php.html#101\">App\\Http\\Action\\Todo\\Task\\Step\\UpAction::canUpStep<\/a>"],[0,1,"<a href=\"Http\/Middleware\/AuthMiddleware.php.html#26\">App\\Http\\Middleware\\AuthMiddleware::__construct<\/a>"],[0,3,"<a href=\"Http\/Middleware\/AuthMiddleware.php.html#32\">App\\Http\\Middleware\\AuthMiddleware::process<\/a>"],[0,1,"<a href=\"Http\/Middleware\/ErrorHandler.php.html#28\">App\\Http\\Middleware\\ErrorHandler::__construct<\/a>"],[0,5,"<a href=\"Http\/Middleware\/ErrorHandler.php.html#35\">App\\Http\\Middleware\\ErrorHandler::process<\/a>"],[0,2,"<a href=\"Http\/Middleware\/ErrorHandler.php.html#59\">App\\Http\\Middleware\\ErrorHandler::canShowErrorMessage<\/a>"],[0,1,"<a href=\"Http\/Middleware\/InvalidArgumentHandler.php.html#25\">App\\Http\\Middleware\\InvalidArgumentHandler::__construct<\/a>"],[0,3,"<a href=\"Http\/Middleware\/InvalidArgumentHandler.php.html#31\">App\\Http\\Middleware\\InvalidArgumentHandler::process<\/a>"],[0,1,"<a href=\"Http\/Middleware\/IsActiveMiddleware.php.html#23\">App\\Http\\Middleware\\IsActiveMiddleware::__construct<\/a>"],[0,3,"<a href=\"Http\/Middleware\/IsActiveMiddleware.php.html#34\">App\\Http\\Middleware\\IsActiveMiddleware::process<\/a>"],[0,1,"<a href=\"Http\/Middleware\/NotFoundHandler.php.html#20\">App\\Http\\Middleware\\NotFoundHandler::__construct<\/a>"],[0,1,"<a href=\"Http\/Middleware\/NotFoundHandler.php.html#25\">App\\Http\\Middleware\\NotFoundHandler::handle<\/a>"],[0,1,"<a href=\"Http\/Middleware\/ProfilerMiddleware.php.html#14\">App\\Http\\Middleware\\ProfilerMiddleware::process<\/a>"],[0,1,"<a href=\"Http\/Middleware\/SentryDecoratorMiddleware.php.html#22\">App\\Http\\Middleware\\SentryDecoratorMiddleware::__construct<\/a>"],[0,2,"<a href=\"Http\/Middleware\/SentryDecoratorMiddleware.php.html#33\">App\\Http\\Middleware\\SentryDecoratorMiddleware::process<\/a>"],[0,1,"<a href=\"Http\/Middleware\/ValidationMiddleware.php.html#24\">App\\Http\\Middleware\\ValidationMiddleware::__construct<\/a>"],[0,2,"<a href=\"Http\/Middleware\/ValidationMiddleware.php.html#29\">App\\Http\\Middleware\\ValidationMiddleware::process<\/a>"],[0,2,"<a href=\"Http\/Middleware\/ValidationMiddleware.php.html#42\">App\\Http\\Middleware\\ValidationMiddleware::errors<\/a>"],[0,1,"<a href=\"Http\/Middleware\/ValidationMiddleware.php.html#54\">App\\Http\\Middleware\\ValidationMiddleware::error<\/a>"],[0,1,"<a href=\"Validation\/Validator.php.html#21\">App\\Validation\\Validator::__construct<\/a>"],[0,2,"<a href=\"Validation\/Validator.php.html#27\">App\\Validation\\Validator::validateObjects<\/a>"],[0,2,"<a href=\"Validation\/Validator.php.html#34\">App\\Validation\\Validator::validate<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

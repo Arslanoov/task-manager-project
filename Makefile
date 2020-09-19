@@ -45,6 +45,8 @@ api-tests-unit:
 	docker-compose run --rm api-php-cli vendor/bin/phpunit --colors=always --testsuite=Unit
 api-tests-functional:
 	docker-compose run --rm api-php-cli vendor/bin/phpunit --colors=always --testsuite=Functional
+api-tests-coverage-unit:
+	docker-compose run --rm api-php-cli vendor/bin/phpunit --coverage-clover var/clover.xml --coverage-html var/coverage --testsuite=Unit
 
 api-check:
 	docker-compose run --rm api-php-cli composer lint

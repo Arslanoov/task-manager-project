@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Entity\Todo\Schedule;
+namespace Tests\Unit\Entity\Todo\Schedule\Action;
 
 use Domain\Todo\Entity\Schedule\Name;
 use Domain\Todo\Entity\Schedule\Schedule;

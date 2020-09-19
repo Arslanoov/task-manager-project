@@ -8,11 +8,6 @@ use Domain\User\Entity\User\Login;
 use PHPUnit\Framework\TestCase;
 use InvalidArgumentException;
 
-/**
- * Class LoginTest
- * @package Unit\Entity\User
- * @covers Login
- */
 class LoginTest extends TestCase
 {
     public function testSuccess(): void

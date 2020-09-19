@@ -49,7 +49,7 @@ final class Step
      * @param SortOrder $sortOrder
      * @param Status $status
      */
-    private function __construct(
+    public function __construct(
         Id $id,
         Task $task,
         Name $name,
@@ -114,6 +114,11 @@ final class Step
         return $this->status;
     }
 
+    public function changeName(Name $name): void
+    {
+        $this->name = $name;
+    }
+
     public function changeSortOrder(SortOrder $order): void
     {
         $this->sortOrder = $order;
@@ -132,10 +137,5 @@ final class Step
     public function isComplete(): bool
     {
         return $this->getStatus()->isComplete();
-    }
-
-    public function changeName(Name $name): void
-    {
-        $this->name = $name;
     }
 }
