@@ -10,6 +10,8 @@ COPY ./common/php/main.ini /usr/local/etc/php/conf.d/default.ini
 COPY ./dev/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY ./dev/php/timeout.ini /usr/local/etc/php/conf.d/timeout.ini
 
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezoneime
+
 WORKDIR /var/www/api
 
 COPY ./dev/php-fpm-entrypoint.sh /usr/local/bin/docker-php-entrypoint

@@ -11,6 +11,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --fil
 
 COPY ./dev/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
 WORKDIR /var/www/api

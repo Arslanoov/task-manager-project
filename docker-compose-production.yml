@@ -33,6 +33,7 @@ services:
       MAILER_PASSWORD: ${MAILER_PASSWORD}
       MAILER_ENCRYPTION: tls
       MAILER_FROM_EMAIL: ${API_MAILER_FROM_EMAIL}
+      TZ: "Asia/Yekaterinburg"
     restart: always
 
   api-php-cli:
@@ -45,6 +46,7 @@ services:
       MAILER_PASSWORD: ${MAILER_PASSWORD}
       MAILER_ENCRYPTION: tls
       MAILER_FROM_EMAIL: ${API_MAILER_FROM_EMAIL}
+      TZ: "Asia/Yekaterinburg"
 
   api-postgres:
     image: ${REGISTRY}/todo-api-postgres:${IMAGE_TAG}
