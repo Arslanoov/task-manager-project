@@ -1,9 +1,0 @@
-all:
-    children:
-        todo:
-            hosts:
-                server:
-                    ansible_connection: ssh
-                    ansible_user: root
-                    ansible_host: 0.0.0.0
-                    ansible_port: 22
