@@ -33,7 +33,7 @@ final class InvalidArgumentHandler implements MiddlewareInterface
         try {
             return $handler->handle($request);
         } catch (InvalidArgumentException $e) {
-            $code = $e->getCode() ?: 400;
+            $code = intval($e->getCode() ?: 400);
 
             $this->logger->warning($e->getMessage(), [
                 'exception' => $e,

@@ -51,6 +51,7 @@ api-tests-coverage-unit:
 api-check:
 	docker-compose run --rm api-php-cli composer lint
 	docker-compose run --rm api-php-cli composer cs-check
+	docker-compose run --rm api-php-cli composer psalm
 
 frontend-install:
 	docker-compose exec frontend-nodejs npm install

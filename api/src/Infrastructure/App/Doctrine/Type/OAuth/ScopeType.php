@@ -21,7 +21,7 @@ final class ScopeType extends JsonType
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        $data = array_map(function (Scope $entity) {
+        $data = array_map(function (Scope $entity): ?string {
             return $entity->getIdentifier();
         }, $value);
 
@@ -39,7 +39,7 @@ final class ScopeType extends JsonType
         $values = parent::convertToPHPValue($value, $platform);
 
         if ($values) {
-            return array_map(function ($value) {
+            return array_map(function (string $value): Scope {
                 return new Scope($value);
             }, $values);
         }

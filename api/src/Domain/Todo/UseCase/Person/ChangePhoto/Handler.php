@@ -41,8 +41,10 @@ final class Handler
     public function handle(Command $command): void
     {
         $person = $this->persons->getById(new Id($command->personId));
-        if ($person->hasBackgroundPhoto()) {
-            $this->remover->remove($person->getBackgroundPhoto()->getPath());
+        if ($person->hasBackgroundPhoto() and $person->getBackgroundPhoto() !== null) {
+            /** @var BackgroundPhoto $photo */
+            $photo = $person->getBackgroundPhoto();
+            $this->remover->remove($photo->getPath());
         }
 
         $file = $command->file;

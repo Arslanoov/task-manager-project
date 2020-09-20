@@ -127,7 +127,7 @@ final class DoctrineScheduleRepository implements ScheduleRepository
         return $schedule;
     }
 
-    public function getPersonMainSchedule(Person $person): ?Schedule
+    public function getPersonMainSchedule(Person $person): Schedule
     {
         if (!$schedule = $this->findPersonMainSchedule($person)) {
             throw new ScheduleNotFoundException();

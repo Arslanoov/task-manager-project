@@ -24,6 +24,9 @@ final class Validator
         $this->logger = $logger;
     }
 
+    /**
+     * @param object ...$objects
+     */
     public function validateObjects(...$objects): void
     {
         foreach ($objects as $object) {

@@ -16,6 +16,7 @@ use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
 /**
  * @ORM\Entity
  * @ORM\Table(name="oauth_access_tokens")
+ * @psalm-suppress MissingConstructor
  */
 final class AccessToken implements AccessTokenEntityInterface
 {
@@ -24,6 +25,7 @@ final class AccessToken implements AccessTokenEntityInterface
     use EntityTrait;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=80)
      * @ORM\Id
      */
@@ -36,6 +38,7 @@ final class AccessToken implements AccessTokenEntityInterface
     protected $expiryDateTime;
 
     /**
+     * @var string
      * @ORM\Column(type="guid", name="user_identifier")
      */
     protected $userIdentifier;

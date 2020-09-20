@@ -38,8 +38,15 @@ final class RequestAction implements RequestHandlerInterface
      * @param Person\Create\Handler $personCreateHandler
      * @param ResponseFactory $response
      */
-    public function __construct(Validator $validator, TransactionInterface $transaction, UuidGeneratorInterface $uuid, User\SignUp\Request\Handler $requestHandler, UserRepository $users, Person\Create\Handler $personCreateHandler, ResponseFactory $response)
-    {
+    public function __construct(
+        Validator $validator,
+        TransactionInterface $transaction,
+        UuidGeneratorInterface $uuid,
+        User\SignUp\Request\Handler $requestHandler,
+        UserRepository $users,
+        Person\Create\Handler $personCreateHandler,
+        ResponseFactory $response
+    ) {
         $this->validator = $validator;
         $this->transaction = $transaction;
         $this->uuid = $uuid;

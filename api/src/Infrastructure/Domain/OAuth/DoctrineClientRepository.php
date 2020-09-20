@@ -17,11 +17,19 @@ final class DoctrineClientRepository implements ClientRepositoryInterface
         $this->clients = $clients;
     }
 
+    /**
+     * @psalm-suppress PossiblyNullArgument
+     * @param string $clientIdentifier
+     * @param string $grantType
+     * @param string|null $clientSecret
+     * @param bool $mustValidateSecret
+     * @return ClientEntityInterface|null
+     */
     public function getClientEntity(
         $clientIdentifier,
-        $grantType = null,
-        $clientSecret = null,
-        $mustValidateSecret = true
+        string $grantType = null,
+        string $clientSecret = null,
+        bool $mustValidateSecret = true
     ): ?ClientEntityInterface {
         if (array_key_exists($clientIdentifier, $this->clients) === false) {
             return null;
@@ -30,7 +38,7 @@ final class DoctrineClientRepository implements ClientRepositoryInterface
         if (
             $mustValidateSecret === true and
             $this->clients[$clientIdentifier]['is_confidential'] === true and
-            password_verify($clientSecret, $this->clients[$clientIdentifier]['secret']) === false
+            !password_verify($clientSecret, $this->clients[$clientIdentifier]['secret'])
         ) {
             return null;
         }

@@ -37,17 +37,16 @@ class ErrorHandler implements MiddlewareInterface
         try {
             return $handler->handle($request);
         } catch (Throwable $e) {
-            $code = $e->getCode() ?: 500;
+            $code = intval($e->getCode() ?: 500);
+            $context = [
+                'date' => new DateTimeImmutable(),
+                'trace' => $e->getTrace()
+            ];
+
             if ($code == 500) {
-                $this->logger->error($e->getMessage(), [
-                    'date' => new DateTimeImmutable(),
-                    'trace' => $e->getTrace()
-                ]);
+                $this->logger->error($e->getMessage(), $context);
             } else {
-                $this->logger->warning($e->getMessage(), [
-                    'date' => new DateTimeImmutable(),
-                    'trace' => $e->getTrace()
-                ]);
+                $this->logger->warning($e->getMessage(), $context);
             }
 
             return $this->response->json([

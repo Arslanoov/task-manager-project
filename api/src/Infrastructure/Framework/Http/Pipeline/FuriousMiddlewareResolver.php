@@ -28,8 +28,8 @@ class FuriousMiddlewareResolver implements MiddlewareResolverInterface
     }
 
     /**
-     * @param $handler
-     * @return LazyMiddlewareDecorator|SinglePassDecoratorMiddleware|MiddlewarePipeInterface|string
+     * @param mixed $handler
+     * @return MiddlewareInterface|MiddlewarePipeInterface|string
      */
     public function resolve($handler)
     {

@@ -26,7 +26,7 @@ final class Handler
 
     public function handle(Command $command): void
     {
-        $task = $this->tasks->findById(new Id($command->taskId));
+        $task = $this->tasks->getById(new Id($command->taskId));
 
         $task->notComplete();
 

@@ -117,11 +117,13 @@ final class GetNextScheduleAction implements RequestHandlerInterface
             $nextSchedule = $this->schedules->findNextSchedule($person, $schedule);
         }
 
+        /** @var Schedule $nextSchedule */
+
         return $this->response->json([
             'id' => $nextSchedule->getId()->getValue(),
             'date' => [
                 'day' => $nextSchedule->getDate()->format('d'),
-                'month' => $nextSchedule->getDate()->format('m') - 1,
+                'month' => intval($nextSchedule->getDate()->format('m')) - 1,
                 'year' => $nextSchedule->getDate()->format('Y'),
                 'string' => $nextSchedule->getDate()->format('d') . 'th ' .
                     Date::MONTHS[intval($nextSchedule->getDate()->format('m')) - 1]

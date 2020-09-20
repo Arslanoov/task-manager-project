@@ -30,7 +30,7 @@ final class PhotoUploader implements PhotoUploaderInterface
 
     private function generateName(UploadedFileInterface $file): string
     {
-        $ext = pathinfo($file->getClientFilename(), PATHINFO_EXTENSION) ?: 'jpg';
+        $ext = pathinfo($file->getClientFilename() ?? '', PATHINFO_EXTENSION) ?: 'jpg';
         $name = Uuid::uuid4()->toString();
         return $name . '.' . $ext;
     }

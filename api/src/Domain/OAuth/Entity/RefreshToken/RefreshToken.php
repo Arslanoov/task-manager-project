@@ -14,6 +14,8 @@ use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
 /**
  * @ORM\Entity
  * @ORM\Table(name="oauth_refresh_tokens")
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @psalm-suppress MissingConstructor
  */
 final class RefreshToken implements RefreshTokenEntityInterface
 {
@@ -21,6 +23,7 @@ final class RefreshToken implements RefreshTokenEntityInterface
     use EntityTrait;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=80)
      * @ORM\Id
      */

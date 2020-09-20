@@ -17,8 +17,11 @@ final class ProfilerMiddleware implements MiddlewareInterface
         $response = $handler->handle($request);
         $stop = hrtime(true) / 1000000;
 
+        /** @var string $time */
+        $time = strval($stop - $start);
+
         return
-            $response->withHeader('X-Load-Time', $stop - $start)
+            $response->withHeader('X-Load-Time', $time)
         ;
     }
 }

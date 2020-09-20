@@ -22,6 +22,11 @@ final class LaminasResponseFactory implements ResponseFactory
         return new JsonResponse($data, $code);
     }
 
+    /**
+     * @param mixed $data
+     * @param int $code
+     * @return ResponseInterface
+     */
     public function simple($data = null, int $code = 200): ResponseInterface
     {
         if ($data) {
@@ -31,6 +36,11 @@ final class LaminasResponseFactory implements ResponseFactory
         return new Response();
     }
 
+    /**
+     * @param mixed $data
+     * @param int $code
+     * @return ResponseInterface
+     */
     public function xml($data, int $code = 200): ResponseInterface
     {
         return new Response\XmlResponse($data, $code);

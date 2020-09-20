@@ -17,7 +17,7 @@ final class GenerateDocCommand extends Command
             ->setDescription('Generates OpenAPI docs');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $actions = 'src/App/Http/Action';
         $swagger = 'vendor/bin/openapi';
@@ -26,5 +26,7 @@ final class GenerateDocCommand extends Command
         passthru("$swagger --output $to $actions");
 
         $output->writeln('<info>Done!</info>');
+
+        return 0;
     }
 }

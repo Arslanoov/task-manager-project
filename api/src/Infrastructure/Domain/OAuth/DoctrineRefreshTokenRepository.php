@@ -67,12 +67,12 @@ final class DoctrineRefreshTokenRepository implements RefreshTokenRepositoryInte
     }
 
     /**
-     * @param $id
+     * @param string $id
      * @return bool
      * @throws NoResultException
      * @throws NonUniqueResultException
      */
-    private function exists($id): bool
+    private function exists(string $id): bool
     {
         return $this->repo->createQueryBuilder('t')
                 ->select('COUNT(t.identifier)')

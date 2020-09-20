@@ -31,8 +31,12 @@ final class DownAction implements RequestHandlerInterface
      * @param Validator $validator
      * @param ResponseFactory $response
      */
-    public function __construct(StepRepository $steps, Handler $handler, Validator $validator, ResponseFactory $response)
-    {
+    public function __construct(
+        StepRepository $steps,
+        Handler $handler,
+        Validator $validator,
+        ResponseFactory $response
+    ) {
         $this->steps = $steps;
         $this->handler = $handler;
         $this->validator = $validator;

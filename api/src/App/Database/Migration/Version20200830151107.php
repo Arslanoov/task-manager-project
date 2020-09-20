@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Database\Migration;
 
@@ -7,6 +9,7 @@ use Doctrine\Migrations\AbstractMigration;
 
 /**
  * Auto-generated Migration: Please modify to your needs!
+ * @psalm-suppress DeprecatedClass
  */
 final class Version20200830151107 extends AbstractMigration
 {

@@ -32,8 +32,12 @@ final class RemoveAction implements RequestHandlerInterface
      * @param Handler $handler
      * @param ResponseFactory $response
      */
-    public function __construct(ScheduleRepository $schedules, Validator $validator, Handler $handler, ResponseFactory $response)
-    {
+    public function __construct(
+        ScheduleRepository $schedules,
+        Validator $validator,
+        Handler $handler,
+        ResponseFactory $response
+    ) {
         $this->schedules = $schedules;
         $this->validator = $validator;
         $this->handler = $handler;

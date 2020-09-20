@@ -79,7 +79,7 @@ final class DoctrineAccessTokenRepository implements AccessTokenRepositoryInterf
     }
 
     /**
-     * @param $id
+     * @param string $id
      * @return bool
      * @throws NoResultException
      * @throws NonUniqueResultException

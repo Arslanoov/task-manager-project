@@ -10,4 +10,9 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <RedundantConditionGivenDocblockType errorLevel="info" />
+        <RedundantCondition errorLevel="info" />
+        <DeprecatedClass errorLevel="info" />
+    </issueHandlers>
 </psalm>

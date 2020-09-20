@@ -20,13 +20,15 @@ final class RemovePhotoAction implements RequestHandlerInterface
     private ResponseFactory $response;
 
     /**
-     * UploadPhotoAction constructor.
+     * RemovePhotoAction constructor.
      * @param Handler $handler
+     * @param Validator $validator
      * @param ResponseFactory $response
      */
-    public function __construct(Handler $handler, ResponseFactory $response)
+    public function __construct(Handler $handler, Validator $validator, ResponseFactory $response)
     {
         $this->handler = $handler;
+        $this->validator = $validator;
         $this->response = $response;
     }
 

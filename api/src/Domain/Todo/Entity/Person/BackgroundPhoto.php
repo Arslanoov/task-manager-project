@@ -17,7 +17,7 @@ final class BackgroundPhoto
      * BackgroundPhoto constructor.
      * @param string $path
      */
-    public function __construct(string $path = null)
+    public function __construct(string $path)
     {
         $this->path = $path;
     }

@@ -11,6 +11,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Class LazyMiddlewareDecorator
+ * @package Framework\Http\Middleware
+ * @psalm-suppress PossiblyInvalidMethodCall
+ */
 final class LazyMiddlewareDecorator implements MiddlewareInterface
 {
     private MiddlewareResolverInterface $resolver;
@@ -32,6 +37,7 @@ final class LazyMiddlewareDecorator implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        /** @var MiddlewareInterface $middleware */
         $middleware = $this->resolver->resolve($this->container->get($this->action));
         return $middleware->process($request, $handler);
     }

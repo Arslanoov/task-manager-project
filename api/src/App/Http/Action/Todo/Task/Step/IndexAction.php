@@ -81,7 +81,7 @@ final class IndexAction implements RequestHandlerInterface
     }
 
     /**
-     * @param array|Step $steps
+     * @param array|Step[] $steps
      * @return array
      */
     private function steps(array $steps): array

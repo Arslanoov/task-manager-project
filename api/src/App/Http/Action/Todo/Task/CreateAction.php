@@ -44,8 +44,7 @@ final class CreateAction implements RequestHandlerInterface
         TaskRepository $tasks,
         UuidGeneratorInterface $uuid,
         ResponseFactory $response
-    )
-    {
+    ) {
         $this->handler = $handler;
         $this->validator = $validator;
         $this->schedules = $schedules;

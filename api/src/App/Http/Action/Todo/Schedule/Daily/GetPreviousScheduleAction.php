@@ -117,11 +117,13 @@ final class GetPreviousScheduleAction implements RequestHandlerInterface
             $previousSchedule = $this->schedules->findPreviousSchedule($person, $schedule);
         }
 
+        /** @var Schedule $previousSchedule */
+
         return $this->response->json([
             'id' => $previousSchedule->getId()->getValue(),
             'date' => [
                 'day' => $previousSchedule->getDate()->format('d'),
-                'month' => $previousSchedule->getDate()->format('m') - 1,
+                'month' => intval($previousSchedule->getDate()->format('m')) - 1,
                 'year' => $previousSchedule->getDate()->format('Y'),
                 'string' => $previousSchedule->getDate()->format('d') . 'th ' .
                     Date::MONTHS[intval($previousSchedule->getDate()->format('m')) - 1]

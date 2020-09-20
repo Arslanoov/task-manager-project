@@ -12,8 +12,18 @@ interface ResponseFactory
 
     public function json(array $data, int $code = 200): ResponseInterface;
 
+    /**
+     * @param mixed $data
+     * @param int $code
+     * @return ResponseInterface
+     */
     public function xml($data, int $code = 200): ResponseInterface;
 
+    /**
+     * @param mixed $data
+     * @param int $code
+     * @return ResponseInterface
+     */
     public function simple($data = null, int $code = 200): ResponseInterface;
 
     public function empty(): ResponseInterface;

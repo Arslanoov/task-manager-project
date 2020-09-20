@@ -101,11 +101,13 @@ final class GetTodayAction implements RequestHandlerInterface
             $schedule = $this->schedules->findPersonTodaySchedule($person);
         }
 
+        /** @var Schedule $schedule */
+
         return $this->response->json([
             'id' => $schedule->getId()->getValue(),
             'date' => [
                 'day' => $schedule->getDate()->format('d'),
-                'month' => $schedule->getDate()->format('m') - 1,
+                'month' => intval($schedule->getDate()->format('m')) - 1,
                 'year' => $schedule->getDate()->format('Y'),
                 'string' => $schedule->getDate()->format('d') . 'th ' .
                     Date::MONTHS[intval($schedule->getDate()->format('m')) - 1]

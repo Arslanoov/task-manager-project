@@ -9,6 +9,7 @@ use Doctrine\Migrations\AbstractMigration;
 
 /**
  * Auto-generated Migration: Please modify to your needs!
+ * @psalm-suppress DeprecatedClass
  */
 final class Version20200816112606 extends AbstractMigration
 {

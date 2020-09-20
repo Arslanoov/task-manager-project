@@ -9,7 +9,7 @@ use Throwable;
 
 final class TaskNotFoundException extends DomainException
 {
-    public function __construct($message = "Task not found.", $code = 404, Throwable $previous = null)
+    public function __construct(string $message = "Task not found.", int $code = 404, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

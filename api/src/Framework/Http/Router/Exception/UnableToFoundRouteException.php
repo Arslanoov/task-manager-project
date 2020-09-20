@@ -11,7 +11,7 @@ final class UnableToFoundRouteException extends LogicException
     private string $name;
     private array $params;
 
-    public function __construct($name, array $params = [])
+    public function __construct(string $name, array $params = [])
     {
         parent::__construct();
         $this->message = 'Route "' . $name . '" not found.';

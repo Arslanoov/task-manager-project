@@ -11,8 +11,13 @@ use Framework\Http\Router\Route;
 use Framework\Http\Router\Router;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Class Application
+ * @package Framework\Http
+ */
 final class Application
 {
     private Router $router;
@@ -32,7 +37,12 @@ final class Application
         $this->pipeline = $pipeline;
     }
 
-    public function pipe($path, $middleware = null): void
+    /**
+     * @param string $path
+     * @param MiddlewareInterface|MiddlewarePipeInterface|string $middleware
+     * @psalm-suppress PossiblyInvalidArgument
+     */
+    public function pipe(string $path, $middleware = null): void
     {
         if ($middleware === null) {
             $this->pipeline->pipe($this->resolver->resolve($path));
@@ -51,37 +61,37 @@ final class Application
         return $this->pipeline->process($request, $handler);
     }
 
-    private function add($name, $path, $handler, array $methods, array $options = []): void
+    private function add(string $name, string $path, string $handler, array $methods, array $options = []): void
     {
         $this->router->addRoute(new Route($name, $path, $handler, $methods, $options));
     }
 
-    public function any($name, $path, $handler, array $options = []): void
+    public function any(string $name, string $path, string $handler, array $options = []): void
     {
         $this->add($name, $path, $handler, $options);
     }
 
-    public function get($name, $path, $handler, array $options = []): void
+    public function get(string $name, string $path, string $handler, array $options = []): void
     {
         $this->add($name, $path, $handler, ['GET'], $options);
     }
 
-    public function post($name, $path, $handler, array $options = []): void
+    public function post(string $name, string $path, string $handler, array $options = []): void
     {
         $this->add($name, $path, $handler, ['POST'], $options);
     }
 
-    public function put($name, $path, $handler, array $options = []): void
+    public function put(string $name, string $path, string $handler, array $options = []): void
     {
         $this->add($name, $path, $handler, ['PUT'], $options);
     }
 
-    public function patch($name, $path, $handler, array $options = []): void
+    public function patch(string $name, string $path, string $handler, array $options = []): void
     {
         $this->add($name, $path, $handler, ['PATCH'], $options);
     }
 
-    public function delete($name, $path, $handler, array $options = []): void
+    public function delete(string $name, string $path, string $handler, array $options = []): void
     {
         $this->add($name, $path, $handler, ['DELETE'], $options);
     }

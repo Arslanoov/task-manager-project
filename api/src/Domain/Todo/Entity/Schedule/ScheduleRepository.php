@@ -33,7 +33,7 @@ interface ScheduleRepository
 
     public function findPersonMainSchedule(Person $person): ?Schedule;
 
-    public function getPersonMainSchedule(Person $person): ?Schedule;
+    public function getPersonMainSchedule(Person $person): Schedule;
 
     // Daily
 
