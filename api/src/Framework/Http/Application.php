@@ -38,11 +38,11 @@ final class Application
     }
 
     /**
-     * @param string $path
+     * @param string|object $path
      * @param MiddlewareInterface|MiddlewarePipeInterface|string $middleware
      * @psalm-suppress PossiblyInvalidArgument
      */
-    public function pipe(string $path, $middleware = null): void
+    public function pipe($path, $middleware = null): void
     {
         if ($middleware === null) {
             $this->pipeline->pipe($this->resolver->resolve($path));
