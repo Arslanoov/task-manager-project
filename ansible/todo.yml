@@ -1,0 +1,8 @@
+---
+-   name: Provision Site
+    hosts: todo
+    remote_user: root
+    roles:
+      - docker
+      - certbot
+      - todo

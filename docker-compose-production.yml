@@ -1,0 +1,59 @@
+version: '3.3'
+services:
+  gateway:
+    image: ${REGISTRY}/todo-gateway:${IMAGE_TAG}
+    restart: always
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /var/www/html:/var/www/html:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend-nginx
+      - api-nginx
+
+  frontend-nginx:
+    image: ${REGISTRY}/todo-frontend-nginx:${IMAGE_TAG}
+    restart: always
+
+  api-nginx:
+    image: ${REGISTRY}/todo-api-nginx:${IMAGE_TAG}
+    restart: always
+    depends_on:
+      - api-php-fpm
+
+  api-php-fpm:
+    image: ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
+    environment:
+      SENTRY_DSN: ${SENTRY_DSN}
+      MAILER_HOST: ${MAILER_HOST}
+      MAILER_PORT: ${MAILER_PORT}
+      MAILER_USER: ${MAILER_USER}
+      MAILER_PASSWORD: ${MAILER_PASSWORD}
+      MAILER_ENCRYPTION: tls
+      MAILER_FROM_EMAIL: ${API_MAILER_FROM_EMAIL}
+      TZ: "Asia/Yekaterinburg"
+    restart: always
+
+  api-php-cli:
+    image: ${REGISTRY}/todo-api-php-cli:${IMAGE_TAG}
+    environment:
+      SENTRY_DSN: ${SENTRY_DSN}
+      MAILER_HOST: ${MAILER_HOST}
+      MAILER_PORT: ${MAILER_PORT}
+      MAILER_USER: ${MAILER_USER}
+      MAILER_PASSWORD: ${MAILER_PASSWORD}
+      MAILER_ENCRYPTION: tls
+      MAILER_FROM_EMAIL: ${API_MAILER_FROM_EMAIL}
+      TZ: "Asia/Yekaterinburg"
+
+  api-postgres:
+    image: ${REGISTRY}/todo-api-postgres:${IMAGE_TAG}
+    restart: always
+    volumes:
+      - todo-api-postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: ${MANAGER_DB_PASSWORD}
+      POSTGRES_DB: app

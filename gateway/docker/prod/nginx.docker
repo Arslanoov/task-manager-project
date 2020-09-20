@@ -1,0 +1,6 @@
+FROM nginx:1.17-alpine
+
+COPY ./common/nginx/patterns /etc/nginx/patterns
+COPY ./prod/nginx/conf.d /etc/nginx/conf.d/
+
+WORKDIR /var/www/frontend
