@@ -1,7 +1,7 @@
 up: docker-clear docker-pull docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions api-check cucumber-init
 compile: frontend-install frontend-build-sass frontend-compile-js
 generate-keys: generate-private-key generate-public-key
-test: api-tests-run
+test: api-tests-run e2e-tests-run
 build: build-gateway build-frontend build-api
 push: push-gateway push-frontend push-api
 cucumber-init: cucumber-install
@@ -65,6 +65,8 @@ frontend-compile-js:
 frontend-tests-run:
 	docker-compose exec frontend-nodejs npm run test
 
+e2e-tests-run:
+	docker-compose run --rm cucumber yarn e2e
 
 generate-private-key:
 	docker-compose run --rm api-php-cli openssl genrsa -out private.key 2048
