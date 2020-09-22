@@ -61,6 +61,8 @@ frontend-compile-js-dev:
 	docker-compose exec frontend-nodejs npm run dev
 frontend-compile-js:
 	docker-compose exec frontend-nodejs npm run build
+frontend-tests-run:
+	docker-compose exec frontend-nodejs npm run test
 
 
 generate-private-key:
