@@ -1,7 +1,8 @@
 {
   "license": "MIT",
   "dependencies": {
-    "cucumber": "^6.0.5"
+    "cucumber": "^6.0.5",
+    "puppeteer": "^2.1.1"
   },
   "scripts": {
     "e2e": "cucumber-js"
