@@ -1,9 +1,10 @@
-up: docker-clear docker-pull docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions api-check
+up: docker-clear docker-pull docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions api-check cucumber-init
 compile: frontend-install frontend-build-sass frontend-compile-js
 generate-keys: generate-private-key generate-public-key
 test: api-tests-run
 build: build-gateway build-frontend build-api
 push: push-gateway push-frontend push-api
+cucumber-init: cucumber-install
 
 docker-build:
 	docker-compose build
@@ -70,6 +71,8 @@ generate-private-key:
 generate-public-key:
 	docker-compose run --rm api-php-cli openssl rsa -in private.key -pubout -out public.key
 
+cucumber-install:
+	docker-compose run --rm cucumber yarn install
 
 build-gateway:
 	docker --log-level=debug build --pull --file=gateway/docker/prod/nginx.docker --tag=${REGISTRY}/todo-gateway:${IMAGE_TAG} gateway/docker

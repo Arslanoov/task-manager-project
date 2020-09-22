@@ -103,6 +103,12 @@ services:
   mailer:
     image: mailhog/mailhog
 
+  cucumber:
+    build:
+      context: cucumber/docker/dev/node
+    volumes:
+      - ./cucumber:/var/www/cucumber
+
 volumes:
   api-postgres:
   composer:
