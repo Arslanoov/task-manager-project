@@ -1,5 +1,8 @@
 <template>
-  <ApiStatus />
+  <div class="main-page">
+    <p data-test="welcome">Welcome to Furious TODO!</p>
+    <ApiStatus />
+  </div>
 </template>
 
 <script>
