@@ -1,11 +1,18 @@
-up: docker-clear docker-pull docker-build docker-up api-set-permissions api-composer-install api-migrations-migrate compile generate-keys api-set-keys-permissions check cucumber-set-permissions test
+up: docker-clear docker-pull docker-build docker-up api-init frontend-init check cucumber-set-permissions test
 compile: frontend-install frontend-build-sass frontend-compile-js
 generate-keys: generate-private-key generate-public-key
-test: api-tests-run e2e
+test: api-tests-run frontend-tests-run e2e
 check: api-check cucumber-check
 build: build-gateway build-frontend build-api
 push: push-gateway push-frontend push-api
 e2e: cucumber-install e2e-tests-run
+api-init: api-set-permissions api-composer-install api-migrations-migrate generate-keys api-set-keys-permissions
+frontend-init: compile
+testing-build: testing-build-gateway testing-build-cucumber
+test-e2e:
+	make cucumber-clear
+	- make e2e
+	make cucumber-report
 
 docker-build:
 	docker-compose build
@@ -70,10 +77,13 @@ cucumber-install:
 	docker-compose run --rm cucumber yarn install
 cucumber-set-permissions:
 	docker-compose run --rm cucumber chmod 777 /var/www/cucumber/var
+
 cucumber-check:
 	docker-compose run --rm cucumber yarn lint
 cucumber-check-and-fix:
 	docker-compose run --rm cucumber yarn lint-fix
+cucumber-report:
+	docker-compose run --rm cucumber yarn report
 e2e-tests-run:
 	docker-compose run --rm cucumber yarn e2e
 
@@ -93,8 +103,30 @@ build-api:
 	docker --log-level=debug build --pull --file=api/docker/prod/nginx.docker --tag=${REGISTRY}/todo-api-nginx:${IMAGE_TAG} api
 	docker --log-level=debug build --pull --file=api/docker/prod/php-cli.docker --tag=${REGISTRY}/todo-api-php-cli:${IMAGE_TAG} api
 
+testing-build-gateway:
+	docker --log-level=debug build --pull --file=gateway/docker/test/nginx.docker --tag=${REGISTRY}/todo-testing-gateway:${IMAGE_TAG} gateway/docker
+testing-build-cucumber:
+	docker --log-level=debug build --pull --file=cucumber/docker/test/nginx.docker --tag=${REGISTRY}/todo-cucumber:${IMAGE_TAG} cucumber
+
+try-testing: try-build try-testing-build try-testing-init try-testing-e2e try-testing-down-clear
+try-testing-build:
+	REGISTRY=localhost IMAGE_TAG=0 make testing-build
+testing-init:
+	COMPOSE_PROJECT_NAME=testing docker-compose -f docker-compose-testing.yml up -d
+	COMPOSE_PROJECT_NAME=testing docker-compose -f docker-compose-testing.yml run --rm api-php-cli wait-for-it api-postgres:5432 -t 60
+	COMPOSE_PROJECT_NAME=testing docker-compose -f docker-compose-testing.yml run --rm api-php-cli php bin/console.php migrations:migrate --no-interaction
+testing-down-clear:
+	COMPOSE_PROJECT_NAME=testing docker-compose -f docker-compose-testing.yml down -v --remove-orphans
+testing-e2e:
+	COMPOSE_PROJECT_NAME=testing docker-compose -f docker-compose-testing.yml run --rm cucumber-node-cli yarn e2e
 try-build:
 	REGISTRY=localhost IMAGE_TAG=0 make up
+try-testing-init:
+	REGISTRY=localhost IMAGE_TAG=0 make testing-init
+try-testing-down-clear:
+	REGISTRY=localhost IMAGE_TAG=0 make testing-down-clear
+try-testing-e2e:
+	REGISTRY=localhost IMAGE_TAG=0 make testing-e2e
 
 push-gateway:
 	docker push ${REGISTRY}/todo-gateway:${IMAGE_TAG}
@@ -115,24 +147,21 @@ deploy:
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "REGISTRY=${REGISTRY}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "IMAGE_TAG=${IMAGE_TAG}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "SENTRY_DSN=${SENTRY_DSN}" >> .env'
+	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "MAILER_FROM=${MAILER_FROM}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "MAILER_HOST=${MAILER_HOST}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "MAILER_PORT=${MAILER_PORT}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "MAILER_USER=${MAILER_USER}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "MAILER_PASSWORD=${MAILER_PASSWORD}" >> .env'
-	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "MAILER_FROM=${MAILER_FROM}" >> .env'
-	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "API_MAILER_HOST=${API_MAILER_HOST}" >> .env'
-	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "API_MAILER_PORT=${API_MAILER_PORT}" >> .env'
-	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "API_MAILER_USER=${API_MAILER_USER}" >> .env'
-	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "API_MAILER_PASSWORD=${API_MAILER_PASSWORD}" >> .env'
-	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "API_MAILER_FROM_EMAIL=${API_MAILER_FROM_EMAIL}" >> .env'
+	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "MAILER_FROM_EMAIL=${MAILER_FROM_EMAIL}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose pull'
-	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose down'
-	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose up --build --remove-orphans -d'
+	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose up --build -d api-postgres api-php-cli'
+	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose run api-php-cli wait-for-it api-postgres:5432 -t 60'
+	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose run api-php-cli php bin/console.php migrations:migrate --no-interaction'
 	ssh ${HOST} -p ${PORT} 'rm -f todo'
 	ssh ${HOST} -p ${PORT} 'ln -sr todo_${BUILD_NUMBER} todo'
 
 rollback:
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose pull'
-	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose up --build --remove-orphans -d'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose up --build --remove-orphans -d'
 	ssh ${HOST} -p ${PORT} 'rm -f todo'
 	ssh ${HOST} -p ${PORT} 'ln -sr todo_${BUILD_NUMBER} todo'

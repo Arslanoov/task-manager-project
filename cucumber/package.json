@@ -14,7 +14,7 @@
     "eslint-plugin-standard": "^4.0.1"
   },
   "scripts": {
-    "e2e": "cucumber-js",
+    "e2e": "cucumber-js --format json:var/report.json",
     "lint": "eslint --ext .js features",
     "lint-fix": "eslint --fix --ext .js features"
   }
