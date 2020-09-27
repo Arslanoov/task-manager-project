@@ -8,8 +8,6 @@ RUN yarn install && yarn cache clean
 COPY ./ ./
 RUN yarn build
 
-WORKDIR /var/www/frontend
-
 FROM nginx:1.17-alpine
 
 RUN apk add --no-cache curl
@@ -17,5 +15,3 @@ RUN apk add --no-cache curl
 COPY ./docker/prod/nginx/conf.d /etc/nginx/conf.d
 
 WORKDIR /var/www/frontend
-
-COPY --from=builder /var/www/frontend/build ./public
