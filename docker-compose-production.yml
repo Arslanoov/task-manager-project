@@ -32,7 +32,7 @@ services:
       MAILER_USER: ${MAILER_USER}
       MAILER_PASSWORD: ${MAILER_PASSWORD}
       MAILER_ENCRYPTION: tls
-      MAILER_FROM_EMAIL: ${API_MAILER_FROM_EMAIL}
+      MAILER_FROM_EMAIL: ${MAILER_FROM_EMAIL}
       TZ: "Asia/Yekaterinburg"
     restart: always
 
@@ -45,7 +45,7 @@ services:
       MAILER_USER: ${MAILER_USER}
       MAILER_PASSWORD: ${MAILER_PASSWORD}
       MAILER_ENCRYPTION: tls
-      MAILER_FROM_EMAIL: ${API_MAILER_FROM_EMAIL}
+      MAILER_FROM_EMAIL: ${MAILER_FROM_EMAIL}
       TZ: "Asia/Yekaterinburg"
 
   api-postgres:
