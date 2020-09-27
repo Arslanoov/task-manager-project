@@ -14,6 +14,6 @@ RUN apk add --no-cache curl
 
 COPY ./docker/prod/nginx/conf.d /etc/nginx/conf.d
 
-WORKDIR /var/www/frontend
-
 COPY --from=builder /var/www/frontend/build ./public
+
+WORKDIR /var/www/frontend
