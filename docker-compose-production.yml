@@ -57,3 +57,7 @@ services:
       POSTGRES_USER: app
       POSTGRES_PASSWORD: ${API_DB_PASSWORD}
       POSTGRES_DB: app
+
+volumes:
+  api-postgres:
+  composer:
