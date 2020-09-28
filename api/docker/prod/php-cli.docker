@@ -19,6 +19,7 @@ COPY ./composer.json ./composer.lock ./
 RUN composer install --no-dev --prefer-dist --no-progress --no-suggest --optimize-autoloader \
     && rm -rf /root/.composer/cache
 
+RUN apk add --update openssl
 openssl genrsa -out private.key 2048
 openssl rsa -in private.key -pubout -out public.key
 
