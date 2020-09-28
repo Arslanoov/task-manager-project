@@ -34,6 +34,7 @@ WORKDIR /var/www/api
 COPY --from=builder /var/www/api ./
 COPY ./ ./
 
+RUN apk add openssl
 openssl genrsa -out private.key 2048
 openssl rsa -in private.key -pubout -out public.key
 
