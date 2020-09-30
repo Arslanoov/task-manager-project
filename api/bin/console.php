@@ -27,7 +27,7 @@ $container = require 'config/container.php';
 
 $app = new Application('Application console');
 if (getenv('SENTRY_DSN')) {
-    $cli->setCatchExceptions(false);
+    $app->setCatchExceptions(false);
 }
 
 $entityManager = $container->get(EntityManagerInterface::class);
