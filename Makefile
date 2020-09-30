@@ -163,10 +163,10 @@ deploy:
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose run api-php-cli php bin/console.php migrations:migrate --no-interaction'
 	scp -P ${PORT} api/public.key ${HOST}:todo_${BUILD_NUMBER}/public.key
 	scp -P ${PORT} api/private.key ${HOST}:todo_${BUILD_NUMBER}/private.key
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && chmod 777 public.key'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && chmod 777 private.key'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker cp public.key todo_api-php-fpm_1:/var/www/api/public.key'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker cp private.key todo_api-php-fpm_1:/var/www/api/private.key'
-	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose run api-php-fpm chmod 777 private.key'
-	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose run api-php-fpm chmod 777 public.key'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && rm public.key'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && rm private.key'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose up --build --remove-orphans -d'
