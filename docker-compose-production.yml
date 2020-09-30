@@ -15,9 +15,8 @@ services:
 
   frontend-nginx:
     image: ${REGISTRY}/todo-frontend-nginx:${IMAGE_TAG}
-    build:
-      args:
-        - VUE_APP_API_URL=${VUE_APP_API_URL}
+    environment:
+      VUE_APP_API_URL: "${VUE_APP_API_URL}"
     restart: always
 
   api-nginx:
