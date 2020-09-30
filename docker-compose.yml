@@ -87,7 +87,7 @@ services:
       - "54321:5432"
   api-storage-nginx:
     build:
-      context: ./storage/docker
+      context: ./storage/docker/dev
       dockerfile: nginx.docker
     volumes:
       - ./storage:/var/www/storage
