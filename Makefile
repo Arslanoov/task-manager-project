@@ -163,6 +163,8 @@ deploy:
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose run api-php-cli php bin/console.php migrations:migrate --no-interaction'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose run api-php-fpm openssl genrsa -out private.key 2048'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose run api-php-fpm openssl rsa -in private.key -pubout -out public.key'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose run api-php-fpm chmod 777 private.key'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose run api-php-fpm chmod 777 public.key'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose up --build --remove-orphans -d'
 	ssh ${HOST} -p ${PORT} 'rm -f todo'
 	ssh ${HOST} -p ${PORT} 'ln -sr todo_${BUILD_NUMBER} todo'
