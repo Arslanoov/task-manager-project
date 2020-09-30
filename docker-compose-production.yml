@@ -52,6 +52,9 @@ services:
       DEBUG: ${DEBUG}
       TZ: "Asia/Yekaterinburg"
 
+  api-storage-nginx:
+    image: ${REGISTRY}/todo-api-storage:${IMAGE_TAG}
+
   api-postgres:
     image: ${REGISTRY}/todo-api-postgres:${IMAGE_TAG}
     restart: always

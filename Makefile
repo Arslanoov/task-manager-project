@@ -103,6 +103,7 @@ build-api:
 	docker --log-level=debug build --pull --file=api/docker/prod/nginx.docker --tag=${REGISTRY}/todo-api-nginx:${IMAGE_TAG} api
 	docker --log-level=debug build --pull --file=api/docker/prod/php-cli.docker --tag=${REGISTRY}/todo-api-php-cli:${IMAGE_TAG} api
 	docker --log-level=debug build --pull --file=api/docker/prod/postgres.docker --tag=${REGISTRY}/todo-api-postgres:${IMAGE_TAG} api
+	docker --log-level=debug build --pull --file=storage/docker/nginx.docker --tag=${REGISTRY}/todo-api-storage:${IMAGE_TAG} storage
 
 testing-build-gateway:
 	docker --log-level=debug build --pull --file=gateway/docker/test/nginx.docker --tag=${REGISTRY}/todo-testing-gateway:${IMAGE_TAG} gateway/docker
@@ -140,6 +141,7 @@ push-api:
 	docker push ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
 	docker push ${REGISTRY}/todo-api-php-cli:${IMAGE_TAG}
 	docker push ${REGISTRY}/todo-api-postgres:${IMAGE_TAG}
+	docker push ${REGISTRY}/todo-api-storage:${IMAGE_TAG}
 
 deploy:
 	ssh ${HOST} -p ${PORT} 'rm -rf todo_${BUILD_NUMBER}'
