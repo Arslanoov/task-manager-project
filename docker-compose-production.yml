@@ -36,6 +36,8 @@ services:
       FRONTEND_URL: ${FRONTEND_URL}
       DEBUG: ${DEBUG}
       TZ: "Asia/Yekaterinburg"
+    volumes:
+      - storage:/var/www/api/storage
     restart: always
 
   api-php-cli:
@@ -54,6 +56,8 @@ services:
 
   api-storage-nginx:
     image: ${REGISTRY}/todo-api-storage:${IMAGE_TAG}
+    volumes:
+      - storage:/var/www/storage
 
   api-postgres:
     image: ${REGISTRY}/todo-api-postgres:${IMAGE_TAG}
@@ -67,4 +71,5 @@ services:
 
 volumes:
   todo-api-postgres:
+  storage:
   composer:
