@@ -35,3 +35,6 @@ COPY --from=builder /var/www/api ./
 COPY ./ ./
 
 RUN chown www-data:www-data ./var -R
+RUN chown www-data:www-data ./storage -R
+RUN chown www-data:www-data ./public.key
+RUN chown www-data:www-data ./private.key
