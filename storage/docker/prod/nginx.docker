@@ -5,4 +5,4 @@ WORKDIR /var/www/storage
 RUN mkdir public
 RUN mkdir public/photos
 
-RUN chmod 777 public/photos
+RUN chown www-data:www-data ./public/photos -R
