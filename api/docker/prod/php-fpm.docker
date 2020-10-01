@@ -35,6 +35,5 @@ COPY --from=builder /var/www/api ./
 COPY ./ ./
 
 RUN chown www-data:www-data ./var -R
-RUN usermod -u 1000 www-data
 RUN chown www-data:www-data ./public.key
 RUN chown www-data:www-data ./private.key
