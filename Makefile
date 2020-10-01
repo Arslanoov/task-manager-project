@@ -172,8 +172,6 @@ deploy:
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && chmod 777 private.key'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker cp public.key todo_api-php-fpm_1:/var/www/api/public.key'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker cp private.key todo_api-php-fpm_1:/var/www/api/private.key'
-	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && rm public.key'
-	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && rm private.key'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose up --build --remove-orphans -d'
 	ssh ${HOST} -p ${PORT} 'rm -f todo'
 	ssh ${HOST} -p ${PORT} 'ln -sr todo_${BUILD_NUMBER} todo'
