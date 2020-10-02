@@ -24,7 +24,7 @@ class Task
     private Id $id;
     /**
      * @var Schedule
-     * @ORM\ManyToOne(targetEntity="Domain\Todo\Entity\Schedule\Schedule")
+     * @ORM\ManyToOne(targetEntity="Domain\Todo\Entity\Schedule\Schedule", inversedBy="tasks")
      * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", nullable=false)
      */
     private Schedule $schedule;

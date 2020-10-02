@@ -21,7 +21,7 @@ final class Step
     private Id $id;
     /**
      * @var Task
-     * @ORM\ManyToOne(targetEntity="Domain\Todo\Entity\Schedule\Task\Task")
+     * @ORM\ManyToOne(targetEntity="Domain\Todo\Entity\Schedule\Task\Task", inversedBy="steps")
      * @ORM\JoinColumn(name="task_id", referencedColumnName="id", nullable=false)
      */
     private Task $task;
