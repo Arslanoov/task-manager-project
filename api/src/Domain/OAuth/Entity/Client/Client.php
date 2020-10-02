@@ -14,7 +14,7 @@ use League\OAuth2\Server\Entities\Traits\EntityTrait;
  * @psalm-suppress PropertyNotSetInConstructor
  * @psalm-suppress MissingParamType
  */
-final class Client implements ClientEntityInterface
+class Client implements ClientEntityInterface
 {
     use EntityTrait;
     use ClientTrait;

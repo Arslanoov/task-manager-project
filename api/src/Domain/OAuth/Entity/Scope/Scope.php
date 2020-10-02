@@ -7,7 +7,7 @@ namespace Domain\OAuth\Entity\Scope;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 
-final class Scope implements ScopeEntityInterface
+class Scope implements ScopeEntityInterface
 {
     use EntityTrait;
 

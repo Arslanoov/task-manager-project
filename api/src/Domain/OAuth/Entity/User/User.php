@@ -6,7 +6,7 @@ namespace Domain\OAuth\Entity\User;
 
 use League\OAuth2\Server\Entities\UserEntityInterface;
 
-final class User implements UserEntityInterface
+class User implements UserEntityInterface
 {
     private string $identifier;
 

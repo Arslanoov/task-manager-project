@@ -18,7 +18,7 @@ use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
  * @ORM\Table(name="oauth_access_tokens")
  * @psalm-suppress MissingConstructor
  */
-final class AccessToken implements AccessTokenEntityInterface
+class AccessToken implements AccessTokenEntityInterface
 {
     use AccessTokenTrait;
     use TokenEntityTrait;

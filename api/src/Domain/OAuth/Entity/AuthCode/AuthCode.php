@@ -19,7 +19,7 @@ use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
  * @psalm-suppress MissingParamType
  * @psalm-suppress MissingConstructor
  */
-final class AuthCode implements AuthCodeEntityInterface
+class AuthCode implements AuthCodeEntityInterface
 {
     use EntityTrait;
     use TokenEntityTrait;
