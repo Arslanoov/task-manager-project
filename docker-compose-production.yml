@@ -65,6 +65,8 @@ services:
   api-postgres:
     image: ${REGISTRY}/todo-api-postgres:${IMAGE_TAG}
     restart: always
+    ports:
+      - "54321:5432"
     volumes:
       - todo-api-postgres:/var/lib/postgresql/data
     environment:
