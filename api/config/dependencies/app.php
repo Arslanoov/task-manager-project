@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Action\EnvAction;
 use App\Http\Middleware\ErrorHandler;
 use Framework\Http\Psr7\ResponseFactory;
 use Laminas\Diactoros\ServerRequestFactory;
@@ -22,6 +23,13 @@ return [
                 $container->get(LoggerInterface::class),
                 $container->get('config')['debug'],
                 $container->get('config')['env']
+            );
+        },
+        EnvAction::class => function (ContainerInterface $container) {
+            return new EnvAction(
+                $container->get('config')['env'],
+                $container->get('config')['debug'],
+                $container->get(ResponseFactory::class)
             );
         }
     ]

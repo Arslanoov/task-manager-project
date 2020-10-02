@@ -7,6 +7,7 @@ use App\Http\Action;
 
 return function (Application $app) {
     $app->get('home', '/api', Action\HomeAction::class);
+    $app->get('env', '/env', Action\EnvAction::class);
 
     // Auth
     $app->post('api.auth.signup.request', '/api/auth/sign-up/request', Action\Auth\SignUp\RequestAction::class);
