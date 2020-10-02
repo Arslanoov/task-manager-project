@@ -20,7 +20,7 @@ services:
   api-nginx:
     image: ${REGISTRY}/todo-api-nginx:${IMAGE_TAG}
     volumes:
-      - storage:/var/www/html/storage
+      - /var/www/api/storage:/var/www/html/storage
     restart: always
     depends_on:
       - api-php-fpm
@@ -28,7 +28,7 @@ services:
   api-php-fpm:
     image: ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
     volumes:
-      - storage:/var/www/html/storage
+      - /var/www/api/storage:/var/www/html/storage
     environment:
       SENTRY_DSN: ${SENTRY_DSN}
       MAILER_HOST: ${MAILER_HOST}
@@ -47,7 +47,7 @@ services:
   api-php-cli:
     image: ${REGISTRY}/todo-api-php-cli:${IMAGE_TAG}
     volumes:
-      - storage:/var/www/html/storage
+      - /var/www/api/storage:/var/www/html/storage
     environment:
       SENTRY_DSN: ${SENTRY_DSN}
       MAILER_HOST: ${MAILER_HOST}
@@ -75,4 +75,3 @@ services:
 volumes:
   todo-api-postgres:
   composer:
-  storage:
