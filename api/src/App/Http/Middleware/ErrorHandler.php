@@ -67,6 +67,6 @@ class ErrorHandler implements MiddlewareInterface
 
     private function isDevEnv(): bool
     {
-        return $this->env === 'prod';
+        return $this->env === 'dev';
     }
 }
