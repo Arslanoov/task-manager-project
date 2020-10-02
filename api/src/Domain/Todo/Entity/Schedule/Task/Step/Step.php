@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="todo_schedule_task_steps")
  * @ORM\Entity()
  */
-final class Step
+class Step
 {
     /**
      * @var Id

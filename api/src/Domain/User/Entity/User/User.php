@@ -14,7 +14,7 @@ use Domain\Exception\DomainException;
  *     @ORM\UniqueConstraint(columns={"email"})
  * })
  */
-final class User
+class User
 {
     /**
      * @var Id
