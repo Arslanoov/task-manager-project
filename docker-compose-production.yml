@@ -25,6 +25,8 @@ services:
 
   api-php-fpm:
     image: ${REGISTRY}/todo-api-php-fpm:${IMAGE_TAG}
+    volumes:
+      - storage:/var/www/html/storage
     environment:
       SENTRY_DSN: ${SENTRY_DSN}
       MAILER_HOST: ${MAILER_HOST}
@@ -42,6 +44,8 @@ services:
 
   api-php-cli:
     image: ${REGISTRY}/todo-api-php-cli:${IMAGE_TAG}
+    volumes:
+      - storage:/var/www/html/storage
     environment:
       SENTRY_DSN: ${SENTRY_DSN}
       MAILER_HOST: ${MAILER_HOST}
@@ -69,3 +73,4 @@ services:
 volumes:
   todo-api-postgres:
   composer:
+  storage:
