@@ -35,6 +35,7 @@ services:
       MAILER_FROM_EMAIL: ${MAILER_FROM_EMAIL}
       FRONTEND_URL: ${FRONTEND_URL}
       DEBUG: ${DEBUG}
+      ENV: ${ENV}
       TZ: "Asia/Yekaterinburg"
     restart: always
 
@@ -50,6 +51,7 @@ services:
       MAILER_FROM_EMAIL: ${MAILER_FROM_EMAIL}
       FRONTEND_URL: ${FRONTEND_URL}
       DEBUG: ${DEBUG}
+      ENV: ${ENV}
       TZ: "Asia/Yekaterinburg"
 
   api-postgres:
