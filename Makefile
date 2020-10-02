@@ -159,6 +159,8 @@ deploy:
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "FRONTEND_URL=${FRONTEND_URL}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "DEBUG=${DEBUG}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "ENV=${ENV}" >> .env'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "STORAGE_URL=${STORAGE_URL}" >> .env'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "FRONTEND_URL=${FRONTEND_URL}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && echo "VUE_APP_API_URL=${VUE_APP_API_URL}" >> .env.production'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose pull'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose up --build -d api-postgres api-php-cli'
