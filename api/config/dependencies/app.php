@@ -20,7 +20,8 @@ return [
             return new ErrorHandler(
                 $container->get(ResponseFactory::class),
                 $container->get(LoggerInterface::class),
-                $container->get('config')['debug']
+                $container->get('config')['debug'],
+                $container->get('config')['env']
             );
         }
     ]

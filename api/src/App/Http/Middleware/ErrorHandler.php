@@ -18,18 +18,21 @@ class ErrorHandler implements MiddlewareInterface
     private ResponseFactory $response;
     private LoggerInterface $logger;
     private bool $debug;
+    private string $env;
 
     /**
      * ErrorHandler constructor.
      * @param ResponseFactory $response
      * @param LoggerInterface $logger
      * @param bool $debug
+     * @param string $env
      */
-    public function __construct(ResponseFactory $response, LoggerInterface $logger, bool $debug)
+    public function __construct(ResponseFactory $response, LoggerInterface $logger, bool $debug, string $env)
     {
         $this->response = $response;
         $this->logger = $logger;
         $this->debug = $debug;
+        $this->env = $env;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
@@ -50,7 +53,9 @@ class ErrorHandler implements MiddlewareInterface
             }
 
             return $this->response->json([
-                'error' => $this->canShowErrorMessage($code) ? $e->getMessage() : 'Something went wrong.'
+                'error' => $this->canShowErrorMessage($code) ? (
+                    ($this->isDevEnv() ? '[DEV]' : ''). $e->getMessage()
+                ) : 'Something went wrong.'
             ], $code);
         }
     }
@@ -58,5 +63,10 @@ class ErrorHandler implements MiddlewareInterface
     private function canShowErrorMessage(int $code): bool
     {
         return $code !== 500 or $this->debug;
+    }
+
+    private function isDevEnv(): bool
+    {
+        return $this->env === 'prod';
     }
 }
