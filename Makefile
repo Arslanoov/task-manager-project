@@ -166,6 +166,7 @@ deploy:
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose up --build -d api-postgres api-php-cli'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose run api-php-cli wait-for-it api-postgres:5432 -t 60'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose run api-php-cli php bin/console.php migrations:migrate --no-interaction'
+	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose run api-php-cli php bin/console.php orm:generate-proxies'
 	ssh ${HOST} -p ${PORT} 'cd todo_${BUILD_NUMBER} && docker-compose up --build --remove-orphans -d'
 	ssh ${HOST} -p ${PORT} 'rm -f todo'
 	ssh ${HOST} -p ${PORT} 'ln -sr todo_${BUILD_NUMBER} todo'
