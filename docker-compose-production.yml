@@ -19,6 +19,8 @@ services:
 
   api-nginx:
     image: ${REGISTRY}/todo-api-nginx:${IMAGE_TAG}
+    volumes:
+      - storage:/var/www/html/storage
     restart: always
     depends_on:
       - api-php-fpm
