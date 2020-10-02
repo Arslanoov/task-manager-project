@@ -37,7 +37,6 @@ services:
       DEBUG: ${DEBUG}
       ENV: ${ENV}
       STORAGE_URL: ${STORAGE_URL}
-      FRONTEND_URL: ${FRONTEND_URL}
       TZ: "Asia/Yekaterinburg"
     restart: always
 
@@ -55,7 +54,6 @@ services:
       DEBUG: ${DEBUG}
       ENV: ${ENV}
       STORAGE_URL: ${STORAGE_URL}
-      FRONTEND_URL: ${FRONTEND_URL}
       TZ: "Asia/Yekaterinburg"
 
   api-postgres:

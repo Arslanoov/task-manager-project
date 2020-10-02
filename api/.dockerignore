@@ -2,3 +2,4 @@
 /var/.phplint.json
 /var/.phpcs.json
 /vendor
+/storage/public/photos/*
