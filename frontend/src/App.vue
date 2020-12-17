@@ -29,7 +29,7 @@
         },
         computed: {
             ...mapGetters({
-                isLoggedIn: 'isLoggedIn'
+                isLoggedIn: 'user/isLoggedIn'
             })
         },
         mounted() {

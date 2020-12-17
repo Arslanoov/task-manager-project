@@ -12,7 +12,7 @@
 
             <b-collapse id="nav-collapse" text is-nav>
                 <b-navbar-nav class="ml-auto na">
-                    <template v-if="$store.getters.isLoggedIn">
+                    <template v-if="$store.getters['user/isLoggedIn']">
                         <b-nav-item @click="logout" href="">Log Out</b-nav-item>
                     </template>
                     <template v-else>

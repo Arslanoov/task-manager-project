@@ -9,7 +9,7 @@
                     </div>
                 </b-nav-item>
 
-                <template v-if="$store.getters.isLoggedIn">
+                <template v-if="$store.getters['user/isLoggedIn']">
                     <b-nav-item :to="{name: 'profile'}">
                         <div class="nav-item__name">
                             <i class="fa fa-user"> </i>
