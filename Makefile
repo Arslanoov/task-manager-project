@@ -9,6 +9,7 @@ e2e: cucumber-install e2e-tests-run
 api-init: api-set-permissions api-composer-install api-migrations-migrate generate-keys api-set-keys-permissions
 frontend-init: compile
 testing-build: testing-build-gateway testing-build-cucumber
+
 test-e2e:
 	make cucumber-clear
 	- make e2e
@@ -70,6 +71,8 @@ frontend-compile-js-dev:
 	docker-compose exec frontend-nodejs npm run dev
 frontend-compile-js:
 	docker-compose exec frontend-nodejs npm run build
+frontend-dev-compile-js:
+	docker-compose exec frontend-nodejs npm run dev
 frontend-tests-run:
 	docker-compose exec frontend-nodejs npm run test
 
