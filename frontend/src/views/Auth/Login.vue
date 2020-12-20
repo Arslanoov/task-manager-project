@@ -1,4 +1,3 @@
-
 <template>
 	<div class="row">
 		<div class="col-md-6 mx-auto">
@@ -77,15 +76,13 @@ export default {
 			e.preventDefault();
 
 			this.login()
-				.then(() => {
-					console.log("REDIRECT");
-					// TODO: change
-					//if (response.data.user.status !== "Draft") {
+				.then((user) => {
+					if (user.status !== "Draft") {
 						this.$router.push({ name: "home" });
-					/*} else {
+					} else {
 						this.logout()
 							.then(() => this.$router.push({name: "home"}));
-					}*/
+					}
 				});
 		}
 	}

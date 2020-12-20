@@ -54,8 +54,8 @@ export default {
           .then(response => {
             const user = response.data
             localStorage.setItem("user", JSON.stringify(user))
-            axios.defaults.headers.common["Authorization"] = getters.bearerToken
             commit(SET_USER, user)
+            axios.defaults.headers.common["Authorization"] = getters.bearerToken
             resolve(user)
           })
           .catch(error => {
@@ -67,10 +67,17 @@ export default {
           })
       })
     },
-    [LOGOUT]: ({ commit }) => {
-      commit(REMOVE_USER)
-      localStorage.removeItem("user")
-      delete axios.defaults.headers.common["Authorization"]
+    [LOGOUT]: async ({ commit }) => {
+      return new Promise((resolve, reject) => {
+        try {
+          commit(REMOVE_USER)
+          localStorage.removeItem("user")
+          delete axios.defaults.headers.common["Authorization"]
+          resolve({})
+        } catch (e) {
+          reject(e)
+        }
+      });
     },
     [REFRESH]: async ({ commit, getters }) => {
       if (getters.user) {
