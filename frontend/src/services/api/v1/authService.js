@@ -13,6 +13,14 @@ export default class AuthService {
       }))
   }
 
+  async signUp(login, email, password) {
+    return axios.post('/api/auth/sign-up/request', {
+      login,
+      email,
+      password
+    });
+  }
+
   async refresh(token) {
     await axios.post('/api/oauth/auth', {
         grant_type: 'refresh_token',

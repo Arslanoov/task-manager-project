@@ -9,12 +9,17 @@ import {
   SET_AUTH_FORM_PASSWORD,
   CLEAR_AUTH_FORM,
   SET_AUTH_FORM_ERROR,
-  CLEAR_AUTH_FORM_ERROR
+  CLEAR_AUTH_FORM_ERROR,
+  SET_SIGN_UP_FORM_LOGIN,
+  SET_SIGN_UP_FORM_EMAIL,
+  SET_SIGN_UP_FORM_PASSWORD,
+  SET_SIGN_UP_FORM_ERROR, CLEAR_SIGN_UP_FORM_ERROR
 } from "@/store/mutations"
+
 import {
   LOGIN,
   LOGOUT,
-  REFRESH
+  REFRESH, SIGN_UP
 } from "@/store/actions"
 
 export const STORE_USER_PREFIX = "user/"
@@ -27,6 +32,12 @@ export default {
     user: JSON.parse(localStorage.getItem("user")),
     refreshToken: null,
     authForm: {
+      email: null,
+      password: null,
+      error: null
+    },
+    signUpForm: {
+      login: null,
       email: null,
       password: null,
       error: null
@@ -43,7 +54,12 @@ export default {
       state.authForm.error = null
     },
     [SET_AUTH_FORM_ERROR]: (state, payload) => state.authForm.error = payload,
-    [CLEAR_AUTH_FORM_ERROR]: state => state.authForm.error = null
+    [CLEAR_AUTH_FORM_ERROR]: state => state.authForm.error = null,
+    [SET_SIGN_UP_FORM_LOGIN]: (state, payload) => (state.signUpForm.login = payload),
+    [SET_SIGN_UP_FORM_EMAIL]: (state, payload) => (state.signUpForm.email = payload),
+    [SET_SIGN_UP_FORM_PASSWORD]: (state, payload) => (state.signUpForm.password = payload),
+    [SET_SIGN_UP_FORM_ERROR]: (state, payload) => (state.signUpForm.error = payload),
+    [CLEAR_SIGN_UP_FORM_ERROR]: state => state.signUpForm.error = null
   },
   actions: {
     [LOGIN]: async ({ commit, getters }) => {
@@ -87,6 +103,19 @@ export default {
         axios.defaults.headers.common["Authorization"] = getters.bearerToken
         commit(SET_USER, user)
       }
+    },
+    [SIGN_UP]: async ({ commit, getters }) => {
+      return new Promise((resolve, reject) => {
+        commit(CLEAR_SIGN_UP_FORM_ERROR)
+
+        service.signUp(getters.signUpFormLogin, getters.signUpFormEmail, getters.signUpFormPassword)
+          .then(response => resolve(response.data))
+          .catch(error => {
+            console.log(error)
+            commit(SET_SIGN_UP_FORM_ERROR, error.response.data.error)
+            reject(error.response)
+          })
+      })
     }
   },
   getters: {
@@ -96,6 +125,10 @@ export default {
     bearerToken: state => state.user ? "Bearer " + state.user.access_token : "",
     authFormUsername: state => state.authForm.email,
     authFormPassword: state => state.authForm.password,
-    authFormError: state => state.authForm.error
+    authFormError: state => state.authForm.error,
+    signUpFormLogin: state => state.signUpForm.login,
+    signUpFormEmail: state => state.signUpForm.email,
+    signUpFormPassword: state => state.signUpForm.password,
+    signUpFormError: state => state.signUpForm.error
   }
 }
