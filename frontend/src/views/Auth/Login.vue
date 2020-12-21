@@ -78,10 +78,11 @@ export default {
 			this.login()
 				.then((user) => {
 					if (user.status !== "Draft") {
-						this.$router.push({ name: "home" });
+						this.$router.push({ name: "home" })
 					} else {
+						alert(1)
 						this.logout()
-							.then(() => this.$router.push({name: "home"}));
+							.then(() => this.$router.push({name: "home"}))
 					}
 				});
 		}

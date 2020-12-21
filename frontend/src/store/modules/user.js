@@ -13,13 +13,19 @@ import {
   SET_SIGN_UP_FORM_LOGIN,
   SET_SIGN_UP_FORM_EMAIL,
   SET_SIGN_UP_FORM_PASSWORD,
-  SET_SIGN_UP_FORM_ERROR, CLEAR_SIGN_UP_FORM_ERROR
+  SET_SIGN_UP_FORM_ERROR,
+  CLEAR_SIGN_UP_FORM_ERROR,
+  SET_CONFIRM_SIGN_UP_TOKEN,
+  SET_CONFIRM_SIGN_UP_ERROR,
+  CLEAR_CONFIRM_SIGN_UP_ERROR
 } from "@/store/mutations"
 
 import {
   LOGIN,
   LOGOUT,
-  REFRESH, SIGN_UP
+  REFRESH,
+  SIGN_UP,
+  CONFIRM_SIGN_UP
 } from "@/store/actions"
 
 export const STORE_USER_PREFIX = "user/"
@@ -41,6 +47,10 @@ export default {
       email: null,
       password: null,
       error: null
+    },
+    confirmSignUpForm: {
+      token: null,
+      error: null
     }
   },
   mutations: {
@@ -59,7 +69,10 @@ export default {
     [SET_SIGN_UP_FORM_EMAIL]: (state, payload) => (state.signUpForm.email = payload),
     [SET_SIGN_UP_FORM_PASSWORD]: (state, payload) => (state.signUpForm.password = payload),
     [SET_SIGN_UP_FORM_ERROR]: (state, payload) => (state.signUpForm.error = payload),
-    [CLEAR_SIGN_UP_FORM_ERROR]: state => state.signUpForm.error = null
+    [CLEAR_SIGN_UP_FORM_ERROR]: state => state.signUpForm.error = null,
+    [SET_CONFIRM_SIGN_UP_TOKEN]: (state, payload) => (state.confirmSignUpForm.token = payload),
+    [SET_CONFIRM_SIGN_UP_ERROR]: (state, payload) => (state.confirmSignUpForm.error = payload),
+    [CLEAR_CONFIRM_SIGN_UP_ERROR]: state => state.confirmSignUpForm.error = null
   },
   actions: {
     [LOGIN]: async ({ commit, getters }) => {
@@ -93,7 +106,7 @@ export default {
         } catch (e) {
           reject(e)
         }
-      });
+      })
     },
     [REFRESH]: async ({ commit, getters }) => {
       if (getters.user) {
@@ -116,6 +129,18 @@ export default {
             reject(error.response)
           })
       })
+    },
+    [CONFIRM_SIGN_UP]: async ({ commit, getters }) => {
+      return new Promise((resolve, reject) => {
+        commit(CLEAR_CONFIRM_SIGN_UP_ERROR)
+        service.confirmSignUp(getters.confirmSignUpFormToken)
+          .then(response => resolve(response.data))
+          .catch(error => {
+            console.log(error)
+            commit(SET_CONFIRM_SIGN_UP_ERROR, error.response.data.error)
+            reject(error.response)
+          })
+      })
     }
   },
   getters: {
@@ -129,6 +154,8 @@ export default {
     signUpFormLogin: state => state.signUpForm.login,
     signUpFormEmail: state => state.signUpForm.email,
     signUpFormPassword: state => state.signUpForm.password,
-    signUpFormError: state => state.signUpForm.error
+    signUpFormError: state => state.signUpForm.error,
+    confirmSignUpFormToken: state => state.confirmSignUpForm.token,
+    confirmSignUpFormError: state => state.confirmSignUpForm.error
   }
 }

@@ -21,6 +21,12 @@ export default class AuthService {
     });
   }
 
+  async confirmSignUp(token) {
+    return axios.post('/api/auth/sign-up/confirm', {
+      token
+    });
+  }
+
   async refresh(token) {
     await axios.post('/api/oauth/auth', {
         grant_type: 'refresh_token',

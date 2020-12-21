@@ -8,7 +8,7 @@
 				<div class="card-body">
 					<b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
 
-					<b-form @submit.prevent="signUp">
+					<b-form @submit.prevent="onSubmit">
 						<b-form-group label="Login" label-for="signUpLogin">
 							<b-form-input id="signUpLogin" class="text-center" type="text" @input="setLogin" :value="login" required> </b-form-input>
 						</b-form-group>
@@ -43,12 +43,6 @@ import { STORE_USER_PREFIX } from "@/store/modules/user"
 import { mapMutations, mapActions, mapGetters } from "vuex"
 
 export default {
-	data() {
-		return {
-			// TODO: CHANGE
-			errors: []
-		}
-	},
 	computed: mapGetters({
 		login: "user/signUpFormLogin",
 		email: "user/signUpFormEmail",
@@ -64,9 +58,7 @@ export default {
 		...mapActions({
 			signUp: STORE_USER_PREFIX + SIGN_UP
 		}),
-		signUp() {
-			this.errors = []
-
+		onSubmit() {
 			this.signUp()
 				.then(() => this.$router.push({name: 'home'}))
 				.catch(response => {
