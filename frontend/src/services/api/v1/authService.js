@@ -1,9 +1,11 @@
 import axios from "axios";
 import qs from "qs";
 
+import { API_PREFIX } from "@/services/api/v1/const";
+
 export default class AuthService {
   auth(username, password) {
-    return axios.post('/api/oauth/auth', qs.stringify({
+    return axios.post(`${API_PREFIX}/oauth/auth`, qs.stringify({
         grant_type: 'password',
         username: username,
         password: password,
@@ -14,7 +16,7 @@ export default class AuthService {
   }
 
   async signUp(login, email, password) {
-    return axios.post('/api/auth/sign-up/request', {
+    return axios.post(`${API_PREFIX}auth/sign-up/request`, {
       login,
       email,
       password
@@ -22,13 +24,13 @@ export default class AuthService {
   }
 
   async confirmSignUp(token) {
-    return axios.post('/api/auth/sign-up/confirm', {
+    return axios.post(`${API_PREFIX}/auth/sign-up/confirm`, {
       token
     });
   }
 
   async refresh(token) {
-    await axios.post('/api/oauth/auth', {
+    await axios.post(`${API_PREFIX}/oauth/auth`, {
         grant_type: 'refresh_token',
         refresh_token: token,
         client_id: 'app',
