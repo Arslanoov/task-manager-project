@@ -9,93 +9,85 @@
 		<b-alert variant="danger" v-if="error" show>{{ error }}</b-alert>
 
 		<b-nav-item
-			v-for="(schedule, index) in customSchedules"
-			:to="{name: 'todo.custom', params: { id: schedule.id }}"
+			v-for="schedule in customSchedules"
+			:to="{ name: 'todo.custom', params: { id: schedule.id }}"
 			:key="schedule.id"
 		>
 			<div class="nav-item__name">
 				<i class="fa fa-list-ol"> </i>
 				{{ schedule.name }}
 			</div>
-			<a @click.prevent="remove(index, schedule)">
+			<a @click.prevent="removeCustomSchedule(schedule.id)">
 				<i class="fa fa-trash"> </i>
 			</a>
 		</b-nav-item>
 
-		<div class="form-inline schedule-create-form">
-			<input type="text" class="schedule-create-form__input" placeholder="Create schedule" v-model="createForm.name" required>
-			<a @click="create">
+		<form class="form-inline schedule-create-form" @submit.prevent="onAdd">
+			<input
+				type="text"
+				class="schedule-create-form__input"
+				placeholder="Create schedule"
+				@input="e => setName(e.target.value)"
+				:value="name"
+				required>
+			<button type="submit" class="add-schedule-button">
 				<i class="fa fa-plus"> </i>
-			</a>
-		</div>
+			</button>
+		</form>
 	</div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex"
+import { mapActions, mapGetters, mapMutations } from "vuex"
 
+import { STORE_ALERT_PREFIX } from "@/store/modules/alert";
 import { TODO_STORE_PREFIX } from "@/store/modules/todo";
 import { SIDEBAR_STORE_PREFIX } from "@/store/modules/todo/sidebar";
 
-import { FETCH_SIDEBAR_CUSTOM_SCHEDULES_LIST } from "@/store/actions";
+import alertStatusList from "@/enums/alertStatusList";
+
+import {
+	SET_ALERT,
+	SET_SIDEBAR_CUSTOM_SCHEDULE_CREATE_FORM_NAME
+} from "@/store/mutations";
+
+import {
+	ADD_SIDEBAR_CUSTOM_SCHEDULE,
+	FETCH_SIDEBAR_CUSTOM_SCHEDULES_LIST,
+	REMOVE_SIDEBAR_CUSTOM_SCHEDULE
+} from "@/store/actions";
 
 export default {
 	name: "CustomSchedulesList",
-	data() {
-		return {
-			error: null,
-			createForm: {
-				name: null
-			},
-			removeForm: {
-				id: null
-			}
-		}
-	},
-	computed: mapGetters({
-		customSchedules: "todo/sidebar/customSchedules"
-	}),
 	mounted() {
 		this.fetchCustomSchedules()
 	},
+	computed: mapGetters({
+		customSchedules: "todo/sidebar/customSchedules",
+		error: "todo/sidebar/customScheduleCreateFormError",
+		name: "todo/sidebar/customScheduleCreateFormName"
+	}),
 	methods: {
 		...mapActions({
-			fetchCustomSchedules: TODO_STORE_PREFIX + SIDEBAR_STORE_PREFIX + FETCH_SIDEBAR_CUSTOM_SCHEDULES_LIST
+			fetchCustomSchedules: TODO_STORE_PREFIX + SIDEBAR_STORE_PREFIX + FETCH_SIDEBAR_CUSTOM_SCHEDULES_LIST,
+			addCustomSchedule: TODO_STORE_PREFIX + SIDEBAR_STORE_PREFIX + ADD_SIDEBAR_CUSTOM_SCHEDULE,
+			removeCustomSchedule: TODO_STORE_PREFIX + SIDEBAR_STORE_PREFIX + REMOVE_SIDEBAR_CUSTOM_SCHEDULE
 		}),
-		create() {},
-		remove() {}
-		/*create() {
-			this.error = null
-
-			axios.post('/api/todo/custom/create', this.createForm)
-					.then((response) => {
-							this.schedules.push({
-									'id': response.data.id,
-									'name': this.createForm.name,
-									'tasksCount': 0
-							})
-							this.createForm.name = null
-					})
-					.catch(error => {
-							this.error = error.response.data.error
-							console.log(error.message)
-					})
-		},
-		remove(index, schedule) {
-			this.error = null
-			this.removeForm.id = schedule.id
-
-			axios.delete('/api/todo/custom/remove', {
-					data: this.removeForm
-			})
-					.then(() => {
-							this.schedules.splice(index, 1)
-					})
-					.catch(error => {
-							this.error = error.response.data.error
-							console.log(error.message)
-					})
-		}*/
+		...mapMutations({
+			setName: TODO_STORE_PREFIX + SIDEBAR_STORE_PREFIX + SET_SIDEBAR_CUSTOM_SCHEDULE_CREATE_FORM_NAME,
+			setAlertMessage: STORE_ALERT_PREFIX + SET_ALERT
+		}),
+		onAdd() {
+			this.addCustomSchedule()
+				.then(() => this.setAlertMessage({
+					type: alertStatusList.SUCCESS,
+					message: "Успешно создан кастомный todo"
+				}))
+				.catch(error => this.setAlertMessage({
+					type: alertStatusList.ERROR,
+					message: error.response.data.error
+				}))
+		}
 	}
 }
 </script>
@@ -126,6 +118,17 @@ export default {
 		.nav-item__name {
 			font-weight: 500;
 		}
+	}
+}
+
+.add-schedule-button {
+	background: transparent;
+	padding: 0;
+	border: 0;
+	outline: 0;
+
+	&:hover {
+		cursor: pointer;
 	}
 }
 </style>

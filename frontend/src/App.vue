@@ -1,19 +1,20 @@
 <template>
-    <div id="app">
-        <header id="header">
-            <div id="nav">
-                <Nav/>
-            </div>
-        </header>
-        <main id="main">
-            <div id="aside">
-                <Sidebar/>
-            </div>
-            <div class="container page">
-                <router-view/>
-            </div>
-        </main>
-    </div>
+	<div id="app">
+		<header id="header">
+			<div id="nav">
+				<Nav/>
+			</div>
+		</header>
+		<main id="main">
+			<div id="aside">
+					<Sidebar/>
+			</div>
+			<div class="container page">
+					<router-view/>
+			</div>
+			<Alert />
+		</main>
+	</div>
 </template>
 
 <script>
@@ -21,9 +22,11 @@
     import Sidebar from './components/Sidebar';
     import { mapGetters } from 'vuex';
     import axios from "axios";
+		import Alert from "@/components/Alert";
 
     export default {
         components: {
+					Alert,
             Nav,
             Sidebar
         },
