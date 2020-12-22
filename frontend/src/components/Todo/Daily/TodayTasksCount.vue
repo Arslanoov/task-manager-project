@@ -1,27 +1,29 @@
 <template>
-    <div v-if="count">
-        {{ count }}
-    </div>
+	<div class="today-tasks-count">
+			{{ tasksCount }}
+	</div>
 </template>
 
 <script>
-    import axios from "axios";
+import { mapActions, mapGetters } from "vuex"
 
-    export default {
-        name: "TodayTasksCount",
-        data() {
-            return {
-                count: null
-            };
-        },
-        mounted() {
-            axios.get('/api/todo/daily/today/tasks/count').then(response => {
-                this.count = response.data.count;
-            });
-        }
-    }
+import { TODO_STORE_PREFIX } from "@/store/modules/todo";
+import { SIDEBAR_STORE_PREFIX } from "@/store/modules/todo/sidebar";
+
+import { FETCH_SIDEBAR_DAILY_SCHEDULE_TASKS_COUNT } from "@/store/actions";
+
+export default {
+	name: "TodayTasksCount",
+	mounted() {
+		this.fetchTasksCount();
+	},
+	computed: mapGetters({
+		tasksCount: "todo/sidebar/dailyScheduleTasksCount"
+	}),
+	methods: mapActions({
+		fetchTasksCount: TODO_STORE_PREFIX + SIDEBAR_STORE_PREFIX + FETCH_SIDEBAR_DAILY_SCHEDULE_TASKS_COUNT
+	})
+}
 </script>
 
-<style scoped>
-
-</style>
+<style lang="scss" scoped></style>
