@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "dev": "vue-cli-service build --mode development --fix",
+    "watch": "vue-cli-service build --watch --mode development --fix",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "jest",

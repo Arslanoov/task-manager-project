@@ -1,27 +1,29 @@
 <template>
-    <div v-if="count">
-        {{ count }}
-    </div>
+	<div class="tasks-count">
+		{{ tasksCount }}
+	</div>
 </template>
 
 <script>
-    import axios from "axios";
+import { mapActions, mapGetters } from "vuex"
 
-    export default {
-        name: "TasksCount",
-        data() {
-            return {
-                count: null
-            };
-        },
-        mounted() {
-            axios.get('/api/todo/main/tasks/count').then(response => {
-                this.count = response.data.count;
-            });
-        }
-    }
+import { TODO_STORE_PREFIX } from "@/store/modules/todo"
+import { SIDEBAR_STORE_PREFIX } from "@/store/modules/todo/sidebar"
+
+import { FETCH_SIDEBAR_MAIN_SCHEDULE_TASKS_COUNT } from "@/store/actions"
+
+export default {
+	name: "TasksCount",
+	mounted() {
+		this.fetchTasksCount()
+	},
+	computed: mapGetters({
+		tasksCount: "todo/sidebar/mainScheduleTasksCount"
+	}),
+	methods: mapActions({
+		fetchTasksCount: TODO_STORE_PREFIX + SIDEBAR_STORE_PREFIX + FETCH_SIDEBAR_MAIN_SCHEDULE_TASKS_COUNT
+	})
+}
 </script>
 
-<style scoped>
-
-</style>
+<style lang="scss" scoped></style>
