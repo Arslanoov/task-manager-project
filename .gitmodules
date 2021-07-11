@@ -1,0 +1,6 @@
+[submodule "todo-api"]
+	path = todo-api
+	url = https://github.com/Arslanoov/todo-api.git
+[submodule "vue-task-manager"]
+	path = vue-task-manager
+	url = https://github.com/Arslanoov/vue-task-manager.git

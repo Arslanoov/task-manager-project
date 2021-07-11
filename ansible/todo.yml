@@ -1,9 +1,0 @@
----
--   name: Provision Site
-    hosts: todo
-    remote_user: root
-    roles:
-      - swapfile
-      - docker
-      - certbot
-      - todo
