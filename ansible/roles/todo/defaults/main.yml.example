@@ -1,5 +1,0 @@
-certbot_email: somemail@gmail.com
-certbot_hosts:
-  - somesite.com
-  - api.somesite.com
-  - storage.somesite.com
